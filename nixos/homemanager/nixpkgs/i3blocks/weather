@@ -1,0 +1,39 @@
+#! /bin/sh
+
+shopt -s nocasematch
+
+AIRPORT=ARN
+DATA=$(curl -Ss wttr.in/$AIRPORT?format=j1) 
+CONDITION=$(curl -Ss wttr.in/$AIRPORT?format="%C\n")
+
+OVERCAST= 
+RAIN= 
+ICE= 
+SUN= 
+MIST=
+
+
+humidity=$(echo $DATA | jq -r '.current_condition[0].humidity')
+temp=$(echo $DATA | jq -r '.current_condition[0].temp_C')°
+
+if [[ $CONDITION =~ .*OVERCAST.* ]]; then
+  emo=$OVERCAST
+elif [[ $CONDITION =~ .*CLOUD.* ]]; then
+  emo=$OVERCAST
+elif [[ $CONDITION =~ .*MIST.* ]]; then
+  emo=$MIST
+elif [[ $CONDITION =~ .*RAIN.* ]]; then
+  emo=$RAIN
+elif [[ $CONDITION =~ .*SHOWER.* ]]; then
+  emo=$RAIN
+elif [[ $CONDITION =~ .*DRIZZLE.* ]]; then
+  emo=$RAIN
+elif [[ $CONDITION =~ .*BLIZZARD.* ]]; then
+  emo=$ICE
+elif [[ $CONDITION =~ .*SNOW.* ]]; then
+  emo=$ICE
+else 
+  emo=$SUN
+fi
+
+echo "$emo  $humidity $temp" 

@@ -1,0 +1,160 @@
+configuration {
+  display-run: "> ";
+  show-icons: true;
+  icon-theme: "Paper";
+}
+
+*{
+    black:           #062e28;
+    black2:          #062e28;
+    red:             #dc322f;
+    green:           #859900;
+    cyan:            #28ebe7;
+    dragonskin:      #4c3942;
+    white:           #f9f9f9;
+    white2:          #f9f9f9;
+    brown:           #664307;
+    transparent:     rgba ( 0, 0, 0, 0 % );
+
+    normal-foreground:           @white2;
+    normal-background:           @transparent;
+    active-foreground:           @green;
+    active-background:           @transparent;
+    urgent-foreground:           @red;
+    urgent-background:           @transparent;
+
+    selected-normal-foreground:  @black2;
+    selected-normal-background:  @white;
+    selected-active-foreground:  @green;
+    selected-active-background:  @white2;
+    selected-urgent-foreground:  @red;
+    selected-urgent-background:  @white2;
+
+    alternate-normal-foreground: @white2;
+    alternate-normal-background: @transparent;
+    alternate-active-foreground: @active-foreground;
+    alternate-active-background: @transparent;
+    alternate-urgent-foreground: @urgent-foreground;
+    alternate-urgent-background: @transparent;
+
+    separatorcolor:              @black2;
+    border-color:                @black2;
+    spacing:                     2;
+    background-color:            @transparent;
+}
+
+window {
+    background-color: @brown;
+    border:           1;
+    padding:          20;
+}
+
+mainbox {
+    border:  0;
+    padding: 0;
+}
+message {
+    border:       1px dash 0px 0px ;
+    border-color: @separatorcolor;
+    padding:      1px ;
+    font: "Iosevka Medium 15";
+}
+textbox {
+    text-color: @black2;
+}
+listview {
+    fixed-height: 0;
+    border:       1px dash 0px 0px ;
+    border-color: @separatorcolor;
+    lines: 5;
+    spacing:      2px ;
+    scrollbar:    false;
+    padding:      8px 0px 0px 0px;
+    max-history-size: 3;
+}
+element {
+    border:  0;
+    padding: 1px 0px 1px 1px;
+}
+element normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+element normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+element normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+element selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+element selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+element selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+element alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+element alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+element alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-width: 8px ;
+    padding:      0;
+}
+inputbar {
+    spacing:    0;
+    text-color: @normal-foreground;
+    padding:    1px ;
+}
+case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+entry {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+prompt {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+mode-switcher {
+    orientation: vertical;
+    expand:      false;
+    spacing:     0px ;
+    border:      0px ;
+}
+button {
+    text-color:       @green;
+    padding:          6px ;
+    background-color: @red;
+    border-radius:    4px 0px 0px 4px ;
+    font:             "FontAwesome 5";
+    border:           2px 0px 2px 2px ;
+    horizontal-align: 0.50;
+    border-color:     @red;
+}
+button selected.normal {
+    background-color: @red;
+    border-color:     @red;
+    text-color:       @green;
+    border:           2px 0px 2px 2px ;
+}
+

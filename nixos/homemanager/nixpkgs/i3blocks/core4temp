@@ -1,0 +1,17 @@
+#! /bin/bash
+
+MonDir='/sys/class/hwmon/hwmon4'
+
+core=`< "$HMON_DIR/temp4_input"`
+echo "   "
+echo "323"
+if [ "$core" -ge "80000" ]; then
+ echo "#EE3E38"
+elif [ "$core" -ge "70000" ]; then
+ echo "#F86E51"
+elif [ "$core" -ge "60000" ]; then
+ echo "#FBA465"
+elif [ "$core" -ge "500000" ]; then
+ echo "#F2C85B"
+else echo "#00FA9A"
+fi

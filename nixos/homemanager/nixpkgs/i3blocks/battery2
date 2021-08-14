@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+#
+# Copyright (C) 2016 James Murphy
+# Licensed under the GPL version 2 only
+#
+# A battery indicator blocklet script for i3blocks
+
+import re
+from subprocess import check_output
+
+status = check_output(['acpi'], universal_newlines=True)
+
+if not status:
+    # stands for no battery found
+    fulltext = "<span color='red'><span font='FontAwesome'>\uf00d \uf240</span></span>"
+    percentleft = 100
+else:
+    # if there is more than one battery in one laptop, the percentage left is 
+    # available for each battery separately, although state and remaining 
+    # time for overall block is shown in the status of the first battery 
+    batteries = status.split("\n")
+    state_batteries=[]
+    commasplitstatus_batteries=[]
+    percentleft_batteries=[]
+    time = ""
+    for battery in batteries:
+        if battery!='':
+            state_batteries.append(battery.split(": ")[1].split(", ")[0])
+            commasplitstatus = battery.split(", ")
+            if not time:
+                time = commasplitstatus[-1].strip()
+                # check if it matches a time
+                time = re.match(r"(\d+):(\d+)", time)
+                if time:
+                    time = ":".join(time.groups())
+                    timeleft = " ({})".format(time)
+                else:
+                    timeleft = ""
+
+            p = int(commasplitstatus[1].rstrip("%\n"))
+            if p>0:
+                percentleft_batteries.append(p)
+            commasplitstatus_batteries.append(commasplitstatus)
+    state = state_batteries[0]
+    commasplitstatus = commasplitstatus_batteries[0]
+    if percentleft_batteries:
+        percentleft = int(sum(percentleft_batteries)/len(percentleft_batteries))
+    else:
+        percentleft = 0
+  
+    def percentify(string):
+        return string+'%'
+
+    list3 = []
+    for x in range(0,2):
+        list3.append(str(percentleft_batteries[x]) +'%')
+    if state_batteries[1]=='Discharging':
+        str3 = '↓ ' + list3[0] + ' ' + list3[1]
+    elif state_batteries[0]=='Discharging':
+        str3 = '↓ ' + list3[0] + ' ' + list3[1]
+    else:
+        str3 = '↑ ' + list3[0] + ' ' + list3[1]
+print(str3)

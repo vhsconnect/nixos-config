@@ -1,0 +1,71 @@
+
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+command=$SCRIPT_DIR/$BLOCK_NAME
+separator_block_width=30
+markup=none
+
+[temp1]
+label=
+command=/home/vhs/Repos/dotfiles/linux/i3blocks/core1temp
+interval=5
+
+[temp2]
+label=
+command=/home/vhs/Repos/dotfiles/linux/i3blocks/core2temp
+interval=5
+
+[temp3]
+label=
+command=/home/vhs/Repos/dotfiles/linux/i3blocks/core3temp
+interval=5
+
+[temp4]
+label=
+command=/home/vhs/Repos/dotfiles/linux/i3blocks/core4temp
+interval=5
+
+[battery]
+command=/home/vhs/Repos/dotfiles/linux/i3blocks/battery2
+label= 
+interval=30
+color=#f9f9f9
+
+
+[bandwidth]
+command=/home/vhs/Repos/dotfiles/linux/i3blocks/bandwidth3
+markup=pango
+label=
+interval=persist
+color=#f9f9f9
+
+
+[weather]
+label=
+command=/home/vhs/Repos/dotfiles/linux/i3blocks/weather
+interval=1800
+color=#f9f9f9
+
+
+[calendar]
+label=
+command=/home/vhs/Repos/dotfiles/linux/i3blocks/calendar
+interval=59
+color=#f9f9f9
+

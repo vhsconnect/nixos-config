@@ -1,0 +1,202 @@
+let g:mapleader = "\\" 
+packloadall
+syntax enable
+set nocompatible
+set nu rnu
+set updatetime=300
+set noshowmode
+set cursorline
+set autoindent
+set autoread
+set incsearch 
+set hlsearch 
+set backspace=indent,eol,start
+set shiftwidth=2
+set smartindent
+set mouse=a
+set autowrite
+set inccommand=split
+set foldmethod=indent   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+set tabstop=2
+set shiftwidth=2
+set expandtab
+retab!
+
+
+" ----------- THEME ----------
+" let g:dracula_italic = 0
+colorscheme PaperColor
+let g:airline_theme='seoul256'
+" hi! Normal ctermbg=none
+" ----------- lightline ----------
+
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
+" ----------- highlighting ----------
+highlight Visual ctermfg=238 ctermbg=84
+
+" ----------- markdown preview ----------
+let g:mkdp_auto_start = 1
+let g:mkdp_refresh_slow = 1
+
+" ----------- Auto Pairs ----------
+let g:AutoPairsShortcutToggle = '<M-P>'
+
+" ----------- copy to system clipboard ----------
+
+function! ClipboardYank()
+  call system('xclip -i -selection clipboard', @@)
+endfunction
+function! ClipboardPaste()
+  let @@ = system('xclip -o -selection clipboard')
+endfunction
+
+vnoremap <silent> <space>y y:call ClipboardYank()<cr>
+vnoremap <silent> <space>d d:call ClipboardYank()<cr>
+nnoremap <silent> <space>p :call ClipboardPaste()<cr>p
+"copy the current visual selection to ~/.vbuf
+vmap <y> :w! ~/.vbuf<CR>      
+"copy the current line to the buffer file if no visual selection
+nmap <Y> :.w! ~/.vbuf<CR>     
+"paste the contents of the buffer file
+nmap <p> :r ~/.vbuf<CR>       
+
+"-----------  snippets ------------
+" nnoremap <leader>s :r ~/.config/nvim/snippets/
+
+"----------- global subs with confirm ------------
+nnoremap <space>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+nnoremap <space>R :%s/\<<C-r><C-w>\>//gci<Left><Left><Left><Left>
+vnoremap <space>r y :%s/<C-r>"//gc<Left><Left><Left>
+
+
+" --------------- NERDTREE --------------
+let NERDTreeShowHidden = 1
+
+" --------------- REMAPS  MISC--------------
+nnoremap <space>n :NERDTreeToggle<CR> 
+nnoremap <space>u :tabdo e<CR> "re-read from filesystem current tab
+nnoremap <space><space>u :bufdo e<CR> "re-read from filesystem all
+nnoremap <space>e :ALEDetail<CR>
+nnoremap <space>g :call CocAction('jumpDefinition')<CR>
+nnoremap <space><space>g :call CocActionAsync('jumpDefinition', 'tab drop')<CR>
+nnoremap <space><leader> :tabnext<CR>
+nnoremap <leader><space> :tabprevious<CR>
+nnoremap <space>s :set spell<CR>
+nnoremap <space><space>s :set nospell<CR>
+nnoremap <space>l :Prettier<CR>
+nnoremap <space>b <C-W>z      "close info buffer
+"close info buffer
+nnoremap <space>b <C-W>z      
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
+nnoremap K 5k
+nnoremap J 5j
+nnoremap L 10l
+nnoremap H 10h
+"move split to own tab
+nnoremap <leader><leader> <C-W>T        
+" --------------- FZF --------------
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+"  redefine Ag to not include filenames in search
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+" --------------- REMAPS FZF --------------
+imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
+nnoremap <silent> <c-p> :GFiles<CR>
+nnoremap <leader>p :BLines<CR> 
+nnoremap <silent> <c-g> :Ag<CR> 
+
+" --------------- REMAPS COLORS --------------
+nnoremap <space>1 :colorscheme OceanicNext<CR>
+nnoremap <space>2 :colorscheme gruvbox<CR>
+nnoremap <space>3 :colorscheme seoul256<CR>
+nnoremap <space>4 :colorscheme railscasts<CR>
+nnoremap <space>5 :colorscheme seoul256-light<CR>
+nnoremap <space>6 :colorscheme wikipedia<CR>
+nnoremap <space>7 :colorscheme newspaper<CR>
+nnoremap <space>8 :colorscheme babymate256<CR>
+nnoremap <space>9 :colorscheme zenburn<CR>
+nnoremap <space>0 :colorscheme kellys<CR>
+
+" --------------- navigate splits --------------
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" --------------- ALE --------------
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_save = 1
+
+  let g:ale_fixers = {
+  \   'javascript': ['eslint'],
+  \   'typescript': ['eslint'],
+  \   'nix': ['nixpkgs-fmt'],
+  \}
+let g:ale_lint_on_save = 1
+" let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
+highlight ALEWarning ctermbg=Blue ctermfg=Yellow
+highlight ALEError ctermbg=Blue ctermfg=White
+let g:ale_sign_error = '🚨'
+let g:ale_sign_warning = '⚡️'
+
+" --------------- Airline --------------
+let g:airline#extensions#ale#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_section_y = ''
+let g:airline_section_z = ''
+
+" --------------- Prettier on save --------------
+" autocmd BufWritePre *.js,*.mjs,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.html Prettier
+" ---------------  Haskell-vim --------------
+"
+let g:haskell_indent_disable = 1
+let g:haskell_enable_quantification = 1   
+let g:haskell_enable_recursivedo = 1     
+let g:haskell_enable_arrowsyntax = 1    
+let g:haskell_enable_pattern_synonyms = 1
+let g:haskell_enable_typeroles = 1     
+let g:haskell_enable_static_pointers = 1
+let g:haskell_backpack = 1   
+"---------------  YCM --------------
+" let g:ycm_seed_identifiers_with_syntax = 1
+" let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" ---------------  TSUQOYOMI --------------
+autocmd FileType typescript setlocal completeopt+=menu,preview
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+
+" ---------------  GitGutter --------------
+let g:gitgutter_set_sign_backgrounds = 1
+let g:gitgutter_sign_added = ''
+let g:gitgutter_sign_modified = ''
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_removed_first_line = ''
+let g:gitgutter_sign_removed_above_and_below = ''
+let g:gitgutter_sign_modified_removed = ''
+" let g:gitgutter_sign_allow_clobber = 1
+
+" ---------------  vue syntax highlighting | vim-vue --------------
+let g:vue_pre_processors = 'detect-on-enter'
+" ---------------  COC --------------
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+source /home/$USER/Repos/dotfiles/linux/nvim/cocfile.vim 
+
+" let g:coc_global_extensions = ['coc-tsserver@1.7.0']
