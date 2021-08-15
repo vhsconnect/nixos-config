@@ -82,48 +82,47 @@ in
 
   ######## packages ########
   home.packages = with pkgs; [
-    lxqt.lxqt-sudo
-    lxqt.lxqt-openssh-askpass
-    gksu
-
-    networkmanagerapplet
-    xfce.thunar
-    terminator
-    lxappearance
-    qt5ct
-    xss-lock
     awscli2
-
-    rnix-lsp
-    nix-doc
-    nixpkgs-fmt
-
+    audacious
+    acpi
+    ag
+    cron
+    coreutils
+    direnv
+    exa
+    fd
+    gitAndTools.diff-so-fancy
+    gitAndTools.tig
     gparted
     gimp
+    gksu
+    hexchat
+    insomnia
+    lxqt.lxqt-sudo
+    lxqt.lxqt-openssh-askpass
+    lxappearance
+    networkmanagerapplet
+    nix-doc
+    nixpkgs-fmt
+    pastel
+    prettyping
+    qt5ct
+    rnix-lsp
+    slack
     signal-desktop
     sublime3
     sublime-merge
-
-    audacious
-    insomnia
+    tldr
     tdesktop
-
-    gitAndTools.diff-so-fancy
-    gitAndTools.tig
-
-    exa
-    acpi
-    fd
-    ag
-    pastel
-    prettyping
+    teams
     tree
-    zip
-    xorg.xev
+    terminator
+    thunderbird
     unzip
-    coreutils
-
-    direnv
+    xfce.thunar
+    xss-lock
+    xorg.xev
+    zip
 
 
     pop-icon-theme
@@ -132,7 +131,7 @@ in
     adapta-gtk-theme
     pop-gtk-theme
     arc-theme
-
+    font-awesome
     (nerdfonts.override {
       fonts = [
         "FiraCode"
@@ -147,14 +146,6 @@ in
       ];
     })
 
-    font-awesome
-    tldr
-    mkcert
-    hexchat
-    slack
-    teams
-    mailspring
-    thunderbird
   ];
 
   ######## neovim ########
@@ -223,6 +214,14 @@ in
       enable = true;
       inactiveInterval = 1;
       lockCmd = ''${pkgs.xscreensaver}/bin/xscreensaver-command -lock'';
+    };
+
+  services.cron =
+    {
+      enable = true;
+      SystemCronJobs = [
+        "* * * * * root  /home/vhs/Repos/nixos-config/nixos/homemanager/nixpkgs/scripts/copy-nix-config"
+      ];
     };
 
   #IMPORTANT

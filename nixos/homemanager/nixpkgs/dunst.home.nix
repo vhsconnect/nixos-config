@@ -71,4 +71,4 @@ in
     };
   };
 }
-#based on theme by gvolpe
+#based on theme by github/gvolpe
