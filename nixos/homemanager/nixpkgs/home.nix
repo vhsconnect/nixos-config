@@ -21,6 +21,8 @@ in
     ./dunst.home.nix
     ./rofi.home.nix
     ./i3blocks.home.nix
+    ./rofi-rafi.home.nix
+    ./zsh.nix
   ];
 
 
@@ -49,11 +51,6 @@ in
     userName = "vhsconnect";
   };
 
-  programs.zsh = {
-    localVariables = {
-      SUDO_ASKPASS = "lxqt-openssh-askpass";
-    };
-  };
 
   programs.bat.enable = true;
   programs.tmux.enable = true;
@@ -61,13 +58,14 @@ in
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    changeDirWidgetCommand = "find . -type d \( -path ./.dbus -o -path ./.cache -o -path ./.gvfs \) -prune -false -o -name '*'";
+    changeDirWidgetCommand = "fd --type d";
     changeDirWidgetOptions = [
       "--preview 'tree -C {} | head -200'"
     ];
   };
 
   programs.chromium.enable = true;
+  programs.direnv.enable = true;
 
   ######## home ########
   home.sessionVariables = {
@@ -83,20 +81,25 @@ in
   ######## packages ########
   home.packages = with pkgs; [
     awscli2
-    audacious
     acpi
     ag
+    cabal-install
+    cabal2nix
     cron
     coreutils
-    direnv
     exa
+    evince
     fd
+    ffmpeg
     gitAndTools.diff-so-fancy
     gitAndTools.tig
     gparted
-    gimp
+    glimpse
     gksu
+    gnumake
+    gromit-mpx
     hexchat
+    killall
     insomnia
     lxqt.lxqt-sudo
     lxqt.lxqt-openssh-askpass
@@ -104,14 +107,16 @@ in
     networkmanagerapplet
     nix-doc
     nixpkgs-fmt
+    nix-prefetch-git
+    niv
     pastel
     prettyping
     qt5ct
     rnix-lsp
-    slack
     signal-desktop
     sublime3
     sublime-merge
+    slack
     tldr
     tdesktop
     teams
@@ -122,8 +127,10 @@ in
     xfce.thunar
     xss-lock
     xorg.xev
+    qbittorrent
+    youtube-dl
     zip
-
+    zoom-us
 
     pop-icon-theme
     vivid
@@ -146,17 +153,30 @@ in
       ];
     })
 
-  ];
+  ] ++ (with pkgs.haskellPackages;
+    [
+      ghc
+      haskell-language-server
+      stack
+      ghcid
+    ]
+  ) ++ (with pkgs.python39Packages;
+    [
+      virtualenv
+      pip
+    ]
+  );
+
 
   ######## neovim ########
   programs.neovim = {
     enable = true;
     viAlias = true;
     withNodeJs = true;
-    withPython3 = true;
-    extraPython3Packages = (ps: with ps; [
-      pynvim
-    ]);
+    # withPython3 = true;
+    # extraPython3Packages = (ps: with ps; [
+    #   pynvim
+    # ]);
     plugins = with pkgs.vimPlugins; [
       vim-airline
       vim-airline-themes
@@ -209,20 +229,14 @@ in
     };
   };
 
-  services.screen-locker =
-    {
-      enable = true;
-      inactiveInterval = 1;
-      lockCmd = ''${pkgs.xscreensaver}/bin/xscreensaver-command -lock'';
-    };
+  # services.screen-locker =
+  #   {
+  #     enable = true;
+  #     inactiveInterval = 30;
+  #     lockCmd = ''${pkgs.xscreensaver}/bin/xscreensaver-command'';
+  #   };
 
-  services.cron =
-    {
-      enable = true;
-      SystemCronJobs = [
-        "* * * * * root  /home/vhs/Repos/nixos-config/nixos/homemanager/nixpkgs/scripts/copy-nix-config"
-      ];
-    };
+
 
   #IMPORTANT
   home.stateVersion = "21.03";

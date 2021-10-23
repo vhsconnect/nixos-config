@@ -1,5 +1,6 @@
 { pkgs, lib, ... }:
 let
+  theme = (import ./themes/current.nix).theme;
   pathI3Blocks = "~/Repos/nixos-config/nixos/homemanager/nixpkgs/i3blocks";
 in
 {
@@ -12,7 +13,7 @@ in
     command=${pathI3Blocks}/battery2
     label= 
     interval=30
-    color=#f9f9f9
+    color=${theme.secondary}
 
 
     [bandwidth]
@@ -20,21 +21,21 @@ in
     markup=pango
     label=
     interval=persist
-    color=#f9f9f9
+    color=${theme.secondary}
 
 
     [weather]
     label=
     command=${pathI3Blocks}/weather
     interval=1800
-    color=#f9f9f9
+    color=${theme.secondary}
 
 
     [calendar]
     label=
     command=${pathI3Blocks}/calendar
     interval=59
-    color=#f9f9f9
+    color=${theme.secondary}
   '';
 
 }

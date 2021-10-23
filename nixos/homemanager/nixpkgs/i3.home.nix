@@ -1,16 +1,7 @@
 { config, pkgs, lib, ... }:
 let
-  colors = import ./colors.nix;
-  black = "#282430";
-  white = "#F9F9F9";
-  red = "#e85a62";
-  olive = "#B6C867";
-  mint = "#CDF0EA";
-  pink = "#F7DBF0";
-  purple = "#BEAEE2";
-  purplegray = "#878194";
+  theme = (import ./themes/current.nix).theme;
   i3BlocksConfig = config.xdg.configFile."i3blocks/config".source;
-
   modifier = config.xsession.windowManager.i3.config.modifier;
 in
 {
@@ -23,8 +14,9 @@ in
   };
   xsession.windowManager.i3.config.keybindings =
     lib.mkOptionDefault {
-      "${modifier}+Return" = "exec terminator";
+      "${modifier}+Return" = "exec --no-startup-id terminator";
       "${modifier}+Escape" = "kill";
+      "${modifier}+g" = "exec gnome-screenshot -a";
 
       "${modifier}+h" = "focus left";
       "${modifier}+j" = "focus down";
@@ -36,15 +28,20 @@ in
       "${modifier}+Shift+k" = "move up";
       "${modifier}+Shift+l" = "move right";
 
-      "${modifier}+d" = "exec zsh -c 'rofi -show run'";
+      # "${modifier}+d" = "exec zsh -c 'rofi -show run'";
+      "${modifier}+d" = ''
+        exec "rofi -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
+      '';
 
       "${modifier}+backslash" = "scratchpad show";
       "${modifier}+slash" = "move scratchpad";
 
       "${modifier}+Tab" = "workspace prev";
       "${modifier}+Shift+Tab" = "workspace next";
+      "F2" = "exec rofi -show emoji -modi emoji";
       "F6" = "exec amixer set Master 10%-";
       "F7" = "exec amixer set Master 10%+";
+      #"F9" >> reserved for mpx-gromit
       "XF86AudioRaiseVolume" = "exec amixer -D pulse sset Master 5%+";
       "XF86AudioLowerVolume" = "exec amixer -D pulse sset Master 5%-";
       "XF86AudioMute" = "exec amixer -D pulse sset Master 0%";
@@ -65,38 +62,40 @@ in
     { command = "i3-msg workspace 1"; }
     { command = "~/bin/keys"; }
     { command = "exec --no-startup-id /.nix-profile/libexec/polkit-gnome-authentication-agent-1 &"; }
+    # { command = "exec --no-startup-id gromit-mpx"; }
+    # { command = "exec --no-startup-id blueman-applet"; }
   ];
   xsession.windowManager.i3.config.bars = [ ];
   xsession.windowManager.i3.config.window.border = 1;
   xsession.windowManager.i3.config.workspaceAutoBackAndForth = true;
   xsession.windowManager.i3.config.colors = {
     focused = {
-      background = "${colors.brown}";
-      border = "${colors.brown}";
-      childBorder = "${colors.brown}";
-      indicator = "${colors.brown}";
-      text = "${white}";
+      background = "${theme.main}";
+      border = "${theme.secondary}";
+      childBorder = "${theme.secondary}";
+      indicator = "${theme.main}";
+      text = "${theme.secondary}";
     };
     focusedInactive = {
-      background = "${colors.white}";
-      border = "${colors.white}";
-      childBorder = "${colors.white}";
-      indicator = "${colors.white}";
-      text = "${white}";
+      background = "${theme.secondary}";
+      border = "${theme.main}";
+      childBorder = "${theme.main}";
+      indicator = "${theme.secondary}";
+      text = "${theme.secondary}";
     };
     unfocused = {
-      background = "${colors.white}";
-      border = "${colors.white}";
-      childBorder = "${colors.white}";
-      indicator = "${colors.white}";
-      text = "${white}";
+      background = "${theme.secondary}";
+      border = "${theme.main}";
+      childBorder = "${theme.main}";
+      indicator = "${theme.secondary}";
+      text = "${theme.secondary}";
     };
     urgent = {
-      background = "${colors.white}";
-      border = "${colors.white}";
-      childBorder = "${colors.white}";
-      indicator = "${colors.white}";
-      text = "${white}";
+      background = "${theme.secondary}";
+      border = "${theme.accent2}";
+      childBorder = "${theme.accent2}";
+      indicator = "${theme.secondary}";
+      text = "${theme.secondary}";
     };
   };
 
@@ -107,13 +106,14 @@ in
               status_command i3blocks -c ${i3BlocksConfig}
               font pango: MesloLGLDZ Nerd Font Regular 13
               colors {
-                      background ${colors.brown}
-                      focused_workspace ${colors.white} ${colors.white} ${colors.brown}
-                      active_workspace ${purplegray} ${purplegray} ${colors.white}
-                      inactive_workspace ${colors.brown} ${colors.brown} ${colors.white}
-                      urgent_workspace ${mint} ${mint} ${colors.white}
-                      separator ${colors.white}
+                      background ${theme.main}
+                      focused_workspace ${theme.secondary} ${theme.secondary} ${theme.main}
+                      active_workspace ${theme.accent} ${theme.accent} ${theme.secondary}
+                      inactive_workspace ${theme.main} ${theme.main} ${theme.secondary}
+                      urgent_workspace ${theme.urgent} ${theme.urgent} ${theme.secondary}
+                      separator ${theme.secondary}
                       }
       }
+      exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt5ct
     '';
 }

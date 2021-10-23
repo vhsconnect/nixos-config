@@ -28,21 +28,10 @@ retab!
 
 " ----------- THEME ----------
 " let g:dracula_italic = 0
-colorscheme PaperColor
-let g:airline_theme='seoul256'
+colorscheme horseradish256
+let g:airline_theme='hybrid'
 " hi! Normal ctermbg=none
-" ----------- lightline ----------
 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
 
 " ----------- highlighting ----------
 highlight Visual ctermfg=238 ctermbg=84
@@ -80,6 +69,7 @@ nmap <p> :r ~/.vbuf<CR>
 nnoremap <space>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 nnoremap <space>R :%s/\<<C-r><C-w>\>//gci<Left><Left><Left><Left>
 vnoremap <space>r y :%s/<C-r>"//gc<Left><Left><Left>
+vnoremap <leader>r :0s/<C-r>"//gc<Left><Left><Left>
 
 
 " --------------- NERDTREE --------------
@@ -122,13 +112,13 @@ nnoremap <silent> <c-g> :Ag<CR>
 nnoremap <space>1 :colorscheme OceanicNext<CR>
 nnoremap <space>2 :colorscheme gruvbox<CR>
 nnoremap <space>3 :colorscheme seoul256<CR>
-nnoremap <space>4 :colorscheme railscasts<CR>
-nnoremap <space>5 :colorscheme seoul256-light<CR>
-nnoremap <space>6 :colorscheme wikipedia<CR>
-nnoremap <space>7 :colorscheme newspaper<CR>
-nnoremap <space>8 :colorscheme babymate256<CR>
-nnoremap <space>9 :colorscheme zenburn<CR>
-nnoremap <space>0 :colorscheme kellys<CR>
+nnoremap <space>4 :colorscheme zenburn<CR>
+nnoremap <space>5 :colorscheme railscasts<CR>
+nnoremap <space>6 :colorscheme kellys<CR>
+nnoremap <space>7 :colorscheme seoul256-light<CR>
+nnoremap <space>8 :colorscheme wikipedia<CR>
+nnoremap <space>9 :colorscheme summerfruit256<CR>
+nnoremap <space>0 :colorscheme PaperColor<CR>
 
 " --------------- navigate splits --------------
 nnoremap <C-J> <C-W><C-J>
@@ -147,9 +137,10 @@ let g:ale_lint_on_save = 1
   \   'javascript': ['eslint'],
   \   'typescript': ['eslint'],
   \   'nix': ['nixpkgs-fmt'],
+  \   'haskell': ['hlint', 'hindent'],
   \}
 let g:ale_lint_on_save = 1
-" let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 1
 set omnifunc=ale#completion#OmniFunc
 highlight ALEWarning ctermbg=Blue ctermfg=Yellow
 highlight ALEError ctermbg=Blue ctermfg=White
@@ -157,10 +148,13 @@ let g:ale_sign_error = '🚨'
 let g:ale_sign_warning = '⚡️'
 
 " --------------- Airline --------------
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 0
 let g:airline_powerline_fonts = 1
+let g:airline_section_x = ''
 let g:airline_section_y = ''
 let g:airline_section_z = ''
+let g:airline_section_a = ''
+let g:airline_section_b = ''
 
 " --------------- Prettier on save --------------
 " autocmd BufWritePre *.js,*.mjs,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.html Prettier
@@ -174,24 +168,20 @@ let g:haskell_enable_pattern_synonyms = 1
 let g:haskell_enable_typeroles = 1     
 let g:haskell_enable_static_pointers = 1
 let g:haskell_backpack = 1   
-"---------------  YCM --------------
-" let g:ycm_seed_identifiers_with_syntax = 1
-" let g:ycm_add_preview_to_completeopt = 1
-" let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " ---------------  TSUQOYOMI --------------
 autocmd FileType typescript setlocal completeopt+=menu,preview
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
 " ---------------  GitGutter --------------
+let g:gitgutter_signs = 1
 let g:gitgutter_set_sign_backgrounds = 1
-let g:gitgutter_sign_added = ''
+let g:gitgutter_sign_added = '✏️'
 let g:gitgutter_sign_modified = ''
 let g:gitgutter_sign_removed = ''
 let g:gitgutter_sign_removed_first_line = ''
 let g:gitgutter_sign_removed_above_and_below = ''
 let g:gitgutter_sign_modified_removed = ''
-" let g:gitgutter_sign_allow_clobber = 1
 
 " ---------------  vue syntax highlighting | vim-vue --------------
 let g:vue_pre_processors = 'detect-on-enter'
