@@ -8,7 +8,7 @@
   nix.nixPath =
     [
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-      "nixos-config=/etc/nixos/configuration.nix"
+      "nixos-config=/home/vhs/Repos/nixos-config/nixos/nixos/configuration.nix"
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
 
@@ -156,35 +156,20 @@
     IdleActionSec=1m
   '';
 
-
-
   services.globalprotect = {
     enable = true;
   };
 
-  services.cron =
-    {
-      enable = true;
-      systemCronJobs = [
-        "* * * * * vhs  . /etc/profile; sh /home/vhs/bin/cronscripts/copy-nix-config"
-      ];
-    };
 
-  # programs.xss-lock.enable = true;
-
-
-
+  #  services.cron =
+  #    {
+  #      enable = true;
+  #      systemCronJobs = [
+  #        "* * * * * vhs  . /etc/profile; sh callscripts"
+  #      ];
+  #    };
 
   virtualisation.docker.enable = true;
-
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
 
 
   systemd.timers.suspend-on-low-battery = {
@@ -210,5 +195,8 @@
     keep-outputs = true
     keep-derivations = true
   '';
+
+
+  system.stateVersion = "20.09"; #do not change
 }
 

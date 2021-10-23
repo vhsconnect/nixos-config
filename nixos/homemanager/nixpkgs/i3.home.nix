@@ -28,7 +28,6 @@ in
       "${modifier}+Shift+k" = "move up";
       "${modifier}+Shift+l" = "move right";
 
-      # "${modifier}+d" = "exec zsh -c 'rofi -show run'";
       "${modifier}+d" = ''
         exec "rofi -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
       '';
