@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+npm set prefix ~/.npm-global
+npm i -g yarn nodemon hosts @bitwarden/cli
+echo run CocInstall coc-tsserver from a nvim session
