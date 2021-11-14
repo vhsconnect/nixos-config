@@ -17,16 +17,15 @@
   boot.loader.grub.devices = [ "nodev" ];
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
+  time.timeZone = "America/New_York";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   networking.hostName = "mpu3";
-  time.timeZone = "Europe/Paris";
-
   networking.useDHCP = false;
   networking.extraHosts = ''
     ${builtins.readFile /home/vhs/Public/extraHosts}
   '';
 
-  i18n.defaultLocale = "en_US.UTF-8";
 
   console = {
     font = "Lat2-Terminus16";
@@ -60,12 +59,16 @@
       locker = ''${pkgs.xscreensaver}/bin/xscreensaver-command -lock'';
     };
   };
+
+  #gnome
   services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+
   services.xserver.layout = "us";
   services.printing.enable = true;
   sound.enable = true;
   hardware.opengl.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.settings = {
     General = {
@@ -89,10 +92,20 @@
 
   };
 
-  users.users.vhs = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    extraGroups = [ "wheel" "docker" ];
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  users = {
+    users.vhs = {
+      isNormalUser = true;
+      shell = pkgs.zsh;
+      extraGroups = [ "wheel" "docker" ];
+    };
+    extraGroups.vboxusers.members = [ "vhs" ];
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
@@ -150,34 +163,20 @@
   services.xserver.autoRepeatInterval = 25;
 
 
-  services.logind.extraConfig = ''
-    HandlePowerKey=suspend
-    IdleAction=hybrid-sleep
-    IdleActionSec=1m
-  '';
-
   services.globalprotect = {
     enable = true;
   };
 
-
-  #  services.cron =
-  #    {
-  #      enable = true;
-  #      systemCronJobs = [
-  #        "* * * * * vhs  . /etc/profile; sh callscripts"
-  #      ];
-  #    };
-
-  virtualisation.docker.enable = true;
-
-
-  systemd.timers.suspend-on-low-battery = {
-    wantedBy = [ "multi-user.target" ];
-    timerConfig = {
-      OnUnitActiveSec = "120";
+  services.cron =
+    {
+      enable = true;
+      systemCronJobs = [
+        "* * * * * root  . /etc/profile; sh cleanhome"
+      ];
     };
-  };
+
+
+  security.rtkit.enable = true;
 
   security.polkit = {
     enable = true;
@@ -196,6 +195,8 @@
     keep-derivations = true
   '';
 
+  virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   system.stateVersion = "20.09"; #do not change
 }

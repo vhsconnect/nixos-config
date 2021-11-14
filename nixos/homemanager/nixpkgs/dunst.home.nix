@@ -51,7 +51,7 @@ in
         hide_duplicate_count = true;
       };
       urgency_low = {
-        background = "#${base0D-hex}";
+        background = "#${base0F-hex}";
         foreground = "#${base05-hex}";
         frame_color = "#${base0D-hex}";
         timeout = 4;
@@ -68,6 +68,7 @@ in
         frame_color = "#${base08-hex}";
         timeout = 10;
       };
+      shortcuts = { close = "ctrl+space"; };
     };
   };
 }

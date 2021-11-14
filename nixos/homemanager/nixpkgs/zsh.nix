@@ -26,6 +26,7 @@
       managerdir = "cd ~/.config/nixpkgs";
       c = "xclip -selection clipboard";
       l = "exa -la";
+      v = "vi `fzf`";
       nixu = "nix-env --uninstall";
       nixupdate = "nix-channel --update nixos";
       restartpolybar = "systemctl --user restart polybar.service";
@@ -38,12 +39,7 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ 
-      "z"
-      "git"
-      "colored-man-pages"
-      "vi-mode" 
-      ];
+      plugins = [  "z"  "colored-man-pages" "vi-mode" ]; 
     };
     plugins = [{
       name = "zsh-nix-shell";
@@ -54,6 +50,17 @@
         rev = "v0.4.0";
         sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
       };
+    }
+    {
+      name = "fz";
+      file = "fz.plugin.zsh";
+      src = pkgs.fetchFromGitHub {
+        owner = "changyuheng";
+        repo = "fz";
+        rev = "2a4c1bc73664bb938bfcc7c99f473d0065f9dbfd";
+        sha256 = "0fg2a28cp3a4smcq61vngzdvjwq8np35ayq2ix1db34c18s222a4";
+
+      };
     }];
-  };
+    };
 }
