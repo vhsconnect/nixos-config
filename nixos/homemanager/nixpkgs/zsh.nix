@@ -33,7 +33,7 @@
       hm = "home-manager";
       hms = "home-manager -b backup switch";
       nixp = "nix-shell -p";
-       = "evince";
+      pdf  = "evince";
       lock = "xscreensaver-command -lock";
       emoji = "rofi -show emoji -modi emoji";
     };

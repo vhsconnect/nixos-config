@@ -16,7 +16,7 @@ in
     ./i3blocks.home.nix
     ./rofi-rafi.home.nix
     ./vim.nix
-  ];
+  ] ++ (if user.withgtk then [ ./gtk3.nix ] else [ ]);
 
 
   ######## programs ########
