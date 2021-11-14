@@ -85,11 +85,10 @@
     enable = true;
     backend = "glx";
     vSync = true;
-    inactiveOpacity = 0.93;
+    inactiveOpacity = 0.86;
     fade = true;
-    fadeDelta = 10;
-    fadeSteps = [ 0.04 0.04 ];
-
+    fadeDelta = 4;
+    fadeSteps = [ 0.07 0.07 ];
   };
 
   services.pipewire = {

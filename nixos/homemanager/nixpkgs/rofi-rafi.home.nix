@@ -7,38 +7,31 @@ in
 
     configuration {
       display-run: "> ";
-      show-icons: true;
+      show-icons: false;
       icon-theme: "Paper";
     }
 
     *{
         main:           ${theme.main};
-        bg-highlight:   ${theme.secondary};
-        fg-highlight:   ${theme.accent3};
-        bg-normal:      ${theme.main};
-        fg-normal:      ${theme.secondary};
+        accent1:        ${theme.secondary};
         fallback:       ${theme.debug};
-        fallback2:      ${theme.debug};
         border:         ${theme.accent3};
         transparent:     rgba ( 0, 0, 0, 0 % );
 
-        normal-foreground:           @bg-highlight;
-        normal-background:           @transparent;
-        active-foreground:           @fallback;
         active-background:           @transparent;
-        urgent-foreground:           @red;
+        urgent-foreground:           @border;
         urgent-background:           @transparent;
 
-        selected-normal-foreground:  @fg-highlight;
-        selected-normal-background:  @bg-highlight;
+        selected-normal-foreground:  @accent1;
+        selected-normal-background:  @transparent;
         selected-active-foreground:  @fallback;
-        selected-active-background:  @bg-highlight;
+        selected-active-background:  @accent1;
         selected-urgent-foreground:  @fallback;
-        selected-urgent-background:  @fallback2;
+        selected-urgent-background:  @fallback;
 
-        alternate-normal-foreground: @bg-highlight;
+        alternate-normal-foreground: @accent1;
         alternate-normal-background: @transparent;
-        alternate-active-foreground: @active-foreground;
+        alternate-active-foreground: @fallback;
         alternate-active-background: @transparent;
         alternate-urgent-foreground: @urgent-foreground;
         alternate-urgent-background: @transparent;
@@ -66,6 +59,13 @@ in
     textbox {
         text-color: @border;
     }
+    textbox-prompt-colon {
+        expand:     false;
+        str:        ":";
+        margin:     0px 0.3em 0em 0em ;
+        text-color: @normal-foreground;
+    }
+
     listview {
         fixed-height: 0;
         border:       1px dash 0px 0px ;
@@ -80,21 +80,25 @@ in
         border:  0;
         padding: 1px 0px 1px 1px;
     }
+
+    element-text {
+        text-color:       @accent1;
+    }
     element normal.normal {
-        background-color: @bg-normal;
-        text-color:       @fg-normal;
+        background-color: @main;
+        text-color:       @accent1;
     }
     element normal.urgent {
         background-color: @urgent-background;
         text-color:       @urgent-foreground;
     }
     element normal.active {
-        background-color: @active-background;
-        text-color:       @active-foreground;
+        background-color: @accent1;
+        text-color:       @fallback;
     }
     element selected.normal {
         background-color: @selected-normal-background;
-        text-color:       @selected-normal-foreground;
+        text-color:       @fallback;
     }
     element selected.urgent {
         background-color: @selected-urgent-background;
@@ -124,20 +128,20 @@ in
     }
     inputbar {
         spacing:    0;
-        text-color: @fg-normal;
+        text-color: @accent1;
         padding:    1px ;
     }
     case-indicator {
         spacing:    0;
-        text-color: @fg-normal;
+        text-color: @accent1;
     }
     entry {
         spacing:    0;
-        text-color: @fg-normal;
+        text-color: @accent1;
     }
     prompt {
         spacing:    0;
-        text-color: @fg-normal;
+        text-color: @accent1;
     }
     mode-switcher {
         orientation: vertical;

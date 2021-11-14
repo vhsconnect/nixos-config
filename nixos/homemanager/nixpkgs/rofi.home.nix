@@ -6,7 +6,7 @@
     package = pkgs.rofi.override {
       plugins = [ pkgs.rofi-emoji ];
     };
-    terminal = "${pkgs.alacritty}/bin/alacritty";
+    terminal = "${pkgs.terminator}/bin/terminator";
     theme = "${config.xdg.configFile."rofi/rofi-theme.rasi".source}";
   };
 }

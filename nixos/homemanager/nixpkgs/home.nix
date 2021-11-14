@@ -94,7 +94,7 @@ in
   services.cbatticon =
     {
       enable = true;
-      iconType = null;
+      iconType = "symbolic";
       commandCriticalLevel =
         ''
           notify-send "Battery critical!"
