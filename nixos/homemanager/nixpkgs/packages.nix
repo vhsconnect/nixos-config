@@ -1,6 +1,7 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
+
     awscli2
     acpi
     ag
@@ -9,6 +10,7 @@
     cron
     coreutils
     dispad
+    discord
     exa
     evince
     fd
@@ -32,12 +34,16 @@
     nix-prefetch-git
     niv
     pastel
+    protoc-gen-doc
     prettyping
     qt5ct
     rnix-lsp
     signal-desktop
+    shortwave
     sublime3
     sublime-merge
+    spotify
+    shellcheck
     slack
     tldr
     tdesktop
@@ -54,7 +60,6 @@
     youtube-dl
     zip
     zoom-us
-    cowsay
 
     pop-icon-theme
     vivid

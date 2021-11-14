@@ -60,6 +60,12 @@ in
   programs.chromium.enable = true;
   programs.direnv.enable = true;
 
+  programs.autojump =
+    {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
   ######## home ########
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -85,6 +91,15 @@ in
     };
   };
 
+  services.cbatticon =
+    {
+      enable = true;
+      iconType = null;
+      commandCriticalLevel =
+        ''
+          notify-send "Battery critical!"
+        '';
+    };
 
   #IMPORTANT
   home.stateVersion = "21.03";
