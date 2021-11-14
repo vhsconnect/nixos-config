@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+nix-channel --add https://github.com/nix-community/homemanager/archive/master.tar.gz home-manager
+nix-channel --update
+mkdir ~/bin
+cp keys ~/bin/keys
+cp keymap ~/bin/keymap
+chmod +x ~/bin/keys
+echo log out and back in, then run third

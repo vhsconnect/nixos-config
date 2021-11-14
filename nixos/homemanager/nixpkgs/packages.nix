@@ -8,6 +8,7 @@
     cabal2nix
     cron
     coreutils
+    dispad
     exa
     evince
     fd
@@ -47,6 +48,7 @@
     unzip
     xfce.thunar
     xss-lock
+    xorg.xmodmap
     xorg.xev
     qbittorrent
     youtube-dl

@@ -1,3 +1,3 @@
 {
-  theme = import ./navyblue.nix;
+  theme = import ./brown.nix;
 }
