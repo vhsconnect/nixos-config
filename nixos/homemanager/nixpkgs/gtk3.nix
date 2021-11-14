@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  gtk.enable = true;
   gtk.gtk3 = {
     bookmarks = [
       "file:///home/vhs/Downloads"
@@ -13,8 +14,8 @@
     extraConfig =
       {
         gtk-theme-name = "Arc-Dark";
-        gtk-icon-theme-name = "Arc-X-D";
-        gtk-font-name = "Noto Sans 11";
+        gtk-icon-theme-name = "Paper";
+        gtk-font-name = "Iosevka Light 13";
         gtk-cursor-theme-name = "capitaine-cursors-light";
         gtk-cursor-theme-size = "14";
         gtk-toolbar-style = "GTK_TOOLBAR_BOTH_HORIZ";

@@ -144,6 +144,7 @@
       networkmanager-openconnect
       gnome.networkmanager-openconnect
       globalprotect-openconnect
+      sysstat
       ponysay
     ];
 
