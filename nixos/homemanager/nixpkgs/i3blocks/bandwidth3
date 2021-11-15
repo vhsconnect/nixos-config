@@ -13,7 +13,7 @@ unit="${UNIT:-Mb}"
 #LABEL="${LABEL:-<span font='FontAwesome'>  </span>}" # down arrow up arrow
 #LABEL=' '
 # printf_command="${PRINTF_COMMAND:-"printf \"${LABEL}  %-5.1f/ %5.1f %s/s\\n\", rx, wx, unit;"}"
-printf_command="${PRINTF_COMMAND:-"printf \"${LABEL}  %-4.1f/  %3.1f %s/s\\n\", rx, wx, unit;"}"
+printf_command="${PRINTF_COMMAND:-"printf \"${LABEL}  %-4.1f/  %3.1f \\n\", rx, wx"}"
 
 function default_interface {
     ip route | awk '/^default via/ {print $5; exit}'

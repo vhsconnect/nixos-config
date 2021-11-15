@@ -187,6 +187,6 @@ let g:gitgutter_sign_modified_removed = ''
 let g:vue_pre_processors = 'detect-on-enter'
 " ---------------  COC --------------
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-source /home/$USER/Repos/dotfiles/linux/nvim/cocfile.vim 
+source /home/$USER/.config/nvim/coc-file.vim 
 
 " let g:coc_global_extensions = ['coc-tsserver@1.7.0']

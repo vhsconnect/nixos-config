@@ -22,6 +22,7 @@
       #listpkg='nix-env -qa --installed "*"'
       nixconfig = "sudo nvim /etc/nixos/configuration.nix";
       cdconfig = "~/Repos/nixos-config/nixos/homemanager/nixpkgs";
+      osconfig = "vi ~/Repos/nixos-config/nixos/nixos/configuration.nix";
       nixosdir = "cd /etc/nixos";
       managerdir = "cd ~/.config/nixpkgs";
       c = "xclip -selection clipboard";
@@ -33,7 +34,7 @@
       hm = "home-manager";
       hms = "home-manager -b backup switch";
       nixp = "nix-shell -p";
-      pdf = "evince";
+      pdf  = "evince";
       lock = "xscreensaver-command -lock";
       emoji = "rofi -show emoji -modi emoji";
     };

@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
 
@@ -9,6 +9,7 @@
     cabal2nix
     cron
     coreutils
+    dispad
     discord
     exa
     evince
@@ -53,6 +54,7 @@
     unzip
     xfce.thunar
     xss-lock
+    xorg.xmodmap
     xorg.xev
     qbittorrent
     youtube-dl

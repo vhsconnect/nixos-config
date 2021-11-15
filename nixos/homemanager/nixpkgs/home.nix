@@ -16,7 +16,7 @@ in
     ./i3blocks.home.nix
     ./rofi-rafi.home.nix
     ./vim.nix
-  ];
+  ] ++ (if user.withgtk then [ ./gtk3.nix ] else [ ]);
 
 
   ######## programs ########
@@ -94,7 +94,7 @@ in
   services.cbatticon =
     {
       enable = true;
-      iconType = null;
+      iconType = "symbolic";
       commandCriticalLevel =
         ''
           notify-send "Battery critical!"

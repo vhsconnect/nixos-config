@@ -1,0 +1,5 @@
+#! /usr/bin/env zsh
+xmodmap ~/bin/keymap1 #switch CTRL and ALT and add CTRL to mod4
+xmodmap -e "remove lock = Caps_Lock" # disable capslock functionality from CAPS_LOCK
+xmodmap -e "add mod1 = Caps_Lock" #add ALT to capslock
+xmodmap -e "keycode 66 = Alt_R" #assign keycode
