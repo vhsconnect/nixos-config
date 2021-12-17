@@ -2,11 +2,15 @@
 {
   home.packages = with pkgs; [
 
+    joplin-desktop
+    minder
+
     awscli2
     acpi
     ag
     cabal-install
     cabal2nix
+    calibre
     cron
     coreutils
     dispad
@@ -61,6 +65,7 @@
     zip
     zoom-us
 
+    #theming
     pop-icon-theme
     vivid
     paper-icon-theme
@@ -68,6 +73,12 @@
     pop-gtk-theme
     arc-theme
     font-awesome
+
+    #ruby
+    bundler
+    bundix
+
+    #fonts
     (nerdfonts.override {
       fonts = [
         "FiraCode"

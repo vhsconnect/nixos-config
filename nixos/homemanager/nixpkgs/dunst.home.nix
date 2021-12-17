@@ -12,8 +12,8 @@ in
   # More schemes at: https://github.com/atpotts/base16-nix/blob/master/schemes.json
   themes.base16 = {
     enable = true;
-    scheme = "porple";
-    variant = "porple";
+    scheme = "rebecca";
+    variant = "rebecca";
   };
 
   services.dunst = {
@@ -42,6 +42,7 @@ in
         alignment = "left";
         vertical_alignment = "center";
         icon_position = "left";
+        max_icon_size = 16;
         word_wrap = "yes";
         ignore_newline = "no";
         show_indicators = "yes";
@@ -51,21 +52,21 @@ in
         hide_duplicate_count = true;
       };
       urgency_low = {
-        background = "#${base0F-hex}";
-        foreground = "#${base05-hex}";
+        background = "#${base04-hex}";
+        foreground = "#${base07-hex}";
         frame_color = "#${base0D-hex}";
         timeout = 4;
       };
       urgency_normal = {
-        background = "#${base0D-hex}";
-        foreground = "#${base05-hex}";
+        background = "#${base04-hex}";
+        foreground = "#${base07-hex}";
         frame_color = "#${base0D-hex}";
         timeout = 4;
       };
       urgency_critical = {
-        background = "#${base08-hex}";
-        foreground = "#${base01-hex}";
-        frame_color = "#${base08-hex}";
+        background = "#${base0F-hex}";
+        foreground = "#${base07-hex}";
+        frame_color = "#${base05-hex}";
         timeout = 10;
       };
       shortcuts = { close = "ctrl+space"; };

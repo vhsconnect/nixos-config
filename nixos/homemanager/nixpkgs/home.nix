@@ -24,6 +24,10 @@ in
 
   programs.git = {
     enable = true;
+    delta = {
+      enable = true;
+      options = { side-by-side = true; };
+    };
     aliases = {
       amend = "commit --amend -m";
       fixup = "!f(){ git reset --soft HEAD~\${1} && git commit --amend -C HEAD; };f";
@@ -33,8 +37,10 @@ in
     extraConfig = {
       core = {
         editor = "nvim";
-        pager = "diff-so-fancy | less --tabs=4 -RFX";
+        # pager = "diff-so-fancy | less --tabs=4 -RFX";
       };
+      color.diff-highlight.newNormal = "68 bold";
+      color.diff-highlight.newHighlight = "27 bold";
       init.defaultBranch = "master";
     };
     ignores = [
@@ -63,6 +69,13 @@ in
   programs.autojump =
     {
       enable = true;
+      enableZshIntegration = true;
+    };
+
+  programs.broot =
+    {
+      enable = true;
+      modal = true;
       enableZshIntegration = true;
     };
 

@@ -9,7 +9,7 @@ in
   accent = "#BEAEE2"; # purplegray
   accent2 = "#F7DBF0"; # pink
   accent3 = black;
-  urgent = "#CDF0EA"; # mint
+  urgent = "#F7DBF0"; # pink
   gray = "#b8b6bf";
   debug = "#a8325c"; #burgundyred
 

@@ -63,7 +63,7 @@ nmap <Y> :.w! ~/.vbuf<CR>
 nmap <p> :r ~/.vbuf<CR>       
 
 "-----------  snippets ------------
-" nnoremap <leader>s :r ~/.config/nvim/snippets/
+nnoremap <leader>s :r ~/Public/snippets/
 
 "----------- global subs with confirm ------------
 nnoremap <space>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
@@ -106,6 +106,7 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : 
 imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
 nnoremap <silent> <c-p> :GFiles<CR>
 nnoremap <leader>p :BLines<CR> 
+nnoremap <space>b :Buffer<CR> 
 nnoremap <silent> <c-g> :Ag<CR> 
 
 " --------------- REMAPS COLORS --------------

@@ -3,6 +3,7 @@
 
   imports = [
     /etc/nixos/hardware-configuration.nix
+    # ./work.nix
   ];
 
   nix.nixPath =
@@ -17,7 +18,7 @@
   boot.loader.grub.devices = [ "nodev" ];
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
-  time.timeZone = "America/New_York";
+  time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
 
   networking.hostName = "mpu3";
@@ -103,7 +104,7 @@
     users.vhs = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "docker" ];
+      extraGroups = [ "wheel" "docker" "adbusers" ];
     };
     extraGroups.vboxusers.members = [ "vhs" ];
   };
@@ -145,6 +146,7 @@
       gnome.networkmanager-openconnect
       globalprotect-openconnect
       sysstat
+      docker-compose
       ponysay
     ];
 
@@ -158,6 +160,7 @@
     enable = true;
     enableSSHSupport = true;
   };
+  programs.adb.enable = true;
 
   services.openssh.enable = true;
   services.xserver.autoRepeatDelay = 200;
@@ -177,7 +180,9 @@
     };
 
 
+
   security.rtkit.enable = true;
+  security.sudo.wheelNeedsPassword = false;
 
   security.polkit = {
     enable = true;
@@ -201,4 +206,6 @@
 
   system.stateVersion = "20.09"; #do not change
 }
+
+
 

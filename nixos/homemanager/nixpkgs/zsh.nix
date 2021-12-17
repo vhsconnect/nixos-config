@@ -8,7 +8,7 @@
     localVariables = {
       TMPDIR = "/home/vhs/Public/tmp";
       SUDO_ASKPASS = "lxqt-openssh-askpass";
-      BAT_THEME = "Monokai Extended";
+      BAT_THEME = "Dracula";
       VI_MODE_SET_CURSOR = "true";
       MODE_INDICATOR = "%F{yellow}+%f";
       QT_QPA_PLATFORMTHEME = "qt5ct";
@@ -37,6 +37,7 @@
       pdf  = "evince";
       lock = "xscreensaver-command -lock";
       emoji = "rofi -show emoji -modi emoji";
+      allbound = "netstat -tulpn";
     };
     oh-my-zsh = {
       enable = true;
