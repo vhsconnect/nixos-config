@@ -2,6 +2,9 @@ let g:mapleader = "\\"
 packloadall
 syntax enable
 set nocompatible
+set nobackup
+set nowritebackup
+set hidden
 set nu rnu
 set updatetime=300
 set noshowmode
@@ -10,6 +13,8 @@ set autoindent
 set autoread
 set incsearch 
 set hlsearch 
+set ignorecase
+set smartcase
 set backspace=indent,eol,start
 set shiftwidth=2
 set smartindent
@@ -23,6 +28,10 @@ set foldlevel=2
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set cmdheight=2
+set shortmess+=c
+set signcolumn=number
+set dir=~/Public/tmp
 retab!
 
 
@@ -69,7 +78,6 @@ nnoremap <leader>s :r ~/Public/snippets/
 nnoremap <space>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 nnoremap <space>R :%s/\<<C-r><C-w>\>//gci<Left><Left><Left><Left>
 vnoremap <space>r y :%s/<C-r>"//gc<Left><Left><Left>
-vnoremap <leader>r :0s/<C-r>"//gc<Left><Left><Left>
 
 
 " --------------- NERDTREE --------------
@@ -138,7 +146,6 @@ let g:ale_lint_on_save = 1
   \   'javascript': ['eslint'],
   \   'typescript': ['eslint'],
   \   'nix': ['nixpkgs-fmt'],
-  \   'haskell': ['hlint', 'hindent'],
   \}
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
@@ -157,8 +164,6 @@ let g:airline_section_z = ''
 let g:airline_section_a = ''
 let g:airline_section_b = ''
 
-" --------------- Prettier on save --------------
-" autocmd BufWritePre *.js,*.mjs,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.html Prettier
 " ---------------  Haskell-vim --------------
 "
 let g:haskell_indent_disable = 1
@@ -176,18 +181,20 @@ autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()
 
 " ---------------  GitGutter --------------
 let g:gitgutter_signs = 1
-let g:gitgutter_set_sign_backgrounds = 1
-let g:gitgutter_sign_added = '✏️'
-let g:gitgutter_sign_modified = ''
-let g:gitgutter_sign_removed = ''
-let g:gitgutter_sign_removed_first_line = ''
+let g:gitgutter_sign_added = ""
+let g:gitgutter_sign_modified = ""
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_removed_first_line = ''
 let g:gitgutter_sign_removed_above_and_below = ''
-let g:gitgutter_sign_modified_removed = ''
+let g:gitgutter_sign_modified_removed = ''
+
 
 " ---------------  vue syntax highlighting | vim-vue --------------
 let g:vue_pre_processors = 'detect-on-enter'
+" ---------------  markdown --------------
+let g:mkdp_auto_start = 0
 " ---------------  COC --------------
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 source /home/$USER/.config/nvim/coc-file.vim 
+call gitgutter#highlight#define_signs() 
 
-" let g:coc_global_extensions = ['coc-tsserver@1.7.0']

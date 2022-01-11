@@ -16,6 +16,7 @@ in
     ./i3blocks.home.nix
     ./rofi-rafi.home.nix
     ./vim.nix
+    ./mimeappsList.nix
   ] ++ (if user.withgtk then [ ./gtk3.nix ] else [ ]);
 
 
@@ -57,7 +58,8 @@ in
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    changeDirWidgetCommand = "fd --type d";
+    defaultCommand = "find .";
+    changeDirWidgetCommand = "fd --type d --hidden";
     changeDirWidgetOptions = [
       "--preview 'tree -C {} | head -200'"
     ];
@@ -103,16 +105,6 @@ in
       timeout = "30";
     };
   };
-
-  services.cbatticon =
-    {
-      enable = true;
-      iconType = "symbolic";
-      commandCriticalLevel =
-        ''
-          notify-send "Battery critical!"
-        '';
-    };
 
   #IMPORTANT
   home.stateVersion = "21.03";

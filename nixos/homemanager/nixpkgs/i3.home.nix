@@ -41,9 +41,15 @@ in
       "F6" = "exec amixer set Master 5%-";
       "F7" = "exec amixer set Master 5%+";
       #"F9" >> reserved for mpx-gromit
-      "XF86AudioRaiseVolume" = "exec amixer -D pulse sset Master 5%+";
-      "XF86AudioLowerVolume" = "exec amixer -D pulse sset Master 5%-";
-      "XF86AudioMute" = "exec amixer -D pulse sset Master 0%";
+      # "XF86AudioRaiseVolume" = "exec amixer set Master 5%+";
+      # "XF86AudioLowerVolume" = "exec amixer set Master 5%-";
+      # "XF86AudioMute" = "exec amixer set Master 0%";
+    };
+  xsession.windowManager.i3.config.keycodebindings =
+    lib.mkOptionDefault {
+      "121" = "exec amixer set Master 0%";
+      "122" = "exec amixer set Master 5%-";
+      "123" = "exec amixer set Master 5%+";
     };
   xsession.windowManager.i3.config.modes = {
     resize = {
@@ -58,7 +64,6 @@ in
   xsession.windowManager.i3.config.startup = [
     # { command = "exec_always --no-startup-id xss-lock -- xscreensaver-command -lock"; }
     { command = "systemctl --user import-environment"; }
-    { command = "i3-msg workspace 1"; }
     { command = "~/bin/keys"; }
     { command = "exec --no-startup-id /.nix-profile/libexec/polkit-gnome-authentication-agent-1 &"; }
     # { command = "exec --no-startup-id gromit-mpx"; }

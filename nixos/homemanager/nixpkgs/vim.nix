@@ -10,30 +10,31 @@ in
     viAlias = true;
     withNodeJs = true;
     plugins = with pkgs.vimPlugins; [
+      ale
+      auto-pairs
+      coc-nvim
+      emmet-vim
+      editorconfig-vim
+      fzf-vim
+      haskell-vim
+      markdown-preview-nvim
+      nerdtree
+      papercolor-theme
+      tcomment_vim
+      tsuquyomi
+      typescript-vim
+      vim-colorschemes
       vim-airline
       vim-airline-themes
-      vim-gitgutter
-      vim-nix
+      vim-devicons
       vim-easy-align
       vim-fugitive
       vim-javascript-syntax
-      emmet-vim
-      vim-devicons
-      nerdtree
-      ale
-      tcomment_vim
-      vim-vue
-      editorconfig-vim
-      typescript-vim
+      vim-nix
       vim-tmux-navigator
-      auto-pairs
+      vim-vue
       vimproc
-      tsuquyomi
-      haskell-vim
-      fzf-vim
-      vim-colorschemes
-      papercolor-theme
-      coc-nvim
+      vim-gitgutter
     ];
     extraConfig = ''
       set t_Co=256
@@ -57,6 +58,23 @@ in
           \ pumvisible() ? "\<C-n>" :
           \ <SID>check_back_space() ? "\<Tab>" :
           \ coc#refresh()
+
+    nmap <silent> <leader>dd <Plug>(coc-definition)
+    nmap <silent> <leader>dt <Plug>(coc-type-definition)
+    nmap <silent> <space>h <Plug>(coc-references)
+    nmap <silent> <leader>di <Plug>(coc-implementation)
+    nmap <leader>r <Plug>(coc-rename)
+    nnoremap <silent> U :call <SID>show_documentation()<CR>
+   
+    function! s:show_documentation()
+      if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+      elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+      else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+      endif
+    endfunction
   '';
 }
 

@@ -25,6 +25,7 @@
       osconfig = "vi ~/Repos/nixos-config/nixos/nixos/configuration.nix";
       nixosdir = "cd /etc/nixos";
       managerdir = "cd ~/.config/nixpkgs";
+      grep = "grep -i";
       c = "xclip -selection clipboard";
       l = "exa -la";
       v = "vi `fzf`";

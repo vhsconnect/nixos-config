@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
 
     joplin-desktop
-    minder
 
     awscli2
     acpi
@@ -13,8 +12,8 @@
     calibre
     cron
     coreutils
-    dispad
     discord
+    dropbox
     exa
     evince
     fd
@@ -22,8 +21,10 @@
     gitAndTools.diff-so-fancy
     gitAndTools.tig
     gparted
+    gthumb
     glimpse
     gksu
+    gnvim
     gnumake
     gromit-mpx
     hexchat
@@ -33,6 +34,7 @@
     lxqt.lxqt-openssh-askpass
     lxappearance
     networkmanagerapplet
+    minder
     nix-doc
     nixpkgs-fmt
     nix-prefetch-git
@@ -105,6 +107,9 @@
       virtualenv
       pip
     ]
-  );
+  ) ++ (with pkgs.nodePackages;
+    [
+      bash-language-server
+    ]);
 
 }
