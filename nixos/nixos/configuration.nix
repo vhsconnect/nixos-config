@@ -1,6 +1,7 @@
 { config, pkgs, options, ... }:
+let user = (import ../homemanager/nixpkgs/user.nix);
+in
 {
-
   imports = [
     /etc/nixos/hardware-configuration.nix
     # ./work.nix
@@ -13,11 +14,21 @@
       "/nix/var/nix/profiles/per-user/root/channels"
     ];
 
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.devices = [ "nodev" ];
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
+  boot.loader =
+    if user.efiBoot then {
+      efi = { canTouchEfiVariables = true; };
+      grub = {
+        enable = true;
+        devices = [ "nodev" ];
+        efiSupport = true;
+        useOSProber = true;
+      };
+    } else {
+      grub = {
+        enable = true;
+        device = user.mbrDevice;
+      };
+    };
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -166,6 +177,10 @@
   services.xserver.autoRepeatDelay = 200;
   services.xserver.autoRepeatInterval = 25;
 
+  services.logind.extraConfig = ''
+    IdleAction=ignore
+  '';
+
 
   services.globalprotect = {
     enable = true;
@@ -178,8 +193,6 @@
         "* * * * * root  . /etc/profile; sh cleanhome"
       ];
     };
-
-
 
   security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = false;
