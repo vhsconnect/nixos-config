@@ -3,6 +3,7 @@ let
   theme = (import ./themes/current.nix).theme;
   i3BlocksConfig = config.xdg.configFile."i3blocks/config".source;
   modifier = config.xsession.windowManager.i3.config.modifier;
+  secondaryFont = (import ./user.nix).secondaryFont;
 in
 {
   xsession.windowManager.i3.enable = true;
@@ -29,7 +30,7 @@ in
       "${modifier}+Shift+l" = "move right";
 
       "${modifier}+d" = ''
-        exec "rofi -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
+        exec "rofi -lines 4 -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
       '';
 
       "${modifier}+backslash" = "scratchpad show";
@@ -41,6 +42,8 @@ in
       "F6" = "exec amixer set Master 5%-";
       "F7" = "exec amixer set Master 5%+";
       #"F9" >> reserved for mpx-gromit
+      "F10" = "exec xscreensaver-command -lock";
+      #"F11" >> reserved for full screen
       # "XF86AudioRaiseVolume" = "exec amixer set Master 5%+";
       # "XF86AudioLowerVolume" = "exec amixer set Master 5%-";
       # "XF86AudioMute" = "exec amixer set Master 0%";
@@ -48,8 +51,8 @@ in
   xsession.windowManager.i3.config.keycodebindings =
     lib.mkOptionDefault {
       "121" = "exec amixer set Master 0%";
-      "122" = "exec amixer set Master 5%-";
-      "123" = "exec amixer set Master 5%+";
+      "122" = "exec amixer set Master 2%-";
+      "123" = "exec amixer set Master 2%+";
     };
   xsession.windowManager.i3.config.modes = {
     resize = {
@@ -62,12 +65,13 @@ in
     };
   };
   xsession.windowManager.i3.config.startup = [
-    # { command = "exec_always --no-startup-id xss-lock -- xscreensaver-command -lock"; }
     { command = "systemctl --user import-environment"; }
     { command = "~/bin/keys"; }
-    { command = "exec --no-startup-id /.nix-profile/libexec/polkit-gnome-authentication-agent-1 &"; }
-    # { command = "exec --no-startup-id gromit-mpx"; }
-    # { command = "exec --no-startup-id blueman-applet"; }
+    { command = "long-command & sleep 2; ~/bin/monitorsConnected"; always = true; }
+    { command = "xset -dpms"; always = true; }
+    # { command = "exec --no-startup-id /.nix-profile/libexec/polkit-gnome-authentication-agent-1 &"; }
+    { command = "gromit-mpx"; notification = false; }
+    { command = "blueman-applet"; }
   ];
   xsession.windowManager.i3.config.bars = [ ];
   xsession.windowManager.i3.config.window.border = 1;
@@ -108,11 +112,11 @@ in
     ''
       bar {
               status_command i3blocks -c ${i3BlocksConfig}
-              font pango: MesloLGLDZ Nerd Font Regular 13
+              font pango: ${secondaryFont} Regular 13
               colors {
                       background ${theme.main}
                       focused_workspace ${theme.secondary} ${theme.secondary} ${theme.main}
-                      active_workspace ${theme.accent} ${theme.accent} ${theme.secondary}
+                      active_workspace ${theme.grey} ${theme.grey} ${theme.secondary}
                       inactive_workspace ${theme.main} ${theme.main} ${theme.secondary}
                       urgent_workspace ${theme.urgent} ${theme.urgent} ${theme.secondary}
                       separator ${theme.secondary}

@@ -2,7 +2,10 @@
 {
   home.packages = with pkgs; [
 
-    joplin-desktop
+    obs-studio
+    vscodium
+    xwallpaper
+    gimp
 
     awscli2
     acpi
@@ -17,12 +20,12 @@
     exa
     evince
     fd
+    flameshot
     ffmpeg
     gitAndTools.diff-so-fancy
     gitAndTools.tig
     gparted
     gthumb
-    glimpse
     gksu
     gnvim
     gnumake
@@ -33,7 +36,6 @@
     lxqt.lxqt-sudo
     lxqt.lxqt-openssh-askpass
     lxappearance
-    networkmanagerapplet
     minder
     nix-doc
     nixpkgs-fmt
@@ -45,7 +47,6 @@
     qt5ct
     rnix-lsp
     signal-desktop
-    shortwave
     sublime3
     sublime-merge
     spotify
@@ -59,7 +60,6 @@
     thunderbird
     unzip
     xfce.thunar
-    xss-lock
     xorg.xmodmap
     xorg.xev
     qbittorrent
@@ -84,14 +84,14 @@
     (nerdfonts.override {
       fonts = [
         "FiraCode"
-        "DroidSansMono"
         "Iosevka"
         "Meslo"
-        "3270"
         "Hack"
         "JetBrainsMono"
-        "Agave"
-        "Cousine"
+        "VictorMono"
+        "Terminus"
+        "Monoid"
+        "Inconsolata"
       ];
     })
 

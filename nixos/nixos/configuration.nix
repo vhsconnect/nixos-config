@@ -7,12 +7,24 @@ in
     # ./work.nix
   ];
 
-  nix.nixPath =
-    [
-      "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-      "nixos-config=/home/vhs/Repos/nixos-config/nixos/nixos/configuration.nix"
-      "/nix/var/nix/profiles/per-user/root/channels"
-    ];
+  nix = {
+    nixPath =
+      [
+        "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+        "nixos-config=/home/vhs/Repos/nixos-config/nixos/nixos/configuration.nix"
+        "/nix/var/nix/profiles/per-user/root/channels"
+      ];
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 7d";
+    };
+    autoOptimiseStore = true;
+    #cache environments for nix-direnv
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
+  };
 
   boot.loader =
     if user.efiBoot then {
@@ -38,6 +50,7 @@ in
     ${builtins.readFile /home/vhs/Public/extraHosts}
   '';
 
+  sound.enable = true;
 
   console = {
     font = "Lat2-Terminus16";
@@ -48,7 +61,7 @@ in
     enable = true;
     desktopManager = {
       xterm.enable = false;
-      wallpaper = { mode = "fill"; combineScreens = false; };
+      wallpaper = { mode = "max"; combineScreens = false; };
     };
     displayManager = {
       defaultSession = "none+i3";
@@ -63,22 +76,20 @@ in
         i3blocks
       ];
     };
-    xautolock = {
-      enable = true;
-      time = 30;
-      enableNotifier = true;
-      notifier = ''${pkgs.libnotify}/bin/notify-send "Locking .-. "'';
-      locker = ''${pkgs.xscreensaver}/bin/xscreensaver-command -lock'';
-    };
+    # xautolock = {
+    #   enable = true;
+    #   time = 30;
+    #   enableNotifier = true;
+    #   notifier = ''${pkgs.libnotify}/bin/notify-send "Locking .-. "'';
+    #   locker = ''${pkgs.xscreensaver}/bin/xscreensaver-command -lock'';
+    # };
   };
 
   #gnome
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-
   services.xserver.layout = "us";
   services.printing.enable = true;
-  sound.enable = true;
   hardware.opengl.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
@@ -153,8 +164,6 @@ in
       blueman
       x11_ssh_askpass
       nodejs-16_x
-      networkmanager-openconnect
-      gnome.networkmanager-openconnect
       globalprotect-openconnect
       sysstat
       docker-compose
@@ -177,10 +186,6 @@ in
   services.xserver.autoRepeatDelay = 200;
   services.xserver.autoRepeatInterval = 25;
 
-  services.logind.extraConfig = ''
-    IdleAction=ignore
-  '';
-
 
   services.globalprotect = {
     enable = true;
@@ -193,6 +198,17 @@ in
         "* * * * * root  . /etc/profile; sh cleanhome"
       ];
     };
+
+
+  services.logind.extraConfig = ''
+    LidSwitchIgnoreInhibited=no
+    KillUserProcesses=no
+    HandleLidSwitch=suspend
+    HandleLidSwitchDocked=ignore
+    HandleLidSwitchExternalPower=ignore
+    IdleActionSec=14400 
+    IdleAction=ignore
+  '';
 
   security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = false;
@@ -207,17 +223,11 @@ in
     source = "${pkgs.nodejs-16_x}/bin/node";
     capabilities = "cap_net_bind_service=+ep";
   };
-
-  #cache environments for nix-direnv
-  nix.extraOptions = ''
-    keep-outputs = true
-    keep-derivations = true
-  '';
-
   virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
 
   system.stateVersion = "20.09"; #do not change
+
 }
 
 

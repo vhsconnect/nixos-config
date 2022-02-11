@@ -5,6 +5,7 @@ let
     url = "https://github.com/atpotts/base16-nix/archive/4f192af.tar.gz";
     sha256 = "1yf59vpd1i8lb2ml7ha8v6i4mv1b0xwss8ngzw08s39j838gyx6h";
   };
+  font = (import ./user.nix).font;
 in
 {
   imports = [ "${source}/base16.nix" ];
@@ -34,7 +35,7 @@ in
         frame_width = 3;
         frame_color = "${base00-hex}";
         separator_color = "frame";
-        font = "Iosevka Regular 10";
+        font = "${font} Regular 10";
         line_height = 4;
         idle_threshold = 120;
         markup = "full";

@@ -19,10 +19,8 @@
 
     };
     shellAliases = {
-      #listpkg='nix-env -qa --installed "*"'
-      nixconfig = "sudo nvim /etc/nixos/configuration.nix";
+      nixosconfig = "nvim /Repos/nixos-config/nixos/configuration.nix";
       cdconfig = "~/Repos/nixos-config/nixos/homemanager/nixpkgs";
-      osconfig = "vi ~/Repos/nixos-config/nixos/nixos/configuration.nix";
       nixosdir = "cd /etc/nixos";
       managerdir = "cd ~/.config/nixpkgs";
       grep = "grep -i";
@@ -39,6 +37,7 @@
       lock = "xscreensaver-command -lock";
       emoji = "rofi -show emoji -modi emoji";
       allbound = "netstat -tulpn";
+      quickref = "vi ~/Dropbox/quickref";
     };
     oh-my-zsh = {
       enable = true;
@@ -62,6 +61,16 @@
         repo = "fz";
         rev = "2a4c1bc73664bb938bfcc7c99f473d0065f9dbfd";
         sha256 = "0fg2a28cp3a4smcq61vngzdvjwq8np35ayq2ix1db34c18s222a4";
+      };
+    }
+    {
+      name = "zsh-autopair";
+      file = "zsh-autopair.plugin.zsh";
+      src = pkgs.fetchFromGitHub {
+        owner = "hlissner";
+        repo = "zsh-autopair";
+        rev = "9d003fc02dbaa6db06e6b12e8c271398478e0b5d";
+        sha256 = "0s4xj7yv75lpbcwl4s8rgsaa72b41vy6nhhc5ndl7lirb9nl61l7";
 
       };
     }];

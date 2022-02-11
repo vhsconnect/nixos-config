@@ -113,6 +113,11 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : 
 " --------------- REMAPS FZF --------------
 imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
 nnoremap <silent> <c-p> :GFiles<CR>
+
+" Control P isntead of fzf
+" let g:ctrlp_custom_ignore = {
+"       \ 'dir': '\v[\/]\.?(git|hg|svn|dist|node_modules)$',
+"       \ }
 nnoremap <leader>p :BLines<CR> 
 nnoremap <space>b :Buffer<CR> 
 nnoremap <silent> <c-g> :Ag<CR> 

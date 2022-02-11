@@ -13,6 +13,8 @@ in
       ale
       auto-pairs
       coc-nvim
+      colorizer
+      # ctrlp-vim
       emmet-vim
       editorconfig-vim
       fzf-vim
@@ -58,6 +60,11 @@ in
           \ pumvisible() ? "\<C-n>" :
           \ <SID>check_back_space() ? "\<Tab>" :
           \ coc#refresh()
+
+
+    " test >
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 
     nmap <silent> <leader>dd <Plug>(coc-definition)
     nmap <silent> <leader>dt <Plug>(coc-type-definition)

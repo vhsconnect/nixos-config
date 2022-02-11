@@ -81,6 +81,7 @@ in
       enableZshIntegration = true;
     };
 
+
   ######## home ########
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -98,6 +99,17 @@ in
   ######## services ########
   services.gnome-keyring.enable = true;
   services.gpg-agent.enable = true;
+  services.blueman-applet.enable = true;
+
+  services.gammastep =
+    {
+      enable = true;
+      dawnTime = "6:00-7:45";
+      duskTime = "18:00-19:05";
+      longitude = "59.3";
+      latitude = "18.0";
+      tray = true;
+    };
 
   services.xscreensaver = {
     enable = true;

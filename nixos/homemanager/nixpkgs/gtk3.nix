@@ -1,5 +1,7 @@
 { pkgs, ... }:
-
+let
+  font = (import ./user.nix).font;
+in
 {
   gtk.enable = true;
   gtk.gtk3 = {
@@ -15,7 +17,7 @@
       {
         gtk-theme-name = "Arc-Dark";
         gtk-icon-theme-name = "Paper";
-        gtk-font-name = "Iosevka Light 13";
+        gtk-font-name = "${font} Light 11";
         gtk-cursor-theme-name = "capitaine-cursors-light";
         gtk-cursor-theme-size = "14";
         gtk-toolbar-style = "GTK_TOOLBAR_BOTH_HORIZ";
@@ -31,5 +33,9 @@
 
       };
   };
+  qt.enable = false;
+  qt.platformTheme = "gtk";
+  qt.style.package = pkgs.libsForQt5.qtstyleplugins;
+  qt.style.name = "Cleanlooks";
 }
 
