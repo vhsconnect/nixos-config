@@ -31,6 +31,8 @@ set expandtab
 set cmdheight=2
 set shortmess+=c
 set signcolumn=number
+set dictionary+=~/Public/words.txt
+set complete+=k
 set dir=~/Public/tmp
 retab!
 
@@ -151,6 +153,7 @@ let g:ale_lint_on_save = 1
   \   'javascript': ['eslint'],
   \   'typescript': ['eslint'],
   \   'nix': ['nixpkgs-fmt'],
+  \   'haskell': ['hlint', 'ormolu', 'hindent', 'floskell'],
   \}
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1

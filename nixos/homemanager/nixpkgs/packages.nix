@@ -99,6 +99,9 @@
     [
       ghc
       haskell-language-server
+      hlint
+      ormolu
+      floskell
       stack
       ghcid
     ]

@@ -17,6 +17,7 @@ in
     ./rofi-rafi.home.nix
     ./vim.nix
     ./mimeappsList.nix
+    ./scripts/terminalThemes.nix
   ] ++ (if user.withgtk then [ ./gtk3.nix ] else [ ]);
 
 

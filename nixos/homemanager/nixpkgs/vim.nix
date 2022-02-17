@@ -9,6 +9,7 @@ in
     enable = true;
     viAlias = true;
     withNodeJs = true;
+    withPython3 = true;
     plugins = with pkgs.vimPlugins; [
       ale
       auto-pairs
@@ -18,7 +19,7 @@ in
       emmet-vim
       editorconfig-vim
       fzf-vim
-      haskell-vim
+      # haskell-vim
       markdown-preview-nvim
       nerdtree
       papercolor-theme
@@ -47,6 +48,8 @@ in
     '';
   };
 
+  home.packages = with pkgs.nodePackages; [ coc-tsserver coc-prettier ];
+
   #writes to file
   xdg.configFile."nvim/coc-settings.json".text = builtins.toJSON (import ./coc-settings.nix);
   xdg.configFile."nvim/coc-file.vim".text = ''
@@ -72,6 +75,9 @@ in
     nmap <silent> <leader>di <Plug>(coc-implementation)
     nmap <leader>r <Plug>(coc-rename)
     nnoremap <silent> U :call <SID>show_documentation()<CR>
+    
+    " get documentation under cursor
+    nnoremap <silent> <leader>h :call CocActionAsync('doHover')<cr>
    
     function! s:show_documentation()
       if (index(['vim','help'], &filetype) >= 0)

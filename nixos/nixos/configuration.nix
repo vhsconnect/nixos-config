@@ -76,13 +76,6 @@ in
         i3blocks
       ];
     };
-    # xautolock = {
-    #   enable = true;
-    #   time = 30;
-    #   enableNotifier = true;
-    #   notifier = ''${pkgs.libnotify}/bin/notify-send "Locking .-. "'';
-    #   locker = ''${pkgs.xscreensaver}/bin/xscreensaver-command -lock'';
-    # };
   };
 
   #gnome
@@ -155,10 +148,9 @@ in
       jq
       neofetch
       docker
+      pavucontrol
       nmap
-      pavucontrol
       xfce.terminal
-      pavucontrol
       xclip
       xscreensaver
       blueman
