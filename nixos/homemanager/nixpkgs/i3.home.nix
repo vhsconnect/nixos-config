@@ -44,15 +44,12 @@ in
       #"F9" >> reserved for mpx-gromit
       "F10" = "exec xscreensaver-command -lock";
       #"F11" >> reserved for full screen
-      # "XF86AudioRaiseVolume" = "exec amixer set Master 5%+";
-      # "XF86AudioLowerVolume" = "exec amixer set Master 5%-";
-      # "XF86AudioMute" = "exec amixer set Master 0%";
     };
   xsession.windowManager.i3.config.keycodebindings =
     lib.mkOptionDefault {
-      "121" = "exec amixer set Master 0%";
-      "122" = "exec amixer set Master 2%-";
-      "123" = "exec amixer set Master 2%+";
+      "121" = "exec pamixer -m";
+      "122" = "exec pamixer -d 5";
+      "123" = "exec pamixer -i 5";
     };
   xsession.windowManager.i3.config.modes = {
     resize = {
@@ -69,7 +66,6 @@ in
     { command = "~/bin/keys"; }
     { command = "long-command & sleep 2; ~/bin/monitorsConnected"; always = true; }
     { command = "xset -dpms"; always = true; }
-    # { command = "exec --no-startup-id /.nix-profile/libexec/polkit-gnome-authentication-agent-1 &"; }
     { command = "gromit-mpx"; notification = false; }
     { command = "blueman-applet"; }
   ];

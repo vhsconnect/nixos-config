@@ -35,6 +35,7 @@ in
       fixup = "!f(){ git reset --soft HEAD~\${1} && git commit --amend -C HEAD; };f";
       ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
       ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
+      dif = "diff -- . ':(exclude)yarn.lock' ':(exclude)package-lock.json'";
     };
     extraConfig = {
       core = {
@@ -53,7 +54,10 @@ in
   };
 
 
-  programs.bat.enable = true;
+  programs.bat = {
+    enable = true;
+    config = { theme = "Sublime Snazzy"; };
+  };
   programs.tmux.enable = true;
 
   programs.fzf = {

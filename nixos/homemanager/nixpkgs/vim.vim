@@ -120,6 +120,7 @@ nnoremap <silent> <c-p> :GFiles<CR>
 " let g:ctrlp_custom_ignore = {
 "       \ 'dir': '\v[\/]\.?(git|hg|svn|dist|node_modules)$',
 "       \ }
+" TODO Search open buffers with ag
 nnoremap <leader>p :BLines<CR> 
 nnoremap <space>b :Buffer<CR> 
 nnoremap <silent> <c-g> :Ag<CR> 

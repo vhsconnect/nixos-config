@@ -174,23 +174,32 @@ in
   };
   programs.adb.enable = true;
 
-  services.openssh.enable = true;
+  services.openssh.enable = false;
   services.xserver.autoRepeatDelay = 200;
   services.xserver.autoRepeatInterval = 25;
 
 
-  services.globalprotect = {
-    enable = true;
-  };
+  services.globalprotect.enable = true;
 
   services.cron =
     {
-      enable = true;
+      enable = false;
       systemCronJobs = [
         "* * * * * root  . /etc/profile; sh cleanhome"
       ];
     };
 
+
+  systemd.services.radio = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    description = "start myRadio server";
+    serviceConfig = {
+      Type = "simple";
+      User = "vhs";
+      ExecStart = ''${pkgs.nodejs-16_x}/bin/node /home/vhs/.npm-global/bin/myradio'';
+    };
+  };
 
   services.logind.extraConfig = ''
     LidSwitchIgnoreInhibited=no
@@ -201,6 +210,8 @@ in
     IdleActionSec=14400 
     IdleAction=ignore
   '';
+
+  services.fwupd.enable = false;
 
   security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = false;

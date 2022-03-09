@@ -6,6 +6,10 @@
     vscodium
     xwallpaper
     gimp
+    krita
+    libreddit
+    newsboat
+    watchman
 
     awscli2
     acpi
@@ -42,6 +46,7 @@
     nix-prefetch-git
     niv
     pastel
+    pamixer
     protoc-gen-doc
     prettyping
     qt5ct

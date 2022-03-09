@@ -19,7 +19,7 @@
 
     };
     shellAliases = {
-      nixosconfig = "nvim /Repos/nixos-config/nixos/configuration.nix";
+      nixosconfig = "nvim /Repos/nixos-config/nixos/nixos/configuration.nix";
       cdconfig = "~/Repos/nixos-config/nixos/homemanager/nixpkgs";
       nixosdir = "cd /etc/nixos";
       managerdir = "cd ~/.config/nixpkgs";
@@ -41,7 +41,11 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [  "z"  "colored-man-pages" "vi-mode" ]; 
+      plugins = [ 
+      "z" 
+      "colored-man-pages"
+      "vi-mode"
+      ]; 
     };
     plugins = [{
       name = "zsh-nix-shell";
