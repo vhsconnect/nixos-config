@@ -18,7 +18,20 @@ let
     X="profile = dark"
     sed -i "s/$CURRENT/$X/" ~/.config/terminator/config
   '';
+  pfire = pkgs.writeScriptBin "pfire" ''
+    #! /usr/bin/env zsh
+    firefox --private-window
+  '';
+  c-unsecure = pkgs.writeScriptBin "c-unsecure" ''
+    #! /usr/bin/env zsh
+    chromium --disable-web-security --user-data-dir="Public/chromium"
+  '';
+  watchexec = pkgs.writeScriptBin "watchexec" ''
+    #! /usr/bin/env sh 
+    echo $1
+    while inotifywait -e close_write $1; do $1; done
+  '';
 in
 {
-  home.packages = [ ttheme1 ttheme2 ttheme3 ];
+  home.packages = [ ttheme1 ttheme2 ttheme3 pfire c-unsecure watchexec ];
 }

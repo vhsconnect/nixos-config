@@ -8,9 +8,10 @@ in
     bookmarks = [
       "file:///home/vhs/Downloads"
       "file:///home/vhs/Documents"
-      "file:///home/vhs/Repos"
-      "file:///home/vhs/Music"
       "file:///home/vhs/Pictures"
+      "file:///home/vhs/Repos"
+      "file:///home/vhs/VP"
+      "file:///home/vhs/Music"
       "file:///home/vhs/Videos"
     ];
     extraConfig =

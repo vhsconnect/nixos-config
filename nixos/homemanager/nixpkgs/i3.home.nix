@@ -15,7 +15,7 @@ in
   };
   xsession.windowManager.i3.config.keybindings =
     lib.mkOptionDefault {
-      "${modifier}+Return" = "exec --no-startup-id terminator";
+      "${modifier}+Return" = "exec --no-startup-id alacritty";
       "${modifier}+Escape" = "kill";
       "${modifier}+g" = "exec gnome-screenshot -a";
 

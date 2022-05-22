@@ -4,9 +4,9 @@ let
   pathToVimSnippets = "~/Public/snippets/";
 in
 {
-
   programs.neovim = {
     enable = true;
+    package = pkgs.neovim-nightly;
     viAlias = true;
     withNodeJs = true;
     withPython3 = true;
@@ -15,11 +15,9 @@ in
       auto-pairs
       coc-nvim
       colorizer
-      # ctrlp-vim
       emmet-vim
       editorconfig-vim
       fzf-vim
-      # haskell-vim
       markdown-preview-nvim
       nerdtree
       papercolor-theme
@@ -34,10 +32,13 @@ in
       vim-fugitive
       vim-javascript-syntax
       vim-nix
+      vim-prettier
       vim-tmux-navigator
       vim-vue
       vimproc
       vim-gitgutter
+      nvim-treesitter
+      nvim-lspconfig
     ];
     extraConfig = ''
       set t_Co=256
@@ -45,12 +46,20 @@ in
       colorscheme PaperColor
       ${builtins.readFile ./vim.vim}
       nnoremap <leader>s :r ${pathToVimSnippets}
+      ""
+      set completeopt=menu,menuone,noselect
+      lua <<EOF
+      ${builtins.readFile ./vim.lua}
+      EOF
     '';
   };
 
+  xdg.configFile."nvim/parser/javascript.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-javascript}/parser";
+  xdg.configFile."nvim/parser/typescript.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-typescript}/parser";
+  xdg.configFile."nvim/parser/lua.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-lua}/parser";
+
   home.packages = with pkgs.nodePackages; [
     coc-tsserver
-    coc-prettier
     coc-css
     coc-json
   ];

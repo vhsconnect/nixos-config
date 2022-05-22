@@ -24,7 +24,10 @@
     };
   };
   "yank.highlight.duration" = 700;
+
   "coc.preferences.extensionUpdateCheck" = "never";
+  "coc.preferences.formatOnSaveFiletypes" = [ ];
   "prettier.semi" = false;
   "prettier.singleQuote" = true;
+  "prettier.arrowParens" = "avoid";
 }

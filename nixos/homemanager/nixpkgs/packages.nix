@@ -4,19 +4,28 @@
 
     obs-studio
     vscodium
-    xwallpaper
     gimp
     krita
-    libreddit
     newsboat
     watchman
+    inotify-tools
+    vscodium
+    epiphany
+    inkscape
+    songrec
+
+    #python
+    yapf
+    black
 
     awscli2
     acpi
     ag
+    bat
     cabal-install
     cabal2nix
     calibre
+    chromium
     cron
     coreutils
     discord
@@ -34,7 +43,6 @@
     gnvim
     gnumake
     gromit-mpx
-    hexchat
     killall
     insomnia
     lxqt.lxqt-sudo
@@ -46,6 +54,7 @@
     nix-prefetch-git
     niv
     pastel
+    pdftk
     pamixer
     protoc-gen-doc
     prettyping
@@ -67,6 +76,7 @@
     xfce.thunar
     xorg.xmodmap
     xorg.xev
+    xwallpaper
     qbittorrent
     youtube-dl
     zip

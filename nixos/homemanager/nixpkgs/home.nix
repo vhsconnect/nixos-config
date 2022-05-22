@@ -1,12 +1,15 @@
 { pkgs, lib, config, ... }:
 let
   user = (import ./user.nix);
+  neovim-nightly-overlay = (import (builtins.fetchTarball {
+    url = https://github.com/vhsconnect/neovim-nightly-overlay/archive/master.tar.gz;
+  }));
 in
 {
-  nixpkgs.config = {
-    allowUnfree = true;
+  nixpkgs = {
+    config = { allowUnfree = true; };
+    overlays = [ neovim-nightly-overlay ];
   };
-
   imports = [
     ./packages.nix
     ./zsh.nix
@@ -14,64 +17,31 @@ in
     ./dunst.home.nix
     ./rofi.home.nix
     ./i3blocks.home.nix
-    ./rofi-rafi.home.nix
     ./vim.nix
+    ./git.nix
+    ./hexchat.nix
     ./mimeappsList.nix
-    ./scripts/terminalThemes.nix
+    ./scripts/scripts.nix
   ] ++ (if user.withgtk then [ ./gtk3.nix ] else [ ]);
 
 
   ######## programs ########
   programs.home-manager.enable = true;
-
-  programs.git = {
-    enable = true;
-    delta = {
-      enable = true;
-      options = { side-by-side = true; };
-    };
-    aliases = {
-      amend = "commit --amend -m";
-      fixup = "!f(){ git reset --soft HEAD~\${1} && git commit --amend -C HEAD; };f";
-      ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
-      ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
-      dif = "diff -- . ':(exclude)yarn.lock' ':(exclude)package-lock.json'";
-    };
-    extraConfig = {
-      core = {
-        editor = "nvim";
-        # pager = "diff-so-fancy | less --tabs=4 -RFX";
-      };
-      color.diff-highlight.newNormal = "68 bold";
-      color.diff-highlight.newHighlight = "27 bold";
-      init.defaultBranch = "master";
-    };
-    ignores = [
-      "*.direnv"
-    ];
-    userEmail = user.email;
-    userName = user.handle;
-  };
-
-
-  programs.bat = {
-    enable = true;
-    config = { theme = "Sublime Snazzy"; };
-  };
   programs.tmux.enable = true;
 
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    defaultCommand = "find .";
+    defaultCommand = "fd .";
     changeDirWidgetCommand = "fd --type d --hidden";
     changeDirWidgetOptions = [
       "--preview 'tree -C {} | head -200'"
     ];
   };
 
-  programs.chromium.enable = true;
-  programs.direnv.enable = true;
+
+  programs.direnv.enable = false;
+  programs.direnv.nix-direnv.enable = false;
 
   programs.autojump =
     {
@@ -92,11 +62,11 @@ in
     EDITOR = "nvim";
     TERMINAL = "xfce4-terminal";
     SUDO_ASKPASS = "lxqt-openssh-askpass";
+    TMPDIR = "/home/vhs/Public/tmp";
   };
 
   home.username = "vhs";
   home.homeDirectory = "/home/vhs";
-
 
   ######## fonts ########
   fonts.fontconfig.enable = true;
@@ -113,6 +83,7 @@ in
       duskTime = "18:00-19:05";
       longitude = "59.3";
       latitude = "18.0";
+      temperature.day = 4800;
       tray = true;
     };
 

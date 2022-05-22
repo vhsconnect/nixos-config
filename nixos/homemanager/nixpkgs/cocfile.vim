@@ -19,7 +19,7 @@ nmap <silent> <leader>dt <Plug>(coc-type-definition)
 nmap <silent> <space>h <Plug>(coc-references)
 nmap <silent> <leader>di <Plug>(coc-implementation)
 nmap <leader>r <Plug>(coc-rename)
-nmap <leader>rrr CocCommand workspace.renameCurrentFile
+nmap <leader>rrr :CocCommand workspace.renameCurrentFile<CR>
 nnoremap <silent> U :call <SID>show_documentation()<CR>
 
 " get documentation under cursor

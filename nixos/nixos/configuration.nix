@@ -1,5 +1,18 @@
 { config, pkgs, options, ... }:
-let user = (import ../homemanager/nixpkgs/user.nix);
+let
+  user = (import ../homemanager/nixpkgs/user.nix);
+  nodejs-overlay = self: super: {
+    nodejs-16_x = super.nodejs-16_x.overrideAttrs
+      (old: {
+        buildInputs = old.buildInputs ++ [ pkgs.makeWrapper ];
+        postInstall = old.postInstall or "" + ''
+          wrapProgram "$out/bin/node" --set TMPDIR  --set TMP "/home/vhs/tmp/"
+        '';
+      });
+  };
+  nvim-nightly-overlay = (import (builtins.fetchTarball {
+    url = https://github.com/vhsconnect/neovim-nightly-overlay/archive/master.tar.gz;
+  }));
 in
 {
   imports = [
@@ -26,6 +39,7 @@ in
     '';
   };
 
+
   boot.loader =
     if user.efiBoot then {
       efi = { canTouchEfiVariables = true; };
@@ -41,6 +55,8 @@ in
         device = user.mbrDevice;
       };
     };
+
+  nixpkgs.overlays = [ nvim-nightly-overlay ];
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -59,6 +75,8 @@ in
 
   services.xserver = {
     enable = true;
+    autoRepeatDelay = 200;
+    autoRepeatInterval = 25;
     desktopManager = {
       xterm.enable = false;
       wallpaper = { mode = "max"; combineScreens = false; };
@@ -90,6 +108,9 @@ in
     General = {
       Enable = "Source,Sink,Media,Socket";
     };
+    Policy = {
+      AutoEnable = false;
+    };
   };
   services.blueman.enable = true;
   services.xserver.libinput.enable = true;
@@ -99,12 +120,11 @@ in
   '';
   services.picom = {
     enable = true;
-    backend = "glx";
     vSync = true;
     inactiveOpacity = 0.86;
     fade = true;
-    fadeDelta = 4;
-    fadeSteps = [ 0.07 0.07 ];
+    fadeDelta = 8;
+    fadeSteps = [ 0.028 0.03 ];
   };
 
   services.pipewire = {
@@ -114,12 +134,11 @@ in
     pulse.enable = true;
   };
 
-
   users = {
     users.vhs = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "docker" "adbusers" ];
+      extraGroups = [ "wheel" "docker" "adbusers" "libvirtd" "qemu-libvirtd" ];
     };
     extraGroups.vboxusers.members = [ "vhs" ];
   };
@@ -150,6 +169,7 @@ in
       docker
       pavucontrol
       nmap
+      neovim-nightly
       xfce.terminal
       xclip
       xscreensaver
@@ -159,9 +179,9 @@ in
       globalprotect-openconnect
       sysstat
       docker-compose
+      virt-manager
       ponysay
     ];
-
 
   programs.nm-applet.enable = true;
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
@@ -175,12 +195,7 @@ in
   programs.adb.enable = true;
 
   services.openssh.enable = false;
-  services.xserver.autoRepeatDelay = 200;
-  services.xserver.autoRepeatInterval = 25;
-
-
   services.globalprotect.enable = true;
-
   services.cron =
     {
       enable = false;
@@ -226,12 +241,11 @@ in
     source = "${pkgs.nodejs-16_x}/bin/node";
     capabilities = "cap_net_bind_service=+ep";
   };
+
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   system.stateVersion = "20.09"; #do not change
-
 }
-
 
 

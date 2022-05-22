@@ -1,4 +1,4 @@
-let g:mapleader = "\\" 
+let g:mapleader = "\\"
 packloadall
 syntax enable
 set nocompatible
@@ -11,8 +11,8 @@ set noshowmode
 set cursorline
 set autoindent
 set autoread
-set incsearch 
-set hlsearch 
+set incsearch
+set hlsearch
 set ignorecase
 set smartcase
 set backspace=indent,eol,start
@@ -21,7 +21,7 @@ set smartindent
 set mouse=a
 set autowrite
 set inccommand=split
-set foldmethod=indent   
+set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
 set foldlevel=2
@@ -67,11 +67,11 @@ vnoremap <silent> <space>y y:call ClipboardYank()<cr>
 vnoremap <silent> <space>d d:call ClipboardYank()<cr>
 nnoremap <silent> <space>p :call ClipboardPaste()<cr>p
 "copy the current visual selection to ~/.vbuf
-vmap <y> :w! ~/.vbuf<CR>      
+vmap <y> :w! ~/.vbuf<CR>
 "copy the current line to the buffer file if no visual selection
-nmap <Y> :.w! ~/.vbuf<CR>     
+nmap <Y> :.w! ~/.vbuf<CR>
 "paste the contents of the buffer file
-nmap <p> :r ~/.vbuf<CR>       
+nmap <p> :r ~/.vbuf<CR>
 
 "-----------  snippets ------------
 nnoremap <leader>s :r ~/Public/snippets/
@@ -86,7 +86,7 @@ vnoremap <space>r y :%s/<C-r>"//gc<Left><Left><Left>
 let NERDTreeShowHidden = 1
 
 " --------------- REMAPS  MISC--------------
-nnoremap <space>n :NERDTreeToggle<CR> 
+nnoremap <space>n :NERDTreeToggle<CR>
 nnoremap <space>u :tabdo e<CR> "re-read from filesystem current tab
 nnoremap <space><space>u :bufdo e<CR> "re-read from filesystem all
 nnoremap <space>e :ALEDetail<CR>
@@ -96,10 +96,10 @@ nnoremap <space><leader> :tabnext<CR>
 nnoremap <leader><space> :tabprevious<CR>
 nnoremap <space>s :set spell<CR>
 nnoremap <space><space>s :set nospell<CR>
-nnoremap <space>l :Prettier<CR>
+nnoremap <space>l :PrettierAsync<CR>
 nnoremap <space>b <C-W>z      "close info buffer
 "close info buffer
-nnoremap <space>b <C-W>z      
+nnoremap <space>b <C-W>z
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
 nnoremap K 5k
@@ -107,7 +107,7 @@ nnoremap J 5j
 nnoremap L 10l
 nnoremap H 10h
 "move split to own tab
-nnoremap <leader><leader> <C-W>T        
+nnoremap <leader><leader> <C-W>T
 " --------------- FZF --------------
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 "  redefine Ag to not include filenames in search
@@ -115,15 +115,10 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : 
 " --------------- REMAPS FZF --------------
 imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
 nnoremap <silent> <c-p> :GFiles<CR>
-
-" Control P isntead of fzf
-" let g:ctrlp_custom_ignore = {
-"       \ 'dir': '\v[\/]\.?(git|hg|svn|dist|node_modules)$',
-"       \ }
 " TODO Search open buffers with ag
-nnoremap <leader>p :BLines<CR> 
-nnoremap <space>b :Buffer<CR> 
-nnoremap <silent> <c-g> :Ag<CR> 
+nnoremap <leader>p :BLines<CR>
+nnoremap <space>b :Buffer<CR>
+nnoremap <silent> <c-g> :Ag<CR>
 
 " --------------- REMAPS COLORS --------------
 nnoremap <space>1 :colorscheme OceanicNext<CR>
@@ -149,15 +144,14 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
-
-  let g:ale_fixers = {
-  \   'javascript': ['eslint'],
-  \   'typescript': ['eslint'],
+let g:ale_fixers = {
+  \   '*': ['trim_whitespace'],
+  \   'javascript': [],
+  \   'typescript': [],
   \   'nix': ['nixpkgs-fmt'],
   \   'haskell': ['hlint', 'ormolu', 'hindent', 'floskell'],
+  \   'python': ['yapf']
   \}
-let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 1
 set omnifunc=ale#completion#OmniFunc
 highlight ALEWarning ctermbg=Blue ctermfg=Yellow
 highlight ALEError ctermbg=Blue ctermfg=White
@@ -172,17 +166,6 @@ let g:airline_section_y = ''
 let g:airline_section_z = ''
 let g:airline_section_a = ''
 let g:airline_section_b = ''
-
-" ---------------  Haskell-vim --------------
-"
-let g:haskell_indent_disable = 1
-let g:haskell_enable_quantification = 1   
-let g:haskell_enable_recursivedo = 1     
-let g:haskell_enable_arrowsyntax = 1    
-let g:haskell_enable_pattern_synonyms = 1
-let g:haskell_enable_typeroles = 1     
-let g:haskell_enable_static_pointers = 1
-let g:haskell_backpack = 1   
 
 " ---------------  TSUQOYOMI --------------
 autocmd FileType typescript setlocal completeopt+=menu,preview
@@ -203,7 +186,8 @@ let g:vue_pre_processors = 'detect-on-enter'
 " ---------------  markdown --------------
 let g:mkdp_auto_start = 0
 " ---------------  COC --------------
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-source /home/$USER/.config/nvim/coc-file.vim 
-call gitgutter#highlight#define_signs() 
+" command! -nargs=0 Prettier :CocCommand prettier.formatFile
+source /home/$USER/.config/nvim/coc-file.vim
+" ---------------  EXTRA --------------
+call gitgutter#highlight#define_signs()
 
