@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
 
+    alacritty
     obs-studio
     vscodium
     gimp
@@ -20,7 +21,7 @@
 
     awscli2
     acpi
-    ag
+    silver-searcher
     bat
     cabal-install
     cabal2nix
@@ -39,7 +40,6 @@
     gitAndTools.tig
     gparted
     gthumb
-    gksu
     gnvim
     gnumake
     gromit-mpx

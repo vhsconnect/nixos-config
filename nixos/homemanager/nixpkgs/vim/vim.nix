@@ -6,14 +6,12 @@ in
 {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
     viAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    plugins = with pkgs.vimPlugins; [
+    plugins = (with pkgs.vimPlugins; [
       ale
       auto-pairs
-      coc-nvim
       colorizer
       emmet-vim
       editorconfig-vim
@@ -39,7 +37,7 @@ in
       vim-gitgutter
       nvim-treesitter
       nvim-lspconfig
-    ];
+    ]) ++ [ pkgs.coc-nvim-fixed ];
     extraConfig = ''
       set t_Co=256
       set background=light

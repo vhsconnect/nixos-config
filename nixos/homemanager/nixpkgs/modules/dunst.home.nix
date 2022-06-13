@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
-  font = (import ./user.nix).font;
-  theme = (import ../nixpkgs/themes/current.nix).theme;
+  font = (import ../user.nix).font;
+  theme = (import ../../nixpkgs/themes/current.nix).theme;
 in
 {
   services.dunst = {

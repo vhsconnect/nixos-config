@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 let
-  theme = (import ./themes/current.nix).theme;
+  theme = (import ../themes/current.nix).theme;
   pathI3Blocks = "~/Repos/nixos-config/nixos/homemanager/nixpkgs/i3blocks";
 in
 {
@@ -19,6 +19,7 @@ in
     label= 
     command=${pathI3Blocks}/cpu
     interval=2
+    color=${theme.secondary}
 
     [disk]
     label=   
@@ -32,13 +33,6 @@ in
     interval=2
     color=${theme.secondary}
     
-    # [battery]
-    # command=${pathI3Blocks}/battery
-    # label= 
-    # #instance=1
-    # interval=30
-    # #color=${theme.secondary}
-
     [disk]
     label= 
     instance=/

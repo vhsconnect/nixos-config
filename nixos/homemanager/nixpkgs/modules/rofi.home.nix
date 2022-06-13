@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  font = (import ./user.nix).font;
+  font = (import ../user.nix).font;
 in
 {
   programs.rofi = {
@@ -12,7 +12,7 @@ in
       let mkLitteral = config.lib.formats.rasi.mkLiteral;
       in
       with
-      (import ./themes/current.nix).theme;
+      (import ../themes/current.nix).theme;
       {
         "*" = {
           background-color = mkLitteral main;

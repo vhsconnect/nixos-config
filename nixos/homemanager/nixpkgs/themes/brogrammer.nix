@@ -1,17 +1,18 @@
 let
-  white = "#F9F9F9"; #flipped
-  black = "#282430"; #fliipped
+  white = "#F9F9F9";
+  black = "#282430";
   compose = f: g: x: f (g x);
-  colors = compose builtins.fromJSON builtins.readFile ./brogrammer.nix;
+  file = ./brogrammer.json;
+  colors = compose builtins.fromJSON builtins.readFile file;
 in
 with colors;
 {
-  main = base04;
-  secondary = base03;
+  main = base0B;
+  secondary = base00;
   accent = base00;
-  accent2 = base01;
-  accent3 = base0E;
-  urgent = base0F;
-  grey = base07;
-  debug = base0A;
+  accent2 = base00;
+  accent3 = base05;
+  urgent = base03;
+  grey = base08;
+  debug = base0E;
 }

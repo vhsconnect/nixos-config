@@ -3,7 +3,6 @@
   xdg.configFile."terminator/configbackup".text = ''
         cursor_color = "#aaaaaa"
         show_titlebar = False
-        custom_command = '''ponysay "let's git it"'''
       [[dark]]
         background_darkness = 0.7
         background_type = transparent
@@ -23,7 +22,6 @@
         show_titlebar = False
         scrollback_infinite = True
         palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#77767b:#404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#c0bfbc"
-        custom_command = '''ponysay "let's git it" && disown'''
         use_system_font = False
         copy_on_selection = True
       [[dark2]]

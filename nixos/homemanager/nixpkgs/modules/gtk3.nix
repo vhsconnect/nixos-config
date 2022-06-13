@@ -1,6 +1,8 @@
 { pkgs, ... }:
 let
-  font = (import ./user.nix).font;
+  font = (import ../user.nix).font;
+  light-icons = (import ../user.nix).foreground == "light";
+
 in
 {
   gtk.enable = true;
@@ -17,7 +19,8 @@ in
     extraConfig =
       {
         gtk-theme-name = "Arc-Dark";
-        gtk-icon-theme-name = "Paper";
+        gtk-icon-theme-name =
+          if light-icons then "Paper" else "Paper-Mono-Dark";
         gtk-font-name = "${font} Light 11";
         gtk-cursor-theme-name = "capitaine-cursors-light";
         gtk-cursor-theme-size = "14";

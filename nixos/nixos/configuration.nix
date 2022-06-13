@@ -170,7 +170,7 @@ in
       pavucontrol
       nmap
       neovim-nightly
-      xfce.terminal
+      xfce.xfce4-terminal
       xclip
       xscreensaver
       blueman
