@@ -1,8 +1,16 @@
 let
 
+  packages-2111 = import <nixpkgs-2111> {
+    config = { allow-unfree = true; };
+  };
+
   neovim-nightly-overlay = import (builtins.fetchTarball {
     url = https://github.com/vhsconnect/neovim-nightly-overlay/archive/master.tar.gz;
   });
+
+  insomnia-overlay = self: prev: {
+    insomnia = packages-2111.insomnia;
+  };
 
   coc-nvim-overlay = self: prev:
     {
@@ -19,4 +27,4 @@ let
       };
     };
 in
-[ neovim-nightly-overlay coc-nvim-overlay ]
+[ neovim-nightly-overlay coc-nvim-overlay insomnia-overlay ]
