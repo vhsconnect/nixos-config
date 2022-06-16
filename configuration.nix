@@ -8,7 +8,6 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    "${(import ./nix/sources.nix).agenix}/modules/age.nix"
     # ./work.nix 
   ];
 
@@ -141,12 +140,9 @@ in
         virtualenv
       ];
       python3Plus = python3.withPackages myPy3Packages;
-      agenix = (pkgs.callPackage "${(import ./nix/sources.nix).agenix}/pkgs/agenix.nix" { });
     in
     [
-      agenix
       python3Plus
-
       zsh
       wget
       curl
