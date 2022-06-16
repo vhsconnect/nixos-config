@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  font = (import ../../../../user.nix).font;
+  font = (import ../../user.nix).font;
 in
 {
   programs.rofi = {

@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 let
   theme = (import ../themes/current.nix).theme;
-  pathI3Blocks = "~/Repos/nixos-config/nixos/homemanager/nixpkgs/i3blocks";
+  pathI3Blocks = builtins.toString (./. + "../i3blocks");
 in
 {
   xdg.configFile."i3blocks/config".text = ''

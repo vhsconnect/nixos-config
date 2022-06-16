@@ -15,9 +15,8 @@
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager.useUserPackages = true;
-            home-manager.users.vhs = import ./nixos/homemanager/nixpkgs/home.nix;
+            home-manager.users.vhs = import ./homemanager/home.nix;
           }
-
         ];
     };
   };

@@ -3,7 +3,7 @@ let
   theme = (import ../themes/current.nix).theme;
   i3BlocksConfig = config.xdg.configFile."i3blocks/config".source;
   modifier = config.xsession.windowManager.i3.config.modifier;
-  secondaryFont = (import ../../../../user.nix).secondaryFont;
+  secondaryFont = (import ../../user.nix).secondaryFont;
 in
 {
   xsession.windowManager.i3.enable = true;
