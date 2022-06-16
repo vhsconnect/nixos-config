@@ -3,7 +3,7 @@ let
   theme = (import ../themes/current.nix).theme;
   i3BlocksConfig = config.xdg.configFile."i3blocks/config".source;
   modifier = config.xsession.windowManager.i3.config.modifier;
-  secondaryFont = (import ../user.nix).secondaryFont;
+  secondaryFont = (import ../../../../user.nix).secondaryFont;
 in
 {
   xsession.windowManager.i3.enable = true;
@@ -63,8 +63,8 @@ in
   };
   xsession.windowManager.i3.config.startup = [
     { command = "systemctl --user import-environment"; }
-    { command = "~/bin/keys"; }
-    { command = "long-command & sleep 2; ~/bin/monitorsConnected"; always = true; }
+    { command = "keys"; }
+    { command = "long-command & sleep 2; trips4"; always = true; }
     { command = "xset -dpms"; always = true; }
     { command = "gromit-mpx"; notification = false; }
     { command = "blueman-applet"; }
@@ -107,16 +107,16 @@ in
   xsession.windowManager.i3.extraConfig =
     ''
       bar {
-              status_command i3blocks -c ${i3BlocksConfig}
-              font pango: ${secondaryFont} Regular 13
-              colors {
-                      background ${theme.main}
-                      focused_workspace ${theme.secondary} ${theme.secondary} ${theme.main}
-                      active_workspace ${theme.grey} ${theme.grey} ${theme.secondary}
-                      inactive_workspace ${theme.main} ${theme.main} ${theme.secondary}
-                      urgent_workspace ${theme.urgent} ${theme.urgent} ${theme.secondary}
-                      separator ${theme.secondary}
-                      }
+        status_command i3blocks -c ${i3BlocksConfig}
+        font pango: ${secondaryFont} Regular 13
+        colors {
+          background ${theme.main}
+          focused_workspace ${theme.secondary} ${theme.secondary} ${theme.main}
+          active_workspace ${theme.grey} ${theme.grey} ${theme.secondary}
+          inactive_workspace ${theme.main} ${theme.main} ${theme.secondary}
+          urgent_workspace ${theme.urgent} ${theme.urgent} ${theme.secondary}
+          separator ${theme.secondary}
+        }
       }
       exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt5ct
     '';

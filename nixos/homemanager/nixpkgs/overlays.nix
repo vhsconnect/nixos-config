@@ -6,6 +6,7 @@ let
 
   neovim-nightly-overlay = import (builtins.fetchTarball {
     url = https://github.com/vhsconnect/neovim-nightly-overlay/archive/master.tar.gz;
+    sha256 = "184lc8s5rpm9w2x7ygbwwzn4hsd0xidp8y6i9aqjkkdry4bv7l74";
   });
 
   insomnia-overlay = self: prev: {
@@ -27,4 +28,4 @@ let
       };
     };
 in
-[ neovim-nightly-overlay coc-nvim-overlay insomnia-overlay ]
+[  ]

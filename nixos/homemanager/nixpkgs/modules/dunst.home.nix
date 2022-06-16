@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  font = (import ../user.nix).font;
+  font = (import ../../../../user.nix).font;
   theme = (import ../../nixpkgs/themes/current.nix).theme;
 in
 {
