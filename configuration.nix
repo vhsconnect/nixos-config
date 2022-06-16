@@ -1,9 +1,6 @@
 { config, pkgs, options, ... }:
 let
   user = (import ./user.nix);
-  # nvim-nightly-overlay = (import (builtins.fetchTarball {
-  #   url = https://github.com/vhsconnect/neovim-nightly-overlay/archive/master.tar.gz;
-  # }));
 in
 {
   imports = [
@@ -47,7 +44,6 @@ in
       };
     };
 
-  nixpkgs.overlays = [ ];
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
 

@@ -37,9 +37,9 @@ in
       vim-gitgutter
       nvim-treesitter
       nvim-lspconfig
-    ]) ++ [ 
-#pkgs.coc-nvim-fixed 
-];
+    ]) ++ [
+      pkgs.coc-nvim-fixed
+    ];
     extraConfig = ''
       set t_Co=256
       set background=light
