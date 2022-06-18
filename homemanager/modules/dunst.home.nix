@@ -1,7 +1,7 @@
-{ config, pkgs, host, ... }:
+{ config, pkgs, user, ... }:
 let
-  font = (import ../../user.nix).${host}.font;
-  theme = (import ../themes/current.nix).theme host;
+  font = user.font;
+  theme = import (../themes/. + "/${user.theme}.nix");
 in
 {
   services.dunst = {

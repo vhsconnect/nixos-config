@@ -1,18 +1,15 @@
-{ config, lib, pkgs, host, ... }:
-let
-  font = (import ../../user.nix).${host}.font;
-in
+{ config, lib, pkgs, user, ... }:
 {
   programs.rofi = {
     enable = true;
     terminal = "${pkgs.terminator}/bin/terminator";
     package = with pkgs; rofi.override { plugins = [ rofi-calc rofi-emoji ]; };
-    font = "${font} Medium 14";
+    font = "${user.font} Medium 14";
     theme =
       let mkLitteral = config.lib.formats.rasi.mkLiteral;
       in
       with
-      (import ../themes/current.nix).theme host;
+      (import (../themes/. + "/${user.theme}.nix"));
       {
         "*" = {
           background-color = mkLitteral main;

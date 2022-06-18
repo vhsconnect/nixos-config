@@ -1,21 +1,18 @@
-{ pkgs, host, ... }:
-let user = (import ../../user.nix).${host}; in
+{ pkgs, user, ... }:
 {
   programs.hexchat =
     {
       enable = true;
-      theme = pkgs.fetchzip {
-        url = "https://dl.hexchat.net/themes/mIRC.hct#mIRC.zip";
-        sha256 = "sha256-WCdgEr8PwKSZvBMs0fN7E2gOjNM0c2DscZGSKSmdID0=";
-        stripRoot = false;
-      };
       channels = {
-
         libera = {
           autojoin = [
             "#home-manager"
             "#linux"
             "#nixos"
+            "#javascript"
+            "#haskell"
+            "#clojure"
+            "#rust"
           ];
           charset = "UTF-8 (Unicode)";
           commands = [

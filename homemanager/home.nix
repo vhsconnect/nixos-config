@@ -1,7 +1,4 @@
-{ pkgs, lib, config, host, ... }:
-let
-  user = (import ../user.nix).${host};
-in
+{ pkgs, lib, config, user, ... }:
 {
   nixpkgs = {
     config = {
@@ -21,7 +18,8 @@ in
     ./modules/git.nix
     # ./modules/hexchat.nix
     ./scripts/scripts.nix
-  ] ++ (if user.withgtk then [ ./modules/gtk3.nix ] else [ ]);
+  ]
+  ++ (if user.withgtk then [ ./modules/gtk3.nix ] else [ ]);
 
 
   ######## programs ########

@@ -1,5 +1,4 @@
-{ host, ... }:
-let user = (import ../../user.nix).${host}; in
+{ user, ... }:
 {
   programs.git = {
     enable = true;

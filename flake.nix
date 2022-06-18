@@ -9,7 +9,10 @@
 
       mpu3 = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; host = "mpu3"; };
+        specialArgs = {
+          inherit inputs;
+          user = (import ./user.nix).mpu3;
+        };
         modules =
           [
             ./configuration.nix
@@ -17,13 +20,18 @@
             {
               home-manager.useUserPackages = true;
               home-manager.users.vhs = import ./homemanager/home.nix;
+              home-manager.extraSpecialArgs =
+                { user = (import ./user.nix).mpu3; };
             }
           ];
       };
 
       mpu4 = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; host = "mpu4"; };
+        specialArgs = {
+          inherit inputs;
+          user = (import ./user.nix).mpu4;
+        };
         modules =
           [
             ./configuration.nix
@@ -31,6 +39,8 @@
             {
               home-manager.useUserPackages = true;
               home-manager.users.vhs = import ./homemanager/home.nix;
+              home-manager.extraSpecialArgs =
+                { user = (import ./user.nix).mpu4; };
             }
           ];
       };

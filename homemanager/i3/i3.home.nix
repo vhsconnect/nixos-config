@@ -1,9 +1,9 @@
-{ config, pkgs, lib, host, ... }:
+{ config, pkgs, lib, user, ... }:
 let
-  theme = (import ../themes/current.nix).theme host;
+  theme = import (../themes/. + "/${user.theme}.nix");
   i3BlocksConfig = config.xdg.configFile."i3blocks/config".source;
   modifier = config.xsession.windowManager.i3.config.modifier;
-  secondaryFont = (import ../../user.nix).${host}.secondaryFont;
+  secondaryFont = user.secondaryFont;
 in
 {
   xsession.windowManager.i3.enable = true;

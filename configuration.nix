@@ -1,7 +1,4 @@
-{ config, pkgs, options, host, ... }:
-let
-  user = (import ./user.nix).${host};
-in
+{ config, pkgs, options, user, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -47,7 +44,7 @@ in
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  networking.hostName = host;
+  networking.hostName = user.host;
   networking.useDHCP = false;
 
   sound.enable = true;
