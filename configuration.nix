@@ -1,7 +1,11 @@
 { config, pkgs, options, user, ... }:
 {
   imports = [
-    ./hardware-configuration.nix
+    (
+      ./. +
+      "/hardware/${user.host}" +
+      "/hardware-configuration.nix"
+    )
     # ./work.nix 
   ];
 

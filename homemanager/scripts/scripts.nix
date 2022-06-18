@@ -49,8 +49,10 @@ let
   '';
   trips4 = pkgs.writeScriptBin "trips4" ''
     #! /usr/bin/env zsh
-    xrandr --auto --output HDMI2 --mode 1920x1080 --right-of eDP1
+    xrandr --auto --output HDMI2 --primary --mode 1920x1080 --same-as eDP1
     xrandr --auto --output DP1 --mode 2560x1440 --left-of eDP1
+    xwallpaper --screen 0 --stretch ~/.background-image
+    xwallpaper --screen 1 --stretch ~/.background-image
   '';
 
 in
