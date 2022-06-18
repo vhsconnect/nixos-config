@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, host, ... }:
 let
-  font = (import ../../user.nix).font;
-  light-icons = (import ../../user.nix).foreground == "light";
+  font = (import ../../user.nix).${host}.font;
+  light-icons = (import ../../user.nix).${host}.foreground == "light";
 
 in
 {

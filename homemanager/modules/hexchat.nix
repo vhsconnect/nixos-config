@@ -1,5 +1,5 @@
-{ pkgs, ... }:
-let user = (import ../../user.nix); in
+{ pkgs, host, ... }:
+let user = (import ../../user.nix).${host}; in
 {
   programs.hexchat =
     {

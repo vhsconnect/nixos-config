@@ -1,6 +1,6 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, host, ... }:
 let
-  user = (import ../user.nix);
+  user = (import ../user.nix).${host};
 in
 {
   nixpkgs = {
@@ -49,6 +49,15 @@ in
       modal = true;
       enableZshIntegration = true;
     };
+  programs.htop = {
+    enable = true;
+    settings = {
+      left_meters = [ "LeftCPUs2" "Memory" "Swap" ];
+      left_right = [ "RightCPUs2" "Tasks" "LoadAverage" "Uptime" ];
+      setshowProgramPath = false;
+      treeView = true;
+    };
+  };
 
 
   ######## home ########

@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, host, ... }:
 let
-  theme = (import ../themes/current.nix).theme;
+  theme = (import ../themes/current.nix).theme host;
   pathI3Blocks = builtins.toString (./. + "/i3blocks");
 in
 {

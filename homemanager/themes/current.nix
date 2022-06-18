@@ -1,6 +1,9 @@
 let
   user = (import ../../user.nix);
 in
+host:
+let
+  userTheme = user.${host}.theme; in
 {
-  theme = import (./. + "/${user.theme}.nix");
+  theme = import (./. + "/${userTheme}.nix");
 }

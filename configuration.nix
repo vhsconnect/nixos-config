@@ -1,6 +1,6 @@
-{ config, pkgs, options, ... }:
+{ config, pkgs, options, host, ... }:
 let
-  user = (import ./user.nix);
+  user = (import ./user.nix).${host};
 in
 {
   imports = [
@@ -47,7 +47,7 @@ in
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  networking.hostName = "mpu3";
+  networking.hostName = host;
   networking.useDHCP = false;
 
   sound.enable = true;
