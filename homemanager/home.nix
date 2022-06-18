@@ -14,10 +14,10 @@ in
     ./zsh.nix
     ./mimeappsList.nix
     ./vim/vim.nix
-    ./modules/i3.home.nix
+    ./i3/i3blocks.home.nix
+    ./i3/i3.home.nix
     ./modules/dunst.home.nix
     ./modules/rofi.home.nix
-    ./modules/i3blocks.home.nix
     ./modules/git.nix
     # ./modules/hexchat.nix
     ./scripts/scripts.nix
