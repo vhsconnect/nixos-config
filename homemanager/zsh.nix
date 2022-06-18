@@ -1,4 +1,5 @@
 { pkgs, lib, ... }:
+let configPath = "/home/vhs/SConfig/nixos-config"; in
 {
   programs.zsh = {
     enable = true;
@@ -35,7 +36,8 @@
       nixupdate = "nix-channel --update nixos";
       restartpolybar = "systemctl --user restart polybar.service";
       hm = "home-manager";
-      hms = "home-manager -b backup switch";
+      hms = "echo \"use rebuild\"";
+      rebuild = "nixos-rebuild switch --flake ${configPath} -I nixos-config=. --impure";
       nixp = "nix-shell -p";
       pdf = "evince";
       lock = "xscreensaver-command -lock";
