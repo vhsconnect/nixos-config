@@ -64,15 +64,15 @@
     sublime3
     sublime-merge
     spotify
-   # shellcheck
-   # slack
-    #tldr
-   # tdesktop
-   # teams
-   # tree
-   # terminator
-   # thunderbird
-   # unzip
+    shellcheck
+    slack
+    tldr
+    tdesktop
+    teams
+    tree
+    terminator
+    thunderbird
+    # unzip
     xfce.thunar
     xorg.xmodmap
     xorg.xev
