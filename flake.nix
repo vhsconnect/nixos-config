@@ -19,6 +19,7 @@
             inputs.home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "bak";
               home-manager.users.vhs = import ./homemanager/home.nix;
               home-manager.extraSpecialArgs =
                 { user = (import ./user.nix).mpu3; };
