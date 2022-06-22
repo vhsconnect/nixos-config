@@ -50,6 +50,10 @@
 
   networking.hostName = user.host;
   networking.useDHCP = false;
+  networking.extraHosts =
+    if user.isWorkComputer then ''
+      ${builtins.readFile /home/vhs/Public/extraHosts}
+    '' else "";
 
   sound.enable = true;
 
