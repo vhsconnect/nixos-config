@@ -1,4 +1,5 @@
 { pkgs, lib, config, user, ... }:
+
 {
   nixpkgs = {
     config = {
@@ -16,7 +17,7 @@
     ./modules/dunst.home.nix
     ./modules/rofi.home.nix
     ./modules/git.nix
-    # ./modules/hexchat.nix
+    ./modules/hexchat.nix
     ./scripts/scripts.nix
   ]
   ++ (if user.withgtk then [ ./modules/gtk3.nix ] else [ ]);

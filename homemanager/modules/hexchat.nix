@@ -3,10 +3,18 @@
   programs.hexchat =
     {
       enable = true;
+      overwriteConfigFiles = true;
+      theme = pkgs.fetchzip {
+        url = "https://dl.hexchat.net/themes/Monokai.hct#Monokai.zip";
+        sha256 = "sha256-WCdgEr8PwKSZvBMs0fN7E2gOjNM0c2DscZGSKSmdID0=";
+        stripRoot = false;
+      };
+      settings = {
+        text_font = user.fullQualifiedFont;
+      };
       channels = {
         libera = {
           autojoin = [
-            "#home-manager"
             "#linux"
             "#nixos"
             "#javascript"
