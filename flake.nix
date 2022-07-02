@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs-2111.url = "github:NixOS/nixpkgs/nixos-21.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -19,10 +20,12 @@
             inputs.home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "bak";
+              home-manager.backupFileExtension = "hmback";
               home-manager.users.vhs = import ./homemanager/home.nix;
-              home-manager.extraSpecialArgs =
-                { user = (import ./user.nix).mpu3; };
+              home-manager.extraSpecialArgs = {
+                inputs = inputs;
+                user = (import ./user.nix).mpu3;
+              };
             }
           ];
       };

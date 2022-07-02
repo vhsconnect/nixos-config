@@ -1,6 +1,6 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i bash -p curl yq jq
-
+#! nix-shell -I nixpkgs=http://nixos.org/channels/nixos-21.11/nixexprs.tar.xz
 set -euo pipefail
 
 curl -s "$1" | \

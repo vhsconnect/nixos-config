@@ -1,11 +1,11 @@
-{ pkgs, lib, config, user, ... }:
+{ pkgs, lib, config, user, inputs, ... }:
 
 {
   nixpkgs = {
     config = {
       allowUnfree = true;
     };
-    overlays = import ./overlays.nix;
+    overlays = (import ./overlays.nix inputs);
   };
   imports = [
     ./packages.nix
@@ -35,7 +35,7 @@
       "--preview 'tree -C {} | head -200'"
     ];
   };
-  programs.direnv.enable = false;
+  programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = false;
   programs.autojump =
     {

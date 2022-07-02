@@ -6,6 +6,7 @@ let configPath = "/home/vhs/SConfig/nixos-config"; in
     enableAutosuggestions = true;
     enableCompletion = true;
     enableSyntaxHighlighting = true;
+    history.size = 1000000;
     envExtra = ''
       export BAT_THEME=ansi
     '';

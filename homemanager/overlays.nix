@@ -1,7 +1,9 @@
+inputs:
+
 let
 
-  packages-2111 = import <nixpkgs-2111> {
-    config = { allow-unfree = true; };
+  packages-2111 = import inputs.nixpkgs-2111 {
+    system = builtins.currentSystem;
   };
 
   neovim-nightly-overlay = import (builtins.fetchTarball {

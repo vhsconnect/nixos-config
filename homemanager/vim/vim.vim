@@ -50,6 +50,7 @@ highlight Visual ctermfg=238 ctermbg=84
 " ----------- markdown preview ----------
 let g:mkdp_auto_start = 1
 let g:mkdp_refresh_slow = 1
+let g:mkdp_browser = 'firefox'
 
 " ----------- Auto Pairs ----------
 let g:AutoPairsShortcutToggle = '<M-P>'

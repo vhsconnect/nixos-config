@@ -1,4 +1,4 @@
-{ config, pkgs, options, user, ... }:
+{ config, pkgs, options, user, inputs, ... }:
 {
   imports = [
     (
@@ -13,9 +13,20 @@
     package = pkgs.nixFlakes;
     nixPath =
       [
-        "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-        "/nix/var/nix/profiles/per-user/root/channels"
+        "nixpkgs=${inputs.nixpkgs}"
       ];
+    registry.nixpkgs = {
+      from = {
+        id = "nixpkgs";
+        type = "indirect";
+      };
+      to = {
+        owner = "NixOS";
+        ref = "nixos-22.05";
+        repo = "nixpkgs";
+        type = "github";
+      };
+    };
     gc = {
       automatic = true;
       options = "--delete-older-than 7d";
@@ -186,7 +197,7 @@
   services.globalprotect.enable = true;
   services.cron =
     {
-      enable = false;
+      enable = true;
       systemCronJobs = [
         "* * * * * root  . /etc/profile; sh cleanhome"
       ];
