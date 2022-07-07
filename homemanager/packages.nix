@@ -14,6 +14,8 @@
     epiphany
     inkscape
     songrec
+    magic-wormhole
+    lf
 
     #python
     yapf
@@ -53,6 +55,7 @@
     nixpkgs-fmt
     nix-prefetch-git
     niv
+    networkmanagerapplet
     pastel
     pdftk
     pamixer

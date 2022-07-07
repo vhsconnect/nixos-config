@@ -46,6 +46,7 @@ let configPath = "/home/vhs/SConfig/nixos-config"; in
       allbound = "netstat -tulpn";
       quickref = "vi ~/Dropbox/quickref";
       tree = "tree -C";
+      img = "gthumb";
     };
     oh-my-zsh = {
       enable = true;

@@ -9,7 +9,7 @@ with colors;
 {
   main = base09;
   secondary = base07;
-  accent = base0C;
+  accent = base06;
   accent2 = base0C;
   accent3 = base0C;
   urgent = base0E;
