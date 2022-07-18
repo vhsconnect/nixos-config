@@ -20,7 +20,7 @@ in
         padding = 16;
         horizontal_padding = 16;
         frame_width = 3;
-        frame_color = theme.main;
+        frame_color = theme.secondary;
         separator_color = "frame";
         font = "${font} Regular 10";
         line_height = 4;
@@ -40,20 +40,20 @@ in
         hide_duplicate_count = true;
       };
       urgency_low = {
-        background = theme.accent;
-        foreground = theme.main;
-        frame_color = theme.main;
+        background = theme.accent3;
+        foreground = theme.secondary;
+        frame_color = theme.secondary;
         timeout = 4;
       };
       urgency_normal = {
-        background = theme.accent;
-        foreground = theme.main;
-        frame_color = theme.main;
+        background = theme.accent3;
+        foreground = theme.secondary;
+        frame_color = theme.secondary;
         timeout = 4;
       };
       urgency_critical = {
         background = theme.urgent;
-        foreground = theme.main;
+        foreground = theme.secondary;
         frame_color = theme.urgent;
         timeout = 10;
       };

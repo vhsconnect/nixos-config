@@ -6,12 +6,12 @@ let
 in
 with colors;
 {
-  main = base0B;
+  main = base0F;
   secondary = base06;
-  accent = base09;
+  accent = base0C;
   accent2 = base0C;
-  accent3 = base0E;
-  urgent = base0F;
+  accent3 = base0B;
+  urgent = base08;
   grey = base07;
   debug = base08;
 }

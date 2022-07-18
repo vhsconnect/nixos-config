@@ -75,21 +75,21 @@ in
   xsession.windowManager.i3.config.colors = {
     focused = {
       background = "${theme.main}";
-      border = "${theme.secondary}";
+      border = "${theme.main}";
       childBorder = "${theme.secondary}";
       indicator = "${theme.main}";
       text = "${theme.secondary}";
     };
     focusedInactive = {
       background = "${theme.secondary}";
-      border = "${theme.main}";
+      border = "${theme.secondary}";
       childBorder = "${theme.main}";
       indicator = "${theme.secondary}";
       text = "${theme.secondary}";
     };
     unfocused = {
       background = "${theme.secondary}";
-      border = "${theme.main}";
+      border = "${theme.secondary}";
       childBorder = "${theme.main}";
       indicator = "${theme.secondary}";
       text = "${theme.secondary}";
