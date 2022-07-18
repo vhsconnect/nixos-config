@@ -9,6 +9,9 @@ in
     viAlias = true;
     withNodeJs = true;
     withPython3 = true;
+    extraPackages = with pkgs; [
+    ];
+
     plugins = (with pkgs.vimPlugins; [
       ale
       auto-pairs
@@ -37,6 +40,7 @@ in
       vim-gitgutter
       nvim-treesitter
       nvim-lspconfig
+      completion-nvim
     ]) ++ [
       pkgs.coc-nvim-fixed
     ];

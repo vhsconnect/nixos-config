@@ -34,6 +34,7 @@ set signcolumn=number
 set dictionary+=~/Public/words.txt
 set complete+=k
 set dir=~/Public/tmp
+set laststatus=3
 retab!
 
 
@@ -113,6 +114,7 @@ nnoremap <leader><leader> <C-W>T
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 "  redefine Ag to not include filenames in search
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 " --------------- REMAPS FZF --------------
 imap <c-x><c-l> <plug>(fzf-complete-buffer-line)
 nnoremap <silent> <c-p> :GFiles<CR>
@@ -120,6 +122,7 @@ nnoremap <silent> <c-p> :GFiles<CR>
 nnoremap <leader>p :BLines<CR>
 nnoremap <space>b :Buffer<CR>
 nnoremap <silent> <c-g> :Ag<CR>
+inoremap <expr> <c-x><c-f> fzf#vim#complete("fd <Bar> xargs realpath --relative-to " . expand("%:h"))
 
 " --------------- REMAPS COLORS --------------
 nnoremap <space>1 :colorscheme OceanicNext<CR>
