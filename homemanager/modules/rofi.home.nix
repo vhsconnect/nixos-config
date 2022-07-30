@@ -2,7 +2,7 @@
 {
   programs.rofi = {
     enable = true;
-    terminal = "${pkgs.terminator}/bin/terminator";
+    terminal = "${pkgs.xterm}/bin/xterm";
     package = with pkgs; rofi.override { plugins = [ rofi-calc rofi-emoji ]; };
     font = "${user.font} Medium 14";
     theme =

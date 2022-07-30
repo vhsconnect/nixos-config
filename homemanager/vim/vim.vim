@@ -130,7 +130,7 @@ nnoremap <space>2 :colorscheme gruvbox<CR>
 nnoremap <space>3 :colorscheme seoul256<CR>
 nnoremap <space>4 :colorscheme zenburn<CR>
 nnoremap <space>5 :colorscheme railscasts<CR>
-nnoremap <space>6 :colorscheme kellys<CR>
+nnoremap <space>6 :colorscheme lightning<CR>
 nnoremap <space>7 :colorscheme seoul256-light<CR>
 nnoremap <space>8 :colorscheme wikipedia<CR>
 nnoremap <space>9 :colorscheme summerfruit256<CR>

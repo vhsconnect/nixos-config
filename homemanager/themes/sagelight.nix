@@ -12,6 +12,6 @@ with colors;
   accent2 = base0C;
   accent3 = base0B;
   urgent = base08;
-  grey = base07;
-  debug = base08;
+  grey = base04;
+  debug = base04;
 }

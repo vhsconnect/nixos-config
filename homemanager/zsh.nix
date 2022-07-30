@@ -8,7 +8,7 @@ let configPath = "/home/vhs/SConfig/nixos-config"; in
     enableSyntaxHighlighting = true;
     history.size = 1000000;
     envExtra = ''
-      export BAT_THEME=ansi
+      source ~/.zstuff
     '';
     localVariables = {
       TMPDIR = "/home/vhs/Public/tmp";
@@ -25,7 +25,7 @@ let configPath = "/home/vhs/SConfig/nixos-config"; in
     };
     shellAliases = {
       nixosconfig = "nvim /Repos/nixos-config/nixos/nixos/configuration.nix";
-      cdconfig = "~/Repos/nixos-config/nixos/homemanager/nixpkgs";
+      cdconfig = "~/SConfig/nixos-config/ && vi `fzf`";
       nixosdir = "cd /etc/nixos";
       managerdir = "cd ~/.config/nixpkgs";
       grep = "grep -i";
@@ -33,6 +33,7 @@ let configPath = "/home/vhs/SConfig/nixos-config"; in
       l = "exa -la";
       v = "vi `fzf`";
       si = "du -hd0";
+      sic = "du -h --max-depth=1 .";
       nixu = "nix-env --uninstall";
       nixupdate = "nix-channel --update nixos";
       restartpolybar = "systemctl --user restart polybar.service";

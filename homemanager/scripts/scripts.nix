@@ -18,6 +18,39 @@ let
     X="profile = dark"
     sed -i "s/$CURRENT/$X/" ~/.config/terminator/config
   '';
+  allight = pkgs.writeScriptBin "allight" ''
+    #! /usr/bin/env bash
+
+    Y="*dracula"
+    X="*carrots"
+
+    A="ansi"
+    B="GitHub"
+
+    C="\$DARK_FZF_TAB"
+    D="\$LIGHT_FZF_TAB"
+
+    sed -i "s/$Y/$X/" ~/.config/alacritty/alacritty.yml
+    sed -i "s/$A/$B/" ~/.zstuff
+    sed -i "s/$C/$D/" ~/.zstuff
+  '';
+  aldark = pkgs.writeScriptBin "aldark" ''
+    #! /usr/bin/env bash
+
+    Y="*carrots"
+    X="*dracula"
+
+    A="GitHub"
+    B="ansi"
+
+    C="\$LIGHT_FZF_TAB"
+    D="\$DARK_FZF_TAB"
+
+    sed -i "s/$Y/$X/" ~/.config/alacritty/alacritty.yml
+    sed -i "s/$A/$B/" ~/.zstuff
+    sed -i "s/$C/$D/" ~/.zstuff
+  '';
+
   pfire = pkgs.writeScriptBin "pfire" ''
     #! /usr/bin/env zsh
     firefox --private-window
@@ -61,6 +94,8 @@ in
     ttheme1
     ttheme2
     ttheme3
+    allight
+    aldark
     pfire
     c-unsecure
     watchexec

@@ -112,7 +112,7 @@ in
         colors {
           background ${theme.main}
           focused_workspace ${theme.secondary} ${theme.secondary} ${theme.main}
-          active_workspace ${theme.grey} ${theme.grey} ${theme.secondary}
+          active_workspace ${theme.grey} ${theme.grey} ${theme.accent}
           inactive_workspace ${theme.main} ${theme.main} ${theme.secondary}
           urgent_workspace ${theme.urgent} ${theme.urgent} ${theme.secondary}
           separator ${theme.secondary}

@@ -30,4 +30,4 @@ let
       };
     };
 in
-[ neovim-nightly-overlay insomnia-overlay coc-nvim-overlay ]
+[ insomnia-overlay coc-nvim-overlay ]
