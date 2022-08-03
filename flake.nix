@@ -43,8 +43,10 @@
             {
               home-manager.useUserPackages = true;
               home-manager.users.vhs = import ./homemanager/home.nix;
-              home-manager.extraSpecialArgs =
-                { user = (import ./user.nix).mpu4; };
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                user = (import ./user.nix).mpu4;
+              };
             }
           ];
       };
