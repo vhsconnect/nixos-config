@@ -38,11 +38,12 @@ in
       vim-vue
       vimproc
       vim-gitgutter
-      nvim-treesitter
+      (nvim-treesitter.withPlugins
+        builtins.attrValues) # all-grammars
       nvim-lspconfig
       completion-nvim
     ]) ++ [
-      pkgs.coc-nvim-fixed
+      # pkgs.coc-nvim-fixed
     ];
     extraConfig = ''
       set t_Co=256
@@ -57,9 +58,6 @@ in
       EOF
     '';
   };
-  xdg.configFile."nvim/parser/javascript.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-javascript}/parser";
-  xdg.configFile."nvim/parser/typescript.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-typescript}/parser";
-  xdg.configFile."nvim/parser/lua.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-lua}/parser";
 
   home.packages = with pkgs.nodePackages; [
     coc-tsserver
@@ -68,7 +66,8 @@ in
   ];
 
   #writes to file
-  xdg.configFile."nvim/coc-settings.json".text = builtins.toJSON (import ./coc-settings.nix);
+  xdg.configFile."nvim/coc-settings.json".text = builtins.toJSON
+    (import ./coc-settings.nix);
   xdg.configFile."nvim/coc-file.vim".source = ./cocfile.vim;
 }
 
