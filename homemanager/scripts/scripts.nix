@@ -88,6 +88,10 @@ let
     xwallpaper --screen 1 --stretch ~/.background-image
   '';
 
+  monitorsDisconnected = pkgs.writeScriptBin "monitorsDisconnected" ''
+    #! /usr/bin/env zsh
+    xrandr --output HDMI2 --off --output DP1 --off
+  '';
 in
 {
   home.packages = [
@@ -101,5 +105,6 @@ in
     watchexec
     keys
     trips4
+    monitorsDisconnected
   ];
 }
