@@ -211,7 +211,7 @@
     serviceConfig = {
       Type = "simple";
       User = "vhs";
-      ExecStart = ''${pkgs.nodejs-16_x}/bin/node /home/vhs/.npm-global/bin/myradio'';
+      ExecStart = ''${pkgs.nodejs-16_x}/bin/node /home/vhs/.npm-global/bin/bbrf-radio'';
     };
   };
 

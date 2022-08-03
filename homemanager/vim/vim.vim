@@ -40,7 +40,7 @@ retab!
 
 " ----------- THEME ----------
 " let g:dracula_italic = 0
-colorscheme horseradish256
+colorscheme wikipedia
 let g:airline_theme='hybrid'
 " hi! Normal ctermbg=none
 
@@ -130,9 +130,9 @@ nnoremap <space>2 :colorscheme gruvbox<CR>
 nnoremap <space>3 :colorscheme seoul256<CR>
 nnoremap <space>4 :colorscheme zenburn<CR>
 nnoremap <space>5 :colorscheme railscasts<CR>
+nnoremap <space>8 :colorscheme horseradish256<CR>
 nnoremap <space>6 :colorscheme lightning<CR>
 nnoremap <space>7 :colorscheme seoul256-light<CR>
-nnoremap <space>8 :colorscheme wikipedia<CR>
 nnoremap <space>9 :colorscheme summerfruit256<CR>
 nnoremap <space>0 :colorscheme PaperColor<CR>
 
@@ -148,6 +148,7 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
+let g:ale_set_highlights = 0
 let g:ale_fixers = {
   \   '*': ['trim_whitespace'],
   \   'javascript': [],
