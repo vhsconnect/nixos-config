@@ -76,7 +76,7 @@
   services.xserver = {
     enable = true;
     autoRepeatDelay = 200;
-    autoRepeatInterval = 25;
+    autoRepeatInterval = 30;
     desktopManager = {
       xterm.enable = false;
       wallpaper = { mode = "max"; combineScreens = false; };
