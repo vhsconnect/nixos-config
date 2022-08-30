@@ -1,5 +1,10 @@
 { pkgs, lib, ... }:
-let configPath = "/home/vhs/SConfig/nixos-config"; in
+let
+  configPath = "$HOME/SConfig/nixos-config";
+  binPath = "$HOME/bin";
+  cargoPath = "$HOME/.cargo/bin";
+  npmPath = "$HOME/.npm-global/bin";
+in
 {
   programs.zsh = {
     enable = true;
@@ -20,7 +25,7 @@ let configPath = "/home/vhs/SConfig/nixos-config"; in
       QT_QPA_PLATFORMTHEME = "qt5ct";
       QT_STYLE_OVERRIDE = "";
       EDITOR = "nvim";
-      PATH = "$HOME/bin:$HOME/.npm-global/bin:$PATH";
+      PATH = "${binPath}:${cargoPath}:${npmPath}:$PATH";
       PROMPT = ''[%F{$(if [ "$IN_NIX_SHELL" = "impure" ]; then echo "4"; elif [ -d .git ] && [ -ne $(git diff --quiet)]; then echo "3"; else echo "9"; fi)}λ%f] %F{15}%1d%f '';
     };
     shellAliases = {

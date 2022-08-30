@@ -19,6 +19,7 @@
     ./modules/git.nix
     ./modules/hexchat.nix
     ./scripts/scripts.nix
+    ./scripts/scripts.nix
     ./scripts/templates.nix
   ]
   ++ (if user.withgtk then [ ./modules/gtk3.nix ] else [ ]);

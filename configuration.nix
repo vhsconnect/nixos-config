@@ -180,6 +180,7 @@
       docker-compose
       virt-manager
       ponysay
+
     ];
 
   programs.nm-applet.enable = true;

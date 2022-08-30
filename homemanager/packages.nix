@@ -85,6 +85,10 @@
     zip
     zoom-us
 
+    # rust
+    cargo
+    rustc
+
     #theming
     pop-icon-theme
     vivid
@@ -125,12 +129,12 @@
     ]
   ) ++ (with pkgs.python39Packages;
     [
-      #virtualenv
-      #pip
+      virtualenv
+      pip
     ]
   ) ++ (with pkgs.nodePackages;
     [
-      #bash-language-server
+      bash-language-server
     ]);
 
 }

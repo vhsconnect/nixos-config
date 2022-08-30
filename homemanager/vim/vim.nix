@@ -21,6 +21,7 @@ in
       fzf-vim
       markdown-preview-nvim
       nerdtree
+      neoterm
       papercolor-theme
       tcomment_vim
       tsuquyomi

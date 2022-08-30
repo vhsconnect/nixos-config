@@ -30,7 +30,7 @@ set shiftwidth=2
 set expandtab
 set cmdheight=2
 set shortmess+=c
-set signcolumn=number
+set signcolumn=auto
 set dictionary+=~/Public/words.txt
 set complete+=k
 set dir=~/Public/tmp
@@ -155,7 +155,8 @@ let g:ale_fixers = {
   \   'typescript': [],
   \   'nix': ['nixpkgs-fmt'],
   \   'haskell': ['hlint', 'ormolu', 'hindent', 'floskell'],
-  \   'python': ['yapf']
+  \   'python': ['yapf'],
+  \   'rust': ['rustfmt']
   \}
 set omnifunc=ale#completion#OmniFunc
 highlight ALEWarning ctermbg=Blue ctermfg=Yellow
@@ -193,6 +194,12 @@ let g:mkdp_auto_start = 0
 " ---------------  COC --------------
 " command! -nargs=0 Prettier :CocCommand prettier.formatFile
 source /home/$USER/.config/nvim/coc-file.vim
+" ---------------  Neoterm --------------
+let g:neoterm_default_mod = 'vertical'
+let g:neoterm_autoinsert = 1
+nnoremap <c-q> :Ttoggle<CR>
+inoremap <c-q> <Esc> <c-q>:Ttoggle<CR>
+tnoremap <c-q> <c-\><c-n>:Ttoggle<CR>
 " ---------------  EXTRA --------------
 call gitgutter#highlight#define_signs()
 
