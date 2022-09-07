@@ -16,9 +16,9 @@ in
       source ~/.zstuff
     '';
     localVariables = {
-      TMPDIR = "/home/vhs/Public/tmp";
-      TEMP = "/home/vhs/Public/tmp";
-      TMP = "/home/vhs/Public/tmp";
+      TMPDIR = "$HOME/Public/tmp";
+      TEMP = "$HOME/Public/tmp";
+      TMP = "$HOME/Public/tmp";
       SUDO_ASKPASS = "lxqt-openssh-askpass";
       VI_MODE_SET_CURSOR = "true";
       MODE_INDICATOR = "%F{yellow}+%f";

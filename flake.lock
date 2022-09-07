@@ -1,5 +1,42 @@
 {
   "nodes": {
+    "darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "darwinNixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1661882940,
+        "narHash": "sha256-4LaVFnV22WrOA0aolqqk9dXrM8crikcrLQt29G18F7M=",
+        "owner": "lnl7",
+        "repo": "nix-darwin",
+        "rev": "80cec5115aae74accc4ccfb9f84306d7863f0632",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lnl7",
+        "ref": "master",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
+    "darwinNixpkgs": {
+      "locked": {
+        "lastModified": 1662073734,
+        "narHash": "sha256-SXxqqRn1M/dEWZ4/9ko+5rXHtGGy3Y3s/645dmqAVNc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f4160d8a7b960c3e59169607b336d255dcb84410",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-22.05-darwin",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -55,6 +92,8 @@
     },
     "root": {
       "inputs": {
+        "darwin": "darwin",
+        "darwinNixpkgs": "darwinNixpkgs",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-2111": "nixpkgs-2111"

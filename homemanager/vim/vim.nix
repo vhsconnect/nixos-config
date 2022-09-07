@@ -43,7 +43,7 @@ in
       nvim-lspconfig
       completion-nvim
     ]) ++ [
-      pkgs.coc-nvim-fixed
+     pkgs.coc-nvim-fixed
     ];
     extraConfig = ''
       set t_Co=256

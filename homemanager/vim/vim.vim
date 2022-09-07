@@ -193,7 +193,7 @@ let g:vue_pre_processors = 'detect-on-enter'
 let g:mkdp_auto_start = 0
 " ---------------  COC --------------
 " command! -nargs=0 Prettier :CocCommand prettier.formatFile
-source /home/$USER/.config/nvim/coc-file.vim
+source $HOME/.config/nvim/coc-file.vim
 " ---------------  Neoterm --------------
 let g:neoterm_default_mod = 'vertical'
 let g:neoterm_autoinsert = 1
