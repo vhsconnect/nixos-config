@@ -12,23 +12,13 @@
     ./vim/vim.nix
     ./zsh.nix
     ./modules/git.nix
-
-    #   ./mimeappsList.nix
-    #   ./i3/i3blocks.home.nix
-    #  ./i3/i3.home.nix
-    #  ./modules/dunst.home.nix
-    #  ./modules/rofi.home.nix
-    #  ./modules/hexchat.nix
-    # ./scripts/scripts.nix
-    #./scripts/scripts.nix
-    #./scripts/templates.nix
+    ./modules/tmux.nix
   ]
   ++ (if user.withgtk then [ ./modules/gtk3.nix ] else [ ]);
 
 
   ######## programs ########
   programs.home-manager.enable = true;
-  programs.tmux.enable = true;
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;

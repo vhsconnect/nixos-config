@@ -56,24 +56,6 @@ let g:mkdp_browser = 'firefox'
 " ----------- Auto Pairs ----------
 let g:AutoPairsShortcutToggle = '<M-P>'
 
-" ----------- copy to system clipboard ----------
-
-function! ClipboardYank()
-  call system('xclip -i -selection clipboard', @@)
-endfunction
-function! ClipboardPaste()
-  let @@ = system('xclip -o -selection clipboard')
-endfunction
-
-vnoremap <silent> <space>y y:call ClipboardYank()<cr>
-vnoremap <silent> <space>d d:call ClipboardYank()<cr>
-nnoremap <silent> <space>p :call ClipboardPaste()<cr>p
-"copy the current visual selection to ~/.vbuf
-vmap <y> :w! ~/.vbuf<CR>
-"copy the current line to the buffer file if no visual selection
-nmap <Y> :.w! ~/.vbuf<CR>
-"paste the contents of the buffer file
-nmap <p> :r ~/.vbuf<CR>
 
 "-----------  snippets ------------
 nnoremap <leader>s :r ~/Public/snippets/
@@ -137,10 +119,14 @@ nnoremap <space>9 :colorscheme summerfruit256<CR>
 nnoremap <space>0 :colorscheme PaperColor<CR>
 
 " --------------- navigate splits --------------
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> :TmuxNavigateDown<cr>
+nnoremap <C-K> :TmuxNavigateUp<cr>
+nnoremap <C-L> :TmuxNavigateRight<cr>
+nnoremap <C-H> :TmuxNavigateLeft<cr>
 
 " --------------- ALE --------------
 let g:ale_lint_on_text_changed = 'never'

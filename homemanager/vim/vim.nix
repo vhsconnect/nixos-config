@@ -1,7 +1,8 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, user, ... }:
 
 let
   pathToVimSnippets = "~/Public/snippets/";
+  ifThenElse = x: y: z: (if x then y else z);
 in
 {
   programs.neovim = {
@@ -43,14 +44,17 @@ in
       nvim-lspconfig
       completion-nvim
     ]) ++ [
-     pkgs.coc-nvim-fixed
+      pkgs.coc-nvim-fixed
     ];
+
+
     extraConfig = ''
       set t_Co=256
       set background=light
       colorscheme PaperColor
       ${builtins.readFile ./vim.vim}
       nnoremap <leader>s :r ${pathToVimSnippets}
+      ${builtins.readFile (ifThenElse user.isDarwin ./mac.vim ./linux.vim) }
       ""
       set completeopt=menu,menuone,noselect
       lua <<EOF
@@ -63,9 +67,9 @@ in
   xdg.configFile."nvim/parser/lua.so".source = "${pkgs.tree-sitter.builtGrammars.tree-sitter-lua}/parser";
 
   home.packages = with pkgs.nodePackages; [
-    coc-tsserver
-    coc-css
-    coc-json
+    # coc-tsserver
+    # coc-css
+    # coc-json
   ];
 
   #writes to file
