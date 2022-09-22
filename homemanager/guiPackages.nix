@@ -1,8 +1,7 @@
-
-{pkgs, ...}:
+{ pkgs, ... }:
 {
-home.packages = with pkgs;[
-	alacritty
+  home.packages = with pkgs;[
+    alacritty
     calibre
     chromium
     discord
@@ -32,10 +31,8 @@ home.packages = with pkgs;[
     teams
     terminator
     thunderbird
-vscodium
+    vscodium
     zoom-us
-
-];
-
+  ];
 
 }

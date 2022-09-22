@@ -47,8 +47,6 @@
     youtube-dl
     zip
 
-
-
     #fonts
     (nerdfonts.override {
       fonts = [

@@ -1,8 +1,8 @@
-{pkgs, ...}:{
+{ pkgs, ... }: {
 
-home.packages = with pkgs;[
+  home.packages = with pkgs;[
 
-pop-icon-theme
+    pop-icon-theme
     vivid
     paper-icon-theme
     adapta-gtk-theme
@@ -10,6 +10,6 @@ pop-icon-theme
     arc-theme
     font-awesome
 
-];
+  ];
 
-}}
+}

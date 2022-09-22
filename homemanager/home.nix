@@ -9,6 +9,9 @@
   };
   imports = [
     ./packages.nix
+    ./guiPackages.nix
+    ./linuxPackages.nix
+    ./themePackages.nix
     ./zsh.nix
     ./mimeappsList.nix
     ./vim/vim.nix

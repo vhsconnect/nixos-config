@@ -115,12 +115,22 @@ in
         colors {
           background ${theme.main}
           focused_workspace ${theme.secondary} ${theme.secondary} ${theme.main}
-          active_workspace ${theme.grey} ${theme.grey} ${theme.accent}
+          active_workspace ${theme.main} ${theme.main} ${theme.accent2}
           inactive_workspace ${theme.main} ${theme.main} ${theme.secondary}
           urgent_workspace ${theme.urgent} ${theme.urgent} ${theme.secondary}
           separator ${theme.secondary}
         }
       }
+      for_window [window_type="dialog"] floating enable
+      for_window [window_type="utility"] floating enable
+      for_window [window_type="toolbar"] floating enable
+      for_window [window_type="splash"] floating enable
+      for_window [window_type="menu"] floating enable
+      for_window [window_type="dropdown_menu"] floating enable
+      for_window [window_type="popup_menu"] floating enable
+      for_window [window_type="tooltip"] floating enable
+      for_window [window_type="notification"] floating enable
+
       exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt5ct
     '';
 }
