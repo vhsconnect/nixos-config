@@ -35,12 +35,13 @@ set dictionary+=~/Public/words.txt
 set complete+=k
 set dir=~/Public/tmp
 set laststatus=3
+set completeopt=menu,menuone,noselect
 retab!
 
 
 " ----------- THEME ----------
 " let g:dracula_italic = 0
-colorscheme wikipedia
+colorscheme horseradish256
 let g:airline_theme='hybrid'
 " hi! Normal ctermbg=none
 
@@ -74,8 +75,6 @@ nnoremap <space>n :NERDTreeToggle<CR>
 nnoremap <space>u :tabdo e<CR> "re-read from filesystem current tab
 nnoremap <space><space>u :bufdo e<CR> "re-read from filesystem all
 nnoremap <space>e :ALEDetail<CR>
-nnoremap <space>g :call CocAction('jumpDefinition')<CR>
-nnoremap <space><space>g :call CocActionAsync('jumpDefinition', 'tab drop')<CR>
 nnoremap <space><leader> :tabnext<CR>
 nnoremap <leader><space> :tabprevious<CR>
 nnoremap <space>s :set spell<CR>
@@ -112,7 +111,7 @@ nnoremap <space>2 :colorscheme gruvbox<CR>
 nnoremap <space>3 :colorscheme seoul256<CR>
 nnoremap <space>4 :colorscheme zenburn<CR>
 nnoremap <space>5 :colorscheme railscasts<CR>
-nnoremap <space>8 :colorscheme horseradish256<CR>
+nnoremap <space>8 :colorscheme wikipedia<CR>
 nnoremap <space>6 :colorscheme lightning<CR>
 nnoremap <space>7 :colorscheme seoul256-light<CR>
 nnoremap <space>9 :colorscheme summerfruit256<CR>
@@ -144,7 +143,7 @@ let g:ale_fixers = {
   \   'python': ['yapf'],
   \   'rust': ['rustfmt']
   \}
-set omnifunc=ale#completion#OmniFunc
+" set omnifunc=ale#completion#OmniFunc
 highlight ALEWarning ctermbg=Blue ctermfg=Yellow
 highlight ALEError ctermbg=Blue ctermfg=White
 let g:ale_sign_error = '🚨'
@@ -160,8 +159,8 @@ let g:airline_section_a = ''
 let g:airline_section_b = ''
 
 " ---------------  TSUQOYOMI --------------
-autocmd FileType typescript setlocal completeopt+=menu,preview
-autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+" autocmd FileType typescript setlocal completeopt+=menu,preview
+" autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
 " ---------------  GitGutter --------------
 let g:gitgutter_signs = 1
@@ -177,9 +176,6 @@ let g:gitgutter_sign_modified_removed = ''
 let g:vue_pre_processors = 'detect-on-enter'
 " ---------------  markdown --------------
 let g:mkdp_auto_start = 0
-" ---------------  COC --------------
-" command! -nargs=0 Prettier :CocCommand prettier.formatFile
-source $HOME/.config/nvim/coc-file.vim
 " ---------------  Neoterm --------------
 let g:neoterm_default_mod = 'vertical'
 let g:neoterm_autoinsert = 1

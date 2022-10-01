@@ -14,6 +14,8 @@ inoremap <silent><expr> <Tab>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 
+nnoremap <space><space>g :call CocActionAsync('jumpDefinition', 'tab drop')<CR>
+nnoremap <space>g :call CocAction('jumpDefinition')<CR>
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dt <Plug>(coc-type-definition)
 nmap <silent> <space>h <Plug>(coc-references)

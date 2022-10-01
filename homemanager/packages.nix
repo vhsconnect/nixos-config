@@ -8,7 +8,8 @@
 
     #python
     #yapf
-    #black
+    black
+    pyright
 
     #ruby
     bundler
@@ -80,6 +81,7 @@
   ) ++ (with pkgs.nodePackages;
     [
       bash-language-server
+      vscode-langservers-extracted
     ]);
 
 }
