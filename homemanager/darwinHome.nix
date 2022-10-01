@@ -9,28 +9,16 @@
   };
   imports = [
     ./packages.nix
-    ./guiPackages.nix
-    ./linuxPackages.nix
-    ./themePackages.nix
-    ./zsh.nix
-    ./mimeappsList.nix
     ./vim/vim.nix
-    ./i3/i3blocks.home.nix
-    ./i3/i3.home.nix
-    ./modules/dunst.home.nix
-    ./modules/rofi.home.nix
+    ./zsh.nix
     ./modules/git.nix
-    ./modules/hexchat.nix
-    ./scripts/scripts.nix
-    ./scripts/scripts.nix
-    ./scripts/templates.nix
+    ./modules/tmux.nix
   ]
   ++ (if user.withgtk then [ ./modules/gtk3.nix ] else [ ]);
 
 
   ######## programs ########
   programs.home-manager.enable = true;
-  programs.tmux.enable = true;
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
@@ -70,36 +58,14 @@
   ######## home ########
   home.sessionVariables = {
     EDITOR = "nvim";
-    TERMINAL = "xfce4-terminal";
-    SUDO_ASKPASS = "lxqt-openssh-askpass";
-    TMPDIR = "/home/vhs/Public/tmp";
   };
 
-  home.username = "vhs";
-  home.homeDirectory = "/home/vhs";
+  home.username = "valentin";
+  home.homeDirectory = "/Users/valentin";
 
   ######## fonts ########
   fonts.fontconfig.enable = true;
 
-  ######## services ########
-  services.gnome-keyring.enable = true;
-  services.gpg-agent.enable = true;
-  services.gammastep =
-    {
-      enable = true;
-      dawnTime = "6:00-7:45";
-      duskTime = "18:00-19:05";
-      longitude = "59.3";
-      latitude = "18.0";
-      temperature.day = 4800;
-      tray = true;
-    };
-  services.xscreensaver = {
-    enable = true;
-    settings = {
-      timeout = "30";
-    };
-  };
 
   #IMPORTANT
   home.stateVersion = "21.03";

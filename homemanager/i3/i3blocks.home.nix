@@ -1,7 +1,6 @@
-{ pkgs, lib, user, ... }:
+{ config, pkgs, lib, user, ... }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");
-  pathI3Blocks = builtins.toString (./. + "/i3blocks");
 in
 {
   xdg.configFile."i3blocks/config".text = ''
@@ -10,38 +9,32 @@ in
     markup=none
 
     [battery]
-    command=${pathI3Blocks}/battery2
+    command=i3b_battery
     label= 
     interval=30
     color=${theme.secondary}
 
     [cpu_usage]
     label= 
-    command=${pathI3Blocks}/cpu
+    command=i3b_cpu
     interval=2
     color=${theme.secondary}
 
-    [disk]
-    label=   
-    instance=/
-    command=~/.config/i3/scripts/disk
-    interval=30
-
     [memory]
     label= 
-    command=${pathI3Blocks}/memory
+    command=i3b_memory
     interval=2
     color=${theme.secondary}
     
     [disk]
     label= 
     instance=/
-    command=${pathI3Blocks}/disk
+    command=i3b_disk
     interval=30
     color=${theme.secondary}
 
     [bandwidth]
-    command=${pathI3Blocks}/bandwidth3
+    command=i3b_bandwidth
     markup=pango
     label=
     interval=persist
@@ -49,15 +42,14 @@ in
 
     [weather]
     label=
-    command=${pathI3Blocks}/weather
+    command=i3b_weather
     interval=1800
     color=${theme.secondary}
 
     [calendar]
     label=
-    command=${pathI3Blocks}/calendar
+    command=i3b_calendar
     interval=59
     color=${theme.secondary}
   '';
-
 }

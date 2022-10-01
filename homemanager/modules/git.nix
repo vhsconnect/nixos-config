@@ -12,6 +12,7 @@
       ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
       ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
       dif = "diff -- . ':(exclude)yarn.lock' ':(exclude)package-lock.json'";
+      sta = "stash --include-untracked";
     };
     extraConfig = {
       core = {

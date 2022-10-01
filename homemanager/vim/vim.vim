@@ -30,7 +30,7 @@ set shiftwidth=2
 set expandtab
 set cmdheight=2
 set shortmess+=c
-set signcolumn=number
+set signcolumn=auto
 set dictionary+=~/Public/words.txt
 set complete+=k
 set dir=~/Public/tmp
@@ -56,24 +56,6 @@ let g:mkdp_browser = 'firefox'
 " ----------- Auto Pairs ----------
 let g:AutoPairsShortcutToggle = '<M-P>'
 
-" ----------- copy to system clipboard ----------
-
-function! ClipboardYank()
-  call system('xclip -i -selection clipboard', @@)
-endfunction
-function! ClipboardPaste()
-  let @@ = system('xclip -o -selection clipboard')
-endfunction
-
-vnoremap <silent> <space>y y:call ClipboardYank()<cr>
-vnoremap <silent> <space>d d:call ClipboardYank()<cr>
-nnoremap <silent> <space>p :call ClipboardPaste()<cr>p
-"copy the current visual selection to ~/.vbuf
-vmap <y> :w! ~/.vbuf<CR>
-"copy the current line to the buffer file if no visual selection
-nmap <Y> :.w! ~/.vbuf<CR>
-"paste the contents of the buffer file
-nmap <p> :r ~/.vbuf<CR>
 
 "-----------  snippets ------------
 nnoremap <leader>s :r ~/Public/snippets/
@@ -137,10 +119,14 @@ nnoremap <space>9 :colorscheme summerfruit256<CR>
 nnoremap <space>0 :colorscheme PaperColor<CR>
 
 " --------------- navigate splits --------------
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> :TmuxNavigateDown<cr>
+nnoremap <C-K> :TmuxNavigateUp<cr>
+nnoremap <C-L> :TmuxNavigateRight<cr>
+nnoremap <C-H> :TmuxNavigateLeft<cr>
 
 " --------------- ALE --------------
 let g:ale_lint_on_text_changed = 'never'
@@ -155,7 +141,8 @@ let g:ale_fixers = {
   \   'typescript': [],
   \   'nix': ['nixpkgs-fmt'],
   \   'haskell': ['hlint', 'ormolu', 'hindent', 'floskell'],
-  \   'python': ['yapf']
+  \   'python': ['yapf'],
+  \   'rust': ['rustfmt']
   \}
 set omnifunc=ale#completion#OmniFunc
 highlight ALEWarning ctermbg=Blue ctermfg=Yellow
@@ -192,7 +179,13 @@ let g:vue_pre_processors = 'detect-on-enter'
 let g:mkdp_auto_start = 0
 " ---------------  COC --------------
 " command! -nargs=0 Prettier :CocCommand prettier.formatFile
-source /home/$USER/.config/nvim/coc-file.vim
+source $HOME/.config/nvim/coc-file.vim
+" ---------------  Neoterm --------------
+let g:neoterm_default_mod = 'vertical'
+let g:neoterm_autoinsert = 1
+nnoremap <c-q> :Ttoggle<CR>
+inoremap <c-q> <Esc> <c-q>:Ttoggle<CR>
+tnoremap <c-q> <c-\><c-n>:Ttoggle<CR>
 " ---------------  EXTRA --------------
 call gitgutter#highlight#define_signs()
 
