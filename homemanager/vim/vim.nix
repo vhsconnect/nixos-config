@@ -48,6 +48,10 @@ in
       vim-vue
       vimproc
       vim-gitgutter
+      vim-repeat
+
+    ] ++ [
+      pkgs.leap-nvim
     ]
     ++
     (if user.useCoc then [ ] else [

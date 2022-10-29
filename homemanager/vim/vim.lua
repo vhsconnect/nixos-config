@@ -113,4 +113,4 @@ require'lspconfig'.bashls.setup{
   capabilities = capabilities,
 }
 
-
+require('leap').set_default_keymaps()

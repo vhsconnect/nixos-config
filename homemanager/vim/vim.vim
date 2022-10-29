@@ -91,6 +91,11 @@ nnoremap L 10l
 nnoremap H 10h
 "move split to own tab
 nnoremap <leader><leader> <C-W>T
+
+"use leap
+nnoremap s <Plug>(leap-forward)
+nnoremap S <Plug>(leap-backward)
+
 " --------------- FZF --------------
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 "  redefine Ag to not include filenames in search

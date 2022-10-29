@@ -1,7 +1,5 @@
 inputs:
-
 let
-
   packages-2111 = import inputs.nixpkgs-2111 {
     system = builtins.currentSystem;
   };
@@ -14,6 +12,22 @@ let
   insomnia-overlay = self: prev: {
     insomnia = packages-2111.insomnia;
   };
+
+  leap-nvim-overlay = serlf: prev:
+    {
+      leap-nvim = prev.vimUtils.buildVimPluginFrom2Nix {
+        pname = "leap.nvim";
+        version = "2022-10-01";
+        src = prev.fetchFromGitHub {
+          owner = "ggandor";
+          repo = "leap.nvim";
+          rev = "5a09c30bf676d1392ff00eb9a41e0a1fc9b60a1b";
+          sha256 = "xmqb3s31J1UxifXauBzBo5EkhafBEnq2YUYKRXJLGB0=";
+        };
+
+        meta.homepage = "https://github.com/ggandor/leap.nvim/";
+      };
+    };
 
   coc-nvim-overlay = self: prev:
     {
@@ -30,4 +44,9 @@ let
       };
     };
 in
-[ insomnia-overlay coc-nvim-overlay neovim-nightly-overlay ]
+[
+  insomnia-overlay
+  coc-nvim-overlay
+  neovim-nightly-overlay
+  leap-nvim-overlay
+]
