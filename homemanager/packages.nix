@@ -45,7 +45,8 @@
     tldr
     tree
     watchman
-    youtube-dl
+    # youtube-dl
+    yt-dlp
     zip
 
     #fonts
