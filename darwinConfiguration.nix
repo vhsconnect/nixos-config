@@ -2,6 +2,7 @@
 
 {
   users.users.valentin.home = "/Users/valentin";
+  nixpkgs.config.allowUnfree = true;
 
   nix.package = pkgs.nix;
   nix.nixPath = [ "darwin=/nix/store/lql1bfyxnzqadchvascc6vxj3gmj5dr9-nix-darwin" ];

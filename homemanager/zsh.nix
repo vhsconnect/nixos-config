@@ -1,9 +1,10 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, user, ... }:
 let
   configPath = "$HOME/SConfig/nixos-config";
   binPath = "$HOME/bin";
   cargoPath = "$HOME/.cargo/bin";
   npmPath = "$HOME/.npm-global/bin";
+
 in
 {
   programs.zsh = {
@@ -26,7 +27,7 @@ in
       QT_STYLE_OVERRIDE = "";
       EDITOR = "nvim";
       PATH = "${binPath}:${cargoPath}:${npmPath}:$PATH";
-      PROMPT = ''[%F{$(if [ "$IN_NIX_SHELL" = "impure" ]; then echo "4"; elif [ -d .git ] && [ -ne $(git diff --quiet)]; then echo "3"; else echo "9"; fi)}λ%f] %F{15}%1d%f '';
+      PROMPT = ''[%F{$(if [ "$IN_NIX_SHELL" = "impure" ]; then echo "4"; elif [ -d .git ] && [ -ne $(git diff --quiet)]; then echo "3"; else echo "9"; fi)}${user.promptI}%f] %F{15}%1d%f '';
     };
     shellAliases = {
       nixosconfig = "nvim /Repos/nixos-config/nixos/nixos/configuration.nix";

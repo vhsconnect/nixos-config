@@ -59,6 +59,17 @@ cmp.setup.cmdline(':', {
 -- lsp config --
 ----------------
 --
+vim.o.updatetime = 320
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
+})
+
 local c = vim.lsp.protocol.make_client_capabilities()
 c.textDocument.completion.completionItem.snippetSupport = true
 local capabilities = require('cmp_nvim_lsp').update_capabilities(c)
@@ -79,6 +90,22 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>h', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+
+  vim.api.nvim_create_autocmd("CursorHold", {
+    buffer = bufnr,
+    callback = function()
+      local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+      }
+      vim.diagnostic.open_float(nil, opts)
+    end
+  })
+
 end
 
 local lsp_flags = {
@@ -113,4 +140,27 @@ require'lspconfig'.bashls.setup{
   capabilities = capabilities,
 }
 
-require('leap').set_default_keymaps()
+require'lspconfig'.jsonls.setup {
+  capabilities = capabilities,
+}
+
+----------------------
+-- nvim-treesitter --
+-----------------------
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+
