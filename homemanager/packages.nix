@@ -8,7 +8,7 @@
 
     #python
     #yapf
-    black
+    #black
     pyright
 
     #ruby
@@ -43,6 +43,7 @@
     shellcheck
     silver-searcher
     tldr
+    tmuxinator
     tree
     watchman
     # youtube-dl
@@ -54,13 +55,15 @@
       fonts = [
         "FiraCode"
         "Hack"
-        "Inconsolata"
         "Iosevka"
         "JetBrainsMono"
         "Meslo"
-        "Monoid"
         "Terminus"
         "VictorMono"
+        "OpenDyslexic"
+        "Noto"
+        "Overpass"
+        "SpaceMono"
       ];
     })
 
@@ -82,6 +85,8 @@
   ) ++ (with pkgs.nodePackages;
     [
       bash-language-server
+      typescript-language-server
+      typescript
       vscode-langservers-extracted
     ]);
 

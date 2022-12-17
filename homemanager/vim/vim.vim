@@ -21,9 +21,9 @@ set smartindent
 set mouse=a
 set autowrite
 set inccommand=split
-set foldmethod=indent
+set foldmethod=expr
 set foldnestmax=10
-set nofoldenable
+" set nofoldenable
 set foldlevel=2
 set tabstop=2
 set shiftwidth=2
@@ -41,7 +41,7 @@ retab!
 
 " ----------- THEME ----------
 " let g:dracula_italic = 0
-colorscheme horseradish256
+colorscheme seoul256
 let g:airline_theme='hybrid'
 " hi! Normal ctermbg=none
 
@@ -113,7 +113,7 @@ inoremap <expr> <c-x><c-f> fzf#vim#complete("fd <Bar> xargs realpath --relative-
 " --------------- REMAPS COLORS --------------
 nnoremap <space>1 :colorscheme OceanicNext<CR>
 nnoremap <space>2 :colorscheme gruvbox<CR>
-nnoremap <space>3 :colorscheme seoul256<CR>
+nnoremap <space>3 :colorscheme horseradish256<CR>
 nnoremap <space>4 :colorscheme zenburn<CR>
 nnoremap <space>5 :colorscheme railscasts<CR>
 nnoremap <space>8 :colorscheme wikipedia<CR>
@@ -151,9 +151,8 @@ let g:ale_fixers = {
 " set omnifunc=ale#completion#OmniFunc
 highlight ALEWarning ctermbg=Blue ctermfg=Yellow
 highlight ALEError ctermbg=Blue ctermfg=White
-let g:ale_sign_error = '🚨'
+let g:ale_sign_error = '🦈'
 let g:ale_sign_warning = '⚡️'
-
 " --------------- Airline --------------
 let g:airline#extensions#ale#enabled = 0
 let g:airline_powerline_fonts = 1
@@ -189,4 +188,4 @@ inoremap <c-q> <Esc> <c-q>:Ttoggle<CR>
 tnoremap <c-q> <c-\><c-n>:Ttoggle<CR>
 " ---------------  EXTRA --------------
 call gitgutter#highlight#define_signs()
-
+let g:rustfmt_autosave = 1

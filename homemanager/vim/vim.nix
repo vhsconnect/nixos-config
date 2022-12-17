@@ -31,6 +31,7 @@ in
       neoterm
       papercolor-theme
       tcomment_vim
+      tmuxline-vim
       tsuquyomi
       typescript-vim
       vim-colorschemes
@@ -73,7 +74,11 @@ in
       nnoremap <leader>s :r ${pathToVimSnippets}
       ${builtins.readFile (ifThenElse user.isDarwin ./mac.vim ./linux.vim) }
       set completeopt=menu,menuone,noselect
-      ${if user.useCoc then (builtins.readFile ./cocfile.vim) else "\" using treesitter"}
+      ${
+        if user.useCoc 
+        then (builtins.readFile ./cocfile.vim)
+        else "\" using treesitter"
+      }
       lua <<EOF
       ${if user.useCoc then "-- using coc-nvim" else  (builtins.readFile ./vim.lua)}
       EOF
