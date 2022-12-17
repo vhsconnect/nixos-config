@@ -31,7 +31,9 @@
       automatic = true;
       options = "--delete-older-than 7d";
     };
-    autoOptimiseStore = true;
+    settings = {
+      auto-optimise-store = true;
+    };
     #cache environments for nix-direnv
     extraOptions = ''
       keep-outputs = true
@@ -204,17 +206,17 @@
       ];
     };
 
-  systemd.services.radio = {
-    enable = user.enableRadio or false;
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" ];
-    description = "start myRadio server";
-    serviceConfig = {
-      Type = "simple";
-      User = "vhs";
-      ExecStart = ''${pkgs.nodejs-16_x}/bin/node /home/vhs/.npm-global/bin/bbrf-radio'';
-    };
-  };
+  # systemd.services.radio = {
+  #   enable = user.enableRadio or false;
+  #   wantedBy = [ "multi-user.target" ];
+  #   after = [ "network.target" ];
+  #   description = "start myRadio server";
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     User = "vhs";
+  #     ExecStart = ''${pkgs.nodejs-16_x}/bin/node /home/vhs/.npm-global/bin/bbrf-radio'';
+  #   };
+  # };
 
   services.logind.extraConfig = ''
     LidSwitchIgnoreInhibited=no

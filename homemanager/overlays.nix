@@ -47,6 +47,6 @@ in
 [
   insomnia-overlay
   coc-nvim-overlay
-  neovim-nightly-overlay
+  # neovim-nightly-overlay
   leap-nvim-overlay
 ]

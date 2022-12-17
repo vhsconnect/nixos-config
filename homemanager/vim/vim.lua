@@ -58,10 +58,7 @@ cmp.setup.cmdline(':', {
 ----------------
 -- lsp config --
 ----------------
---
-local c = vim.lsp.protocol.make_client_capabilities()
-c.textDocument.completion.completionItem.snippetSupport = true
-local capabilities = require('cmp_nvim_lsp').update_capabilities(c)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 
 -- Use an on_attach function to only map the following keys

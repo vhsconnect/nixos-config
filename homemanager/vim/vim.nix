@@ -18,8 +18,6 @@ in
     viAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    extraPackages = with pkgs; [
-    ];
 
     plugins = (with pkgs.vimPlugins; [
       ale
@@ -55,10 +53,9 @@ in
     ]
     ++
     (if user.useCoc then [ ] else [
-      (nvim-treesitter.withPlugins
-        builtins.attrValues) # all-grammars
-      nvim-lspconfig
       # completion-nvim
+      nvim-treesitter.withAllGrammars
+      nvim-lspconfig
       cmp-nvim-lsp
       cmp-buffer
       cmp-path
@@ -75,7 +72,6 @@ in
       ${builtins.readFile ./vim.vim}
       nnoremap <leader>s :r ${pathToVimSnippets}
       ${builtins.readFile (ifThenElse user.isDarwin ./mac.vim ./linux.vim) }
-      ""
       set completeopt=menu,menuone,noselect
       ${if user.useCoc then (builtins.readFile ./cocfile.vim) else "\" using treesitter"}
       lua <<EOF
