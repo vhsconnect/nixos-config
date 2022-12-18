@@ -15,16 +15,22 @@
       [
         "nixpkgs=${inputs.nixpkgs}"
       ];
-    registry.nixpkgs = {
-      from = {
-        id = "nixpkgs";
-        type = "indirect";
-      };
-      to = {
-        owner = "NixOS";
-        ref = "nixos-22.05";
-        repo = "nixpkgs";
-        type = "github";
+    registry = {
+      # nixpkgs =
+      #   {
+      #     from = {
+      #       id = "nixpkgs";
+      #       type = "indirect";
+      #     };
+      #     to = {
+      #       owner = "NixOS";
+      #       ref = "nixos-22.05";
+      #       repo = "nixpkgs";
+      #       type = "github";
+      #     };
+      #   };
+      nixos = {
+        flake = inputs.nixpkgs;
       };
     };
     gc = {
