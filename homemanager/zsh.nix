@@ -47,13 +47,13 @@ in
       hms = "echo \"use rebuild\"";
       rebuild = "nixos-rebuild switch --flake ${configPath} -I nixos-config=. --impure";
       nixp = "nix-shell -p";
-      pdf = "evince";
       lock = "xscreensaver-command -lock";
       emoji = "rofi -show emoji -modi emoji";
       allbound = "netstat -tulpn";
       quickref = "vi ~/Dropbox/quickref";
       tree = "tree -C";
       img = "gthumb";
+      pdf = "evince";
     };
     oh-my-zsh = {
       enable = true;
