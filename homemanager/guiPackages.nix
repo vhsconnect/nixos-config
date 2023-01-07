@@ -33,6 +33,7 @@
     thunderbird
     vscodium
     zoom-us
+    zeal
   ];
 
 }

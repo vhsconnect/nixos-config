@@ -27,12 +27,16 @@ let
     A="ansi"
     B="GitHub"
 
+    M="seoul256"
+    N="PaperColor"
+
     C="\$DARK_FZF_TAB"
     D="\$LIGHT_FZF_TAB"
 
     sed -i "s/$Y/$X/" ~/.config/alacritty/alacritty.yml
     sed -i "s/$A/$B/" ~/.zstuff
     sed -i "s/$C/$D/" ~/.zstuff
+    sed -i "s/$M/$N/" ~/.zstuff
   '';
   aldark = pkgs.writeScriptBin "aldark" ''
     #! /usr/bin/env bash
@@ -43,12 +47,16 @@ let
     A="GitHub"
     B="ansi"
 
+    M="PaperColor"
+    N="seoul256"
+
     C="\$LIGHT_FZF_TAB"
     D="\$DARK_FZF_TAB"
 
     sed -i "s/$Y/$X/" ~/.config/alacritty/alacritty.yml
     sed -i "s/$A/$B/" ~/.zstuff
     sed -i "s/$C/$D/" ~/.zstuff
+    sed -i "s/$M/$N/" ~/.zstuff
   '';
 
   pfire = pkgs.writeScriptBin "pfire" ''

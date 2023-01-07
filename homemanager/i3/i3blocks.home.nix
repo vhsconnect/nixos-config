@@ -32,6 +32,14 @@ in
     command=i3b_disk
     interval=30
     color=${theme.secondary}
+    
+    [disk2]
+    label= 
+    instance=/
+    command=i3b_disk2 ${user.dataPartitionPath}
+    interval=30
+    color=${theme.secondary}
+
 
     [bandwidth]
     command=i3b_bandwidth

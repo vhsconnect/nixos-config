@@ -16,20 +16,10 @@
         "nixpkgs=${inputs.nixpkgs}"
       ];
     registry = {
-      # nixpkgs =
-      #   {
-      #     from = {
-      #       id = "nixpkgs";
-      #       type = "indirect";
-      #     };
-      #     to = {
-      #       owner = "NixOS";
-      #       ref = "nixos-22.05";
-      #       repo = "nixpkgs";
-      #       type = "github";
-      #     };
-      #   };
       nixos = {
+        flake = inputs.nixpkgs;
+      };
+      nixpkgs = {
         flake = inputs.nixpkgs;
       };
     };
@@ -252,7 +242,9 @@
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
-
+  virtualisation.forwardPorts = [
+    { from = "host"; host.port = 3336; guest.port = 3335; }
+  ];
   system.stateVersion = "20.09"; #do not change
 }
 

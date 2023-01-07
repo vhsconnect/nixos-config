@@ -43,7 +43,7 @@ in
       nixu = "nix-env --uninstall";
       nixupdate = "nix-channel --update nixos";
       restartpolybar = "systemctl --user restart polybar.service";
-      hm = "home-manager";
+      sz = "source ~/.zstuff";
       hms = "echo \"use rebuild\"";
       rebuild = "nixos-rebuild switch --flake ${configPath} -I nixos-config=. --impure";
       nixp = "nix-shell -p";
@@ -52,8 +52,10 @@ in
       allbound = "netstat -tulpn";
       quickref = "vi ~/Dropbox/quickref";
       tree = "tree -C";
+      deli = "tr $1 '\n'";
       img = "gthumb";
       pdf = "evince";
+
     };
     oh-my-zsh = {
       enable = true;

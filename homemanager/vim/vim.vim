@@ -41,7 +41,7 @@ retab!
 
 " ----------- THEME ----------
 " let g:dracula_italic = 0
-colorscheme seoul256
+" colorscheme seoul256
 let g:airline_theme='hybrid'
 " hi! Normal ctermbg=none
 

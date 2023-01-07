@@ -50,6 +50,8 @@
     yt-dlp
     zip
 
+    nixos-shell
+
     #fonts
     (nerdfonts.override {
       fonts = [
