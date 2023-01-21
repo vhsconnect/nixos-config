@@ -27,6 +27,7 @@
     gitAndTools.diff-so-fancy
     gitAndTools.tig
     gnumake
+    helix
     killall
     lf
     #magic-wormhole

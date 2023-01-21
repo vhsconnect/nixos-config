@@ -56,7 +56,8 @@ let g:mkdp_browser = 'firefox'
 
 " ----------- Auto Pairs ----------
 let g:AutoPairsShortcutToggle = '<M-P>'
-
+" skip for rust lifetimes
+let g:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 
 "-----------  snippets ------------
 nnoremap <leader>s :r ~/Public/snippets/
@@ -139,6 +140,9 @@ let g:ale_lint_on_enter = 0
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
 let g:ale_set_highlights = 0
+let g:ale_linters = {
+  \   'rust': []
+  \}
 let g:ale_fixers = {
   \   '*': ['trim_whitespace'],
   \   'javascript': [],
@@ -146,7 +150,7 @@ let g:ale_fixers = {
   \   'nix': ['nixpkgs-fmt'],
   \   'haskell': ['hlint', 'ormolu', 'hindent', 'floskell'],
   \   'python': ['yapf'],
-  \   'rust': ['rustfmt']
+  \   'rust': []
   \}
 " set omnifunc=ale#completion#OmniFunc
 highlight ALEWarning ctermbg=Blue ctermfg=Yellow

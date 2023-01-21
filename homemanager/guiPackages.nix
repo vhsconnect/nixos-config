@@ -6,7 +6,6 @@
     chromium
     discord
     dropbox
-    epiphany
     evince
     flameshot
     gimp
@@ -29,7 +28,6 @@
     sublime3
     tdesktop
     teams
-    terminator
     thunderbird
     vscodium
     zoom-us

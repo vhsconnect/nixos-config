@@ -12,6 +12,7 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelParams = [ "systemd.debug-shell=1" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -36,5 +37,5 @@
     [{ device = "/dev/disk/by-uuid/fb2fd9c3-0a5a-4de6-b05d-ed44f2589cab"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  #hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

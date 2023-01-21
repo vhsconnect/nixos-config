@@ -1,4 +1,4 @@
-{ config, pkgs, options, user, inputs, ... }:
+{ config, pkgs, lib, options, user, inputs, ... }:
 {
   imports = [
     (
@@ -14,6 +14,7 @@
     nixPath =
       [
         "nixpkgs=${inputs.nixpkgs}"
+        "nixos-config=${/home/vhs/SConfig/nixos-config/configuration.nix}"
       ];
     registry = {
       nixos = {
@@ -202,17 +203,14 @@
       ];
     };
 
-  # systemd.services.radio = {
-  #   enable = user.enableRadio or false;
-  #   wantedBy = [ "multi-user.target" ];
-  #   after = [ "network.target" ];
-  #   description = "start myRadio server";
-  #   serviceConfig = {
-  #     Type = "simple";
-  #     User = "vhs";
-  #     ExecStart = ''${pkgs.nodejs-16_x}/bin/node /home/vhs/.npm-global/bin/bbrf-radio'';
-  #   };
-  # };
+  systemd.extraConfig = ''
+    DefaultTimeoutStopSec=10s
+    DefaultDeviceTimeoutSec=10s
+    TimeoutSec=10s
+  '';
+  systemd.watchdog.runtimeTime = "20s";
+
+  # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];
 
   services.logind.extraConfig = ''
     LidSwitchIgnoreInhibited=no
@@ -224,9 +222,10 @@
     IdleAction=ignore
   '';
 
-  services.fwupd.enable = false;
 
+  services.fwupd.enable = false;
   security.rtkit.enable = true;
+
   security.sudo.wheelNeedsPassword = false;
 
   security.polkit = {
@@ -240,11 +239,15 @@
     capabilities = "cap_net_bind_service=+ep";
   };
 
+  services.bbrf = {
+    enable = true;
+    user = "vhs";
+    port = 8335;
+    faderValue = 40;
+  };
+
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
-  virtualisation.forwardPorts = [
-    { from = "host"; host.port = 3336; guest.port = 3335; }
-  ];
   system.stateVersion = "20.09"; #do not change
 }
 

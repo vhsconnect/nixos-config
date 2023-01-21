@@ -9,6 +9,7 @@
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-22.11-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
+    bbrf.url = "github:vhsconnect/bbrf-radio/master";
   };
   outputs = inputs: {
 
@@ -46,6 +47,7 @@
         modules =
           [
             ./configuration.nix
+            inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
             inputs.home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
@@ -59,26 +61,27 @@
           ];
       };
 
-      mpu4 = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-          user = (import ./user.nix).mpu4;
+      mpu4 = inputs.nixpkgs.lib.nixosSystem
+        {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+            user = (import ./user.nix).mpu4;
+          };
+          modules =
+            [
+              ./configuration.nix
+              inputs.home-manager.nixosModules.home-manager
+              {
+                home-manager.useUserPackages = true;
+                home-manager.users.vhs = import ./homemanager/home.nix;
+                home-manager.extraSpecialArgs = {
+                  inherit inputs;
+                  user = (import ./user.nix).mpu4;
+                };
+              }
+            ];
         };
-        modules =
-          [
-            ./configuration.nix
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager.useUserPackages = true;
-              home-manager.users.vhs = import ./homemanager/home.nix;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                user = (import ./user.nix).mpu4;
-              };
-            }
-          ];
-      };
 
     };
   };
