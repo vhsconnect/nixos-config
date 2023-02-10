@@ -2,11 +2,13 @@
 {
   home.packages = with pkgs;[
     alacritty
+    arandr
     calibre
     chromium
     discord
     dropbox
     evince
+    filezilla
     flameshot
     gimp
     gnvim

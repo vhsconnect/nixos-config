@@ -69,7 +69,6 @@ in
     extraConfig = ''
       set t_Co=256
       set background=light
-      colorscheme PaperColor
       ${builtins.readFile ./vim.vim}
       nnoremap <leader>s :r ${pathToVimSnippets}
       ${builtins.readFile (ifThenElse user.isDarwin ./mac.vim ./linux.vim) }

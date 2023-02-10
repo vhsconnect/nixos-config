@@ -2,86 +2,29 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     nixpkgs-2111.url = "github:NixOS/nixpkgs/nixos-21.11";
-    home-manager.url = "github:nix-community/home-manager/release-22.05";
+    home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    #home-manager.inputs.nixpkgs.follows = "darwinNixpkgs";
 
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-22.11-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
     bbrf.url = "github:vhsconnect/bbrf-radio/master";
+    bbrf.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = inputs: {
 
     darwinConfigurations = {
-      macv = inputs.darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = {
-          inherit inputs;
-          user = (import ./user.nix).macv;
-        };
-        modules =
-          [
-            ./darwinConfiguration.nix
-            inputs.home-manager.darwinModules.home-manager
-            {
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "hmback";
-              home-manager.users.valentin = import ./homemanager/darwinHome.nix;
-              home-manager.extraSpecialArgs = {
-                inputs = inputs;
-                user = (import ./user.nix).macv;
-              };
-            }
-          ];
-      };
+      macv = inputs.darwin.lib.darwinSystem
+        (import ./machines/macv.nix inputs);
     };
 
     nixosConfigurations = {
-      mpu3 = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-          user = (import ./user.nix).mpu3;
-        };
-        modules =
-          [
-            ./configuration.nix
-            inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "hmback";
-              home-manager.users.vhs = import ./homemanager/home.nix;
-              home-manager.extraSpecialArgs = {
-                inputs = inputs;
-                user = (import ./user.nix).mpu3;
-              };
-            }
-          ];
-      };
+      mpu3 = inputs.nixpkgs.lib.nixosSystem
+        (import ./machines/mpu3.nix inputs);
+
 
       mpu4 = inputs.nixpkgs.lib.nixosSystem
-        {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-            user = (import ./user.nix).mpu4;
-          };
-          modules =
-            [
-              ./configuration.nix
-              inputs.home-manager.nixosModules.home-manager
-              {
-                home-manager.useUserPackages = true;
-                home-manager.users.vhs = import ./homemanager/home.nix;
-                home-manager.extraSpecialArgs = {
-                  inherit inputs;
-                  user = (import ./user.nix).mpu4;
-                };
-              }
-            ];
-        };
+        (import ./machines/mpu4.nix inputs);
 
     };
   };
