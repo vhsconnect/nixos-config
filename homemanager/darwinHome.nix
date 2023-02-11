@@ -1,4 +1,4 @@
-{ pkgs, lib, config, user, inputs, ... }:
+{ pkgs, lib, config, user, inputs, _imports, ... }:
 
 {
   nixpkgs = {
@@ -7,15 +7,7 @@
     };
     overlays = (import ./overlays.nix inputs);
   };
-  imports = [
-    ./packages.nix
-    ./vim/vim.nix
-    ./zsh.nix
-    ./modules/git.nix
-    ./modules/tmux.nix
-  ]
-  ++ (if user.withgtk then [ ./modules/gtk3.nix ] else [ ]);
-
+  imports = _imports;
 
   ######## programs ########
   programs.home-manager.enable = true;

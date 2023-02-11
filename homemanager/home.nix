@@ -1,4 +1,4 @@
-{ pkgs, lib, config, user, inputs, ... }:
+{ pkgs, lib, config, user, inputs, _imports, ... }:
 {
   nixpkgs = {
     config = {
@@ -6,25 +6,7 @@
     };
     overlays = (import ./overlays.nix inputs);
   };
-  imports = [
-    ./packages.nix
-    ./guiPackages.nix
-    ./linuxPackages.nix
-    ./themePackages.nix
-    ./zsh.nix
-    ./mimeappsList.nix
-    ./vim/vim.nix
-    ./i3/i3blocks.home.nix
-    ./i3/i3.home.nix
-    ./modules/dunst.home.nix
-    ./modules/rofi.home.nix
-    ./modules/git.nix
-    ./modules/hexchat.nix
-    ./scripts/scripts.nix
-    ./scripts/scripts.nix
-    ./scripts/templates.nix
-  ]
-  ++ (if user.withgtk then [ ./modules/gtk3.nix ] else [ ]);
+  imports = _imports;
 
 
   ######## programs ########

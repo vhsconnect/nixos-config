@@ -1,91 +1,3 @@
-function interop(str)
-   local outer_env = _ENV
-   return (str:gsub("%b{}", function(block)
-      local code = block:match("{(.*)}")
-      local exp_env = {}
-      setmetatable(exp_env, { __index = function(_, k)
-         local stack_level = 5
-         while debug.getinfo(stack_level, "") ~= nil do
-            local i = 1
-            repeat
-               local name, value = debug.getlocal(stack_level, i)
-               if name == k then
-                  return value
-               end
-               i = i + 1
-            until name == nil
-            stack_level = stack_level + 1
-         end
-         return rawget(outer_env, k)
-      end })
-      local fn, err = load("return "..code, "expression `"..code.."`", "t", exp_env)
-      if fn then
-         return tostring(fn())
-      else
-         error(err, 0)
-      end
-   end))
-end
-local x = os.getenv("VIM_THEME")
-
-vim.cmd(interop"colorscheme {x}")
---------------
--- nvim-cmp --
---------------
-local cmp = require'cmp'
-
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-    end,
-  },
-
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ['<Tab>'] = function(fallback)
-         if cmp.visible() then
-           cmp.select_next_item()
-         else
-           fallback()
-         end
-       end
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'path' },
-    { name = 'vsnip' }, -- For vsnip users.
-  }, {
-    { name = 'buffer' },
-  })
-})
-
-
-cmp.setup.cmdline({ '/', '?' }, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' }
-  }
-})
-
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  })
-})
-
-
 ----------------
 -- lsp config --
 ----------------
@@ -173,6 +85,25 @@ require'lspconfig'.jsonls.setup {
   capabilities = capabilities,
 }
 
+require'lspconfig'.sumneko_lua.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+
 ----------------------
 -- nvim-treesitter --
 -----------------------
@@ -192,9 +123,3 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 }
-
-------------------
--- leap
-------------------
-require('leap').set_default_keymaps()
-

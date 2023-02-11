@@ -91,6 +91,9 @@
       typescript-language-server
       typescript
       vscode-langservers-extracted
-    ]);
+    ]) ++ [
+      # additional language servers
+      pkgs.sumneko-lua-language-server 
+    ];
 
 }

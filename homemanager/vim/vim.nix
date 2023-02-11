@@ -35,8 +35,10 @@ in
       tsuquyomi
       typescript-vim
       vim-colorschemes
-      vim-airline
-      vim-airline-themes
+      lualine-nvim
+      lualine-lsp-progress
+      # vim-airline
+      # vim-airline-themes
       vim-devicons
       vim-easy-align
       vim-fugitive
@@ -79,7 +81,14 @@ in
         else "\" using treesitter"
       }
       lua <<EOF
-      ${if user.useCoc then "-- using coc-nvim" else  (builtins.readFile ./vim.lua)}
+      ${if user.useCoc 
+      then "-- using coc-nvim" 
+      else (builtins.concatStringsSep "\n" (map builtins.readFile [ 
+        ./lua/vim.lua 
+        ./lua/lsp.lua 
+        ./lua/ale.lua 
+        ./lua/lualine.lua 
+        ]))}
       EOF
     '';
   };
@@ -91,6 +100,5 @@ in
       pkgs.nodePackages.coc-css
       pkgs.nodePackages.coc-json
     ] else [ ];
-
 }
 

@@ -39,27 +39,11 @@ set completeopt=menu,menuone,noselect
 retab!
 
 
-" ----------- THEME ----------
-" let g:dracula_italic = 0
-" colorscheme seoul256
-let g:airline_theme='hybrid'
-" hi! Normal ctermbg=none
-
-
-" ----------- highlighting ----------
-highlight Visual ctermfg=238 ctermbg=84
-
-" ----------- markdown preview ----------
-let g:mkdp_auto_start = 1
-let g:mkdp_refresh_slow = 1
-let g:mkdp_browser = 'firefox'
-
 " ----------- Auto Pairs ----------
 let g:AutoPairsShortcutToggle = '<M-P>'
-" skip for rust lifetimes
-let g:AutoPairs = {'(':')', '[':']', '{':'}', '"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 
-"-----------  snippets ------------
+
 nnoremap <leader>s :r ~/Public/snippets/
 
 "----------- global subs with confirm ------------
@@ -111,85 +95,5 @@ nnoremap <space>b :Buffer<CR>
 nnoremap <silent> <c-g> :Ag<CR>
 inoremap <expr> <c-x><c-f> fzf#vim#complete("fd <Bar> xargs realpath --relative-to " . expand("%:h"))
 
-" --------------- REMAPS COLORS --------------
-nnoremap <space>1 :colorscheme OceanicNext<CR>
-nnoremap <space>2 :colorscheme gruvbox<CR>
-nnoremap <space>3 :colorscheme horseradish256<CR>
-nnoremap <space>4 :colorscheme zenburn<CR>
-nnoremap <space>5 :colorscheme railscasts<CR>
-nnoremap <space>8 :colorscheme wikipedia<CR>
-nnoremap <space>6 :colorscheme lightning<CR>
-nnoremap <space>7 :colorscheme seoul256-light<CR>
-nnoremap <space>9 :colorscheme summerfruit256<CR>
-nnoremap <space>0 :colorscheme PaperColor<CR>
-
-" --------------- navigate splits --------------
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
-nnoremap <C-J> :TmuxNavigateDown<cr>
-nnoremap <C-K> :TmuxNavigateUp<cr>
-nnoremap <C-L> :TmuxNavigateRight<cr>
-nnoremap <C-H> :TmuxNavigateLeft<cr>
-
-" --------------- ALE --------------
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_enter = 0
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_save = 1
-let g:ale_set_highlights = 0
-let g:ale_linters = {
-  \   'rust': []
-  \}
-let g:ale_fixers = {
-  \   '*': ['trim_whitespace'],
-  \   'javascript': [],
-  \   'typescript': [],
-  \   'nix': ['nixpkgs-fmt'],
-  \   'haskell': ['hlint', 'ormolu', 'hindent', 'floskell'],
-  \   'python': ['yapf'],
-  \   'rust': []
-  \}
-" set omnifunc=ale#completion#OmniFunc
-highlight ALEWarning ctermbg=Blue ctermfg=Yellow
-highlight ALEError ctermbg=Blue ctermfg=White
-let g:ale_sign_error = '🦈'
-let g:ale_sign_warning = '⚡️'
-" --------------- Airline --------------
-let g:airline#extensions#ale#enabled = 0
-let g:airline_powerline_fonts = 1
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-let g:airline_section_z = ''
-let g:airline_section_a = ''
-let g:airline_section_b = ''
-
-" ---------------  TSUQOYOMI --------------
-" autocmd FileType typescript setlocal completeopt+=menu,preview
-" autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
-
-" ---------------  GitGutter --------------
-let g:gitgutter_signs = 1
-let g:gitgutter_sign_added = ""
-let g:gitgutter_sign_modified = ""
-let g:gitgutter_sign_removed = ''
-let g:gitgutter_sign_removed_first_line = ''
-let g:gitgutter_sign_removed_above_and_below = ''
-let g:gitgutter_sign_modified_removed = ''
-
-
-" ---------------  vue syntax highlighting | vim-vue --------------
-let g:vue_pre_processors = 'detect-on-enter'
-" ---------------  markdown --------------
-let g:mkdp_auto_start = 0
-" ---------------  Neoterm --------------
-let g:neoterm_default_mod = 'vertical'
-let g:neoterm_autoinsert = 1
-nnoremap <c-q> :Ttoggle<CR>
-inoremap <c-q> <Esc> <c-q>:Ttoggle<CR>
-tnoremap <c-q> <c-\><c-n>:Ttoggle<CR>
 " ---------------  EXTRA --------------
-call gitgutter#highlight#define_signs()
-let g:rustfmt_autosave = 1
+" call gitgutter#highlight#define_signs()
