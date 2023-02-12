@@ -1,8 +1,11 @@
-inputs: {
+inputs:
+let
+  user = (import ../user.nix).mpu4;
+in {
   system = "x86_64-linux";
   specialArgs = {
     inherit inputs;
-    user = (import ../user.nix).mpu4;
+    inherit user;
   };
   modules =
     [
@@ -14,6 +17,26 @@ inputs: {
         home-manager.extraSpecialArgs = {
           inherit inputs;
           user = (import ../user.nix).mpu4;
+          _imports = [
+            ../homemanager/packages.nix
+            ../homemanage/guiPackages.nix
+            ../homemanage/linuxPackages.nix
+            ../homemanage/themePackages.nix
+            ../homemanage/zsh.nix
+            ../homemanage/mimeappsList.nix
+            ../homemanage/vim/vim.nix
+            ../homemanage/i3/i3blocks.home.nix
+            ../homemanage/i3/i3.home.nix
+            ../homemanage/modules/dunst.home.nix
+            ../homemanage/modules/rofi.home.nix
+            ../homemanage/modules/git.nix
+            ../homemanage/modules/hexchat.nix
+            ../homemanage/scripts/scripts.nix
+            ../homemanage/scripts/scripts.nix
+            ../homemanage/scripts/templates.nix
+          ] ++ (if user.withgtk then [
+            ../homemanager/modules/gtk3.nix 
+          ] else [ ]);
         };
       }
     ];

@@ -1,8 +1,11 @@
-inputs: {
+inputs:
+let user = (import ../user.nix).macv;
+in
+{
   system = "aarch64-darwin";
   specialArgs = {
     inherit inputs;
-    user = (import ../user.nix).macv;
+    inherit user;
   };
   modules =
     [
@@ -14,7 +17,14 @@ inputs: {
         home-manager.users.valentin = import ../homemanager/darwinHome.nix;
         home-manager.extraSpecialArgs = {
           inputs = inputs;
-          user = (import ../user.nix).macv;
+          user = user;
+          _imports = [
+            ../homemanager/packages.nix
+            ../homemanager/vim/vim.nix
+            ../homemanager/zsh.nix
+            ../homemanager/modules/git.nix
+            ../homemanager/modules/tmux.nix
+          ];
         };
       }
     ];
