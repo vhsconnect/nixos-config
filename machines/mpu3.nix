@@ -1,6 +1,12 @@
 inputs:
-let user = (import ../user.nix).mpu3;
-in {
+let
+  user = (import ../user.nix).mpu3;
+  desktopEnvironments = [
+    ../desktop/i3.nix
+    ../desktop/gnome.nix
+  ];
+in
+{
   system = "x86_64-linux";
   specialArgs = {
     inherit inputs;
@@ -40,5 +46,5 @@ in {
           ] else [ ]);
         };
       }
-    ];
+    ] ++ desktopEnvironments;
 }

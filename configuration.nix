@@ -83,20 +83,12 @@
     displayManager = {
       defaultSession = "none+i3";
     };
-    windowManager.i3 = {
-      package = pkgs.i3-gaps;
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-        i3status
-        i3lock
-        i3blocks
-      ];
-    };
   };
 
+  #icewm
+  services.xserver.windowManager.icewm.enable = true;
+
   #gnome
-  services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.layout = "us";
   services.printing.enable = true;

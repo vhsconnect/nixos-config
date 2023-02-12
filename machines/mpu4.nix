@@ -1,7 +1,12 @@
 inputs:
 let
   user = (import ../user.nix).mpu4;
-in {
+  desktopEnvironments = [
+    ../desktop/i3.nix
+    ../desktop/gnome.nix
+  ];
+in
+{
   system = "x86_64-linux";
   specialArgs = {
     inherit inputs;
@@ -35,9 +40,9 @@ in {
             ../homemanage/scripts/scripts.nix
             ../homemanage/scripts/templates.nix
           ] ++ (if user.withgtk then [
-            ../homemanager/modules/gtk3.nix 
+            ../homemanager/modules/gtk3.nix
           ] else [ ]);
         };
       }
-    ];
+    ] ++ desktopEnvironments;
 }
