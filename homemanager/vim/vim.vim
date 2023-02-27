@@ -56,31 +56,31 @@ vnoremap <space>r y :%s/<C-r>"//gc<Left><Left><Left>
 let NERDTreeShowHidden = 1
 
 " --------------- REMAPS  MISC--------------
-nnoremap <space>n :NERDTreeToggle<CR>
-nnoremap <space>u :tabdo e<CR> "re-read from filesystem current tab
-nnoremap <space><space>u :bufdo e<CR> "re-read from filesystem all
-nnoremap <space>e :ALEDetail<CR>
-nnoremap <space><leader> :tabnext<CR>
-nnoremap <leader><space> :tabprevious<CR>
-nnoremap <space>s :set spell<CR>
-nnoremap <space><space>s :set nospell<CR>
-nnoremap <space>l :PrettierAsync<CR>
-nnoremap <space>b <C-W>z      "close info buffer
-"close info buffer
-nnoremap <space>b <C-W>z
-xnoremap K :move '<-2<CR>gv-gv
-xnoremap J :move '>+1<CR>gv-gv
-nnoremap K 5k
-nnoremap J 5j
-nnoremap L 10l
-nnoremap H 10h
-"move split to own tab
-nnoremap <leader><leader> <C-W>T
-
-"use leap
-nnoremap s <Plug>(leap-forward)
-nnoremap S <Plug>(leap-backward)
-
+" nnoremap <space>n :NERDTreeToggle<CR>
+" nnoremap <space>u :tabdo e<CR> "re-read from filesystem current tab
+" nnoremap <space><space>u :bufdo e<CR> "re-read from filesystem all
+" nnoremap <space>e :ALEDetail<CR>
+" nnoremap <space><leader> :tabnext<CR>
+" nnoremap <leader><space> :tabprevious<CR>
+" nnoremap <space>s :set spell<CR>
+" nnoremap <space><space>s :set nospell<CR>
+" nnoremap <space>l :PrettierAsync<CR>
+" nnoremap <space>b <C-W>z      "close info buffer
+" "close info buffer
+" nnoremap <space>b <C-W>z
+" xnoremap K :move '<-2<CR>gv-gv
+" xnoremap J :move '>+1<CR>gv-gv
+" nnoremap K 5k
+" nnoremap J 5j
+" nnoremap L 10l
+" nnoremap H 10h
+" "move split to own tab
+" nnoremap <leader><leader> <C-W>T
+"
+" "use leap
+" nnoremap s <Plug>(leap-forward)
+" nnoremap S <Plug>(leap-backward)
+"
 " --------------- FZF --------------
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 "  redefine Ag to not include filenames in search

@@ -29,6 +29,7 @@
     gnumake
     helix
     killall
+    librespeed-cli
     lf
     #magic-wormhole
     newsboat
@@ -36,6 +37,7 @@
     nix-doc
     nix-prefetch-git
     nixpkgs-fmt
+    ncspot
     pastel
     pdftk
     prettyping
@@ -92,8 +94,8 @@
       typescript
       vscode-langservers-extracted
     ]) ++ [
-      # additional language servers
-      pkgs.sumneko-lua-language-server 
-    ];
+    # additional language servers
+    pkgs.sumneko-lua-language-server
+  ];
 
 }

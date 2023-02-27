@@ -12,4 +12,4 @@ vim.g["ale_lint_on_text_changed"] = 1
 --   python: ['yapf'],
 -- }
 
-vim.g.ale_fixers = {nix = {'nixpkgs-fmt'}}
+vim.g.ale_fixers = {nix = {'nixpkgs-fmt'}, rust = {'rustfmt'}}

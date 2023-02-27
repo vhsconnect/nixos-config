@@ -36,9 +36,6 @@ in
       typescript-vim
       vim-colorschemes
       lualine-nvim
-      lualine-lsp-progress
-      # vim-airline
-      # vim-airline-themes
       vim-devicons
       vim-easy-align
       vim-fugitive
@@ -88,6 +85,7 @@ in
         ./lua/lsp.lua 
         ./lua/ale.lua 
         ./lua/lualine.lua 
+        ./lua/custom-remaps.lua
         ]))}
       EOF
     '';

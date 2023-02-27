@@ -32,6 +32,7 @@ in
     shellAliases = {
       nixosconfig = "nvim /Repos/nixos-config/nixos/nixos/configuration.nix";
       cdconfig = "~/SConfig/nixos-config/ && vi `fzf`";
+      speed = "speedtest-cli";
       nixosdir = "cd /etc/nixos";
       managerdir = "cd ~/.config/nixpkgs";
       grep = "grep -i";
