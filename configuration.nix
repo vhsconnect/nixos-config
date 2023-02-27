@@ -8,6 +8,7 @@
     )
     # ./work.nix 
   ];
+  nixpkgs.config.allowUnfree = true;
 
   nix = {
     package = pkgs.nixFlakes;
@@ -88,10 +89,16 @@
   #icewm
   services.xserver.windowManager.icewm.enable = true;
 
+  #printing
+  services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.openFirewall = true;
+  services.avahi.nssmdns = true;
+  services.printing.drivers = [ pkgs.cnijfilter2 ];
+
   #gnome
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.layout = "us";
-  services.printing.enable = true;
   hardware.opengl.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
