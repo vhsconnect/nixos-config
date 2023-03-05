@@ -31,7 +31,6 @@
     killall
     librespeed-cli
     lf
-    #magic-wormhole
     newsboat
     niv
     nix-doc
@@ -65,7 +64,6 @@
         "Meslo"
         "Terminus"
         "VictorMono"
-        "OpenDyslexic"
         "Noto"
         "Overpass"
         "SpaceMono"

@@ -85,24 +85,6 @@ require'lspconfig'.jsonls.setup {
   capabilities = capabilities,
 }
 
-require'lspconfig'.sumneko_lua.setup {
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = {'vim'},
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
 
 ----------------------
 -- nvim-treesitter --
@@ -117,9 +99,9 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
     keymaps = {
       init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
+      node_incremental = "<leader>[",
+      scope_incremental = "gnm",
+      node_decremental = "<leader>]",
     },
   },
 }

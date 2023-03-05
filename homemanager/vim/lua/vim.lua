@@ -148,3 +148,4 @@ vim.api.nvim_call_function("gitgutter#highlight#define_signs", {})
 -- vue vim
 ------------------
 vim.g['vue_pre_processors'] = 'detect-on-enter'
+

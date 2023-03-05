@@ -1,5 +1,4 @@
 vim.keymap.set('n', '<space>n', ':NERDTreeToggle<CR>', {noremap = true})
-vim.keymap.set('n', '<space>b', '<C-W>z', {noremap = true})
 vim.keymap.set('n', '<space><leader>', ':tabnext<CR>', {noremap = true})
 vim.keymap.set('n', '<leader><space>', ':tabprevious<cr>', {noremap = true})
 vim.keymap.set('n', '<space>s', ':set spell<cr>', {noremap = true})
