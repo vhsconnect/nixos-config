@@ -2,6 +2,33 @@
 {
   home.packages = with pkgs; [
 
+    #
+    cron
+    gnumake
+    helix
+    librespeed-cli
+    pastel
+    pdftk
+    prettyping
+    protoc-gen-doc
+    tldr
+    tmuxinator
+    watchman
+
+    #3rd party
+    awscli2
+
+    #haskell
+    cabal-install
+    cabal2nix
+
+    # nix
+    niv
+    nix-doc
+    nix-prefetch-git
+    nixpkgs-fmt
+    rnix-lsp
+
     # rust
     cargo
     rustc
@@ -15,43 +42,32 @@
     bundler
     bundix
 
-    # unzip
-    awscli2
-    bat
-    cabal-install
-    cabal2nix
-    cron
-    exa
-    fd
-    ffmpeg
+    #bash
+    shellcheck
+
+    #git
     gitAndTools.diff-so-fancy
     gitAndTools.tig
-    gnumake
-    helix
-    killall
-    librespeed-cli
-    lf
-    newsboat
-    niv
-    nix-doc
-    nix-prefetch-git
-    nixpkgs-fmt
-    ncspot
-    pastel
-    pdftk
-    prettyping
-    protoc-gen-doc
-    rnix-lsp
-    shellcheck
-    silver-searcher
-    tldr
-    tmuxinator
-    tree
-    watchman
-    # youtube-dl
-    yt-dlp
-    zip
 
+    #audio/video
+    ffmpeg
+    yt-dlp
+
+    #utils
+    zip
+    exa
+    fd
+    bat
+    silver-searcher
+    lf
+    killall
+    tree
+
+    #tui
+    newsboat
+    ncspot
+
+    # nixos vm
     nixos-shell
 
     #fonts
