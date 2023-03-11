@@ -11,5 +11,9 @@ vim.g["ale_lint_on_text_changed"] = 1
 --   haskell: ['hlint', 'ormolu', 'hindent', 'floskell'],
 --   python: ['yapf'],
 -- }
+vim.g["ale_linters"] = {
+   javascript = {'tsserver'},
+   typescript = {'tsserver'},
+ }
 
 vim.g.ale_fixers = {nix = {'nixpkgs-fmt'}, rust = {'rustfmt'}}

@@ -27,7 +27,7 @@ in
       editorconfig-vim
       fzf-vim
       markdown-preview-nvim
-      nerdtree
+      # nerdtree
       neoterm
       papercolor-theme
       tcomment_vim
@@ -39,7 +39,6 @@ in
       vim-devicons
       vim-easy-align
       vim-fugitive
-      vim-javascript-syntax
       vim-nix
       vim-prettier
       vim-tmux-navigator
@@ -47,6 +46,9 @@ in
       vimproc
       vim-gitgutter
       vim-repeat
+
+      nvim-tree-lua
+      nvim-web-devicons
 
     ] ++ [
       pkgs.leap-nvim

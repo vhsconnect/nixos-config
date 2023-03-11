@@ -32,7 +32,7 @@
   programs.broot =
     {
       enable = true;
-      modal = true;
+      settings.modal = true;
       enableZshIntegration = true;
     };
   programs.htop = {

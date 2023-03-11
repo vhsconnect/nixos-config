@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<space>n', ':NERDTreeToggle<CR>', {noremap = true})
+vim.keymap.set('n', '<space>n', ':NvimTreeToggle<CR>', {noremap = true})
 vim.keymap.set('n', '<space><leader>', ':tabnext<CR>', {noremap = true})
 vim.keymap.set('n', '<leader><space>', ':tabprevious<cr>', {noremap = true})
 vim.keymap.set('n', '<space>s', ':set spell<cr>', {noremap = true})
@@ -26,3 +26,5 @@ vim.keymap.set('n', 'S', '<Plug>(leap-backward)',  { noremap = true })
 -- staging
 vim.keymap.set('n', '<space>u', ':tabdo e<CR>', {noremap = true})
 vim.keymap.set('n', '<space>e', ':ALEDetail<CR>', {noremap = true})
+
+
