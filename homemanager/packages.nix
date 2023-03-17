@@ -37,6 +37,7 @@
     #yapf
     #black
     pyright
+    pycritty
 
     #ruby
     bundler

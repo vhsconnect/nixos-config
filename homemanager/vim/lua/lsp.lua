@@ -105,3 +105,11 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 }
+
+
+----------------------
+-- float colors -- 
+-----------------------
+
+vim.api.nvim_set_hl(0, 'NormalFloat', {bg='#6e7c8c', fg='#081019'})
+vim.api.nvim_set_hl(0, 'FloatBorder', {bg='#289173' })

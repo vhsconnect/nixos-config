@@ -66,7 +66,6 @@
     '' else "";
 
   sound.enable = true;
-  videoDrivers = if user.nividia then [ "nividia" ] else [ "intel" ];
 
   console = {
     font = "Lat2-Terminus16";
@@ -82,6 +81,7 @@
       wallpaper = { mode = "max"; combineScreens = false; };
     };
     libinput.enable = true;
+    videoDrivers = if user.nividia then [ "nividia" ] else [ "intel" ];
     deviceSection = ''
       Option "TearFree" "true"
     '';
