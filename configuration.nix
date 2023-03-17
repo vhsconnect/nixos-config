@@ -81,7 +81,8 @@
       wallpaper = { mode = "max"; combineScreens = false; };
     };
     libinput.enable = true;
-    videoDrivers = if user.nividia then [ "nividia" ] else [ "intel" ];
+    # nvidia driver in hardware file
+    videoDrivers = if user.nvidia then [ "" ] else [ "intel" ];
     deviceSection = ''
       Option "TearFree" "true"
     '';
