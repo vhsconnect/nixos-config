@@ -26,6 +26,26 @@
       mpu4 = inputs.nixpkgs.lib.nixosSystem
         (import ./machines/mpu4.nix inputs);
 
+      tv1 = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+          user = (import ./user.nix).tv1;
+        };
+        modules =
+          [
+            ./configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.useUserPackages = true;
+              home-manager.users.vhs = import ./homemanager/home.nix;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                user = (import ./user.nix).tv1;
+              };
+            }
+          ];
+      };
     };
   };
 }

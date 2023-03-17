@@ -6,7 +6,6 @@
       "/hardware/${user.host}" +
       "/hardware-configuration.nix"
     )
-    # ./work.nix 
   ];
   nixpkgs.config.allowUnfree = true;
 
@@ -67,6 +66,7 @@
     '' else "";
 
   sound.enable = true;
+  videoDrivers = if user.nividia then [ "nividia" ] else [ "intel" ];
 
   console = {
     font = "Lat2-Terminus16";
@@ -81,9 +81,11 @@
       xterm.enable = false;
       wallpaper = { mode = "max"; combineScreens = false; };
     };
-    displayManager = {
-      defaultSession = "none+i3";
-    };
+    libinput.enable = true;
+    deviceSection = ''
+      Option "TearFree" "true"
+    '';
+
   };
 
   #icewm
@@ -96,7 +98,6 @@
   services.avahi.nssmdns = true;
   services.printing.drivers = [ pkgs.cnijfilter2 ];
 
-  #gnome
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.layout = "us";
   hardware.opengl.enable = true;
@@ -111,11 +112,6 @@
     };
   };
   services.blueman.enable = true;
-  services.xserver.libinput.enable = true;
-  services.xserver.videoDrivers = [ "intel" ];
-  services.xserver.deviceSection = ''
-    Option "TearFree" "true"
-  '';
   services.picom = {
     enable = true;
     vSync = true;
