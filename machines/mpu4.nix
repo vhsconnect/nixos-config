@@ -2,7 +2,6 @@ inputs:
 let
   user = (import ../user.nix).mpu4;
   desktopEnvironments = [
-    ../desktop/i3.nix
     ../desktop/gnome.nix
   ];
 in
@@ -31,15 +30,13 @@ in
             ../homemanager/zsh.nix
             ../homemanager/mimeappsList.nix
             ../homemanager/vim/vim.nix
-            ../homemanager/i3/i3blocks.home.nix
-            ../homemanager/i3/i3.home.nix
             ../homemanager/modules/dunst.home.nix
             ../homemanager/modules/rofi.home.nix
             ../homemanager/modules/git.nix
             ../homemanager/modules/hexchat.nix
             ../homemanager/scripts/scripts.nix
-            ../homemanager/scripts/scripts.nix
             ../homemanager/scripts/templates.nix
+            ../homemanager/sway.nix
           ] ++ (if user.withgtk then [
             ../homemanager/modules/gtk3.nix
           ] else [ ]);

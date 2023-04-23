@@ -14,6 +14,8 @@
     tldr
     tmuxinator
     watchman
+    ponysay
+    neofetch
 
     #3rd party
     awscli2

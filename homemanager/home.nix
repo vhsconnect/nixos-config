@@ -64,22 +64,25 @@
   ######## services ########
   services.gnome-keyring.enable = true;
   services.gpg-agent.enable = true;
-  services.gammastep =
-    {
-      enable = true;
-      dawnTime = "6:00-7:45";
-      duskTime = "18:00-19:05";
-      longitude = "59.3";
-      latitude = "18.0";
-      temperature.day = 4800;
-      tray = true;
-    };
-  services.xscreensaver = {
-    enable = true;
-    settings = {
-      timeout = "30";
-    };
-  };
+
+
+  ######### X11 ############
+  # services.gammastep =
+  #   {
+  #     enable = true;
+  #     dawnTime = "6:00-7:45";
+  #     duskTime = "18:00-19:05";
+  #     longitude = "59.3";
+  #     latitude = "18.0";
+  #     temperature.day = 4800;
+  #     tray = true;
+  #   };
+  # services.xscreensaver = {
+  #   enable = true;
+  #   settings = {
+  #     timeout = "30";
+  #   };
+  # };
 
   #IMPORTANT
   home.stateVersion = "21.03";

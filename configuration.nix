@@ -55,6 +55,8 @@
       };
     };
 
+
+
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -88,6 +90,17 @@
     '';
 
   };
+  services.picom = {
+    enable = if user.xserver then true else false;
+    vSync = true;
+    inactiveOpacity = 0.86;
+    fade = true;
+    fadeDelta = 8;
+    fadeSteps = [ 0.028 0.03 ];
+  };
+
+  programs.nm-applet.enable = if user.xserver then true else false;
+  programs.sway.enable = if user.xserver then false else true;
 
   #icewm
   services.xserver.windowManager.icewm.enable = true;
@@ -113,14 +126,6 @@
     };
   };
   services.blueman.enable = true;
-  services.picom = {
-    enable = true;
-    vSync = true;
-    inactiveOpacity = 0.86;
-    fade = true;
-    fadeDelta = 8;
-    fadeSteps = [ 0.028 0.03 ];
-  };
 
   services.pipewire = {
     enable = true;
@@ -140,16 +145,11 @@
 
   environment.pathsToLink = [ "/share/zsh" ];
   environment.systemPackages = with pkgs;
-    let
-      myPy3Packages = python-packages: with python-packages; [
-        pandas
-        pynvim
-        virtualenv
-      ];
-      python3Plus = python3.withPackages myPy3Packages;
-    in
     [
-      python3Plus
+      (python3.withPackages (p: [
+        p.pynvim
+        p.virtualenv
+      ]))
       zsh
       wget
       curl
@@ -159,26 +159,22 @@
       gnupg
       htop
       jq
-      neofetch
       docker
+      virt-manager
       pavucontrol
       nmap
       neovim
       xfce.xfce4-terminal
       xclip
-      xscreensaver
       blueman
+      xscreensaver
       x11_ssh_askpass
       nodejs-16_x
       globalprotect-openconnect
       sysstat
       docker-compose
-      virt-manager
-      ponysay
-
     ];
 
-  programs.nm-applet.enable = true;
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
   programs.zsh.enable = true;
   programs.dconf.enable = true;
@@ -189,15 +185,9 @@
   };
   programs.adb.enable = true;
 
+
   services.openssh.enable = false;
   services.globalprotect.enable = true;
-  services.cron =
-    {
-      enable = true;
-      systemCronJobs = [
-        "* * * * * root  . /etc/profile; sh cleanhome"
-      ];
-    };
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
