@@ -91,7 +91,7 @@
 
   };
   services.picom = {
-    enable = if user.xserver then true else false;
+    enable = if user.usei3 then true else false;
     vSync = true;
     inactiveOpacity = 0.86;
     fade = true;
@@ -99,8 +99,8 @@
     fadeSteps = [ 0.028 0.03 ];
   };
 
-  programs.nm-applet.enable = if user.xserver then true else false;
-  programs.sway.enable = if user.xserver then false else true;
+  programs.nm-applet.enable = if user.usei3 then true else false;
+  programs.sway.enable = if user.usei3 then false else true;
 
   #icewm
   services.xserver.windowManager.icewm.enable = true;
