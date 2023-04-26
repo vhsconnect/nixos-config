@@ -154,5 +154,8 @@ vim.g['vue_pre_processors'] = 'detect-on-enter'
 ------------------
 require("nvim-tree").setup()
 
-
+------------------
+-- nvim-surround
+------------------
+require("nvim-surround").setup()
 

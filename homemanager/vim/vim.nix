@@ -27,7 +27,6 @@ in
       editorconfig-vim
       fzf-vim
       markdown-preview-nvim
-      # nerdtree
       neoterm
       papercolor-theme
       tcomment_vim
@@ -49,6 +48,7 @@ in
 
       nvim-tree-lua
       nvim-web-devicons
+      nvim-surround
 
     ] ++ [
       pkgs.leap-nvim
