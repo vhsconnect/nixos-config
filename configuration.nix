@@ -229,7 +229,7 @@
     enable = true;
     user = "vhs";
     port = 8335;
-    faderValue = 40;
+    faderValue = 30;
   };
 
   virtualisation.docker.enable = true;

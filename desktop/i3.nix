@@ -10,9 +10,3 @@
     ];
   };
 }
-windowManager
-
-
-
-
-
