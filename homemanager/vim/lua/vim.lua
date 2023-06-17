@@ -159,3 +159,11 @@ require("nvim-tree").setup()
 ------------------
 require("nvim-surround").setup()
 
+-------------
+-- codeium
+-------------
+vim.g.codeium_enabled = "v:false"
+
+
+
+

@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   users.users.valentin.home = "/Users/valentin";
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ ];
 
   nix.package = pkgs.nix;
   nix.nixPath = [ "darwin=/nix/store/lql1bfyxnzqadchvascc6vxj3gmj5dr9-nix-darwin" ];
@@ -23,13 +24,12 @@
       python3Plus
       wget
       curl
-      #  vlc
       gnupg
       htop
       jq
       nmap
       neovim
-      nodejs-16_x
+      nodejs-18_x
       #docker-compose
       #docker
       ponysay

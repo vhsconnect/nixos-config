@@ -10,6 +10,7 @@ in
   modules =
     [
       ../darwinConfiguration.nix
+
       inputs.home-manager.darwinModules.home-manager
       {
         home-manager.useUserPackages = true;

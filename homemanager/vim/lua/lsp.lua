@@ -1,20 +1,26 @@
-----------------
+require("neodev").setup({
+  override = function(root_dir, library)
+      library.enabled = true
+      library.plugins = true
+  end,
+  lspconfig = true,
+  pathStrict = true
+})
+---------------
 -- lsp config --
 ----------------
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 vim.o.updatetime = 320
-vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus = false})]]
 
 vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
   underline = true,
+  virtual_text = false,
+  signs = false,
   update_in_insert = false,
   severity_sort = false,
 })
-
-
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -31,7 +37,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>h', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
-
   vim.api.nvim_create_autocmd("CursorHold", {
     buffer = bufnr,
     callback = function()
@@ -73,6 +78,26 @@ require('lspconfig')['rust_analyzer'].setup{
     }
 }
 
+require'lspconfig'.lua_ls.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+
 require'lspconfig'.cssls.setup {
   capabilities = capabilities,
 }
@@ -85,7 +110,9 @@ require'lspconfig'.jsonls.setup {
   capabilities = capabilities,
 }
 
+require'lspconfig'.nil_ls.setup{}
 
+-- require'lspconfig'.nixd.setup{}
 ----------------------
 -- nvim-treesitter --
 -----------------------

@@ -50,6 +50,9 @@ in
       nvim-web-devicons
       nvim-surround
 
+      # codeium-vim
+      neodev-nvim
+
     ] ++ [
       pkgs.leap-nvim
     ]
