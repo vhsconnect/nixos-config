@@ -4,6 +4,6 @@ let
 in
 pinned.mkShell {
   name = "system-build-shell";
-  buildInputs = [ pinned.git-crypt ];
+  buildInputs = [ pinned.git-crypt pinned.ponysay ];
   shellHook = "ponysay \"hello world\"";
 }

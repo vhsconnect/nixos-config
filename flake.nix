@@ -8,7 +8,7 @@
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
-    bbrf.url = "github:vhsconnect/bbrf-radio/master";
+    bbrf.url = "github:vhsconnect/bbrf-radio/esm";
     bbrf.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = inputs: {
@@ -27,6 +27,9 @@
 
       tv1 = inputs.nixpkgs.lib.nixosSystem
         (import ./machines/tv1.nix inputs);
+
+      munin = inputs.nixpkgs.lib.nixosSystem
+        (import ./machines/munin.nix inputs);
 
     };
   };
