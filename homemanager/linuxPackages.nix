@@ -1,8 +1,8 @@
-{pkgs, ...}:{
+{ pkgs, ... }: {
 
-home.packages = with pkgs; [
+  home.packages = with pkgs; [
 
-inotify-tools
+    inotify-tools
     acpi
     coreutils
     lxqt.lxqt-sudo
@@ -14,5 +14,5 @@ inotify-tools
     xorg.xmodmap
     xorg.xev
     xwallpaper
-];
+  ];
 }
