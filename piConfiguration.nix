@@ -17,7 +17,7 @@
   networking.hostName = "munin";
   networking.wireless.enable = true;
   networking.wireless.interfaces = [ "wlan0" ];
-  networking.wireless.networks."tacos".psk = user.psk;
+  networking.wireless.networks.${user.network1}.psk = user.psk;
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
