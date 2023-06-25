@@ -20,6 +20,7 @@
     krita
     minder
     obs-studio
+    obsidian
     qbittorrent
     qt5ct
     signal-desktop

@@ -169,7 +169,7 @@
       blueman
       xscreensaver
       x11_ssh_askpass
-      nodejs-16_x
+      nodejs-18_x
       globalprotect-openconnect
       sysstat
       docker-compose
@@ -221,7 +221,7 @@
   security.wrappers.node = {
     owner = "vhs";
     group = "wheel";
-    source = "${pkgs.nodejs-16_x}/bin/node";
+    source = "${pkgs.nodejs-18_x}/bin/node";
     capabilities = "cap_net_bind_service=+ep";
   };
 

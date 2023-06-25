@@ -16,6 +16,7 @@
     watchman
     ponysay
     neofetch
+    eww
 
     #3rd party
     awscli2

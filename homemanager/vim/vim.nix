@@ -45,6 +45,7 @@ in
       vimproc
       vim-gitgutter
       vim-repeat
+      yuck-vim
 
       nvim-tree-lua
       nvim-web-devicons

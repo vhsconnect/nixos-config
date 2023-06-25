@@ -100,6 +100,7 @@ let
     #! /usr/bin/env zsh
     xrandr --output HDMI2 --off --output DP1 --off
   '';
+  robl = pkgs.writeScriptBin "robl" (builtins.readFile ./robl);
 in
 {
   home.packages = [
@@ -114,5 +115,7 @@ in
     keys
     trips4
     monitorsDisconnected
+    robl
   ];
 }
+
