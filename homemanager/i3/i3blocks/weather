@@ -2,7 +2,7 @@
 
 shopt -s nocasematch
 
-AIRPORT=BMA
+AIRPORT=ARN
 DATA=$(curl -Ss wttr.in/$AIRPORT?format=j1)
 CONDITION=$(curl -Ss wttr.in/$AIRPORT?format="%C\n")
 

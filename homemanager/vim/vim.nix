@@ -1,16 +1,18 @@
-{ pkgs, lib, config, user, ... }:
+{ pkgs, user, ... }:
 
 let
   pathToVimSnippets = "~/Public/snippets/";
   ifThenElse = x: y: z: (if x then y else z);
   toJSON = builtins.toJSON;
+  joinFiles = x: builtins.concatStringsSep "\n" (map builtins.readFile x);
+
 in
 {
-  #writes to file
+
   xdg.configFile =
     {
       "nvim/coc-settings.json".text = toJSON (import ./coc-settings.nix);
-      "nvim/coc-file.vim".source = ./cocfile.vim; #uneeded
+      "nvim/coc-file.vim".source = ./cocfile.vim;
     };
 
   programs.neovim = {
@@ -51,13 +53,21 @@ in
       nvim-web-devicons
       nvim-surround
 
-      # codeium-vim
       neodev-nvim
-
-    ] ++ [
       pkgs.leap-nvim
-    ]
-    ++
+      {
+        plugin = pkgs._codeium;
+        optional = true;
+        config = ''
+          let g:codeium_disable_bindings = 1
+          imap <script><silent><nowait><expr> <C-a><space> codeium#Accept()
+          imap <C-a>. <Cmd>call codeium#CycleCompletions(1)<CR>
+          imap <C-a>, <Cmd>call codeium#CycleCompletions(-1)<CR>
+          imap <C-a> <Cmd>call codeium#Clear()<CR>   
+        '';
+      }
+
+    ] ++
     (if user.useCoc then [ ] else [
       # completion-nvim
       nvim-treesitter.withAllGrammars
@@ -86,13 +96,13 @@ in
       lua <<EOF
       ${if user.useCoc 
       then "-- using coc-nvim" 
-      else (builtins.concatStringsSep "\n" (map builtins.readFile [ 
+      else joinFiles [ 
         ./lua/vim.lua 
         ./lua/lsp.lua 
         ./lua/ale.lua 
         ./lua/lualine.lua 
         ./lua/custom-remaps.lua
-        ]))}
+        ]}
       EOF
     '';
   };

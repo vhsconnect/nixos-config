@@ -25,6 +25,7 @@
             (button :class "black-text" :onclick "nm-connection-editor & eww close quick-menu" "wifi")
             (button :class "black-text" :onclick "blueman-manager & eww close quick-menu" "bluetooth")
             (button :class "black-text" :onclick "robl & eww close quick-menu" "rofi bluetooth")
+            (button :class "black-text" :onclick "bluetoothctl power off & eww close quick-menu" "kill bluetooth")
             (label   :text "''${time.hour}:''${time.min}")
             )
         )

@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 
   home.packages = with pkgs; [
-
+    steam-run
     inotify-tools
     acpi
     coreutils

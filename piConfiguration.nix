@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }:
+{ pkgs, user, ... }:
 
 {
 
@@ -56,7 +56,7 @@
     };
   };
 
-
+  environment.variables.EDITOR = "vim";
   environment.systemPackages = with pkgs; [
     vim
     wget

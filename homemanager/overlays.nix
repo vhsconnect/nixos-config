@@ -4,11 +4,6 @@ let
     system = builtins.currentSystem;
   };
 
-  neovim-nightly-overlay = import (builtins.fetchTarball {
-    url = https://github.com/vhsconnect/neovim-nightly-overlay/archive/master.tar.gz;
-    sha256 = "184lc8s5rpm9w2x7ygbwwzn4hsd0xidp8y6i9aqjkkdry4bv7l74";
-  });
-
   insomnia-overlay = self: prev: {
     insomnia = packages-2111.insomnia;
   };
@@ -29,6 +24,27 @@ let
       };
     };
 
+  codeium-overlay = self: prev:
+    {
+      _codeium = prev.vimUtils.buildVimPluginFrom2Nix {
+        name = "codeium.vim";
+        version = "1.2.26";
+        src = prev.fetchFromGitHub {
+          owner = "Exafunction";
+          repo = "codeium.vim";
+          rev = "b7946996e1f34fff4f3adb639c0fb5bffc157092";
+          sha256 = "gc4BP4ufE6UPJanskhvoab0vTM3t5b2egPKaV1X5KW0=";
+        };
+        patches = [
+          ../patches/codeium-vim.patch
+        ];
+        meta = {
+          description = "Free, ultrafast Copilot alternative for Vim and Neovim";
+          homepage = "https://codeium.com/";
+        };
+      };
+    };
+
   coc-nvim-overlay = self: prev:
     {
       coc-nvim-fixed = prev.vimUtils.buildVimPluginFrom2Nix {
@@ -43,10 +59,11 @@ let
         meta.homepage = "https://github.com/neoclide/coc.nvim/";
       };
     };
+
 in
 [
   insomnia-overlay
   coc-nvim-overlay
-  # neovim-nightly-overlay
   leap-nvim-overlay
+  codeium-overlay
 ]
