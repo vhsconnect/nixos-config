@@ -19,13 +19,15 @@
   networking.wireless.interfaces = [ "wlan0" ];
   networking.wireless.networks.${user.network1}.psk = user.psk;
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 21 80 443 ];
+  networking.firewall.allowedTCPPortRanges = [{ from = 51000; to = 51999; }];
 
   time.timeZone = "Europe/Paris";
 
   users.users.vhs = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel"  ];
+    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBhw5g6xfxbwPcjThdsTYAk6fH/juhIXameVa21j+seG ${user.email}" ];
   };
 
   programs.vim.defaultEditor = true;
@@ -37,6 +39,19 @@
 
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = true;
+
+  services.vsftpd = {
+    enable = true;
+    writeEnable = true;
+    localRoot = "/home/vhs/Data/";
+    localUsers = true;
+    userlist = [ "vhs" ];
+    extraConfig = ''
+      pasv_enable=Yes
+      pasv_min_port=51000
+      pasv_max_port=51999
+    '';
+  };
 
   services.bbrf = {
     enable = true;
@@ -64,6 +79,7 @@
     curl
   ];
 
+security.sudo.wheelNeedsPassword = false;
   system.stateVersion = "23.05";
 
 }

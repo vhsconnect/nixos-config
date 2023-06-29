@@ -14,10 +14,18 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
       fsType = "ext4";
+    };
+
+  fileSystems."/home/vhs/Data" =
+    {
+      device = "/dev/disk/by-uuid/5eeb0d52-9b6e-4874-8bd7-8c7ec374ef5f";
+      fsType = "ext4";
+      noCheck = true;
     };
 
   swapDevices = [ ];
