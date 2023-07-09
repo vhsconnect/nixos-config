@@ -2,9 +2,9 @@
 
 shopt -s nocasematch
 
-AIRPORT=ARN
-DATA=$(curl -Ss wttr.in/$AIRPORT?format=j1)
-CONDITION=$(curl -Ss wttr.in/$AIRPORT?format="%C\n")
+CITY=stockholm
+DATA=$(curl -Ss wttr.in/$CITY?format=j1)
+CONDITION=$(curl -Ss wttr.in/$CITY?format="%C\n")
 
 OVERCAST=
 RAIN=

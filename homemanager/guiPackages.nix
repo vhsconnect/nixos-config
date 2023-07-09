@@ -3,38 +3,17 @@
   home.packages = with pkgs;[
     alacritty
     arandr
-    calibre
     chromium
-    discord
-    dropbox
     evince
     filezilla
     flameshot
-    gimp
     gnvim
     gparted
     gromit-mpx
     gthumb
-    inkscape
-    insomnia
-    krita
-    minder
-    obs-studio
-    obsidian
-    qbittorrent
-    qt5ct
     signal-desktop
-    slack
-    songrec
-    spotify
-    sublime-merge
-    sublime3
     tdesktop
-    teams
-    thunderbird
-    vscodium
-    zoom-us
-    zeal
+    freetube
   ];
 
 }

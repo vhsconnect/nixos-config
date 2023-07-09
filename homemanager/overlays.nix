@@ -8,7 +8,7 @@ let
     insomnia = packages-2111.insomnia;
   };
 
-  leap-nvim-overlay = serlf: prev:
+  leap-nvim-overlay = self: prev:
     {
       leap-nvim = prev.vimUtils.buildVimPluginFrom2Nix {
         pname = "leap.nvim";
@@ -23,6 +23,7 @@ let
         meta.homepage = "https://github.com/ggandor/leap.nvim/";
       };
     };
+
 
   codeium-overlay = self: prev:
     {

@@ -1,5 +1,8 @@
 #! /usr/bin/env zsh
 
+# TODO
+# setxkbmap us altgr-intl
+
 xmodmap -e "clear control"
 xmodmap -e "clear mod1"
 xmodmap -e "clear mod4"
@@ -12,3 +15,4 @@ xmodmap -e "add mod1 = Alt_L Meta_L"
 xmodmap -e "remove lock = Caps_Lock" # disable capslock functionality from CAPS_LOCK
 xmodmap -e "add mod1 = Caps_Lock" #add ALT to capslock
 xmodmap -e "keycode 66 = Alt_R" #assign keycode
+

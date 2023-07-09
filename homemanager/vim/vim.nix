@@ -55,6 +55,7 @@ in
 
       neodev-nvim
       pkgs.leap-nvim
+      which-key-nvim
       {
         plugin = pkgs._codeium;
         optional = true;

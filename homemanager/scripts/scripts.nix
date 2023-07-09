@@ -101,6 +101,7 @@ let
     xrandr --output HDMI2 --off --output DP1 --off
   '';
   robl = pkgs.writeScriptBin "robl" (builtins.readFile ./robl);
+  oneoff = pkgs.writeScriptBin "oneoff" (builtins.readFile ./oneoff.sh);
 in
 {
   home.packages = [
@@ -116,6 +117,7 @@ in
     trips4
     monitorsDisconnected
     robl
+    oneoff
   ];
 }
 

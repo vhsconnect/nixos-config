@@ -14,5 +14,6 @@
     xorg.xmodmap
     xorg.xev
     xwallpaper
+    skanlite
   ];
 }

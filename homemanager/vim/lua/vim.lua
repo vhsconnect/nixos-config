@@ -147,7 +147,7 @@ vim.keymap.set('i', '<c-q> <Esc>', '<c-q>:Ttoggle<CR>', {noremap = true})
 -- markdown
 ------------------
 
-vim.g["mkdp_auto_start"] = 1
+vim.g["mkdp_auto_start"] = 0
 vim.g["mkdp_refresh_slow"] = 1
 vim.g["mkdp_browser"] = 'firefox'
 
@@ -178,7 +178,7 @@ vim.keymap.set('n', '<C-H>', ':TmuxNavigateLeft<CR>', {noremap = true})
 -- git gutter
 ------------------
 
-vim.g["gitgutter_signs"] = 1
+vim.g["gitgtter_signs"] = 1
 vim.g["gitgutter_sign_added"] = ''
 vim.g["gitgutter_sign_modified"] = ''
 vim.g["gitgutter_sign_removed"] =  ''

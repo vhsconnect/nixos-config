@@ -1,4 +1,4 @@
-{ config, pkgs, lib, options, user, inputs, ... }:
+{ config, pkgs, user, inputs, ... }:
 {
   imports = [
     (
@@ -178,13 +178,11 @@
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
   programs.zsh.enable = true;
   programs.dconf.enable = true;
-  programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
   programs.adb.enable = true;
-
 
   services.openssh.enable = false;
   services.globalprotect.enable = true;
@@ -228,7 +226,7 @@
   services.bbrf = {
     enable = true;
     user = "vhs";
-    port = 8335;
+    port = 3335;
     faderValue = 30;
   };
 

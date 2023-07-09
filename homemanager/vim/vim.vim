@@ -23,7 +23,6 @@ set autowrite
 set inccommand=split
 set foldmethod=expr
 set foldnestmax=10
-" set nofoldenable
 set foldlevel=2
 set tabstop=2
 set shiftwidth=2
@@ -69,5 +68,3 @@ nnoremap <space>b :Buffer<CR>
 nnoremap <silent> <c-g> :Ag<CR>
 inoremap <expr> <c-x><c-f> fzf#vim#complete("fd <Bar> xargs realpath --relative-to " . expand("%:h"))
 
-" ---------------  EXTRA --------------
-" call gitgutter#highlight#define_signs()

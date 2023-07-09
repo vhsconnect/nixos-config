@@ -28,3 +28,4 @@ vim.keymap.set('n', '<space>u', ':tabdo e<CR>', {noremap = true})
 vim.keymap.set('n', '<space>e', ':ALEDetail<CR>', {noremap = true})
 
 
+require("which-key").register()

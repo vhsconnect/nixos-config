@@ -1,25 +1,16 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-
     #
     cron
     gnumake
-    helix
     librespeed-cli
-    pastel
-    pdftk
     prettyping
     protoc-gen-doc
     tldr
-    tmuxinator
-    watchman
     ponysay
-    neofetch
     eww
 
-    #3rd party
-    awscli2
 
     #haskell
     cabal-install
@@ -37,14 +28,12 @@
     rustc
 
     #python
-    #yapf
-    #black
     pyright
     pycritty
 
     #ruby
-    bundler
-    bundix
+    # bundler
+    # bundix
 
     #bash
     shellcheck
@@ -61,15 +50,11 @@
     zip
     exa
     fd
-    bat
     silver-searcher
+    bat
     lf
     killall
     tree
-
-    #tui
-    newsboat
-    ncspot
 
     # nixos vm
     nixos-shell
@@ -78,15 +63,10 @@
     (nerdfonts.override {
       fonts = [
         "FiraCode"
-        "Hack"
         "Iosevka"
         "JetBrainsMono"
         "Meslo"
-        "Terminus"
         "VictorMono"
-        "Noto"
-        "Overpass"
-        "SpaceMono"
       ];
     })
 
