@@ -55,6 +55,7 @@
     lf
     killall
     tree
+    ripgrep
 
     # nixos vm
     nixos-shell

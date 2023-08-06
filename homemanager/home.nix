@@ -1,4 +1,4 @@
-{ pkgs, lib, config, user, inputs, _imports, ... }:
+{ inputs, _imports, ... }:
 {
   nixpkgs = {
     config = {
@@ -64,6 +64,7 @@
   ######## services ########
   services.gnome-keyring.enable = true;
   services.gpg-agent.enable = true;
+
 
 
   ######### X11 ############

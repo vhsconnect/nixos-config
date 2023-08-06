@@ -11,6 +11,6 @@ in
   modules =
     [
       ../piConfiguration.nix
-      inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
+      inputs.bbrf.nixosModules.aarch64-linux.bbrf
     ];
 }

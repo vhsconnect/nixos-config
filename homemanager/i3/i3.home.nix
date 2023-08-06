@@ -10,7 +10,6 @@ in
     ./i3blocks/blockScripts.nix
   ];
   xsession.windowManager.i3.enable = true;
-  xsession.windowManager.i3.package = pkgs.i3-gaps;
   xsession.windowManager.i3.config.modifier = "Mod1";
   xsession.windowManager.i3.config.gaps = {
     outer = 5;

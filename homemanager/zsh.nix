@@ -56,7 +56,9 @@ in
       deli = "tr $1 '\n'";
       img = "gthumb";
       pdf = "evince";
-      eww-test = "eww --config /home/vhs/.config/eww-test open --toggle open quick-menu";
+      tar-archive = "tar -czvf";
+      tar-unarchive = "tar -xzvf";
+      nd = "nix develop -c zsh";
     };
     oh-my-zsh = {
       enable = true;

@@ -14,6 +14,7 @@
     signal-desktop
     tdesktop
     freetube
+    syncthingtray
   ];
 
 }

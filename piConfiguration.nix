@@ -15,6 +15,11 @@
 
   nix.extraOptions = "experimental-features = nix-command flakes";
 
+  nixpkgs.buildPlatform = {
+    config = "x86_64-unknown-linux-gnu";
+    system = "x86_64-linux";
+  };
+
   networking.hostName = "munin";
   networking.wireless.enable = true;
   networking.wireless.interfaces = [ "wlan0" ];

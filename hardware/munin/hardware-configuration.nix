@@ -9,6 +9,7 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
+
   boot.initrd.availableKernelModules = [ "usbhid" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];

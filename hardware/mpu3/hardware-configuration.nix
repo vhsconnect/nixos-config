@@ -14,6 +14,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.kernelParams = [ "systemd.debug-shell=1" ];
   boot.extraModulePackages = [ ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   fileSystems."/" =
     {

@@ -15,7 +15,7 @@ in
   modules =
     [
       ../configuration.nix
-      inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
+      inputs.bbrf.nixosModules.x86_64-linux.bbrf
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useUserPackages = true;

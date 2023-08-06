@@ -2,6 +2,7 @@
 
   home.packages = with pkgs; [
     steam-run
+    qt5ct
     inotify-tools
     acpi
     coreutils

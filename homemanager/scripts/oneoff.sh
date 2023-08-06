@@ -1,11 +1,9 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i zsh -p gum 
+#! nix-shell -i zsh -p fzf 
 
 set - euo pipefail
 
-
-PACK=$(gum choose \
-  calibre \
+PACK=(calibre \
   discord     \
   dropbox     \
   gimp        \
@@ -17,11 +15,10 @@ PACK=$(gum choose \
   obs-studio  \
   obsidian    \
   qbittorrent \
-  qt5ct       \
   slack       \
   songrec     \
   spotify     \
-  sublime-merrge \
+  sublime-merge \
   sublime3    \
   teams      \
   thunderbird \
@@ -33,9 +30,10 @@ PACK=$(gum choose \
   bundix \
   newsboat \
   ncspot \
-
-
+  awscli2 \
+  libreoffice \
 )
 
-nix-shell -p "$PACK"
+SEL=$(printf  "%s\n" "${PACK[@]}" | fzf)
 
+nix-shell -p "$SEL"
