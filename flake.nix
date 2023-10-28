@@ -5,6 +5,7 @@
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     deploy-rs.url = "github:serokell/deploy-rs";
+    flake-utils.url = "github:numtide/flake-utils";
 
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
@@ -13,12 +14,19 @@
     bbrf.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = inputs:
-    let genAttrs = inputs.nixpkgs.lib.attrsets.genAttrs; in
+
+    let
+      systems = [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" ];
+      genAttrs = inputs.nixpkgs.lib.attrsets.genAttrs;
+      fold = builtins.foldl';
+      map = builtins.map;
+
+    in
+
     {
       formatter =
         (
-          genAttrs
-            [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" ]
+          genAttrs systems
             (x: inputs.nixpkgs.legacyPackages.${x}.nixpkgs-fmt)
         );
 
@@ -41,6 +49,44 @@
           (import ./machines/munin.nix inputs);
 
       };
+
+      # devShells =
+      #   inputs.flake-utils.lib.eachSystem systems (system:
+      #     let
+      #       mkShell = inputs.nixpkgs.legacyPackages.${system}.mkShell;
+      #       git-crypt = inputs.nixpkgs.legacyPackages.${system}.git-crypt;
+      #     in
+      #     {
+      #       default =
+      #         mkShell {
+      #           buildInputs = [ git-crypt ];
+      #         };
+      #     }
+      #   );
+
+      # devShells."x86_64-linux" =
+      #   {
+      #     default =
+      #       inputs.nixpkgs.legacyPackages."x86_64-linux".mkShell {
+      #         buildInputs = [ inputs.nixpkgs.legacyPackages."x86_64-linux".git-crypt ];
+      #       };
+      #   };
+
+      devShells = (fold
+        (a: b: a // b)
+        { }
+        (map
+          (x: {
+            ${x}.default =
+              inputs.nixpkgs.legacyPackages.${x}.mkShell {
+                buildInputs = [ inputs.nixpkgs.legacyPackages.${x}.git-crypt ];
+              };
+          })
+          systems)
+      );
+
+
+
 
       deploy.nodes.munin = {
         profiles.system = {

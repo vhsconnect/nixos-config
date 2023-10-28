@@ -67,7 +67,7 @@ in
   };
   xsession.windowManager.i3.config.startup = [
     { command = "systemctl --user import-environment"; }
-    { command = "keys"; }
+   # { command = "keys"; }
     { command = "long-command & sleep 2; trips4"; always = true; }
     { command = "xset -dpms"; always = true; }
     { command = "gromit-mpx"; notification = false; }

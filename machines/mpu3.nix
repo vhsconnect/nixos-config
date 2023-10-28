@@ -19,6 +19,7 @@ in
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useUserPackages = true;
+        home-manager.useGlobalPkgs = false;
         home-manager.backupFileExtension = "hmback";
         home-manager.users.vhs = import ../homemanager/home.nix;
         home-manager.extraSpecialArgs = {

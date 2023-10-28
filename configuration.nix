@@ -7,7 +7,11 @@
       "/hardware-configuration.nix"
     )
   ];
-  nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
 
   nix = {
     package = pkgs.nixFlakes;
@@ -20,9 +24,9 @@
       nixos = {
         flake = inputs.nixpkgs;
       };
-      nixpkgs = {
-        flake = inputs.nixpkgs;
-      };
+      # nixpkgs = {
+      #   flake = inputs.nixpkgs;
+      # };
     };
     gc = {
       automatic = true;
@@ -82,12 +86,12 @@
       wallpaper = { mode = "max"; combineScreens = false; };
     };
     libinput.enable = true;
+    libinput.mouse.accelSpeed = "-0.5";
     # nvidia driver in hardware file
     videoDrivers = if user.nvidia then [ "" ] else [ "intel" ];
     deviceSection = ''
       Option "TearFree" "true"
     '';
-
   };
   services.picom = {
     enable = if user.usei3 then true else false;

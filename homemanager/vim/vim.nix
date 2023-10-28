@@ -33,7 +33,6 @@ in
       papercolor-theme
       tcomment_vim
       tmuxline-vim
-      tsuquyomi
       typescript-vim
       vim-colorschemes
       lualine-nvim
