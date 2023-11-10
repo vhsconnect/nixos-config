@@ -10,6 +10,7 @@
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
     bbrf.url = "github:vhsconnect/bbrf-radio/f3646a00cc6a3bf70b47736cb01108927984b0e3";
     bbrf.inputs.nixpkgs.follows = "nixpkgs";
+    editor.url = "github:vhsconnect/nvim";
   };
   outputs = inputs:
 

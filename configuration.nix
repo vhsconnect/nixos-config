@@ -1,10 +1,15 @@
-{ config, pkgs, user, inputs, ... }:
 {
+  config,
+  pkgs,
+  user,
+  inputs,
+  ...
+}: {
   imports = [
     (
-      ./. +
-      "/hardware/${user.host}" +
-      "/hardware-configuration.nix"
+      ./.
+      + "/hardware/${user.host}"
+      + "/hardware-configuration.nix"
     )
   ];
 
@@ -12,21 +17,19 @@
     allowUnfree = true;
   };
 
-
   nix = {
     package = pkgs.nixFlakes;
-    nixPath =
-      [
-        "nixpkgs=${inputs.nixpkgs}"
-        "nixos-config=${/home/vhs/SConfig/nixos-config/configuration.nix}"
-      ];
+    nixPath = [
+      "nixpkgs=${inputs.nixpkgs}"
+      "nixos-config=${/home/vhs/SConfig/nixos-config/configuration.nix}"
+    ];
     registry = {
       nixos = {
         flake = inputs.nixpkgs;
       };
-      # nixpkgs = {
-      #   flake = inputs.nixpkgs;
-      # };
+      nixpkgs = {
+        flake = inputs.nixpkgs;
+      };
     };
     gc = {
       automatic = true;
@@ -44,21 +47,22 @@
   };
 
   boot.loader =
-    if user.efiBoot then {
-      efi = { canTouchEfiVariables = true; };
+    if user.efiBoot
+    then {
+      efi = {canTouchEfiVariables = true;};
       grub = {
         enable = true;
-        devices = [ "nodev" ];
+        devices = ["nodev"];
         efiSupport = true;
         useOSProber = true;
       };
-    } else {
+    }
+    else {
       grub = {
         enable = true;
         device = user.mbrDevice;
       };
     };
-
 
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -66,9 +70,11 @@
   networking.hostName = user.host;
   networking.useDHCP = false;
   networking.extraHosts =
-    if user.isWorkComputer then ''
+    if user.isWorkComputer
+    then ''
       ${builtins.readFile /home/vhs/Public/extraHosts}
-    '' else "";
+    ''
+    else "";
 
   sound.enable = true;
 
@@ -81,42 +87,59 @@
     enable = true;
     autoRepeatDelay = 200;
     autoRepeatInterval = 30;
+    exportConfiguration = true;
     desktopManager = {
       xterm.enable = false;
-      wallpaper = { mode = "max"; combineScreens = false; };
+      wallpaper = {
+        mode = "max";
+        combineScreens = false;
+      };
     };
+    layout = "us";
+    xkbVariant = "altgr-intl";
     libinput.enable = true;
-    libinput.mouse.accelSpeed = "-0.5";
+    libinput.mouse.accelSpeed = "1.5";
     # nvidia driver in hardware file
-    videoDrivers = if user.nvidia then [ "" ] else [ "intel" ];
+    videoDrivers =
+      if user.nvidia
+      then [""]
+      else ["intel"];
     deviceSection = ''
       Option "TearFree" "true"
     '';
   };
+
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.windowManager.icewm.enable = true;
+
   services.picom = {
-    enable = if user.usei3 then true else false;
+    enable =
+      if user.usei3
+      then true
+      else false;
     vSync = true;
     inactiveOpacity = 0.86;
     fade = true;
     fadeDelta = 8;
-    fadeSteps = [ 0.028 0.03 ];
+    fadeSteps = [0.028 0.03];
   };
 
-  programs.nm-applet.enable = if user.usei3 then true else false;
-  programs.sway.enable = if user.usei3 then false else true;
-
-  #icewm
-  services.xserver.windowManager.icewm.enable = true;
+  programs.nm-applet.enable =
+    if user.usei3
+    then true
+    else false;
+  programs.sway.enable =
+    if user.usei3
+    then false
+    else true;
 
   #printing
   services.printing.enable = true;
   services.avahi.enable = true;
   services.avahi.openFirewall = true;
   services.avahi.nssmdns = true;
-  services.printing.drivers = [ pkgs.cnijfilter2 ];
+  services.printing.drivers = [pkgs.cnijfilter2];
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.layout = "us";
   hardware.opengl.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
@@ -141,46 +164,45 @@
     users.vhs = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "docker" "adbusers" "libvirtd" "qemu-libvirtd" "syncthing" ];
+      extraGroups = ["wheel" "docker" "adbusers" "libvirtd" "qemu-libvirtd" "syncthing"];
     };
-    extraGroups.vboxusers.members = [ "vhs" ];
+    extraGroups.vboxusers.members = ["vhs"];
   };
 
-  networking.firewall.allowedTCPPorts = [ 9000 3000 8080 ];
+  networking.firewall.allowedTCPPorts = [9000 3000 8080];
   networking.firewall.checkReversePath = false;
 
-  environment.pathsToLink = [ "/share/zsh" ];
-  environment.systemPackages = with pkgs;
-    [
-      (python3.withPackages (p: [
-        p.pynvim
-        p.virtualenv
-      ]))
-      zsh
-      wget
-      curl
-      vim
-      firefox
-      vlc
-      gnupg
-      htop
-      jq
-      docker
-      virt-manager
-      pavucontrol
-      nmap
-      neovim
-      xfce.xfce4-terminal
-      xclip
-      blueman
-      xscreensaver
-      x11_ssh_askpass
-      nodejs-18_x
-      globalprotect-openconnect
-      sysstat
-      docker-compose
-      wireguard-tools
-    ];
+  environment.pathsToLink = ["/share/zsh"];
+  environment.systemPackages = with pkgs; [
+    (python3.withPackages (p: [
+      p.pynvim
+      p.virtualenv
+    ]))
+    zsh
+    wget
+    curl
+    vim
+    firefox
+    vlc
+    gnupg
+    htop
+    jq
+    docker
+    virt-manager
+    pavucontrol
+    nmap
+    neovim
+    xfce.xfce4-terminal
+    xclip
+    blueman
+    xscreensaver
+    x11_ssh_askpass
+    nodejs-18_x
+    globalprotect-openconnect
+    sysstat
+    docker-compose
+    wireguard-tools
+  ];
 
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
   programs.zsh.enable = true;
@@ -209,7 +231,7 @@
     # HandleLidSwitch=suspend
     # HandleLidSwitchDocked=ignore
     # HandleLidSwitchExternalPower=ignore
-    # IdleActionSec=14400 
+    # IdleActionSec=14400
     # IdleAction=ignore
   '';
 
@@ -228,7 +250,6 @@
       };
     };
   };
-
 
   services.fwupd.enable = false;
   security.rtkit.enable = true;
@@ -257,5 +278,3 @@
   virtualisation.libvirtd.enable = true;
   system.stateVersion = "20.09"; #do not change
 }
-
-
