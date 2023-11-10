@@ -1,4 +1,5 @@
-inputs: let
+inputs:
+let
   packages-2111 = import inputs.nixpkgs-2111 {
     system = builtins.currentSystem;
   };
@@ -55,7 +56,8 @@ inputs: let
       meta.homepage = "https://github.com/neoclide/coc.nvim/";
     };
   };
-in [
+in
+[
   insomnia-overlay
   coc-nvim-overlay
   leap-nvim-overlay

@@ -1,4 +1,5 @@
-inputs: let
+inputs:
+let
   user = (import ../user.nix).mpu4;
   desktopEnvironments =
     [
@@ -6,10 +7,11 @@ inputs: let
     ]
     ++ (
       if (import ../user.nix).mpu4.usei3
-      then [../desktop/i3.nix]
-      else []
+      then [ ../desktop/i3.nix ]
+      else [ ]
     );
-in {
+in
+{
   system = "x86_64-linux";
   specialArgs = {
     inherit inputs;
@@ -45,8 +47,8 @@ in {
             ]
             ++ (
               if user.withgtk
-              then [../homemanager/modules/gtk3.nix]
-              else []
+              then [ ../homemanager/modules/gtk3.nix ]
+              else [ ]
             )
             ++ (
               if user.usei3
@@ -54,7 +56,7 @@ in {
                 ../homemanager/i3/i3blocks.home.nix
                 ../homemanager/i3/i3.home.nix
               ]
-              else [../homemanager/sway.nix]
+              else [ ../homemanager/sway.nix ]
             );
         };
       }

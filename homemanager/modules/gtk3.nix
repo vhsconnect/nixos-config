@@ -1,11 +1,12 @@
-{
-  pkgs,
-  user,
-  ...
-}: let
+{ pkgs
+, user
+, ...
+}:
+let
   font = user.font;
   light-icons = user.foreground == "light";
-in {
+in
+{
   gtk.enable = true;
   gtk.gtk3 = {
     bookmarks = [

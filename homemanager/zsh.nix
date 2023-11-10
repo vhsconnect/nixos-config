@@ -1,13 +1,14 @@
-{
-  pkgs,
-  user,
-  ...
-}: let
+{ pkgs
+, user
+, ...
+}:
+let
   configPath = "$HOME/SConfig/nixos-config";
   binPath = "$HOME/bin";
   cargoPath = "$HOME/.cargo/bin";
   npmPath = "$HOME/.npm-global/bin";
-in {
+in
+{
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;

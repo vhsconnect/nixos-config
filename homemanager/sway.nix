@@ -1,15 +1,16 @@
-{
-  inputs,
-  config,
-  home,
-  user,
-  lib,
-  pkgs,
-  ...
-}: let
+{ inputs
+, config
+, home
+, user
+, lib
+, pkgs
+, ...
+}:
+let
   modifier = "Mod4";
   theme = import (./themes/. + "/${user.theme}.nix");
-in {
+in
+{
   home.packages = with pkgs; [
     kanshi
     xdg-desktop-portal-wlr
@@ -23,7 +24,7 @@ in {
     systemdIntegration = true;
     xwayland = true;
     config.modifier = modifier;
-    config.bars = [];
+    config.bars = [ ];
     config.gaps = {
       outer = 8;
       inner = 10;
@@ -81,7 +82,7 @@ in {
       };
     };
     config.startup = [
-      {command = "systemctl --user import-environment";}
+      { command = "systemctl --user import-environment"; }
       # { command = "keys"; }
       # { command = "long-command & sleep 2; trips4"; always = true; }
       # { command = "xset -dpms"; always = true; }
@@ -173,8 +174,8 @@ in {
           "eDP-1"
           "HDMI-1"
         ];
-        modules-left = ["sway/workspaces" "sway/mode"];
-        modules-right = ["pulseaudio" "battery" "memory" "clock"];
+        modules-left = [ "sway/workspaces" "sway/mode" ];
+        modules-right = [ "pulseaudio" "battery" "memory" "clock" ];
 
         "clock" = {
           interval = 60;
@@ -190,14 +191,14 @@ in {
         "battery" = {
           interval = 60;
           format = "{icon} {capacity}% ";
-          format-icons = [""];
+          format-icons = [ "" ];
         };
         "memory" = {
-          format-icons = [""];
+          format-icons = [ "" ];
           format = "{icon} {percentage}% ";
         };
         "pulseaudio" = {
-          format-icons = [""];
+          format-icons = [ "" ];
           format = "{icon} {volume}% ";
         };
       };

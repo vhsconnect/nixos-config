@@ -1,7 +1,6 @@
-{
-  pkgs,
-  user,
-  ...
+{ pkgs
+, user
+, ...
 }: {
   programs.hexchat = {
     enable = true;

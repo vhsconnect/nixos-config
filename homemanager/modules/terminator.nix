@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   xdg.configFile."terminator/configbackup".text = ''
         cursor_color = "#aaaaaa"
         show_titlebar = False

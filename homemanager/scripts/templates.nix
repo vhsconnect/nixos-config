@@ -1,8 +1,8 @@
-{
-  pkgs,
-  user,
-  ...
-}: let
+{ pkgs
+, user
+, ...
+}:
+let
   zstuff = pkgs.writeTextDir "home/vhs/Public/templates/.zstuff" ''
     #vim=bash
     export BAT_THEME=ansi
@@ -17,7 +17,8 @@
     --border \
     --color $DARK_FZF_TAB
   '';
-in {
+in
+{
   home.packages = [
     zstuff
   ];

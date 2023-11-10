@@ -1,6 +1,8 @@
-inputs: let
+inputs:
+let
   user = (import ../user.nix).munin;
-in {
+in
+{
   system = "aarch64-linux";
   specialArgs = {
     inherit inputs;

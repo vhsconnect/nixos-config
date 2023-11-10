@@ -1,10 +1,12 @@
-inputs: let
+inputs:
+let
   user = (import ../user.nix).mpu3;
   desktopEnvironments = [
     ../desktop/i3.nix
     ../desktop/gnome.nix
   ];
-in {
+in
+{
   system = "x86_64-linux";
   specialArgs = {
     inherit inputs;
@@ -48,7 +50,7 @@ in {
               then [
                 ../homemanager/modules/gtk3.nix
               ]
-              else []
+              else [ ]
             );
         };
       }

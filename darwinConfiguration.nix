@@ -1,10 +1,10 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   users.users.valentin.home = "/Users/valentin";
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [];
+  nixpkgs.overlays = [ ];
 
   nix.package = pkgs.nix;
-  nix.nixPath = ["darwin=/nix/store/lql1bfyxnzqadchvascc6vxj3gmj5dr9-nix-darwin"];
+  nix.nixPath = [ "darwin=/nix/store/lql1bfyxnzqadchvascc6vxj3gmj5dr9-nix-darwin" ];
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -17,7 +17,8 @@
         virtualenv
       ];
     python3Plus = python3.withPackages myPy3Packages;
-  in [
+  in
+  [
     python3Plus
     wget
     curl

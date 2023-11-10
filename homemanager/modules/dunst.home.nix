@@ -1,12 +1,13 @@
-{
-  config,
-  pkgs,
-  user,
-  ...
-}: let
+{ config
+, pkgs
+, user
+, ...
+}:
+let
   font = user.font;
   theme = import (../themes/. + "/${user.theme}.nix");
-in {
+in
+{
   services.dunst = {
     enable = true;
     iconTheme = {
@@ -60,7 +61,7 @@ in {
         frame_color = theme.urgent;
         timeout = 10;
       };
-      shortcuts = {close = "ctrl+q";};
+      shortcuts = { close = "ctrl+q"; };
     };
   };
 }

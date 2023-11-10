@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   ttheme1 = pkgs.writeScriptBin "ttheme1" ''
     #! /usr/bin/env bash
     CURRENT=$(${pkgs.silver-searcher}/bin/ag "profile =" --nonumbers ~/.config/terminator/config | xargs)
@@ -101,7 +102,8 @@
   '';
   robl = pkgs.writeScriptBin "robl" (builtins.readFile ./robl);
   oneoff = pkgs.writeScriptBin "oneoff" (builtins.readFile ./oneoff.sh);
-in {
+in
+{
   home.packages = [
     ttheme1
     ttheme2

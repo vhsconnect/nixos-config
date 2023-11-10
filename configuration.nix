@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  user,
-  inputs,
-  ...
+{ config
+, pkgs
+, user
+, inputs
+, ...
 }: {
   imports = [
     (
@@ -49,10 +48,10 @@
   boot.loader =
     if user.efiBoot
     then {
-      efi = {canTouchEfiVariables = true;};
+      efi = { canTouchEfiVariables = true; };
       grub = {
         enable = true;
-        devices = ["nodev"];
+        devices = [ "nodev" ];
         efiSupport = true;
         useOSProber = true;
       };
@@ -102,8 +101,8 @@
     # nvidia driver in hardware file
     videoDrivers =
       if user.nvidia
-      then [""]
-      else ["intel"];
+      then [ "" ]
+      else [ "intel" ];
     deviceSection = ''
       Option "TearFree" "true"
     '';
@@ -121,7 +120,7 @@
     inactiveOpacity = 0.86;
     fade = true;
     fadeDelta = 8;
-    fadeSteps = [0.028 0.03];
+    fadeSteps = [ 0.028 0.03 ];
   };
 
   programs.nm-applet.enable =
@@ -138,7 +137,7 @@
   services.avahi.enable = true;
   services.avahi.openFirewall = true;
   services.avahi.nssmdns = true;
-  services.printing.drivers = [pkgs.cnijfilter2];
+  services.printing.drivers = [ pkgs.cnijfilter2 ];
 
   hardware.opengl.enable = true;
   hardware.pulseaudio.enable = false;
@@ -164,15 +163,15 @@
     users.vhs = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = ["wheel" "docker" "adbusers" "libvirtd" "qemu-libvirtd" "syncthing"];
+      extraGroups = [ "wheel" "docker" "adbusers" "libvirtd" "qemu-libvirtd" "syncthing" ];
     };
-    extraGroups.vboxusers.members = ["vhs"];
+    extraGroups.vboxusers.members = [ "vhs" ];
   };
 
-  networking.firewall.allowedTCPPorts = [9000 3000 8080];
+  networking.firewall.allowedTCPPorts = [ 9000 3000 8080 ];
   networking.firewall.checkReversePath = false;
 
-  environment.pathsToLink = ["/share/zsh"];
+  environment.pathsToLink = [ "/share/zsh" ];
   environment.systemPackages = with pkgs; [
     (python3.withPackages (p: [
       p.pynvim

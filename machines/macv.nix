@@ -1,6 +1,8 @@
-inputs: let
+inputs:
+let
   user = (import ../user.nix).macv;
-in {
+in
+{
   system = "aarch64-darwin";
   specialArgs = {
     inherit inputs;

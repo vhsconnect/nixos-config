@@ -1,12 +1,13 @@
-{
-  config,
-  pkgs,
-  lib,
-  user,
-  ...
-}: let
+{ config
+, pkgs
+, lib
+, user
+, ...
+}:
+let
   theme = import (../themes/. + "/${user.theme}.nix");
-in {
+in
+{
   xdg.configFile."i3blocks/config".text = ''
     command=$SCRIPT_DIR/$BLOCK_NAME
     separator_block_width=30

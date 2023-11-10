@@ -1,15 +1,16 @@
-{
-  config,
-  pkgs,
-  lib,
-  user,
-  ...
-}: let
+{ config
+, pkgs
+, lib
+, user
+, ...
+}:
+let
   theme = import (../themes/. + "/${user.theme}.nix");
   i3BlocksConfig = config.xdg.configFile."i3blocks/config".source;
   modifier = config.xsession.windowManager.i3.config.modifier;
   secondaryFont = user.secondaryFont;
-in {
+in
+{
   imports = [
     ./i3blocks/blockScripts.nix
   ];
@@ -68,7 +69,7 @@ in {
     };
   };
   xsession.windowManager.i3.config.startup = [
-    {command = "systemctl --user import-environment";}
+    { command = "systemctl --user import-environment"; }
     # { command = "keys"; }
     {
       command = "long-command & sleep 2; trips4";
@@ -82,9 +83,9 @@ in {
       command = "gromit-mpx";
       notification = false;
     }
-    {command = "blueman-applet";}
+    { command = "blueman-applet"; }
   ];
-  xsession.windowManager.i3.config.bars = [];
+  xsession.windowManager.i3.config.bars = [ ];
   xsession.windowManager.i3.config.window.border = 1;
   xsession.windowManager.i3.config.workspaceAutoBackAndForth = true;
   xsession.windowManager.i3.config.colors = {

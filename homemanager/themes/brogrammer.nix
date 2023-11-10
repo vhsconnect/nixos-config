@@ -5,13 +5,13 @@ let
   file = ./brogrammer.json;
   colors = compose builtins.fromJSON builtins.readFile file;
 in
-  with colors; {
-    main = base0B;
-    secondary = base00;
-    accent = base00;
-    accent2 = base00;
-    accent3 = base05;
-    urgent = base03;
-    grey = base08;
-    debug = base0E;
-  }
+with colors; {
+  main = base0B;
+  secondary = base00;
+  accent = base00;
+  accent2 = base00;
+  accent3 = base05;
+  urgent = base03;
+  grey = base08;
+  debug = base0E;
+}
