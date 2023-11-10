@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.packages = with pkgs;[
+{pkgs, ...}: {
+  home.packages = with pkgs; [
     alacritty
     anki
     arandr
@@ -17,5 +16,4 @@
     freetube
     syncthingtray
   ];
-
 }

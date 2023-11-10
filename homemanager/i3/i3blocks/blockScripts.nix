@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   config.xdg.configFile."i3blocks/battery2".text = builtins.readFile ./battery2;
   config.xdg.configFile."i3blocks/cpu".text = builtins.readFile ./cpu;
   config.xdg.configFile."i3blocks/disk".text = builtins.readFile ./disk;

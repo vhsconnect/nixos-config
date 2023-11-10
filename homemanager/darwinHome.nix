@@ -1,11 +1,17 @@
-{ pkgs, lib, config, user, inputs, _imports, ... }:
-
 {
+  pkgs,
+  lib,
+  config,
+  user,
+  inputs,
+  _imports,
+  ...
+}: {
   nixpkgs = {
     config = {
       allowUnfree = true;
     };
-    overlays = (import ./overlays.nix inputs);
+    overlays = import ./overlays.nix inputs;
   };
   imports = _imports;
 
@@ -24,28 +30,25 @@
   };
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = false;
-  programs.autojump =
-    {
-      enable = true;
-      enableZshIntegration = true;
-    };
-  programs.broot =
-    {
-      enable = true;
-      settings.modal = true;
-      enableZshIntegration = true;
-    };
+  programs.autojump = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  programs.broot = {
+    enable = true;
+    settings.modal = true;
+    enableZshIntegration = true;
+  };
   programs.htop = {
     enable = true;
     settings = {
-      left_meters = [ "LeftCPUs2" "Memory" "Swap" ];
-      left_right = [ "RightCPUs2" "Tasks" "LoadAverage" "Uptime" ];
+      left_meters = ["LeftCPUs2" "Memory" "Swap"];
+      left_right = ["RightCPUs2" "Tasks" "LoadAverage" "Uptime"];
       setshowProgramPath = false;
       treeView = true;
     };
   };
   programs.lazygit.enable = true;
-
 
   ######## home ########
   home.sessionVariables = {
@@ -58,8 +61,6 @@
   ######## fonts ########
   fonts.fontconfig.enable = true;
 
-
   #IMPORTANT
   home.stateVersion = "21.03";
-
 }

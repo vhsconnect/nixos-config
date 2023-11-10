@@ -1,7 +1,5 @@
-{ pkgs, ... }: {
-
-  home.packages = with pkgs;[
-
+{pkgs, ...}: {
+  home.packages = with pkgs; [
     pop-icon-theme
     vivid
     hicolor-icon-theme
@@ -10,7 +8,5 @@
     pop-gtk-theme
     arc-theme
     font-awesome
-
   ];
-
 }

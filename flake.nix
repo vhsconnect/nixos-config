@@ -12,58 +12,54 @@
     bbrf.inputs.nixpkgs.follows = "nixpkgs";
     editor.url = "github:vhsconnect/nvim";
   };
-  outputs = inputs:
+  outputs = inputs: let
+    systems = ["aarch64-linux" "x86_64-linux" "aarch64-darwin"];
+    genAttrs = inputs.nixpkgs.lib.attrsets.genAttrs;
+    legacyPackages = inputs.nixpkgs.legacyPackages;
+    fold = builtins.foldl';
+    map = builtins.map;
+  in {
+    formatter =
+      genAttrs systems
+      (x: legacyPackages.${x}.nixpkgs-fmt);
 
-    let
-      systems = [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" ];
-      genAttrs = inputs.nixpkgs.lib.attrsets.genAttrs;
-      legacyPackages = inputs.nixpkgs.legacyPackages;
-      fold = builtins.foldl';
-      map = builtins.map;
-
-    in
-
-    {
-      formatter = genAttrs systems
-        (x: legacyPackages.${x}.nixpkgs-fmt);
-
-      darwinConfigurations = {
-        macv = inputs.darwin.lib.darwinSystem
-          (import ./machines/macv.nix inputs);
-      };
-
-      nixosConfigurations = {
-        mpu3 = inputs.nixpkgs.lib.nixosSystem
-          (import ./machines/mpu3.nix inputs);
-
-        mpu4 = inputs.nixpkgs.lib.nixosSystem
-          (import ./machines/mpu4.nix inputs);
-
-        tv1 = inputs.nixpkgs.lib.nixosSystem
-          (import ./machines/tv1.nix inputs);
-
-        munin = inputs.nixpkgs.lib.nixosSystem
-          (import ./machines/munin.nix inputs);
-
-      };
-
-
-      devShells =
-        let
-          mapSystems = x: map x systems;
-          mergeAttributeSets = fold (a: b: a // b) { };
-        in
-        mergeAttributeSets
-          (mapSystems
-            (x: {
-              ${x}.default =
-                with legacyPackages.${x};
-                mkShell {
-                  buildInputs = [ git-crypt ];
-                };
-            })
-          );
-
-
+    darwinConfigurations = {
+      macv =
+        inputs.darwin.lib.darwinSystem
+        (import ./machines/macv.nix inputs);
     };
+
+    nixosConfigurations = {
+      mpu3 =
+        inputs.nixpkgs.lib.nixosSystem
+        (import ./machines/mpu3.nix inputs);
+
+      mpu4 =
+        inputs.nixpkgs.lib.nixosSystem
+        (import ./machines/mpu4.nix inputs);
+
+      tv1 =
+        inputs.nixpkgs.lib.nixosSystem
+        (import ./machines/tv1.nix inputs);
+
+      munin =
+        inputs.nixpkgs.lib.nixosSystem
+        (import ./machines/munin.nix inputs);
+    };
+
+    devShells = let
+      mapSystems = x: map x systems;
+      mergeAttributeSets = fold (a: b: a // b) {};
+    in
+      mergeAttributeSets
+      (
+        mapSystems
+        (x: {
+          ${x}.default = with legacyPackages.${x};
+            mkShell {
+              buildInputs = [git-crypt];
+            };
+        })
+      );
+  };
 }

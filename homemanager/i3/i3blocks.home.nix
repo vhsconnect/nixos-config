@@ -1,8 +1,12 @@
-{ config, pkgs, lib, user, ... }:
-let
-  theme = import (../themes/. + "/${user.theme}.nix");
-in
 {
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
+}: let
+  theme = import (../themes/. + "/${user.theme}.nix");
+in {
   xdg.configFile."i3blocks/config".text = ''
     command=$SCRIPT_DIR/$BLOCK_NAME
     separator_block_width=30
@@ -10,31 +14,31 @@ in
 
     [battery]
     command=i3b_battery
-    label= 
+    label=
     interval=30
     color=${theme.secondary}
 
     [cpu_usage]
-    label= 
+    label=
     command=i3b_cpu
     interval=2
     color=${theme.secondary}
 
     [memory]
-    label= 
+    label=
     command=i3b_memory
     interval=2
     color=${theme.secondary}
-    
+
     [disk]
-    label= 
+    label=
     instance=/
     command=i3b_disk
     interval=30
     color=${theme.secondary}
-    
+
     [disk2]
-    label= 
+    label=
     instance=/
     command=i3b_disk2 ${user.dataPartitionPath}
     interval=30

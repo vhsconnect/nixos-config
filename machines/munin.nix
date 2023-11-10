@@ -1,16 +1,13 @@
-inputs:
-let
+inputs: let
   user = (import ../user.nix).munin;
-in
-{
+in {
   system = "aarch64-linux";
   specialArgs = {
     inherit inputs;
     inherit user;
   };
-  modules =
-    [
-      ../piConfiguration.nix
-      inputs.bbrf.nixosModules.aarch64-linux.bbrf
-    ];
+  modules = [
+    ../piConfiguration.nix
+    inputs.bbrf.nixosModules.aarch64-linux.bbrf
+  ];
 }

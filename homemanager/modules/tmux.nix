@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.tmux.enable = true;
   programs.tmux.plugins = [
     {
@@ -17,7 +17,7 @@
       plugin = pkgs.tmuxPlugins.continuum;
       extraConfig = ''
         set -g @plugin 'tmux-plugins/tmux-continuum'
-        set -g @continuum-restore 'on' 
+        set -g @continuum-restore 'on'
       '';
     }
   ];
@@ -49,8 +49,8 @@
 
     # Enable mouse control
     set -g mouse on
-    bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"  
-    bind -n WheelDownPane select-pane -t= \; send-keys -M 
+    bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
+    bind -n WheelDownPane select-pane -t= \; send-keys -M
 
     # Display
     set -g base-index 1
@@ -76,5 +76,4 @@
     bind-key -T copy-mode-vi C-l select-pane -R
 
   '';
-
 }

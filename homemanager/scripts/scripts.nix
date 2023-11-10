@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   ttheme1 = pkgs.writeScriptBin "ttheme1" ''
     #! /usr/bin/env bash
     CURRENT=$(${pkgs.silver-searcher}/bin/ag "profile =" --nonumbers ~/.config/terminator/config | xargs)
@@ -68,12 +67,12 @@ let
     chromium --disable-web-security --user-data-dir="Public/chromium"
   '';
   watchexec = pkgs.writeScriptBin "watchexec" ''
-    #! /usr/bin/env sh 
+    #! /usr/bin/env sh
     echo "watching..."
     while inotifywait -e close_write $1; do $1; done
   '';
   keys = pkgs.writeScriptBin "keys" ''
-    #! /usr/bin/env zsh 
+    #! /usr/bin/env zsh
 
     xmodmap -e "clear control"
     xmodmap -e "clear mod1"
@@ -102,8 +101,7 @@ let
   '';
   robl = pkgs.writeScriptBin "robl" (builtins.readFile ./robl);
   oneoff = pkgs.writeScriptBin "oneoff" (builtins.readFile ./oneoff.sh);
-in
-{
+in {
   home.packages = [
     ttheme1
     ttheme2
@@ -120,4 +118,3 @@ in
     oneoff
   ];
 }
-

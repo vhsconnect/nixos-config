@@ -1,11 +1,15 @@
-{ inputs, config, home, user, lib, pkgs, ... }:
-let
+{
+  inputs,
+  config,
+  home,
+  user,
+  lib,
+  pkgs,
+  ...
+}: let
   modifier = "Mod4";
   theme = import (./themes/. + "/${user.theme}.nix");
-in
-
-{
-
+in {
   home.packages = with pkgs; [
     kanshi
     xdg-desktop-portal-wlr
@@ -15,61 +19,57 @@ in
   ];
 
   wayland.windowManager.sway = {
-
     enable = true;
     systemdIntegration = true;
     xwayland = true;
     config.modifier = modifier;
-    config.bars = [ ];
+    config.bars = [];
     config.gaps = {
       outer = 8;
       inner = 10;
     };
-    config.keybindings =
-      lib.mkOptionDefault {
-        "${modifier}+Return" = "exec --no-startup-id alacritty";
-        "${modifier}+Escape" = "kill";
-        "${modifier}+g" = "exec gnome-screenshot -a";
+    config.keybindings = lib.mkOptionDefault {
+      "${modifier}+Return" = "exec --no-startup-id alacritty";
+      "${modifier}+Escape" = "kill";
+      "${modifier}+g" = "exec gnome-screenshot -a";
 
-        "${modifier}+h" = "focus left";
-        "${modifier}+j" = "focus down";
-        "${modifier}+k" = "focus up";
-        "${modifier}+l" = "focus right";
+      "${modifier}+h" = "focus left";
+      "${modifier}+j" = "focus down";
+      "${modifier}+k" = "focus up";
+      "${modifier}+l" = "focus right";
 
-        "${modifier}+Shift+h" = "move left";
-        "${modifier}+Shift+j" = "move down";
-        "${modifier}+Shift+k" = "move up";
-        "${modifier}+Shift+l" = "move right";
+      "${modifier}+Shift+h" = "move left";
+      "${modifier}+Shift+j" = "move down";
+      "${modifier}+Shift+k" = "move up";
+      "${modifier}+Shift+l" = "move right";
 
-        "${modifier}+d" = ''
-          exec "rofi -lines 4 -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
-        '';
+      "${modifier}+d" = ''
+        exec "rofi -lines 4 -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
+      '';
 
-        "${modifier}+backslash" = "scratchpad show";
-        "${modifier}+slash" = "move scratchpad";
+      "${modifier}+backslash" = "scratchpad show";
+      "${modifier}+slash" = "move scratchpad";
 
+      "${modifier}+Print" = ''exec ${pkgs.grim}/bin/grim \"''${HOME}/screenshot-$(date '+%s').png\"'';
+      "${modifier}+Shift+Print" = ''exec ${pkgs.grim}/bin/grim  -g \"$(slurp)\" \"''${HOME}/screenshot-$(date '+%s').png\"'';
 
-        "${modifier}+Print" = ''exec ${pkgs.grim}/bin/grim \"''${HOME}/screenshot-$(date '+%s').png\"'';
-        "${modifier}+Shift+Print" = ''exec ${pkgs.grim}/bin/grim  -g \"$(slurp)\" \"''${HOME}/screenshot-$(date '+%s').png\"'';
+      "${modifier}+Next" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +10";
+      "${modifier}+Prior" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10-";
 
-        "${modifier}+Next" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +10";
-        "${modifier}+Prior" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10-";
-
-        "${modifier}+Tab" = "workspace prev";
-        "${modifier}+Shift+Tab" = "workspace next";
-        "F2" = "exec rofi -show emoji -modi emoji";
-        "F6" = "exec amixer set Master 5%-";
-        "F7" = "exec amixer set Master 5%+";
-        #"F9" >> reserved for mpx-gromit
-        "F10" = "exec xscreensaver-command -lock";
-        #"F11" >> reserved for full screen
-      };
-    config.keycodebindings =
-      lib.mkOptionDefault {
-        "121" = "exec pamixer -m";
-        "122" = "exec pamixer -d 5";
-        "123" = "exec pamixer -i 5";
-      };
+      "${modifier}+Tab" = "workspace prev";
+      "${modifier}+Shift+Tab" = "workspace next";
+      "F2" = "exec rofi -show emoji -modi emoji";
+      "F6" = "exec amixer set Master 5%-";
+      "F7" = "exec amixer set Master 5%+";
+      #"F9" >> reserved for mpx-gromit
+      "F10" = "exec xscreensaver-command -lock";
+      #"F11" >> reserved for full screen
+    };
+    config.keycodebindings = lib.mkOptionDefault {
+      "121" = "exec pamixer -m";
+      "122" = "exec pamixer -d 5";
+      "123" = "exec pamixer -i 5";
+    };
     config.modes = {
       resize = {
         k = "resize shrink height 10 px or 10 ppt";
@@ -81,7 +81,7 @@ in
       };
     };
     config.startup = [
-      { command = "systemctl --user import-environment"; }
+      {command = "systemctl --user import-environment";}
       # { command = "keys"; }
       # { command = "long-command & sleep 2; trips4"; always = true; }
       # { command = "xset -dpms"; always = true; }
@@ -120,7 +120,7 @@ in
         text = "${theme.secondary}";
       };
     };
-    extraSessionCommands = '' 
+    extraSessionCommands = ''
       export WLC_REPEAT_DELAY=200;
       export WLC_REPEAT_RATE=30;
       export SDL_VIDEODRIVER=wayland
@@ -128,29 +128,27 @@ in
       export _JAVA_AWT_WM_NONREPARENTING=1
     '';
 
-    extraConfig =
-      ''
-        input "type:keyboard" {
-          # xkb_options 
-          xkb_options ctrl:swap_lalt_lctl,caps:super
-        }
+    extraConfig = ''
+      input "type:keyboard" {
+        # xkb_options
+        xkb_options ctrl:swap_lalt_lctl,caps:super
+      }
 
-        output * background ~/.background-image fill
+      output * background ~/.background-image fill
 
 
-          for_window [window_type="dialog"] floating enable
-          for_window [window_type="utility"] floating enable
-          for_window [window_type="toolbar"] floating enable
-          for_window [window_type="splash"] floating enable
-          for_window [window_type="menu"] floating enable
-          for_window [window_type="dropdown_menu"] floating enable
-          for_window [window_type="popup_menu"] floating enable
-          for_window [window_type="tooltip"] floating enable
-          for_window [window_type="notification"] floating enable
+        for_window [window_type="dialog"] floating enable
+        for_window [window_type="utility"] floating enable
+        for_window [window_type="toolbar"] floating enable
+        for_window [window_type="splash"] floating enable
+        for_window [window_type="menu"] floating enable
+        for_window [window_type="dropdown_menu"] floating enable
+        for_window [window_type="popup_menu"] floating enable
+        for_window [window_type="tooltip"] floating enable
+        for_window [window_type="notification"] floating enable
 
-          exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt5ct
-      '';
-
+        exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt5ct
+    '';
   };
   programs.waybar = {
     enable = true;
@@ -167,7 +165,6 @@ in
       }
     '';
     settings = {
-
       mainBar = {
         layer = "top";
         position = "top";
@@ -176,8 +173,8 @@ in
           "eDP-1"
           "HDMI-1"
         ];
-        modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-right = [ "pulseaudio" "battery" "memory" "clock" ];
+        modules-left = ["sway/workspaces" "sway/mode"];
+        modules-right = ["pulseaudio" "battery" "memory" "clock"];
 
         "clock" = {
           interval = 60;
@@ -193,20 +190,17 @@ in
         "battery" = {
           interval = 60;
           format = "{icon} {capacity}% ";
-          format-icons = [ "" ];
+          format-icons = [""];
         };
         "memory" = {
-          format-icons = [ "" ];
+          format-icons = [""];
           format = "{icon} {percentage}% ";
         };
         "pulseaudio" = {
-          format-icons = [ "" ];
+          format-icons = [""];
           format = "{icon} {volume}% ";
         };
-
       };
     };
   };
-
 }
-

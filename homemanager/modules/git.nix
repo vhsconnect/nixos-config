@@ -1,10 +1,9 @@
-{ user, ... }:
-{
+{user, ...}: {
   programs.git = {
     enable = true;
     delta = {
       enable = true;
-      options = { side-by-side = true; };
+      options = {side-by-side = true;};
     };
     aliases = {
       amend = "commit --amend -m";

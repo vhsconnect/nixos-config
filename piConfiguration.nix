@@ -1,12 +1,13 @@
-{ pkgs, user, ... }:
-
 {
-
+  pkgs,
+  user,
+  ...
+}: {
   imports = [
     (
-      ./. +
-      "/hardware/${user.host}" +
-      "/hardware-configuration.nix"
+      ./.
+      + "/hardware/${user.host}"
+      + "/hardware-configuration.nix"
     )
   ];
 
@@ -22,27 +23,34 @@
 
   networking.hostName = "munin";
   networking.wireless.enable = true;
-  networking.wireless.interfaces = [ "wlan0" ];
+  networking.wireless.interfaces = ["wlan0"];
   networking.wireless.networks.${user.network1}.psk = user.psk;
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 21 80 443 ];
-  networking.firewall.allowedTCPPortRanges = [{ from = 51000; to = 51999; }];
-
+  networking.firewall.allowedTCPPorts = [21 80 443];
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 51000;
+      to = 51999;
+    }
+  ];
 
   time.timeZone = "Europe/Paris";
   security.sudo.wheelNeedsPassword = false;
   users.users.vhs = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBhw5g6xfxbwPcjThdsTYAk6fH/juhIXameVa21j+seG ${user.email}" ];
+    extraGroups = ["wheel"];
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBhw5g6xfxbwPcjThdsTYAk6fH/juhIXameVa21j+seG ${user.email}"];
   };
 
   programs.vim.defaultEditor = true;
 
   # gpg
   services.pcscd.enable = true;
-  programs.gnupg.agent = { enable = true; enableSSHSupport = true; pinentryFlavor = "gtk2"; };
-
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "gtk2";
+  };
 
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = true;
@@ -52,7 +60,7 @@
     writeEnable = true;
     localRoot = "/home/vhs/Data";
     localUsers = true;
-    userlist = [ "vhs" ];
+    userlist = ["vhs"];
     extraConfig = ''
       pasv_enable=Yes
       pasv_min_port=51000
@@ -73,7 +81,7 @@
       localhost = {
         forceSSL = false;
         enableACME = false;
-        locations."/" = { proxyPass = "http://localhost:8898"; };
+        locations."/" = {proxyPass = "http://localhost:8898";};
       };
     };
   };
@@ -86,10 +94,9 @@
     curl
   ];
 
-
   systemd.services.mount-drive-2010 = {
     enable = true;
-    after = [ "local-fs.target" ];
+    after = ["local-fs.target"];
     serviceConfig = {
       ExecStart = "${pkgs.util-linux}/bin/mount /dev/disk/by-label/DRIVE2010 /home/vhs/Data/Drive2010";
       ExecStartPre = "${pkgs.coreutils}/bin/sleep 50";
@@ -99,12 +106,10 @@
   };
 
   systemd.timers.mount-drive-2010 = {
-    wantedBy = [ "timers.target" ];
+    wantedBy = ["timers.target"];
     timerConfig.OnBootSec = "2min";
     timerConfig.Unit = "test";
   };
 
-
   system.stateVersion = "23.05";
-
 }

@@ -1,12 +1,13 @@
-{ pkgs, user, ... }:
-let
+{
+  pkgs,
+  user,
+  ...
+}: let
   configPath = "$HOME/SConfig/nixos-config";
   binPath = "$HOME/bin";
   cargoPath = "$HOME/.cargo/bin";
   npmPath = "$HOME/.npm-global/bin";
-
-in
-{
+in {
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -97,7 +98,6 @@ in
           repo = "zsh-autopair";
           rev = "9d003fc02dbaa6db06e6b12e8c271398478e0b5d";
           sha256 = "0s4xj7yv75lpbcwl4s8rgsaa72b41vy6nhhc5ndl7lirb9nl61l7";
-
         };
       }
       {

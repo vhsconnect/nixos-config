@@ -1,9 +1,7 @@
 let
   white = "#F9F9F9";
   black = "#282430";
-in
-{
-
+in {
   main = "#3e278a"; # navy
   secondary = white;
   accent = "#BEAEE2"; # purplegray
@@ -13,5 +11,4 @@ in
   gray = "#b8b6bf";
   grey = "#b8b6bf";
   debug = "#a8325c"; #burgundyred
-
 }
