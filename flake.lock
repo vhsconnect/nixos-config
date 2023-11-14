@@ -105,11 +105,11 @@
         "themed-tabs": "themed-tabs"
       },
       "locked": {
-        "lastModified": 1699537336,
-        "narHash": "sha256-h6jDMVXqorQDEOwsWTilUQ6Ff5hzMVcqaT4RPKgzQOA=",
+        "lastModified": 1699611815,
+        "narHash": "sha256-UrAtp6v0+ECATQ0jIjZcGgmu+Drdqeaq/eISpMQgZTQ=",
         "owner": "vhsconnect",
         "repo": "nvim",
-        "rev": "1359e49ee9653cf1ce3df009a3b6b007d3d6701d",
+        "rev": "81a8ba6845f89d9a0107e791796db2e5aab41d47",
         "type": "github"
       },
       "original": {
