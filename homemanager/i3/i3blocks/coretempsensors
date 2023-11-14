@@ -1,0 +1,4 @@
+#! /usr/bin/env bash 
+
+sensors $1 | grep Tctl | awk '{print $2}'
+

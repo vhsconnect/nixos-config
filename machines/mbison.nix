@@ -1,6 +1,6 @@
 inputs:
 let
-  user = (import ../user.nix).mpu3;
+  user = (import ../user.nix).mbison;
   desktopEnvironments = [
     ../desktop/i3.nix
     ../desktop/gnome.nix

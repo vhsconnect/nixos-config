@@ -47,6 +47,10 @@
         munin =
           inputs.nixpkgs.lib.nixosSystem
             (import ./machines/munin.nix inputs);
+
+        mbison =
+          inputs.nixpkgs.lib.nixosSystem
+            (import ./machines/mbison.nix inputs);
       };
 
       devShells =

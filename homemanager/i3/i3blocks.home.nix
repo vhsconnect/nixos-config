@@ -14,32 +14,38 @@ in
     markup=none
 
     [battery]
-    command=i3b_battery
-    label=
+    command=i3b_battery 
+    label= 
     interval=30
     color=${theme.secondary}
 
     [cpu_usage]
-    label=
+    label= 
     command=i3b_cpu
-    interval=2
+    interval=3
+    color=${theme.secondary}
+
+    [cpu_usage]
+    label= 
+    command=i3b_cpu_temp ${user.cpuDevice}
+    interval=3
     color=${theme.secondary}
 
     [memory]
-    label=
+    label= 
     command=i3b_memory
     interval=2
     color=${theme.secondary}
 
     [disk]
-    label=
+    label= 
     instance=/
     command=i3b_disk
     interval=30
     color=${theme.secondary}
 
     [disk2]
-    label=
+    label= 
     instance=/
     command=i3b_disk2 ${user.dataPartitionPath}
     interval=30
@@ -49,7 +55,7 @@ in
     [bandwidth]
     command=i3b_bandwidth
     markup=pango
-    label=
+    label= 
     interval=persist
     color=${theme.secondary}
 
