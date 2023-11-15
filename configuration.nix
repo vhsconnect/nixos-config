@@ -1,6 +1,7 @@
 { config
 , pkgs
 , user
+, otherHosts
 , inputs
 , ...
 }: {
@@ -235,21 +236,27 @@
   #   # IdleAction=ignore
   # '';
 
-  # services.syncthing = {
-  #   enable = true;
-  #   openDefaultPorts = true;
-  #   dataDir = "/home/vhs/Sync";
-  #   guiAddress = "localhost:3331";
-  #   user = "vhs";
-  #   devices = {
-  #     mpu3 = {
-  #       id = "L43ZWPA-U4E7MHP-SCW7QBM-OMARWJI-SJH4O2Y-JCAXGZR-TGOH6NS-JGUXFAZ";
-  #       addresses = [
-  #         "tcp://${user.ip}:22000"
-  #       ];
-  #     };
-  #   };
-  # };
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    dataDir = "/home/vhs/Sync";
+    guiAddress = "localhost:3331";
+    user = "vhs";
+    devices = {
+      mpu3 = {
+        id = "L43ZWPA-U4E7MHP-SCW7QBM-OMARWJI-SJH4O2Y-JCAXGZR-TGOH6NS-JGUXFAZ";
+        addresses = [
+          "tcp://${otherHosts.mpu3.ip}:22000"
+        ];
+      };
+      mbison = {
+        id = "4SVW3SW-J6KKKYN-FOAQFOQ-7K2XKRT-OODPP5T-KKWO5ZL-QXSP4GP-P4M4LAW";
+        addresses = [
+          "tcp://${otherHosts.mbison.ip}:22000"
+        ];
+      };
+    };
+  };
 
   services.fwupd.enable = false;
 
