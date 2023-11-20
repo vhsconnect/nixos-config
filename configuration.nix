@@ -256,6 +256,12 @@
         ];
       };
     };
+    folders = {
+      "/home/vhs/Sync" = {
+        id = "sync";
+        devices = [ "mbison" "mpu3" ];
+      };
+    };
   };
 
   services.fwupd.enable = false;

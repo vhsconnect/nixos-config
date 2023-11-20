@@ -33,7 +33,7 @@ in
     };
     shellAliases = {
       nixosconfig = "nvim /Repos/nixos-config/nixos/nixos/configuration.nix";
-      cdconfig = "~/SConfig/nixos-config/ && vi `fzf`";
+      cdconfig = "~/SConfig/nixos-config/";
       speed = "speedtest-cli";
       nixosdir = "cd /etc/nixos";
       managerdir = "cd ~/.config/nixpkgs";
