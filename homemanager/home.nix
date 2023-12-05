@@ -13,7 +13,6 @@
 
   ######## programs ########
   programs.home-manager.enable = true;
-  programs.tmux.enable = true;
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;

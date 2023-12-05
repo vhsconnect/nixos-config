@@ -1,26 +1,5 @@
 { pkgs, ... }: {
   programs.tmux.enable = true;
-  programs.tmux.plugins = [
-    {
-      plugin = pkgs.tmuxPlugins.power-theme;
-      extraConfig = ''
-        set -g @plugin 'wfxr/tmux-power'
-      '';
-    }
-    {
-      plugin = pkgs.tmuxPlugins.resurrect;
-      extraConfig = ''
-        set -g @plugin 'tmux-plugins/tmux-resurrect'
-      '';
-    }
-    {
-      plugin = pkgs.tmuxPlugins.continuum;
-      extraConfig = ''
-        set -g @plugin 'tmux-plugins/tmux-continuum'
-        set -g @continuum-restore 'on'
-      '';
-    }
-  ];
   programs.tmux.extraConfig = ''
     # No delay in Vim
     set -s escape-time 0
@@ -76,4 +55,25 @@
     bind-key -T copy-mode-vi C-l select-pane -R
 
   '';
+  programs.tmux.plugins = [
+    {
+      plugin = pkgs.tmuxPlugins.power-theme;
+      extraConfig = ''
+        set -g @plugin 'wfxr/tmux-power'
+      '';
+    }
+    {
+      plugin = pkgs.tmuxPlugins.resurrect;
+      extraConfig = ''
+        set -g @plugin 'tmux-plugins/tmux-resurrect'
+      '';
+    }
+    {
+      plugin = pkgs.tmuxPlugins.continuum;
+      extraConfig = ''
+        set -g @plugin 'tmux-plugins/tmux-continuum'
+        set -g @continuum-restore 'on'
+      '';
+    }
+  ];
 }

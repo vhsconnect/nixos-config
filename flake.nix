@@ -1,14 +1,15 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-2111.url = "github:NixOS/nixpkgs/nixos-21.11";
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
-    bbrf.url = "github:vhsconnect/bbrf-radio/f3646a00cc6a3bf70b47736cb01108927984b0e3";
+    bbrf.url = "github:vhsconnect/bbrf-radio/master";
     bbrf.inputs.nixpkgs.follows = "nixpkgs";
     editor.url = "github:vhsconnect/nvim";
   };

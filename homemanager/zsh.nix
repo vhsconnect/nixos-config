@@ -13,7 +13,7 @@ in
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
     history.size = 1000000;
     envExtra = ''
       source ~/.zstuff

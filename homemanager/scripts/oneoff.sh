@@ -1,6 +1,9 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i zsh -p fzf 
 
+export NIXPKGS_ALLOW_UNFREE=1
+export NIXPKGS_ALLOW_INSECURE=1
+
 set - euo pipefail
 
 PACK=(calibre \
@@ -9,7 +12,7 @@ PACK=(calibre \
   gimp        \
   inkscape    \
   imagemagick \
-  insomnia    \
+  bruno    \
   krita       \
   minder      \
   obs-studio  \

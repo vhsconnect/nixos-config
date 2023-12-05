@@ -1,11 +1,19 @@
 inputs:
 let
-  packages-2111 = import inputs.nixpkgs-2111 {
+  p2111 = import inputs.nixpkgs-2111 {
+    system = builtins.currentSystem;
+  };
+  unstable = import inputs.nixpkgs-unstable {
     system = builtins.currentSystem;
   };
 
-  insomnia-overlay = self: prev: {
-    insomnia = packages-2111.insomnia;
+  exa-overlay = self: prev: {
+    exa = p2111.exa;
+  };
+
+
+  ollama-overlay = self: prev: {
+    ollama = unstable.ollama;
   };
 
   leap-nvim-overlay = self: prev: {
@@ -58,8 +66,9 @@ let
   };
 in
 [
-  insomnia-overlay
+  exa-overlay
   coc-nvim-overlay
   leap-nvim-overlay
   codeium-overlay
+  ollama-overlay
 ]

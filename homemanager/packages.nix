@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs;
     [
+
       #
       cron
       gnumake
@@ -44,6 +45,9 @@
       #audio/video
       ffmpeg
       yt-dlp
+
+      # ai
+      ollama
 
       #utils
       zip
