@@ -47,6 +47,7 @@ in
     "F2" = "exec rofi -show emoji -modi emoji";
     "F3" = "exec eww open --toggle quick-menu";
     "F4" = "exec bluetoothctl power off";
+    "F5" = "exec rave-connect";
     "F6" = "exec amixer set Master 5%-";
     "F7" = "exec amixer set Master 5%+";
     #"F9" >> reserved for mpx-gromit

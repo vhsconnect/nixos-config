@@ -102,6 +102,7 @@ let
   '';
   robl = pkgs.writeScriptBin "robl" (builtins.readFile ./robl);
   oneoff = pkgs.writeScriptBin "oneoff" (builtins.readFile ./oneoff.sh);
+  rave-connect = pkgs.writeScriptBin "rave-connect" (builtins.readFile ./rave-connect.sh);
 in
 {
   home.packages = [
@@ -118,5 +119,6 @@ in
     monitorsDisconnected
     robl
     oneoff
+    rave-connect
   ];
 }

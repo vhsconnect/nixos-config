@@ -76,7 +76,6 @@
     ''
     else "";
 
-  sound.enable = true;
 
   console = {
     font = "Lat2-Terminus16";
@@ -151,8 +150,10 @@
       AutoEnable = false;
     };
   };
-  services.blueman.enable = true;
 
+  sound.enable = false;
+
+  services.blueman.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -242,24 +243,26 @@
     dataDir = "/home/vhs/Sync";
     guiAddress = "localhost:3331";
     user = "vhs";
-    devices = {
-      mpu3 = {
-        id = "L43ZWPA-U4E7MHP-SCW7QBM-OMARWJI-SJH4O2Y-JCAXGZR-TGOH6NS-JGUXFAZ";
-        addresses = [
-          "tcp://${otherHosts.mpu3.ip}:22000"
-        ];
+    settings = {
+      devices = {
+        mpu3 = {
+          id = "L43ZWPA-U4E7MHP-SCW7QBM-OMARWJI-SJH4O2Y-JCAXGZR-TGOH6NS-JGUXFAZ";
+          addresses = [
+            "tcp://${otherHosts.mpu3.ip}:22000"
+          ];
+        };
+        mbison = {
+          id = "4SVW3SW-J6KKKYN-FOAQFOQ-7K2XKRT-OODPP5T-KKWO5ZL-QXSP4GP-P4M4LAW";
+          addresses = [
+            "tcp://${otherHosts.mbison.ip}:22000"
+          ];
+        };
       };
-      mbison = {
-        id = "4SVW3SW-J6KKKYN-FOAQFOQ-7K2XKRT-OODPP5T-KKWO5ZL-QXSP4GP-P4M4LAW";
-        addresses = [
-          "tcp://${otherHosts.mbison.ip}:22000"
-        ];
-      };
-    };
-    folders = {
-      "/home/vhs/Sync" = {
-        id = "sync";
-        devices = [ "mbison" "mpu3" ];
+      folders = {
+        "/home/vhs/Sync" = {
+          id = "sync";
+          devices = [ "mbison" "mpu3" ];
+        };
       };
     };
   };

@@ -11,8 +11,23 @@ require("neodev").setup({
 ----------------
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+
+function noFloatingWins()
+   for _, win in ipairs(vim.api.nvim_list_wins()) do
+       local width = vim.api.nvim_win_get_width(win)
+       local height = vim.api.nvim_win_get_height(win)
+       
+       if width > 0 and height > 0 then
+           return true 
+       end
+
+   end
+   return false
+end
+
+
 vim.o.updatetime = 320
-vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus = false})]]
+vim.cmd [[ autocmd! CursorHold,CursorHoldI ]]
 
 vim.diagnostic.config({
   underline = true,
@@ -48,7 +63,9 @@ local on_attach = function(client, bufnr)
         prefix = ' ',
         scope = 'cursor',
       }
-      vim.diagnostic.open_float(nil, opts)
+      if noFloatingWins() then
+       vim.diagnostic.open_float(nil, opts)
+      end
     end
   })
 
