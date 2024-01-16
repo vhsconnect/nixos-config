@@ -13,7 +13,7 @@ in
     iconTheme = {
       name = "Pop";
       package = pkgs.pop-icon-theme;
-      size = "16x16";
+      size = "32x32";
     };
     settings = with config.lib.base16.theme; {
       global = {

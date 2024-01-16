@@ -9,7 +9,7 @@
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
-    bbrf.url = "github:vhsconnect/bbrf-radio/master";
+    bbrf.url = "github:vhsconnect/bbrf-radio/509f15b763e5fd5451d521cd469aab41f82c3475";
     bbrf.inputs.nixpkgs.follows = "nixpkgs";
     editor.url = "github:vhsconnect/nvim";
   };

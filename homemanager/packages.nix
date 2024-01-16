@@ -1,6 +1,13 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }:
+let
+  devenv =
+    inputs.devenv.packages.${builtins.currentSystem}.devenv;
+in
+{
   home.packages = with pkgs;
     [
+
+      devenv
 
       #
       cron

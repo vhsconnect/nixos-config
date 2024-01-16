@@ -39,8 +39,7 @@ in
       gtk-xft-rgba = "rgb";
     };
   };
-  qt.enable = false;
+  qt.enable = true;
   qt.platformTheme = "gtk";
-  qt.style.package = pkgs.libsForQt5.qtstyleplugins;
-  qt.style.name = "Cleanlooks";
+  qt.style.name = "adawaita-dark";
 }

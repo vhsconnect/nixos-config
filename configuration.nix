@@ -154,11 +154,13 @@
   sound.enable = false;
 
   services.blueman.enable = true;
+
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    # alsa.enable = true;
+    # alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
   };
 
   users = {
@@ -290,6 +292,7 @@
     user = "vhs";
     port = 3335;
     faderValue = 24;
+    itemsPerPage = 4500;
   };
 
   virtualisation.docker.enable = true;
