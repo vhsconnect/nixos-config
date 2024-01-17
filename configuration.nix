@@ -172,7 +172,12 @@
     extraGroups.vboxusers.members = [ "vhs" ];
   };
 
-  networking.firewall.allowedTCPPorts = [ 9000 3000 8080 ];
+
+  networking.firewall.allowedTCPPorts =
+    [ 9000 3000 8080 ]
+    ++
+    (if user.bbrf then [ 80 ] else [ ]);
+
   networking.firewall.checkReversePath = false;
 
   environment.pathsToLink = [ "/share/zsh" ];
@@ -217,7 +222,7 @@
   };
   programs.adb.enable = true;
 
-  services.openssh.enable = false;
+  services.openssh.enable = user.enableSSH;
   services.globalprotect.enable = false;
 
   systemd.extraConfig = ''
@@ -251,6 +256,13 @@
           id = "L43ZWPA-U4E7MHP-SCW7QBM-OMARWJI-SJH4O2Y-JCAXGZR-TGOH6NS-JGUXFAZ";
           addresses = [
             "tcp://${otherHosts.mpu3.ip}:22000"
+          ];
+        };
+
+        mpu4 = {
+          id = "UM27VWQ-UPM3NOW-472K3VY-6CQ7I4O-7LA6IW7-3RTCQRX-LBHY4QZ-HIDJTQJ";
+          addresses = [
+            "tcp://${otherHosts.mpu4.ip}:22000"
           ];
         };
         mbison = {
@@ -288,12 +300,24 @@
   };
 
   services.bbrf = {
-    enable = true;
+    enable = user.bbrf;
     user = "vhs";
-    port = 3335;
-    faderValue = 24;
+    port = 8898;
+    faderValue = 25;
     itemsPerPage = 4500;
   };
+
+  services.nginx = {
+    enable = user.bbrf;
+    virtualHosts = {
+      localhost = {
+        forceSSL = false;
+        enableACME = false;
+        locations."/" = { proxyPass = "http://localhost:8898"; };
+      };
+    };
+  };
+
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;

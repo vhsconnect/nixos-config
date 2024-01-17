@@ -7,8 +7,6 @@ in
   home.packages = with pkgs;
     [
 
-      devenv
-
       #
       cron
       gnumake

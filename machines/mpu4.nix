@@ -1,6 +1,7 @@
 inputs:
 let
   user = (import ../user.nix).mpu4;
+  otherHosts = import ../user.nix;
   desktopEnvironments =
     [
       ../desktop/gnome.nix
@@ -16,6 +17,7 @@ in
   specialArgs = {
     inherit inputs;
     inherit user;
+    inherit otherHosts;
   };
   modules =
     [
