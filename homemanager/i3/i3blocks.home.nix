@@ -45,7 +45,7 @@ in
     color=${theme.secondary}
 
     [disk2]
-    label= 
+    label= 
     instance=/
     command=i3b_disk2 ${user.dataPartitionPath}
     interval=30

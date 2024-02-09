@@ -109,11 +109,11 @@
         "tmux-nav": "tmux-nav"
       },
       "locked": {
-        "lastModified": 1707517714,
-        "narHash": "sha256-jbsyoqa4iPPbDWhNJchvHL6vyEP+R2p964OJG2lgVgk=",
+        "lastModified": 1706317171,
+        "narHash": "sha256-SbuKEnIua7TVaPtRI2/cPzZtmfLdsOU6VV58zLMcQr0=",
         "owner": "vhsconnect",
         "repo": "nvim",
-        "rev": "0b82470f76e00c3ca9dee8a0fc68f4857bb8362f",
+        "rev": "7e82a85107360d9a32fd341be133dfc381087a69",
         "type": "github"
       },
       "original": {

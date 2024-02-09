@@ -1,6 +1,9 @@
 #! /usr/bin/env bash
 
+bluetoothctl power on
+
 DEVICE="88:D0:39:C6:85:40"
+
 
 STATUS=$(bluetoothctl info $device_address | grep "Connected:" | awk '{print $2}')
 S=""

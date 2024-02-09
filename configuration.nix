@@ -204,10 +204,8 @@
     xfce.xfce4-terminal
     xclip
     blueman
-    xscreensaver
     x11_ssh_askpass
     nodejs-18_x
-    globalprotect-openconnect
     sysstat
     docker-compose
     wireguard-tools
@@ -237,15 +235,6 @@
 
   # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];
 
-  # services.logind.extraConfig = ''
-  #   # LidSwitchIgnoreInhibited=no
-  #   # KillUserProcesses=no
-  #   # HandleLidSwitch=suspend
-  #   # HandleLidSwitchDocked=ignore
-  #   # HandleLidSwitchExternalPower=ignore
-  #   # IdleActionSec=14400
-  #   # IdleAction=ignore
-  # '';
 
   services.syncthing = {
     enable = true;
@@ -257,7 +246,7 @@
     settings = {
       devices = {
         mpu3 = {
-          id = "L43ZWPA-U4E7MHP-SCW7QBM-OMARWJI-SJH4O2Y-JCAXGZR-TGOH6NS-JGUXFAZ";
+          id = "PJDMPH6-X54CFSG-FFD4AXU-WULBFHJ-KJTGW3Q-DU7GRRV-LTHXKVD-ZGV3TQK";
           addresses = [
             "tcp://${otherHosts.mpu3.ip}:22000"
           ];
@@ -293,13 +282,6 @@
 
   security.polkit = {
     enable = true;
-  };
-
-  security.wrappers.node = {
-    owner = "vhs";
-    group = "wheel";
-    source = "${pkgs.nodejs-18_x}/bin/node";
-    #capabilities = "cap_net_bind_service=+ep";
   };
 
   services.bbrf = {

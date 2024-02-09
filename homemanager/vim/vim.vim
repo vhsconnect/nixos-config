@@ -1,4 +1,4 @@
-let g:mapleader = "\\"
+let g:mapleader = " "
 packloadall
 syntax enable
 set nocompatible
@@ -18,7 +18,7 @@ set smartcase
 set backspace=indent,eol,start
 set shiftwidth=2
 set smartindent
-set mouse=a
+set mouse=
 set autowrite
 set inccommand=split
 set foldmethod=expr
@@ -35,6 +35,7 @@ set complete+=k
 set dir=~/Public/tmp
 set laststatus=3
 set completeopt=menu,menuone,noselect
+set noswapfile
 retab!
 
 
