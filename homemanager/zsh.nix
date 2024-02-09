@@ -29,7 +29,7 @@ in
       QT_STYLE_OVERRIDE = "";
       EDITOR = "nvim";
       PATH = "${binPath}:${cargoPath}:${npmPath}:$PATH";
-      PROMPT = ''[%F{$(if [ "$IN_NIX_SHELL" = "impure" ]; then echo "4"; elif [ -d .git ] && [ -ne $(git diff --quiet)]; then echo "3"; else echo "9"; fi)}${user.promptI}%f] %F{244}%1d%f '';
+      PROMPT = ''[%F{$(if [ "$IN_NIX_SHELL" = "impure" ] || [[ -n "$SSH_CONNECTION" ]]; then echo "4"; else echo "9"; fi)}${user.promptI}%f] %F{244}%1d%f '';
     };
     shellAliases = {
       nixosconfig = "nvim /Repos/nixos-config/nixos/nixos/configuration.nix";

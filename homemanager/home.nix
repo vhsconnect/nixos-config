@@ -45,6 +45,7 @@
   };
   programs.lazygit.enable = true;
 
+
   ######## home ########
   home.sessionVariables = {
     EDITOR = "nvim";

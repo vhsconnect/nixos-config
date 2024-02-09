@@ -211,14 +211,17 @@
     sysstat
     docker-compose
     wireguard-tools
+    git-crypt
   ];
 
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
+  programs.ssh.startAgent = true;
+  programs.ssh.extraConfig = "AddKeysToAgent = yes";
+
   programs.zsh.enable = true;
   programs.dconf.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    enableSSHSupport = true;
   };
   programs.adb.enable = true;
 
@@ -248,6 +251,7 @@
     enable = true;
     openDefaultPorts = true;
     dataDir = "/home/vhs/Sync";
+    configDir = "/home/vhs/.config/syncthing";
     guiAddress = "localhost:3331";
     user = "vhs";
     settings = {
@@ -258,7 +262,6 @@
             "tcp://${otherHosts.mpu3.ip}:22000"
           ];
         };
-
         mpu4 = {
           id = "UM27VWQ-UPM3NOW-472K3VY-6CQ7I4O-7LA6IW7-3RTCQRX-LBHY4QZ-HIDJTQJ";
           addresses = [
@@ -266,7 +269,7 @@
           ];
         };
         mbison = {
-          id = "4SVW3SW-J6KKKYN-FOAQFOQ-7K2XKRT-OODPP5T-KKWO5ZL-QXSP4GP-P4M4LAW";
+          id = "O3BZUDC-PZCKNWW-VPF53TP-6VXBUBQ-NKNIE6S-3OFE6VK-AZME2JV-WYG7ZQF";
           addresses = [
             "tcp://${otherHosts.mbison.ip}:22000"
           ];
@@ -275,7 +278,7 @@
       folders = {
         "/home/vhs/Sync" = {
           id = "sync";
-          devices = [ "mbison" "mpu3" ];
+          devices = [ "mbison" "mpu3" "mpu4" ];
         };
       };
     };

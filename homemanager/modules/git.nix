@@ -17,6 +17,7 @@
         ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
         dif = "diff -- .${difOptions}";
         sta = "stash --include-untracked";
+        c = "commit -S";
       };
       extraConfig = {
         core = {
@@ -25,6 +26,12 @@
         color.diff-highlight.newNormal = "68 bold";
         color.diff-highlight.newHighlight = "27 bold";
         init.defaultBranch = "master";
+        gpg.format = "ssh";
+
+      };
+      signing = {
+        signByDefault = false;
+        key = builtins.readFile "${user.homeDir}/.ssh/id_ed25519.pub";
       };
       ignores = [
         "*.direnv"

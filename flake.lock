@@ -8,17 +8,17 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1705415623,
-        "narHash": "sha256-17uxPjzKcdfSSxPevP66X4L4KBkqksLMFpNWmCrytTk=",
+        "lastModified": 1707087527,
+        "narHash": "sha256-ay8N1NBrKQb7s+xH6gaRCGZx3Q5gNj/BFqlGkv27x0A=",
         "owner": "vhsconnect",
         "repo": "bbrf-radio",
-        "rev": "509f15b763e5fd5451d521cd469aab41f82c3475",
+        "rev": "7b1af5f88db550a0e4e27e4bb8f514978ee2654a",
         "type": "github"
       },
       "original": {
         "owner": "vhsconnect",
         "repo": "bbrf-radio",
-        "rev": "509f15b763e5fd5451d521cd469aab41f82c3475",
+        "rev": "7b1af5f88db550a0e4e27e4bb8f514978ee2654a",
         "type": "github"
       }
     },
@@ -95,10 +95,12 @@
     "editor": {
       "inputs": {
         "colorschemes": "colorschemes",
+        "emmet": "emmet",
         "flake-utils": "flake-utils",
         "gen": "gen",
         "gitgutter": "gitgutter",
         "leap-nvim": "leap-nvim",
+        "mustache": "mustache",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs_3",
         "nvim-surround": "nvim-surround",
@@ -107,16 +109,32 @@
         "tmux-nav": "tmux-nav"
       },
       "locked": {
-        "lastModified": 1702147951,
-        "narHash": "sha256-8gClK7i/UlBrxZm49Q8NZCoW7zT4HqTdUO0Q9WUyMbY=",
+        "lastModified": 1707517714,
+        "narHash": "sha256-jbsyoqa4iPPbDWhNJchvHL6vyEP+R2p964OJG2lgVgk=",
         "owner": "vhsconnect",
         "repo": "nvim",
-        "rev": "c1c305e1d5c11f42abac1f48794987bf561fc6e5",
+        "rev": "0b82470f76e00c3ca9dee8a0fc68f4857bb8362f",
         "type": "github"
       },
       "original": {
         "owner": "vhsconnect",
         "repo": "nvim",
+        "type": "github"
+      }
+    },
+    "emmet": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1638632324,
+        "narHash": "sha256-VJa3AgbLW8Jow5Ka4NsN0cV3LLNLl0TLSHfMwhElaN0=",
+        "owner": "mattn",
+        "repo": "emmet-vim",
+        "rev": "def5d57a1ae5afb1b96ebe83c4652d1c03640f4d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mattn",
+        "repo": "emmet-vim",
         "type": "github"
       }
     },
@@ -225,6 +243,22 @@
         "type": "github"
       }
     },
+    "mustache": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1638276177,
+        "narHash": "sha256-lmYt+GKuXhbOhu3HufqIFE2DvzUYlk5vGqU6tpJ2yjY=",
+        "owner": "mustache",
+        "repo": "vim-mustache-handlebars",
+        "rev": "0153fe03a919add2d6cf2d41b2d5b6e1188bc0e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mustache",
+        "repo": "vim-mustache-handlebars",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -297,6 +331,7 @@
         "plugin-nvim-web-devicons": "plugin-nvim-web-devicons",
         "plugin-onedark": "plugin-onedark",
         "plugin-open-browser": "plugin-open-browser",
+        "plugin-oxocarbon": "plugin-oxocarbon",
         "plugin-plantuml-previewer": "plugin-plantuml-previewer",
         "plugin-plantuml-syntax": "plugin-plantuml-syntax",
         "plugin-plenary-nvim": "plugin-plenary-nvim",
@@ -317,11 +352,11 @@
         "tidalcycles": "tidalcycles"
       },
       "locked": {
-        "lastModified": 1702147843,
-        "narHash": "sha256-oWR7bcSdWGRIpgAHEbSbCZpb9dpnb8JgQKAYIWnwc+I=",
+        "lastModified": 1707517632,
+        "narHash": "sha256-ghTkwdq1ySTDSx9NbsIFS0tGobgZEwut+Vd9DTCQOlU=",
         "owner": "vhsconnect",
         "repo": "neovim-flake",
-        "rev": "51975107537ffc75d79fd610fcd5b2b0a21bf0b2",
+        "rev": "06c953a614662d5169211a52672166b5fa9b1fee",
         "type": "github"
       },
       "original": {
@@ -1172,6 +1207,22 @@
       "original": {
         "owner": "tyru",
         "repo": "open-browser.vim",
+        "type": "github"
+      }
+    },
+    "plugin-oxocarbon": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701119822,
+        "narHash": "sha256-++JALLPklok9VY2ChOddTYDvDNVadmCeB98jCAJYCZ0=",
+        "owner": "nyoom-engineering",
+        "repo": "oxocarbon.nvim",
+        "rev": "c5846d10cbe4131cc5e32c6d00beaf59cb60f6a2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nyoom-engineering",
+        "repo": "oxocarbon.nvim",
         "type": "github"
       }
     },

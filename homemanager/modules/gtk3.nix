@@ -17,6 +17,7 @@ in
       "file:///home/vhs/VP"
       "file:///home/vhs/Music"
       "file:///home/vhs/Videos"
+      "file:///home/vhs/Sync"
     ];
     extraConfig = {
       gtk-theme-name = "Arc-Dark";
@@ -40,6 +41,7 @@ in
     };
   };
   qt.enable = true;
-  qt.platformTheme = "gtk";
-  qt.style.name = "adawaita-dark";
+  qt.platformTheme = "qtct";
+  qt.style.package = pkgs.adwaita-qt;
+  qt.style.name = "adwaita-dark";
 }
