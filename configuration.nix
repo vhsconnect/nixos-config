@@ -252,7 +252,7 @@
           ];
         };
         mpu4 = {
-          id = "UM27VWQ-UPM3NOW-472K3VY-6CQ7I4O-7LA6IW7-3RTCQRX-LBHY4QZ-HIDJTQJ";
+          id = "HGCCQ7Y-APY3WFT-6HHX37C-7NV3ZMR-2EQ2HNW-4IEG3KS-UZHF5KW-KFAEIAU";
           addresses = [
             "tcp://${otherHosts.mpu4.ip}:22000"
           ];
