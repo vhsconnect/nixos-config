@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    eww
+    nix-doc
     steam-run
     qt5ct
     inotify-tools

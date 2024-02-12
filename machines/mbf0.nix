@@ -1,6 +1,6 @@
 inputs:
 let
-  user = (import ../user.nix).macv;
+  user = (import ../user.nix).mbf0;
 in
 {
   system = "aarch64-darwin";
@@ -15,7 +15,7 @@ in
     {
       home-manager.useUserPackages = true;
       home-manager.backupFileExtension = "hmback";
-      home-manager.users.valentin = import ../homemanager/darwinHome.nix;
+      home-manager.users.vhs = import ../homemanager/darwinHome.nix;
       home-manager.extraSpecialArgs = {
         inputs = inputs;
         user = user;

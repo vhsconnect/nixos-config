@@ -27,9 +27,9 @@
           (x: legacyPackages.${x}.nixpkgs-fmt);
 
       darwinConfigurations = {
-        macv =
+        mbf0 =
           inputs.darwin.lib.darwinSystem
-            (import ./machines/macv.nix inputs);
+            (import ./machines/mbf0.nix inputs);
       };
 
       nixosConfigurations = {

@@ -54,8 +54,8 @@
     EDITOR = "nvim";
   };
 
-  home.username = "valentin";
-  home.homeDirectory = "/Users/valentin";
+  home.username = "vhs";
+  home.homeDirectory = "/Users/vhs";
 
   ######## fonts ########
   fonts.fontconfig.enable = true;

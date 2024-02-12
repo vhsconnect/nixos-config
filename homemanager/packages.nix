@@ -1,8 +1,4 @@
 { pkgs, inputs, ... }:
-let
-  devenv =
-    inputs.devenv.packages.${builtins.currentSystem}.devenv;
-in
 {
   home.packages = with pkgs;
     [
@@ -15,7 +11,6 @@ in
       protoc-gen-doc
       tldr
       ponysay
-      eww
 
       #haskell
       cabal-install
@@ -23,7 +18,6 @@ in
 
       # nix
       niv
-      nix-doc
       nix-prefetch-git
       nixpkgs-fmt
       rnix-lsp
