@@ -12,6 +12,7 @@
     bbrf.url = "github:vhsconnect/bbrf-radio/7b1af5f88db550a0e4e27e4bb8f514978ee2654a";
     bbrf.inputs.nixpkgs.follows = "nixpkgs";
     editor.url = "github:vhsconnect/nvim";
+    
   };
   outputs = inputs:
     let
@@ -52,6 +53,10 @@
         mbison =
           inputs.nixpkgs.lib.nixosSystem
             (import ./machines/mbison.nix inputs);
+
+        mprez =
+          inputs.nixpkgs.lib.nixosSystem
+            (import ./machines/mprez.nix inputs);
       };
 
       devShells =

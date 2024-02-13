@@ -106,6 +106,10 @@ let
     xwallpaper --screen 0 --stretch ~/.background-image
     xwallpaper --screen 1 --stretch ~/.background-image
   '';
+  mprezrez = pkgs.writeScriptBin "mprezrez" ''
+    xrandr --output eDP1 --mode 1920x1200
+    controlcaps
+  '';
 
   monitorsDisconnected = pkgs.writeScriptBin "monitorsDisconnected" ''
     #! /usr/bin/env zsh
@@ -132,5 +136,6 @@ in
     oneoff
     rave-connect
     controlcaps
+    mprezrez
   ];
 }

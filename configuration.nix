@@ -49,7 +49,10 @@
   boot.loader =
     if user.efiBoot
     then {
-      efi = { canTouchEfiVariables = true; };
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot${user.bootMountpoint}";
+      };
       grub = {
         enable = true;
         devices = [ "nodev" ];
@@ -66,7 +69,6 @@
 
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
-
   networking.hostName = user.host;
   networking.useDHCP = false;
   networking.extraHosts =

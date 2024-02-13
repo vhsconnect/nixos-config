@@ -109,11 +109,11 @@
         "tmux-nav": "tmux-nav"
       },
       "locked": {
-        "lastModified": 1707517714,
-        "narHash": "sha256-jbsyoqa4iPPbDWhNJchvHL6vyEP+R2p964OJG2lgVgk=",
+        "lastModified": 1707837153,
+        "narHash": "sha256-dlnF3JZxtq1ksMNIC+iLgFfK5q9fP8P6SjoroO10gVo=",
         "owner": "vhsconnect",
         "repo": "nvim",
-        "rev": "0b82470f76e00c3ca9dee8a0fc68f4857bb8362f",
+        "rev": "5b526dd428ffe2a400219308844090cfd0fe439f",
         "type": "github"
       },
       "original": {
@@ -352,11 +352,11 @@
         "tidalcycles": "tidalcycles"
       },
       "locked": {
-        "lastModified": 1707517632,
-        "narHash": "sha256-ghTkwdq1ySTDSx9NbsIFS0tGobgZEwut+Vd9DTCQOlU=",
+        "lastModified": 1707837078,
+        "narHash": "sha256-G9NrYCVyrF7FhzRdJMBFl/qJp5eGLTwzRIrllsDFlCs=",
         "owner": "vhsconnect",
         "repo": "neovim-flake",
-        "rev": "06c953a614662d5169211a52672166b5fa9b1fee",
+        "rev": "e87c4b51a0a5dd0d1148eca8365f40def0579f88",
         "type": "github"
       },
       "original": {
