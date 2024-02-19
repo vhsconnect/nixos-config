@@ -159,8 +159,6 @@
 
   services.pipewire = {
     enable = true;
-    # alsa.enable = true;
-    # alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
   };
@@ -170,6 +168,11 @@
       isNormalUser = true;
       shell = pkgs.zsh;
       extraGroups = [ "wheel" "docker" "adbusers" "libvirtd" "qemu-libvirtd" "syncthing" ];
+    };
+    users.office = {
+      isNormalUser = true;
+      shell = pkgs.zsh;
+      extraGroups = [ "wheel" "docker" "adbusers" ];
     };
     extraGroups.vboxusers.members = [ "vhs" ];
   };
@@ -213,6 +216,8 @@
     wireguard-tools
     git-crypt
   ];
+
+  programs.virt-manager.enable = true;
 
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
   programs.ssh.startAgent = true;

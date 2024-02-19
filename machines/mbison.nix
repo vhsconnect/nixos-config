@@ -24,6 +24,7 @@ in
         home-manager.useGlobalPkgs = false;
         home-manager.backupFileExtension = "hmback";
         home-manager.users.vhs = import ../homemanager/home.nix;
+        home-manager.users.office = import ../homemanager/work.nix;
         home-manager.extraSpecialArgs = {
           inherit inputs;
           inherit user;
