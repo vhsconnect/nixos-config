@@ -31,6 +31,7 @@ in
           _imports =
             [
               ../homemanager/packages.nix
+              ../homemanager/workPackages.nix
               ../homemanager/guiPackages.nix
               ../homemanager/linuxPackages.nix
               ../homemanager/themePackages.nix

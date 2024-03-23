@@ -4,7 +4,11 @@
 , otherHosts
 , inputs
 , ...
-}: {
+}:
+let
+  joinFiles = x: builtins.concatStringsSep "\n" (map builtins.readFile x);
+in
+{
   imports = [
     (
       ./.
@@ -21,7 +25,7 @@
     package = pkgs.nixFlakes;
     nixPath = [
       "nixpkgs=${inputs.nixpkgs}"
-      "nixos-config=${/home/vhs/SConfig/nixos-config/configuration.nix}"
+      "nixos-config=${/home/common/SConfig/nixos-config/configuration.nix}"
     ];
     registry = {
       nixos = {
@@ -74,7 +78,10 @@
   networking.extraHosts =
     if user.isWorkComputer
     then ''
-      ${builtins.readFile /home/vhs/Public/extraHosts}
+          ${joinFiles [
+      /home/vhs/Public/extraHosts
+      /home/office/Public/extraHosts
+          ]}
     ''
     else "";
 
@@ -174,6 +181,7 @@
       shell = pkgs.zsh;
       extraGroups = [ "wheel" "docker" "adbusers" ];
     };
+    groups.ops.members = [ "vhs" "office" ];
     extraGroups.vboxusers.members = [ "vhs" ];
   };
 
