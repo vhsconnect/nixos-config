@@ -4,7 +4,8 @@
 , otherHosts
 , inputs
 , ...
-}: {
+}:
+{
   imports = [
     (
       ./.
@@ -21,7 +22,7 @@
     package = pkgs.nixFlakes;
     nixPath = [
       "nixpkgs=${inputs.nixpkgs}"
-      "nixos-config=${/home/vhs/SConfig/nixos-config/configuration.nix}"
+      "nixos-config=${/home/common/SConfig/nixos-config/configuration.nix}"
     ];
     registry = {
       nixos = {
@@ -71,12 +72,23 @@
   i18n.defaultLocale = "en_US.UTF-8";
   networking.hostName = user.host;
   networking.useDHCP = false;
+
   networking.extraHosts =
     if user.isWorkComputer
-    then ''
-      ${builtins.readFile /home/vhs/Public/extraHosts}
-    ''
+    then
+      let
+        joinFiles = x:
+          builtins.concatStringsSep "\n" (map builtins.readFile x);
+      in
+      ''
+            ${joinFiles [
+        /home/vhs/Public/extraHosts
+        /home/office/Public/extraHosts
+            ]}
+      ''
     else "";
+
+
 
 
   console = {
@@ -174,6 +186,7 @@
       shell = pkgs.zsh;
       extraGroups = [ "wheel" "docker" "adbusers" ];
     };
+    groups.ops.members = [ "vhs" "office" ];
     extraGroups.vboxusers.members = [ "vhs" ];
   };
 

@@ -1,8 +1,0 @@
-#! /usr/bin/env bash
-nix-channel --add https://nixos.org/channels/nixos-unstable nixos
-nix-channel --update
-cp -vr ../nixos/nixos/configuration.nix /etc/nixos/configuration.nix
-touch /home/vhs/Public/extraHosts
-nixos-rebuild switch
-
-

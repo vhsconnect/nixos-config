@@ -9,16 +9,6 @@ in
 {
   gtk.enable = true;
   gtk.gtk3 = {
-    bookmarks = [
-      "file:///home/vhs/Downloads"
-      "file:///home/vhs/Documents"
-      "file:///home/vhs/Pictures"
-      "file:///home/vhs/Repos"
-      "file:///home/vhs/VP"
-      "file:///home/vhs/Music"
-      "file:///home/vhs/Videos"
-      "file:///home/vhs/Sync"
-    ];
     extraConfig = {
       gtk-theme-name = "Arc-Dark";
       gtk-icon-theme-name =

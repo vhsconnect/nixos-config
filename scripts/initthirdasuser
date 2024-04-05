@@ -1,4 +1,0 @@
-#! /usr/bin/env bash
-nix-shell '<home-manager>' -A install
-ln -s ../nixos/homemanager/nixpkgs/home.nix ~/.config/nixpkgs/home.nix
-home-manager switch
