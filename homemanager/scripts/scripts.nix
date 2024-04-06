@@ -106,6 +106,17 @@ let
     xwallpaper --screen 0 --stretch ~/.background-image
     xwallpaper --screen 1 --stretch ~/.background-image
   '';
+  trips5 = pkgs.writeScriptBin "trips5" ''
+    #! /usr/bin/env zsh
+    xrandr \
+    --output DP-1 --mode 2560x1440 --pos 0x0 --rotate left \
+    --output DP-2 --off \
+    --output DP-3 --off \
+    --output HDMI-1 --mode 1920x1080 --pos 1440x1480 --rotate normal
+    xwallpaper --screen 0 --zoom ~/.background-image
+    xwallpaper --screen 1 --stretch ~/.background-image
+
+  '';
   mprezrez = pkgs.writeScriptBin "mprezrez" ''
     xrandr --output eDP1 --mode 1920x1200
     controlcaps
@@ -131,6 +142,7 @@ in
     watchexec
     keys
     trips4
+    trips5
     monitorsDisconnected
     robl
     oneoff

@@ -20,6 +20,7 @@
         c = "commit -S";
       };
       extraConfig = {
+        safe.directory = "*";
         core = {
           editor = "nvim";
         };
