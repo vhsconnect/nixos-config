@@ -77,8 +77,14 @@
     if user.isWorkComputer
     then
       let
+        readIfExists = x:
+          if builtins.pathExists x
+          then builtins.readFile x
+          else "";
+
         joinFiles = x:
-          builtins.concatStringsSep "\n" (map builtins.readFile x);
+          builtins.concatStringsSep "\n"
+            (map readIfExists x);
       in
       ''
             ${joinFiles [
@@ -174,7 +180,6 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
-
   users = {
     users.vhs = {
       isNormalUser = true;
