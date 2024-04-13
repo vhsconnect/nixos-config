@@ -20,7 +20,6 @@
       niv
       nix-prefetch-git
       nixpkgs-fmt
-      rnix-lsp
 
       # rust
       cargo
@@ -44,6 +43,7 @@
       #audio/video
       ffmpeg
       yt-dlp
+      scdl
 
       # ai
       ollama
@@ -61,6 +61,7 @@
 
       # nixos vm
       nixos-shell
+      nix-tree
 
       #fonts
       (nerdfonts.override {

@@ -25,11 +25,11 @@
       "nixos-config=${/home/common/SConfig/nixos-config/configuration.nix}"
     ];
     registry = {
-      nixos = {
-        flake = inputs.nixpkgs;
-      };
       nixpkgs = {
         flake = inputs.nixpkgs;
+      };
+      unstable = {
+        flake = inputs.nixpkgs-unstable;
       };
     };
     gc = {

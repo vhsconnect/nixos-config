@@ -32,6 +32,7 @@ in
             [
               ../homemanager/packages.nix
               ../homemanager/guiPackages.nix
+              ../homemanager/workPackages.nix
               ../homemanager/linuxPackages.nix
               ../homemanager/themePackages.nix
               ../homemanager/zsh.nix

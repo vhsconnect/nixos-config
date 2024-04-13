@@ -71,9 +71,12 @@ in
   };
   xsession.windowManager.i3.config.startup = [
     { command = "systemctl --user import-environment"; }
-    # { command = "keys"; }
     {
-      command = "long-command & sleep 2; trips4";
+      command = "long-command & sleep 2; ${user.monitorsCmd}";
+      always = true;
+    }
+    {
+      command = "controlcaps";
       always = true;
     }
     {

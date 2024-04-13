@@ -1,9 +1,5 @@
 {
   "languageserver" = {
-    "nix" = {
-      "command" = "rnix-lsp";
-      "filetypes" = [ "nix" ];
-    };
     "bash" = {
       "command" = "bash-language-server";
       "args" = [ "start" ];

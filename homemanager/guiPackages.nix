@@ -13,6 +13,7 @@
     gthumb
     signal-desktop
     tdesktop
+    popcorntime
     freetube
     syncthingtray
   ];
