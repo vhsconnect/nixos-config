@@ -61,9 +61,10 @@ else {
         nvim-tree-lua
         nvim-web-devicons
         nvim-surround
+        nvim-dap
 
-        neodev-nvim
         pkgs.leap-nvim
+        pkgs.tshjkl-nvim
         which-key-nvim
 
         {

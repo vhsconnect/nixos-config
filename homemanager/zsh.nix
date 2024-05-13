@@ -61,6 +61,8 @@ in
       tar-archive = "tar -czvf";
       tar-unarchive = "tar -xzvf";
       nd = "nix develop -c zsh";
+      vl = "git status --short | fzf | cut -c 4- | xargs nvim";
+
     };
     oh-my-zsh = {
       enable = true;

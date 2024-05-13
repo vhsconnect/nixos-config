@@ -109,11 +109,22 @@ let
   mprezrez = pkgs.writeScriptBin "mprezrez" ''
     xrandr --output eDP1 --mode 1920x1200
     controlcaps
+    xwallpaper --stretch ~/.background-image
+
+  '';
+  mprezhome = pkgs.writeScriptBin "mprezhome" ''
+    xrandr --output DP2 --mode 2560x1440 --primary
+    xrandr --output eDP1 --off
+  '';
+  mprezoffice = pkgs.writeScriptBin "mprezoffice" ''
+    xrandr --output DP3-1 --mode 2560x1440 --primary -o 1
+    xrandr --output eDP1 --off
   '';
 
   monitorsDisconnected = pkgs.writeScriptBin "monitorsDisconnected" ''
     #! /usr/bin/env zsh
     xrandr --output HDMI2 --off --output DP1 --off
+
   '';
   robl = pkgs.writeScriptBin "robl" (builtins.readFile ./robl);
   oneoff = pkgs.writeScriptBin "oneoff" (builtins.readFile ./oneoff.sh);
@@ -137,5 +148,7 @@ in
     rave-connect
     controlcaps
     mprezrez
+    mprezhome
+    mprezoffice
   ];
 }

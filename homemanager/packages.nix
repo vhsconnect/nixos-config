@@ -85,12 +85,12 @@
       ]
     )
     ++ (
-      with pkgs.python39Packages; [
+      with python39Packages; [
         virtualenv
         pip
       ]
     )
-    ++ (with pkgs.nodePackages; [
+    ++ (with nodePackages; [
       bash-language-server
       typescript-language-server
       typescript
@@ -98,7 +98,9 @@
     ])
     ++ [
       # additional language servers
-      pkgs.lua-language-server
-      pkgs.nil
+      lua-language-server
+
+      vscode-extensions.angular.ng-template
+      nil
     ];
 }

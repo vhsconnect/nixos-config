@@ -28,7 +28,13 @@ function interop(str)
 end
 local x = os.getenv("VIM_THEME")
 
-vim.cmd(interop"colorscheme {x}")
+
+vim.cmd [[ colorscheme horseradish256 ]]
+-- vim.g["clipboard+"] = "unnamed"
+
+vim.opt.clipboard="unnamedplus"
+vim.opt.cmdheight=0
+
 --------------
 -- nvim-cmp --
 --------------

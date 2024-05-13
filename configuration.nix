@@ -242,7 +242,6 @@
 
   # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];
 
-
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;

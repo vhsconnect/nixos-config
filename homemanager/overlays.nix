@@ -16,8 +16,23 @@ let
     ollama = unstable.ollama;
   };
 
+
+  tshjkl-nvim-overlay = self: prev: {
+    tshjkl-nvim = prev.vimUtils.buildVimPlugin {
+      pname = "tshjkl-nvim";
+      version = "2024-02-07";
+      src = prev.fetchFromGitHub {
+        owner = "gsuuon";
+        repo = "tshjkl.nvim";
+        rev = "19d65d478c662fd28956c4f71204c3d33352816f";
+        sha256 = "yoZ/3kFLRca+DzXPN20fDhyr3sNE+EXyqpE6gVgytZc=";
+      };
+    };
+  };
+
+
   leap-nvim-overlay = self: prev: {
-    leap-nvim = prev.vimUtils.buildVimPluginFrom2Nix {
+    leap-nvim = prev.vimUtils.buildVimPlugin {
       pname = "leap.nvim";
       version = "2022-10-01";
       src = prev.fetchFromGitHub {
@@ -32,7 +47,7 @@ let
   };
 
   codeium-overlay = self: prev: {
-    _codeium = prev.vimUtils.buildVimPluginFrom2Nix {
+    _codeium = prev.vimUtils.buildVimPlugin {
       name = "codeium.vim";
       version = "1.2.26";
       src = prev.fetchFromGitHub {
@@ -52,7 +67,7 @@ let
   };
 
   coc-nvim-overlay = self: prev: {
-    coc-nvim-fixed = prev.vimUtils.buildVimPluginFrom2Nix {
+    coc-nvim-fixed = prev.vimUtils.buildVimPlugin {
       pname = "coc.nvim";
       version = "2021-09-04";
       src = prev.fetchFromGitHub {
@@ -71,4 +86,6 @@ in
   leap-nvim-overlay
   codeium-overlay
   ollama-overlay
+  tshjkl-nvim-overlay
+
 ]
