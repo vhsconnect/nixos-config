@@ -11,6 +11,7 @@
     gparted
     gromit-mpx
     gthumb
+    rhythmbox
     signal-desktop
     tdesktop
     popcorntime

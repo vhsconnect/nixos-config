@@ -62,18 +62,18 @@
         set -g @plugin 'wfxr/tmux-power'
       '';
     }
-    {
-      plugin = pkgs.tmuxPlugins.resurrect;
-      extraConfig = ''
-        set -g @plugin 'tmux-plugins/tmux-resurrect'
-      '';
-    }
-    {
-      plugin = pkgs.tmuxPlugins.continuum;
-      extraConfig = ''
-        set -g @plugin 'tmux-plugins/tmux-continuum'
-        set -g @continuum-restore 'on'
-      '';
-    }
+    # {
+    #   plugin = pkgs.tmuxPlugins.resurrect;
+    #   extraConfig = ''
+    #     set -g @plugin 'tmux-plugins/tmux-resurrect'
+    #   '';
+    # }
+    # {
+    #   plugin = pkgs.tmuxPlugins.continuum;
+    #   extraConfig = ''
+    #     set -g @plugin 'tmux-plugins/tmux-continuum'
+    #     set -g @continuum-restore 'on'
+    #   '';
+    # }
   ];
 }

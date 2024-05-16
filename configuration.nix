@@ -314,11 +314,10 @@
     user = "vhs";
     port = 8898;
     faderValue = 25;
-    itemsPerPage = 4500;
   };
 
   services.nginx = {
-    enable = user.bbrf;
+    enable = true;
     virtualHosts = {
       localhost = {
         forceSSL = false;

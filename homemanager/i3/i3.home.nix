@@ -76,7 +76,7 @@ in
       always = true;
     }
     {
-      command = "controlcaps";
+      command = "long-command & sleep 2; controlcaps";
       always = true;
     }
     {

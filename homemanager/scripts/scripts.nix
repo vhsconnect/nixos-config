@@ -21,14 +21,14 @@ let
   allight = pkgs.writeScriptBin "allight" ''
     #! /usr/bin/env bash
 
-    Y="*dracula"
+    Y="*tokyo-night-moon"
     X="*carrots"
 
     A="ansi"
     B="GitHub"
 
-    M="seoul256"
-    N="PaperColor"
+    M="gruvbox"
+    N="Tomorrow"
 
     C="\$DARK_FZF_TAB"
     D="\$LIGHT_FZF_TAB"
@@ -42,13 +42,13 @@ let
     #! /usr/bin/env bash
 
     Y="*carrots"
-    X="*dracula"
+    X="*tokyo-night-moon"
 
     A="GitHub"
     B="ansi"
 
-    M="PaperColor"
-    N="seoul256"
+    M="Tomorrow"
+    N="gruvbox"
 
     C="\$LIGHT_FZF_TAB"
     D="\$DARK_FZF_TAB"

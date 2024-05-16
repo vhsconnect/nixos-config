@@ -48,6 +48,8 @@ in
               ../homemanager/scripts/scripts.nix
               ../homemanager/scripts/templates.nix
               ../homemanager/modules/tmux.nix
+              ../homemanager/modules/webapps.nix
+              ../homemanager/homeFiles.nix
             ]
             ++ (
               if user.withgtk

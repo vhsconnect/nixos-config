@@ -82,6 +82,13 @@
   #   };
   # };
 
+  programs.firefox.webapps.discord = {
+    enable = true;
+    url = "https://discord.com/app";
+    id = 1;
+    backgroundColor = "#202225";
+  };
+
   #IMPORTANT
   home.stateVersion = "21.03";
 }
