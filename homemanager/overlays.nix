@@ -17,7 +17,7 @@ let
   };
 
   leap-nvim-overlay = self: prev: {
-    leap-nvim = prev.vimUtils.buildVimPluginFrom2Nix {
+    leap-nvim = prev.vimUtils.buildVimPlugin {
       pname = "leap.nvim";
       version = "2022-10-01";
       src = prev.fetchFromGitHub {
@@ -32,7 +32,7 @@ let
   };
 
   codeium-overlay = self: prev: {
-    _codeium = prev.vimUtils.buildVimPluginFrom2Nix {
+    _codeium = prev.vimUtils.buildVimPlugin {
       name = "codeium.vim";
       version = "1.2.26";
       src = prev.fetchFromGitHub {
@@ -52,7 +52,7 @@ let
   };
 
   coc-nvim-overlay = self: prev: {
-    coc-nvim-fixed = prev.vimUtils.buildVimPluginFrom2Nix {
+    coc-nvim-fixed = prev.vimUtils.buildVimPlugin {
       pname = "coc.nvim";
       version = "2021-09-04";
       src = prev.fetchFromGitHub {

@@ -46,6 +46,7 @@ in
               ../homemanager/modules/hexchat.nix
               ../homemanager/scripts/scripts.nix
               ../homemanager/scripts/templates.nix
+              ../homemanager/modules/webapps.nix
             ]
             ++ (
               if user.withgtk

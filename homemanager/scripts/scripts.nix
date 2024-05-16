@@ -121,6 +121,9 @@ let
     xrandr --output eDP1 --mode 1920x1200
     controlcaps
   '';
+  xwall = pkgs.writeScriptBin "xwall" ''
+    xwallpaper --screen 0 --stretch ~/.background-image
+  '';
 
   monitorsDisconnected = pkgs.writeScriptBin "monitorsDisconnected" ''
     #! /usr/bin/env zsh
@@ -149,5 +152,6 @@ in
     rave-connect
     controlcaps
     mprezrez
+    xwall
   ];
 }

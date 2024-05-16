@@ -89,7 +89,7 @@
       ''
             ${joinFiles [
         /home/vhs/Public/extraHosts
-        /home/office/Public/extraHosts
+        # /home/office/Public/extraHosts
             ]}
       ''
     else "";

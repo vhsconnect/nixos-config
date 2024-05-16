@@ -481,7 +481,7 @@ in
 {
   home.packages = [
     zstuff
-    alacritty
+    alacritty_yaml
   ];
 }
 
