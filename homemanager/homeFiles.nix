@@ -8,8 +8,7 @@
         yarn.lock
         flake.lock
         package-lock.json
-        cargo.toml
-
+        Cargo.lock
       '';
     };
   };

@@ -46,7 +46,7 @@
       scdl
 
       # ai
-      ollama
+      # ollama
 
       #utils
       zip

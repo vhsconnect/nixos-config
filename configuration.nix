@@ -328,7 +328,16 @@
   };
 
 
+  #after 2405
+  # services.ollama = {
+  #   enable = true;
+  #   environmentVariables = {
+  #     HSA_OVERRIDE_GFX_VERSION = "10.3.0";
+  #   };
+  #   acceleration = "rocm";
+  # };
+
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
-  system.stateVersion = "20.09"; #do not change
+  system.stateVersion = "20.09";
 }
