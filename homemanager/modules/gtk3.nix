@@ -31,7 +31,7 @@ in
     };
   };
   qt.enable = true;
-  qt.platformTheme = "qtct";
+  qt.platformTheme.name = "qtct";
   qt.style.package = pkgs.adwaita-qt;
   qt.style.name = "adwaita-dark";
 }

@@ -17,9 +17,87 @@ let
     --border \
     --color $DARK_FZF_TAB
   '';
+  alacritty_toml = pkgs.writeTextDir "home/vhs/Public/templates/alacritty_toml" ''
+
+    import = [
+        "~/.config/alacritty/themes/themes/tokyo-night-storm.toml"
+    ]
+
+    live_config_reload = true
+
+    [cursor]
+    blink_interval = 1000
+    unfocused_hollow = true
+
+    [cursor.style]
+    blinking = "Always"
+    shape = "Underline"
+
+    [cursor.vi_mode_style]
+    shape = "Block"
+
+    [debug]
+    log_level = "OFF"
+    persistent_logging = false
+    print_events = false
+    render_timer = false
+
+    [font]
+    size = 12
+
+    [font.bold]
+    family = "VictorMono Nerd Font"
+    style = "Italic"
+
+    [font.glyph_offset]
+    x = 0
+    y = 0
+
+    [font.italic]
+    family = "VictorMono Nerd Font"
+    style = "Light Italic"
+
+    [font.normal]
+    family = "Iosevka Nerd Font"
+    style = "Medium"
+
+    [font.offset]
+    x = 0
+    y = 0
+
+    [mouse]
+    hide_when_typing = true
+
+    [[mouse.bindings]]
+    action = "PasteSelection"
+    mouse = "Middle"
+
+    [scrolling]
+    history = 10000
+    multiplier = 3
+
+    [selection]
+    save_to_clipboard = true
+    semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+    [window]
+    decorations = "none"
+    dynamic_padding = false
+    opacity = 0.85
+    startup_mode = "Windowed"
+
+    [window.dimensions]
+    columns = 100
+    lines = 85
+
+    [window.padding]
+    x = 3
+    y = 3
+  '';
 in
 {
   home.packages = [
     zstuff
+    alacritty_toml
   ];
 }

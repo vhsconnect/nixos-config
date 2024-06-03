@@ -102,6 +102,11 @@
     keyMap = "us";
   };
 
+  services.libinput = {
+    enable = true;
+    mouse.accelSpeed = "1.5";
+  };
+
   services.xserver = {
     enable = true;
     autoRepeatDelay = 200;
@@ -114,10 +119,8 @@
         combineScreens = false;
       };
     };
-    layout = "us";
-    xkbVariant = "altgr-intl";
-    libinput.enable = true;
-    libinput.mouse.accelSpeed = "1.5";
+    xkb.layout = "us";
+    xkb.variant = "altgr-intl";
     # nvidia driver in hardware file
     videoDrivers =
       if user.nvidia || user.amd
@@ -156,7 +159,7 @@
   services.printing.enable = true;
   services.avahi.enable = true;
   services.avahi.openFirewall = true;
-  services.avahi.nssmdns = true;
+  services.avahi.nssmdns4 = true;
   services.printing.drivers = [ pkgs.cnijfilter2 ];
 
   hardware.opengl.enable = true;
@@ -233,6 +236,7 @@
     docker-compose
     wireguard-tools
     git-crypt
+    inputs.basmati.packages.${pkgs.system}.default
   ];
 
   programs.virt-manager.enable = true;
