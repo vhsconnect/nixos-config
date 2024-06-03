@@ -45,6 +45,7 @@ in
               ../homemanager/modules/eww.nix
               ../homemanager/scripts/scripts.nix
               ../homemanager/scripts/templates.nix
+              ../homemanager/modules/tmux.nix
             ]
             ++ (
               if user.withgtk
