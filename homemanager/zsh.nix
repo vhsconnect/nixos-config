@@ -61,7 +61,8 @@ in
       tar-archive = "tar -czvf";
       tar-unarchive = "tar -xzvf";
       nd = "nix develop -c zsh";
-      vl = "git status --short | fzf | cut -c 4- | xargs nvim";
+      vl = "git status --short | fzf | cut -c 5- | xargs nvim";
+      vh = "git show --name-only --pretty=format: | fzf | xargs nvim";
 
     };
     oh-my-zsh = {

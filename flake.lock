@@ -93,11 +93,11 @@
         "tshjkl": "tshjkl"
       },
       "locked": {
-        "lastModified": 1715453250,
-        "narHash": "sha256-JoZXetmNR+bndM/8xEd4XJgMg6xNQ3fN3xovr/MPyyg=",
+        "lastModified": 1716387035,
+        "narHash": "sha256-lhQTdKbue4NqpbaK41hTEaXfg9Y5fDe8wNxWFJQFhCM=",
         "owner": "vhsconnect",
         "repo": "nvim",
-        "rev": "1b8930b15d66335a2376d4251b6ed05ed0509e44",
+        "rev": "64ee889dda998d1e191d41e633b3b0d55fd6f1be",
         "type": "github"
       },
       "original": {
@@ -310,11 +310,11 @@
         "plugin-which-key": "plugin-which-key"
       },
       "locked": {
-        "lastModified": 1715453201,
-        "narHash": "sha256-DH75SWsYbXkmtx/pgkgJOZoKHzDbZi0goiTayBZrvAg=",
+        "lastModified": 1716040715,
+        "narHash": "sha256-xcePlWpIzPaXeOz2apfuKuR2KibuxduoV4JJNuMtAq8=",
         "owner": "vhsconnect",
         "repo": "neovim-flake",
-        "rev": "f3795a923dea8154d3fd14f084cec76136fe52d8",
+        "rev": "8dc909e9377a30de2aeb3cbce4cf8fc6b45f7781",
         "type": "github"
       },
       "original": {
