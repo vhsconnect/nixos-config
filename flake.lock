@@ -3,13 +3,17 @@
     "alacritty_themes": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-rTmYRBSPgf8oh1b0z5fWZfMeoaDUOthCic6H0lz+EC0=",
-        "type": "file",
-        "url": "https://github.com/alacritty/alacritty-theme"
+        "lastModified": 1714732884,
+        "narHash": "sha256-bPup3AKFGVuUC8CzVhWJPKphHdx0GAc62GxWsUWQ7Xk=",
+        "owner": "alacritty",
+        "repo": "alacritty-theme",
+        "rev": "94e1dc0b9511969a426208fbba24bd7448493785",
+        "type": "github"
       },
       "original": {
-        "type": "file",
-        "url": "https://github.com/alacritty/alacritty-theme"
+        "owner": "alacritty",
+        "repo": "alacritty-theme",
+        "type": "github"
       }
     },
     "basmati": {

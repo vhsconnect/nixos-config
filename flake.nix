@@ -13,7 +13,7 @@
     editor.url = "github:vhsconnect/nvim";
     basmati.url = "github:vhsconnect/basmati";
     alacritty_themes = {
-      url = "https://github.com/alacritty/alacritty-theme";
+      url = "github:alacritty/alacritty-theme";
       flake = false;
     };
 

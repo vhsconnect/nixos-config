@@ -21,8 +21,8 @@ let
   allight = pkgs.writeScriptBin "allight" ''
     #! /usr/bin/env bash
 
-    Y="*tokyo-night-moon"
-    X="*carrots"
+    Y="tokyo-night"
+    X="github_light_default"
 
     A="ansi"
     B="GitHub"
@@ -33,7 +33,7 @@ let
     C="\$DARK_FZF_TAB"
     D="\$LIGHT_FZF_TAB"
 
-    sed -i "s/$Y/$X/" ~/.config/alacritty/alacritty.yml
+    sed -i "s/$Y/$X/" ~/.config/alacritty/alacritty.toml
     sed -i "s/$A/$B/" ~/.zstuff
     sed -i "s/$C/$D/" ~/.zstuff
     sed -i "s/$M/$N/" ~/.zstuff
@@ -41,8 +41,8 @@ let
   aldark = pkgs.writeScriptBin "aldark" ''
     #! /usr/bin/env bash
 
-    Y="*carrots"
-    X="*tokyo-night-moon"
+    Y="github_light_default"
+    X="tokyo-night"
 
     A="GitHub"
     B="ansi"
@@ -53,7 +53,7 @@ let
     C="\$LIGHT_FZF_TAB"
     D="\$DARK_FZF_TAB"
 
-    sed -i "s/$Y/$X/" ~/.config/alacritty/alacritty.yml
+    sed -i "s/$Y/$X/" ~/.config/alacritty/alacritty.toml
     sed -i "s/$A/$B/" ~/.zstuff
     sed -i "s/$C/$D/" ~/.zstuff
     sed -i "s/$M/$N/" ~/.zstuff
