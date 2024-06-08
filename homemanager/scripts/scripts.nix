@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 let
   ttheme1 = pkgs.writeScriptBin "ttheme1" ''
     #! /usr/bin/env bash
@@ -21,14 +21,14 @@ let
   allight = pkgs.writeScriptBin "allight" ''
     #! /usr/bin/env bash
 
-    Y="tokyo-night"
-    X="github_light_default"
+    Y="${user.darkAlacrittyTheme}"
+    X="${user.lightAlacrittyTheme}"
 
     A="ansi"
     B="GitHub"
 
-    M="gruvbox"
-    N="Tomorrow"
+    M="${user.darkVimTheme}"
+    N="${user.lightVimTheme}"
 
     C="\$DARK_FZF_TAB"
     D="\$LIGHT_FZF_TAB"
@@ -41,14 +41,14 @@ let
   aldark = pkgs.writeScriptBin "aldark" ''
     #! /usr/bin/env bash
 
-    Y="github_light_default"
-    X="tokyo-night"
+    Y="${user.lightAlacrittyTheme}"
+    X="${user.darkAlacrittyTheme}"
 
     A="GitHub"
     B="ansi"
 
-    M="Tomorrow"
-    N="gruvbox"
+    M="${user.lightVimTheme}"
+    N="${user.darkVimTheme}"
 
     C="\$LIGHT_FZF_TAB"
     D="\$DARK_FZF_TAB"

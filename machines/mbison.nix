@@ -17,6 +17,9 @@ in
   modules =
     [
       ../configuration.nix
+      ../systemModules/docker.nix
+      ../systemModules/libVirt.nix
+      ../systemModules/printing.nix
       inputs.bbrf.nixosModules.x86_64-linux.bbrf
       inputs.home-manager.nixosModules.home-manager
       {

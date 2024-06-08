@@ -22,6 +22,7 @@ in
   modules =
     [
       ../configuration.nix
+      ../systemModules/bbrf.nix
       inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
       inputs.home-manager.nixosModules.home-manager
       {

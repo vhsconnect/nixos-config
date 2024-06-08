@@ -1,5 +1,4 @@
-{ config
-, pkgs
+{ pkgs
 , user
 , otherHosts
 , inputs
@@ -155,12 +154,6 @@
     then false
     else true;
 
-  #printing
-  services.printing.enable = true;
-  services.avahi.enable = true;
-  services.avahi.openFirewall = true;
-  services.avahi.nssmdns4 = true;
-  services.printing.drivers = [ pkgs.cnijfilter2 ];
 
   hardware.opengl.enable = true;
   hardware.pulseaudio.enable = false;
@@ -199,10 +192,7 @@
   };
 
 
-  networking.firewall.allowedTCPPorts =
-    [ 9000 3000 8080 ]
-    ++
-    (if user.bbrf then [ 80 ] else [ ]);
+  networking.firewall.allowedTCPPorts = [ 9000 3000 8080 ];
 
   networking.firewall.checkReversePath = false;
 
@@ -223,7 +213,6 @@
     htop
     jq
     docker
-    #    virt-manager
     pavucontrol
     nmap
     neovim
@@ -239,7 +228,6 @@
     inputs.basmati.packages.${pkgs.system}.default
   ];
 
-  programs.virt-manager.enable = true;
 
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
   programs.ssh.startAgent = true;
@@ -313,35 +301,5 @@
     enable = true;
   };
 
-  services.bbrf = {
-    enable = user.bbrf;
-    user = "vhs";
-    port = 8898;
-    faderValue = 25;
-  };
-
-  services.nginx = {
-    enable = true;
-    virtualHosts = {
-      localhost = {
-        forceSSL = false;
-        enableACME = false;
-        locations."/" = { proxyPass = "http://localhost:8898"; };
-      };
-    };
-  };
-
-
-  #after 2405
-  # services.ollama = {
-  #   enable = true;
-  #   environmentVariables = {
-  #     HSA_OVERRIDE_GFX_VERSION = "10.3.0";
-  #   };
-  #   acceleration = "rocm";
-  # };
-
-  virtualisation.docker.enable = true;
-  virtualisation.libvirtd.enable = true;
   system.stateVersion = "20.09";
 }

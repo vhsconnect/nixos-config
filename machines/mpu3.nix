@@ -17,6 +17,8 @@ in
   modules =
     [
       ../configuration.nix
+      ../systemModules/bbrf.nix
+      ../systemModules/docker.nix
       inputs.bbrf.nixosModules.x86_64-linux.bbrf
       inputs.home-manager.nixosModules.home-manager
       {
@@ -46,6 +48,8 @@ in
               ../homemanager/scripts/scripts.nix
               ../homemanager/scripts/templates.nix
               ../homemanager/modules/tmux.nix
+              ../homemanager/modules/webapps.nix
+              ../homemanager/homeFiles.nix
             ]
             ++ (
               if user.withgtk
