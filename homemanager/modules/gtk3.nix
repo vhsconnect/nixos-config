@@ -16,8 +16,8 @@ in
         then "Paper"
         else "Paper-Mono-Dark";
       gtk-font-name = "${font} Light 11";
-      gtk-cursor-theme-name = "capitaine-cursors-light";
-      gtk-cursor-theme-size = "14";
+      # gtk-cursor-theme-name = "capitaine-cursors-light";
+      # gtk-cursor-theme-size = "14";
       gtk-toolbar-style = "GTK_TOOLBAR_BOTH_HORIZ";
       gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
       gtk-button-images = "0";

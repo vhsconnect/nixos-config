@@ -1,5 +1,6 @@
 { inputs
 , _imports
+, pkgs
 , ...
 }: {
   nixpkgs = {
@@ -65,16 +66,16 @@
   services.gpg-agent.enable = true;
 
   ######### X11 ############
-  # services.gammastep =
-  #   {
-  #     enable = true;
-  #     dawnTime = "6:00-7:45";
-  #     duskTime = "18:00-19:05";
-  #     longitude = "59.3";
-  #     latitude = "18.0";
-  #     temperature.day = 4800;
-  #     tray = true;
-  #   };
+  services.gammastep =
+    {
+      enable = true;
+      dawnTime = "6:00-7:45";
+      duskTime = "18:00-19:05";
+      longitude = "59.3";
+      latitude = "18.0";
+      temperature.day = 4800;
+      tray = true;
+    };
   # services.xscreensaver = {
   #   enable = true;
   #   settings = {
@@ -89,6 +90,12 @@
     backgroundColor = "#202225";
   };
 
+  home.pointerCursor = {
+    package = pkgs.vanilla-dmz;
+    gtk.enable = true;
+    x11.enable = true;
+    name = "Vanilla-DMZ";
+  };
   #IMPORTANT
   home.stateVersion = "21.03";
 }

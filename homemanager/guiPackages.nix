@@ -17,5 +17,6 @@
     popcorntime
     freetube
     syncthingtray
+    obsidian
   ];
 }

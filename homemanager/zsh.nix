@@ -3,7 +3,6 @@
 , ...
 }:
 let
-  configPath = "$HOME/SConfig/nixos-config";
   binPath = "$HOME/bin";
   cargoPath = "$HOME/.cargo/bin";
   npmPath = "$HOME/.npm-global/bin";
@@ -48,7 +47,6 @@ in
       restartpolybar = "systemctl --user restart polybar.service";
       sz = "source ~/.zstuff";
       hms = "echo \"use rebuild\"";
-      rebuild = "nixos-rebuild switch --flake ${configPath} -I nixos-config=. --impure";
       nixp = "nix-shell -p";
       lock = "xscreensaver-command -lock";
       emoji = "rofi -show emoji -modi emoji";
@@ -61,6 +59,10 @@ in
       tar-archive = "tar -czvf";
       tar-unarchive = "tar -xzvf";
       nd = "nix develop -c zsh";
+      vl = "git status --short | fzf | cut -c 5- | xargs nvim";
+      vh = "git show --name-only --pretty=format: | fzf | xargs nvim";
+      xargs2 = "xargs -I {} bash -c \"$1\"";
+
     };
     oh-my-zsh = {
       enable = true;

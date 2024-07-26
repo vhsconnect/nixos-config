@@ -23,15 +23,11 @@
   outputs = inputs:
     let
       systems = [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" ];
-      genAttrs = inputs.nixpkgs.lib.attrsets.genAttrs;
       legacyPackages = inputs.nixpkgs.legacyPackages;
       fold = builtins.foldl';
       map = builtins.map;
     in
     {
-      formatter =
-        genAttrs systems
-          (x: legacyPackages.${x}.nixpkgs-fmt);
 
       darwinConfigurations = {
         mbf0 =
