@@ -17,12 +17,15 @@
       url = "github:alacritty/alacritty-theme";
       flake = false;
     };
-
-
   };
-  outputs = inputs:
+  outputs =
+    inputs:
     let
-      systems = [ "aarch64-linux" "x86_64-linux" "aarch64-darwin" ];
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
       legacyPackages = inputs.nixpkgs.legacyPackages;
       fold = builtins.foldl';
       map = builtins.map;
@@ -30,35 +33,21 @@
     {
 
       darwinConfigurations = {
-        mbf0 =
-          inputs.darwin.lib.darwinSystem
-            (import ./machines/mbf0.nix inputs);
+        mbf0 = inputs.darwin.lib.darwinSystem (import ./machines/mbf0.nix inputs);
       };
 
       nixosConfigurations = {
-        mpu3 =
-          inputs.nixpkgs.lib.nixosSystem
-            (import ./machines/mpu3.nix inputs);
+        mpu3 = inputs.nixpkgs.lib.nixosSystem (import ./machines/mpu3.nix inputs);
 
-        mpu4 =
-          inputs.nixpkgs.lib.nixosSystem
-            (import ./machines/mpu4.nix inputs);
+        mpu4 = inputs.nixpkgs.lib.nixosSystem (import ./machines/mpu4.nix inputs);
 
-        tv1 =
-          inputs.nixpkgs.lib.nixosSystem
-            (import ./machines/tv1.nix inputs);
+        tv1 = inputs.nixpkgs.lib.nixosSystem (import ./machines/tv1.nix inputs);
 
-        munin =
-          inputs.nixpkgs.lib.nixosSystem
-            (import ./machines/munin.nix inputs);
+        munin = inputs.nixpkgs.lib.nixosSystem (import ./machines/munin.nix inputs);
 
-        mbison =
-          inputs.nixpkgs.lib.nixosSystem
-            (import ./machines/mbison.nix inputs);
+        mbison = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbison.nix inputs);
 
-        mprez =
-          inputs.nixpkgs.lib.nixosSystem
-            (import ./machines/mprez.nix inputs);
+        mprez = inputs.nixpkgs.lib.nixosSystem (import ./machines/mprez.nix inputs);
       };
 
       devShells =
@@ -68,10 +57,7 @@
         in
         mergeAttributeSets (
           mapSystems (x: {
-            ${x}.default = with legacyPackages.${x};
-              mkShell {
-                buildInputs = [ git-crypt ];
-              };
+            ${x}.default = with legacyPackages.${x}; mkShell { buildInputs = [ git-crypt ]; };
           })
         );
     };

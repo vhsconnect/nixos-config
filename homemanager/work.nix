@@ -1,7 +1,5 @@
-{ inputs
-, _imports
-, ...
-}: {
+{ inputs, _imports, ... }:
+{
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -37,14 +35,22 @@
   programs.htop = {
     enable = true;
     settings = {
-      left_meters = [ "LeftCPUs2" "Memory" "Swap" ];
-      left_right = [ "RightCPUs2" "Tasks" "LoadAverage" "Uptime" ];
+      left_meters = [
+        "LeftCPUs2"
+        "Memory"
+        "Swap"
+      ];
+      left_right = [
+        "RightCPUs2"
+        "Tasks"
+        "LoadAverage"
+        "Uptime"
+      ];
       setshowProgramPath = false;
       treeView = true;
     };
   };
   programs.lazygit.enable = true;
-
 
   ######## home ########
   home.sessionVariables = {

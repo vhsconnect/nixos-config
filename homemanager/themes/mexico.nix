@@ -1,10 +1,13 @@
 let
   white = "#F9F9F9";
   black = "#282430";
-  compose = f: g: x: f (g x);
+  compose =
+    f: g: x:
+    f (g x);
   colors = compose builtins.fromJSON builtins.readFile ./mexico.json;
 in
-with colors; {
+with colors;
+{
   main = base0A;
   secondary = base08;
   accent = base01;

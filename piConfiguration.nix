@@ -1,14 +1,6 @@
-{ pkgs
-, user
-, ...
-}: {
-  imports = [
-    (
-      ./.
-      + "/hardware/${user.host}"
-      + "/hardware-configuration.nix"
-    )
-  ];
+{ pkgs, user, ... }:
+{
+  imports = [ (./. + "/hardware/${user.host}" + "/hardware-configuration.nix") ];
 
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
@@ -25,7 +17,11 @@
   networking.wireless.interfaces = [ "wlan0" ];
   networking.wireless.networks.${user.network1}.psk = user.psk;
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 21 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    21
+    80
+    443
+  ];
   networking.firewall.allowedTCPPortRanges = [
     {
       from = 51000;
@@ -38,7 +34,9 @@
   users.users.vhs = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBhw5g6xfxbwPcjThdsTYAk6fH/juhIXameVa21j+seG ${user.email}" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBhw5g6xfxbwPcjThdsTYAk6fH/juhIXameVa21j+seG ${user.email}"
+    ];
   };
 
   programs.vim.defaultEditor = true;
@@ -80,7 +78,9 @@
       localhost = {
         forceSSL = false;
         enableACME = false;
-        locations."/" = { proxyPass = "http://localhost:8898"; };
+        locations."/" = {
+          proxyPass = "http://localhost:8898";
+        };
       };
     };
   };

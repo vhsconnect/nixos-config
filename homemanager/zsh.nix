@@ -1,7 +1,4 @@
-{ pkgs
-, user
-, ...
-}:
+{ pkgs, user, ... }:
 let
   binPath = "$HOME/bin";
   cargoPath = "$HOME/.cargo/bin";
@@ -62,7 +59,6 @@ in
       vl = "git status --short | fzf | cut -c 5- | xargs nvim";
       vh = "git show --name-only --pretty=format: | fzf | xargs nvim";
       xargs2 = "xargs -I {} bash -c \"$1\"";
-
     };
     oh-my-zsh = {
       enable = true;

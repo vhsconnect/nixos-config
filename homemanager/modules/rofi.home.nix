@@ -1,22 +1,29 @@
-{ config
-, lib
-, pkgs
-, user
-, ...
-}: {
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
+}:
+{
   programs.rofi = {
     enable = true;
-    terminal =
-      if user.usei3
-      then "${pkgs.xterm}/bin/xterm"
-      else "${pkgs.foot}/bin/foot";
-    package = with pkgs; rofi.override { plugins = [ rofi-calc rofi-emoji ]; };
+    terminal = if user.usei3 then "${pkgs.xterm}/bin/xterm" else "${pkgs.foot}/bin/foot";
+    package =
+      with pkgs;
+      rofi.override {
+        plugins = [
+          rofi-calc
+          rofi-emoji
+        ];
+      };
     font = "${user.font} Medium 14";
     theme =
       let
         mkLitteral = config.lib.formats.rasi.mkLiteral;
       in
-      with (import (../themes/. + "/${user.theme}.nix")); {
+      with (import (../themes/. + "/${user.theme}.nix"));
+      {
         "*" = {
           background-color = mkLitteral main;
           border-color = mkLitteral main;
@@ -27,7 +34,10 @@
 
         inputbar = {
           border = mkLitteral "0 0 1px 0";
-          children = map mkLitteral [ "prompt" "entry" ];
+          children = map mkLitteral [
+            "prompt"
+            "entry"
+          ];
         };
 
         prompt = {
@@ -42,7 +52,9 @@
           padding = mkLitteral "8px 16px";
         };
 
-        entry = { padding = mkLitteral "16px"; };
+        entry = {
+          padding = mkLitteral "16px";
+        };
 
         listview = {
           cycle = true;

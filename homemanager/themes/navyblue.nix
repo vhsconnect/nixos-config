@@ -11,5 +11,5 @@ in
   urgent = "#F7DBF0"; # pink
   gray = "#b8b6bf";
   grey = "#b8b6bf";
-  debug = "#a8325c"; #burgundyred
+  debug = "#a8325c"; # burgundyred
 }

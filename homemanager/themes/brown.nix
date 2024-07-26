@@ -10,5 +10,5 @@ in
   accent3 = black;
   urgent = "#ffda33"; # yellow-brown
   gray = "#b8b6bf";
-  debug = "#a8325c"; #burgundyred
+  debug = "#a8325c"; # burgundyred
 }

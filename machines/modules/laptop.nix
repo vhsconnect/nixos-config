@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   # services.logind.extraConfig = ''
   #   # LidSwitchIgnoreInhibited=no
   #   # KillUserProcesses=no
@@ -8,5 +9,4 @@
   #   # IdleActionSec=14400
   #   # IdleAction=ignore
   # '';
-
 }

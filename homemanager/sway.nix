@@ -1,10 +1,11 @@
-{ inputs
-, config
-, home
-, user
-, lib
-, pkgs
-, ...
+{
+  inputs,
+  config,
+  home,
+  user,
+  lib,
+  pkgs,
+  ...
 }:
 let
   modifier = "Mod4";
@@ -174,8 +175,16 @@ in
           "eDP-1"
           "HDMI-1"
         ];
-        modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-right = [ "pulseaudio" "battery" "memory" "clock" ];
+        modules-left = [
+          "sway/workspaces"
+          "sway/mode"
+        ];
+        modules-right = [
+          "pulseaudio"
+          "battery"
+          "memory"
+          "clock"
+        ];
 
         "clock" = {
           interval = 60;

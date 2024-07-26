@@ -1,14 +1,21 @@
-{ user, lib, ... }: {
+{ user, lib, ... }:
+{
   programs.git =
     let
-      excludeFiles = [ "yarn.lock" "package-lock.json" "flake.lock" ];
+      excludeFiles = [
+        "yarn.lock"
+        "package-lock.json"
+        "flake.lock"
+      ];
       difOptions = lib.strings.concatMapStrings (x: " ':(exclude)${x}'") excludeFiles;
     in
     {
       enable = true;
       delta = {
         enable = true;
-        options = { side-by-side = true; };
+        options = {
+          side-by-side = true;
+        };
       };
       aliases = {
         amend = "commit --amend -m";
@@ -28,15 +35,12 @@
         color.diff-highlight.newHighlight = "27 bold";
         init.defaultBranch = "master";
         gpg.format = "ssh";
-
       };
       signing = {
         signByDefault = false;
         key = builtins.readFile "${user.homeDir}/.ssh/id_ed25519.pub";
       };
-      ignores = [
-        "*.direnv"
-      ];
+      ignores = [ "*.direnv" ];
       userEmail = user.email;
       userName = user.handle;
     };

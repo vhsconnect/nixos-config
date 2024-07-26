@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   networking.firewall.allowedTCPPorts = [ 80 ];
 
@@ -8,7 +9,9 @@
       localhost = {
         forceSSL = false;
         enableACME = false;
-        locations."/" = { proxyPass = "http://localhost:8898"; };
+        locations."/" = {
+          proxyPass = "http://localhost:8898";
+        };
       };
     };
   };
@@ -19,5 +22,4 @@
     port = 8898;
     faderValue = 25;
   };
-
 }

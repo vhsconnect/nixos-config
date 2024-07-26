@@ -1,4 +1,5 @@
-{ user, ... }: {
+{ user, ... }:
+{
   xdg.configFile = {
     "eww/eww.yuck".text = ''
       (defwindow quick-menu

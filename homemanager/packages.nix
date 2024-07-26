@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }:
 {
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
 
       #
@@ -74,23 +75,19 @@
         ];
       })
     ]
-    ++ (
-      with pkgs.haskellPackages; [
-        floskell
-        ghc
-        ghcid
-        haskell-language-server
-        hlint
-        ormolu
-        stack
-      ]
-    )
-    ++ (
-      with pkgs.python39Packages; [
-        virtualenv
-        pip
-      ]
-    )
+    ++ (with pkgs.haskellPackages; [
+      floskell
+      ghc
+      ghcid
+      haskell-language-server
+      hlint
+      ormolu
+      stack
+    ])
+    ++ (with pkgs.python39Packages; [
+      virtualenv
+      pip
+    ])
     ++ (with pkgs.nodePackages; [
       bash-language-server
       typescript-language-server

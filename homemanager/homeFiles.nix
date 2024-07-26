@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   home.file = {
     ".ignore" = {
@@ -20,9 +21,5 @@
       rev = "94e1dc0b9511969a426208fbba24bd7448493785";
       sha256 = "bPup3AKFGVuUC8CzVhWJPKphHdx0GAc62GxWsUWQ7Xk=";
     };
-
   };
-
-
 }
-

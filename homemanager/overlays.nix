@@ -1,20 +1,11 @@
 inputs:
 let
-  p2111 = import inputs.nixpkgs-2111 {
-    system = builtins.currentSystem;
-  };
-  unstable = import inputs.nixpkgs-unstable {
-    system = builtins.currentSystem;
-  };
+  p2111 = import inputs.nixpkgs-2111 { system = builtins.currentSystem; };
+  unstable = import inputs.nixpkgs-unstable { system = builtins.currentSystem; };
 
-  exa-overlay = self: prev: {
-    exa = p2111.exa;
-  };
+  exa-overlay = self: prev: { exa = p2111.exa; };
 
-
-  ollama-overlay = self: prev: {
-    ollama = unstable.ollama;
-  };
+  ollama-overlay = self: prev: { ollama = unstable.ollama; };
 
   leap-nvim-overlay = self: prev: {
     leap-nvim = prev.vimUtils.buildVimPlugin {
@@ -41,9 +32,7 @@ let
         rev = "b7946996e1f34fff4f3adb639c0fb5bffc157092";
         sha256 = "gc4BP4ufE6UPJanskhvoab0vTM3t5b2egPKaV1X5KW0=";
       };
-      patches = [
-        ../patches/codeium-vim.patch
-      ];
+      patches = [ ../patches/codeium-vim.patch ];
       meta = {
         description = "Free, ultrafast Copilot alternative for Vim and Neovim";
         homepage = "https://codeium.com/";

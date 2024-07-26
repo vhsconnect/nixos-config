@@ -1,17 +1,12 @@
-{ pkgs
-, user
-, otherHosts
-, inputs
-, ...
+{
+  pkgs,
+  user,
+  otherHosts,
+  inputs,
+  ...
 }:
 {
-  imports = [
-    (
-      ./.
-      + "/hardware/${user.host}"
-      + "/hardware-configuration.nix"
-    )
-  ];
+  imports = [ (./. + "/hardware/${user.host}" + "/hardware-configuration.nix") ];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -47,25 +42,26 @@
   };
 
   boot.loader =
-    if user.efiBoot
-    then {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot${user.bootMountpoint}";
+    if user.efiBoot then
+      {
+        efi = {
+          canTouchEfiVariables = true;
+          efiSysMountPoint = "/boot${user.bootMountpoint}";
+        };
+        grub = {
+          enable = true;
+          devices = [ "nodev" ];
+          efiSupport = true;
+          useOSProber = true;
+        };
+      }
+    else
+      {
+        grub = {
+          enable = true;
+          device = user.mbrDevice;
+        };
       };
-      grub = {
-        enable = true;
-        devices = [ "nodev" ];
-        efiSupport = true;
-        useOSProber = true;
-      };
-    }
-    else {
-      grub = {
-        enable = true;
-        device = user.mbrDevice;
-      };
-    };
 
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -73,28 +69,20 @@
   networking.useDHCP = false;
 
   networking.extraHosts =
-    if user.isWorkComputer
-    then
+    if user.isWorkComputer then
       let
-        readIfExists = x:
-          if builtins.pathExists x
-          then builtins.readFile x
-          else "";
+        readIfExists = x: if builtins.pathExists x then builtins.readFile x else "";
 
-        joinFiles = x:
-          builtins.concatStringsSep "\n"
-            (map readIfExists x);
+        joinFiles = x: builtins.concatStringsSep "\n" (map readIfExists x);
       in
       ''
-            ${joinFiles [
-        /home/vhs/Public/extraHosts
-        /home/office/Public/extraHosts
-            ]}
+        ${joinFiles [
+          /home/vhs/Public/extraHosts
+          /home/office/Public/extraHosts
+        ]}
       ''
-    else "";
-
-
-
+    else
+      "";
 
   console = {
     font = "Lat2-Terminus16";
@@ -121,10 +109,7 @@
     xkb.layout = "us";
     xkb.variant = "altgr-intl";
     # nvidia driver in hardware file
-    videoDrivers =
-      if user.nvidia || user.amd
-      then [ "" ]
-      else [ "intel" ];
+    videoDrivers = if user.nvidia || user.amd then [ "" ] else [ "intel" ];
     deviceSection = ''
       Option "TearFree" "true"
     '';
@@ -134,26 +119,19 @@
   services.xserver.windowManager.icewm.enable = true;
 
   services.picom = {
-    enable =
-      if user.usei3
-      then true
-      else false;
+    enable = if user.usei3 then true else false;
     vSync = true;
     inactiveOpacity = 0.86;
     fade = true;
     fadeDelta = 8;
-    fadeSteps = [ 0.028 0.03 ];
+    fadeSteps = [
+      2.8e-2
+      3.0e-2
+    ];
   };
 
-  programs.nm-applet.enable =
-    if user.usei3
-    then true
-    else false;
-  programs.sway.enable =
-    if user.usei3
-    then false
-    else true;
-
+  programs.nm-applet.enable = if user.usei3 then true else false;
+  programs.sway.enable = if user.usei3 then false else true;
 
   hardware.opengl.enable = true;
   hardware.pulseaudio.enable = false;
@@ -180,19 +158,36 @@
     users.vhs = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "docker" "adbusers" "libvirtd" "qemu-libvirtd" "syncthing" ];
+      extraGroups = [
+        "wheel"
+        "docker"
+        "adbusers"
+        "libvirtd"
+        "qemu-libvirtd"
+        "syncthing"
+      ];
     };
     users.office = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "docker" "adbusers" ];
+      extraGroups = [
+        "wheel"
+        "docker"
+        "adbusers"
+      ];
     };
-    groups.ops.members = [ "vhs" "office" ];
+    groups.ops.members = [
+      "vhs"
+      "office"
+    ];
     extraGroups.vboxusers.members = [ "vhs" ];
   };
 
-
-  networking.firewall.allowedTCPPorts = [ 9000 3000 8080 ];
+  networking.firewall.allowedTCPPorts = [
+    9000
+    3000
+    8080
+  ];
 
   networking.firewall.checkReversePath = false;
 
@@ -228,7 +223,6 @@
     inputs.basmati.packages.${pkgs.system}.default
   ];
 
-
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
   programs.ssh.startAgent = true;
   programs.ssh.extraConfig = "AddKeysToAgent = yes";
@@ -252,7 +246,6 @@
 
   # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];
 
-
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
@@ -264,27 +257,25 @@
       devices = {
         mpu3 = {
           id = "PJDMPH6-X54CFSG-FFD4AXU-WULBFHJ-KJTGW3Q-DU7GRRV-LTHXKVD-ZGV3TQK";
-          addresses = [
-            "tcp://${otherHosts.mpu3.ip}:22000"
-          ];
+          addresses = [ "tcp://${otherHosts.mpu3.ip}:22000" ];
         };
         mpu4 = {
           id = "HGCCQ7Y-APY3WFT-6HHX37C-7NV3ZMR-2EQ2HNW-4IEG3KS-UZHF5KW-KFAEIAU";
-          addresses = [
-            "tcp://${otherHosts.mpu4.ip}:22000"
-          ];
+          addresses = [ "tcp://${otherHosts.mpu4.ip}:22000" ];
         };
         mbison = {
           id = "O3BZUDC-PZCKNWW-VPF53TP-6VXBUBQ-NKNIE6S-3OFE6VK-AZME2JV-WYG7ZQF";
-          addresses = [
-            "tcp://${otherHosts.mbison.ip}:22000"
-          ];
+          addresses = [ "tcp://${otherHosts.mbison.ip}:22000" ];
         };
       };
       folders = {
         "/home/vhs/Sync" = {
           id = "sync";
-          devices = [ "mbison" "mpu3" "mpu4" ];
+          devices = [
+            "mbison"
+            "mpu3"
+            "mpu4"
+          ];
         };
       };
     };

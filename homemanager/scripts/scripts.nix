@@ -88,7 +88,7 @@ let
     xmodmap -e "add mod1 = Caps_Lock" #add ALT to capslock
     xmodmap -e "keycode 66 = Alt_R" #assign keycode
   '';
-  controlcaps = pkgs.writeScriptBin "controlcaps" '' 
+  controlcaps = pkgs.writeScriptBin "controlcaps" ''
     #! /usr/bin/env zsh
     xmodmap -e "remove Lock = Caps_Lock" 
     xmodmap -e "remove Control = Control_L"

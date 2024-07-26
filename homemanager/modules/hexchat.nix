@@ -1,7 +1,5 @@
-{ pkgs
-, user
-, ...
-}: {
+{ pkgs, user, ... }:
+{
   programs.hexchat = {
     enable = true;
     overwriteConfigFiles = true;
@@ -24,9 +22,7 @@
           "#rust"
         ];
         charset = "UTF-8 (Unicode)";
-        commands = [
-          "ECHO ._."
-        ];
+        commands = [ "ECHO ._." ];
         loginMethod = "sasl";
         nickname = "vhs";
         nickname2 = "vhsconnect";
@@ -39,9 +35,7 @@
           forceSSL = false;
         };
         password = user.liberaPass;
-        servers = [
-          "irc.libera.chat/+6697"
-        ];
+        servers = [ "irc.libera.chat/+6697" ];
         userName = user.liberaUser;
       };
     };

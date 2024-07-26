@@ -1,3 +1,1 @@
-user: {
-  theme = import (./. + "/${user.theme}.nix");
-}
+user: { theme = import (./. + "/${user.theme}.nix"); }

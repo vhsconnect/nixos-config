@@ -1,7 +1,4 @@
-{ pkgs
-, user
-, ...
-}:
+{ pkgs, user, ... }:
 let
   zstuff = pkgs.writeTextDir "home/vhs/Public/templates/.zstuff" ''
     #vim=bash
@@ -107,4 +104,3 @@ in
     alacritty_toml
   ];
 }
-

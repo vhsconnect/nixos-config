@@ -1,7 +1,4 @@
-{ pkgs
-, user
-, ...
-}:
+{ pkgs, user, ... }:
 let
   font = user.font;
   light-icons = user.foreground == "light";
@@ -11,10 +8,7 @@ in
   gtk.gtk3 = {
     extraConfig = {
       gtk-theme-name = "Arc-Dark";
-      gtk-icon-theme-name =
-        if light-icons
-        then "Paper"
-        else "Paper-Mono-Dark";
+      gtk-icon-theme-name = if light-icons then "Paper" else "Paper-Mono-Dark";
       gtk-font-name = "${font} Light 11";
       # gtk-cursor-theme-name = "capitaine-cursors-light";
       # gtk-cursor-theme-size = "14";

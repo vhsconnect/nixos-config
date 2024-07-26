@@ -1,8 +1,9 @@
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");
@@ -11,9 +12,7 @@ let
   secondaryFont = user.secondaryFont;
 in
 {
-  imports = [
-    ./i3blocks/blockScripts.nix
-  ];
+  imports = [ ./i3blocks/blockScripts.nix ];
   xsession.windowManager.i3.enable = true;
   xsession.windowManager.i3.config.modifier = "Mod1";
   xsession.windowManager.i3.config.gaps = {

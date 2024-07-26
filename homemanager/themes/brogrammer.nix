@@ -1,11 +1,14 @@
 let
   white = "#F9F9F9";
   black = "#282430";
-  compose = f: g: x: f (g x);
+  compose =
+    f: g: x:
+    f (g x);
   file = ./brogrammer.json;
   colors = compose builtins.fromJSON builtins.readFile file;
 in
-with colors; {
+with colors;
+{
   main = base0B;
   secondary = base00;
   accent = base00;

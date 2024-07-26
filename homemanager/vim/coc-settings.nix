@@ -3,7 +3,11 @@
     "bash" = {
       "command" = "bash-language-server";
       "args" = [ "start" ];
-      "filetypes" = [ "sh" "bash" "zsh" ];
+      "filetypes" = [
+        "sh"
+        "bash"
+        "zsh"
+      ];
       "ignoredRootPaths" = [ "~" ];
     };
     "haskell" = {
@@ -16,7 +20,10 @@
         "package.yaml"
         "hie.yaml"
       ];
-      "filetypes" = [ "haskell" "lhaskell" ];
+      "filetypes" = [
+        "haskell"
+        "lhaskell"
+      ];
     };
   };
   "yank.highlight.duration" = 700;
