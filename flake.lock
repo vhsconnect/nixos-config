@@ -23,11 +23,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1721991115,
-        "narHash": "sha256-YiWMjanzNu2QijHmD8X7m+oFOrFCpPY8G3atYUmHpp8=",
+        "lastModified": 1722466812,
+        "narHash": "sha256-k/wyJxfIZq+YVoBMaS7Tf2LH30C9NiWVFrd1zTN+zlA=",
         "owner": "vhsconnect",
         "repo": "basmati",
-        "rev": "3fcd4226178d7894d23b25f6c9826308d58e2071",
+        "rev": "40a0dd420470581b989c7e6f56b1e1364ae1c768",
         "type": "github"
       },
       "original": {

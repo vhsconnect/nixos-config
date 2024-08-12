@@ -17,6 +17,8 @@ in
   modules = [
     ../configuration.nix
     ../systemModules/docker.nix
+    # ../systemModules/bbrf.nix
+    # ../systemModules/iphone.nix
     ../systemModules/libVirt.nix
     ../systemModules/printing.nix
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
