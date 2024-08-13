@@ -33,7 +33,7 @@
     {
 
       darwinConfigurations = {
-        mbf0 = inputs.darwin.lib.darwinSystem (import ./machines/mbf0.nix inputs);
+        mq = inputs.darwin.lib.darwinSystem (import ./machines/mq.nix inputs);
       };
 
       nixosConfigurations = {

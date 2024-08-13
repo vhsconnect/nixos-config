@@ -1,7 +1,7 @@
-inputs:
+inputs: system:
 let
-  p2111 = import inputs.nixpkgs-2111 { system = builtins.currentSystem; };
-  unstable = import inputs.nixpkgs-unstable { system = builtins.currentSystem; };
+  p2111 = import inputs.nixpkgs-2111 { inherit system; };
+  unstable = import inputs.nixpkgs-unstable { inherit system; };
 
   exa-overlay = self: prev: { exa = p2111.exa; };
 

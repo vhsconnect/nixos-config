@@ -7,8 +7,6 @@
   documentation.enable = false;
   documentation.doc.enable = false;
   documentation.info.enable = false;
-  # nix.package = pkgs.nix;
-  nix.nixPath = [ "/nix/store/06698sliqs2bc33w87039s61r3162czv-nix-2.18.1" ];
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';

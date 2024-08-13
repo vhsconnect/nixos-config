@@ -1,12 +1,14 @@
 inputs:
 let
-  user = (import ../user.nix).mbf0;
+  user = (import ../user.nix).mq;
+  system = "aarch64-darwin";
 in
 {
-  system = "aarch64-darwin";
+  system = system;
   specialArgs = {
     inherit inputs;
     inherit user;
+    inherit system;
   };
   modules = [
     ../darwinConfiguration.nix
@@ -17,9 +19,12 @@ in
       home-manager.backupFileExtension = "hmback";
       home-manager.users.vhs = import ../homemanager/darwinHome.nix;
       home-manager.extraSpecialArgs = {
+        inherit system;
         inputs = inputs;
         user = user;
+
         _imports = [
+          ../homemanager/homeFiles.nix
           ../homemanager/packages.nix
           ../homemanager/vim/vim.nix
           ../homemanager/zsh.nix

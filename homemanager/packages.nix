@@ -3,8 +3,6 @@
   home.packages =
     with pkgs;
     [
-
-      #
       cron
       gnumake
       librespeed-cli
