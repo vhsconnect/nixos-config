@@ -12,7 +12,8 @@ in
   };
   modules = [
     ../darwinConfiguration.nix
-
+    inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
+    ../systemModules/bbrf.nix
     inputs.home-manager.darwinModules.home-manager
     {
       home-manager.useUserPackages = true;
@@ -26,6 +27,7 @@ in
         _imports = [
           ../homemanager/homeFiles.nix
           ../homemanager/packages.nix
+          ../homemanager/workPackages.nix
           ../homemanager/vim/vim.nix
           ../homemanager/zsh.nix
           ../homemanager/modules/git.nix

@@ -1,20 +1,20 @@
 { ... }:
 {
 
-  networking.firewall.allowedTCPPorts = [ 80 ];
+  #  networking.firewall.allowedTCPPorts = [ 80 ];
 
-  services.nginx = {
-    enable = true;
-    virtualHosts = {
-      localhost = {
-        forceSSL = false;
-        enableACME = false;
-        locations."/" = {
-          proxyPass = "http://localhost:8898";
-        };
-      };
-    };
-  };
+  # services.nginx = {
+  #   enable = true;
+  #   virtualHosts = {
+  #     localhost = {
+  #       forceSSL = false;
+  #       enableACME = false;
+  #       locations."/" = {
+  #         proxyPass = "http://localhost:8898";
+  #       };
+  #     };
+  #   };
+  # };
 
   services.bbrf = {
     enable = true;

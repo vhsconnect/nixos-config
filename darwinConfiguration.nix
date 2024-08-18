@@ -31,7 +31,7 @@
       jq
       nmap
       neovim
-      nodejs-18_x
+      nodejs_20
       #docker-compose
       #docker
       ponysay

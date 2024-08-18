@@ -42,16 +42,17 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1713476470,
-        "narHash": "sha256-YbQoqRohvQK9A8yk55I8BeT05s+wTgURoepgoB7+rIM=",
+        "lastModified": 1723974190,
+        "narHash": "sha256-m5QnrUwZRc07owH1lDc3dngciDE3JHRJuknrPXYboWQ=",
         "owner": "vhsconnect",
         "repo": "bbrf-radio",
-        "rev": "7e18faec2f606eeab339a1276aade098f8d58e82",
+        "rev": "bc15fba303a551c398942092055ca487bbb1d5d6",
         "type": "github"
       },
       "original": {
         "owner": "vhsconnect",
         "repo": "bbrf-radio",
+        "rev": "bc15fba303a551c398942092055ca487bbb1d5d6",
         "type": "github"
       }
     },
@@ -121,6 +122,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
+        "nixpkgs2405": "nixpkgs2405",
         "nvim-surround": "nvim-surround",
         "oil": "oil",
         "oxocarbon": "oxocarbon",
@@ -186,14 +188,15 @@
         "themed-tabs": "themed-tabs",
         "tmux-nav": "tmux-nav",
         "tokyonight": "tokyonight",
-        "tshjkl": "tshjkl"
+        "tshjkl": "tshjkl",
+        "vim-terraform": "vim-terraform"
       },
       "locked": {
-        "lastModified": 1721992984,
-        "narHash": "sha256-09GPJUSLl021pwCxZ61LRzO4K/x1vgwj1y7ZDy6Ml3I=",
+        "lastModified": 1723974428,
+        "narHash": "sha256-V5aIVvXp7xUSNYI+RA5zDdEpmmPrJ2CSkTefzwCgSqc=",
         "owner": "vhsconnect",
         "repo": "nvim",
-        "rev": "3bc099c00435abd05bab3f2213b7ff59037fe56b",
+        "rev": "08ec46216e1cd49355d530574673ea782f51fe36",
         "type": "github"
       },
       "original": {
@@ -427,6 +430,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs2405": {
+      "locked": {
+        "lastModified": 1723556749,
+        "narHash": "sha256-+CHVZnTnIYRLYsARInHYoWkujzcRkLY/gXm3s5bE52o=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4a92571f9207810b559c9eac203d1f4d79830073",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -1576,11 +1595,11 @@
     "tokyonight": {
       "flake": false,
       "locked": {
-        "lastModified": 1721799929,
-        "narHash": "sha256-Fxakkz4+BTbvDLjRggZUVVhVEbg1b/MuuIC1rGrCwVA=",
+        "lastModified": 1721292526,
+        "narHash": "sha256-NWbI9g1UoiN/h+8JPeFZLN+Uh261fjiZviDMHQWM2Ks=",
         "owner": "folke",
         "repo": "tokyonight.nvim",
-        "rev": "b0e7c7382a7e8f6456f2a95655983993ffda745e",
+        "rev": "1471dab694ad88351185758bb4275624d8b798ec",
         "type": "github"
       },
       "original": {
@@ -1620,6 +1639,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "vim-terraform": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715090517,
+        "narHash": "sha256-8b9nfSgW2lfplD/513yfkcvJ8mhyp65WHtAyOxoGGbU=",
+        "owner": "hashivim",
+        "repo": "vim-terraform",
+        "rev": "24de93afb05078bac6a2e966402cc1f672277708",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hashivim",
+        "repo": "vim-terraform",
         "type": "github"
       }
     }
