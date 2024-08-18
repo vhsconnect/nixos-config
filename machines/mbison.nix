@@ -7,7 +7,7 @@ let
     ../desktop/gnome.nix
   ];
   system = "x86_64-linux";
-  bbrf = import ../systemModules/bbrf.nix { enableNginx = true; };
+  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = true; };
 in
 {
   specialArgs = {
@@ -19,10 +19,10 @@ in
   modules = [
     ../configuration.nix
     ../modules/bbrf.nix
-    ../systemModules/docker.nix
-    # ../systemModules/iphone.nix
-    ../systemModules/libVirt.nix
-    ../systemModules/printing.nix
+    ../systemConfiguration/docker.nix
+    # ../systemConfiguration/iphone.nix
+    ../systemConfiguration/libVirt.nix
+    ../systemConfiguration/printing.nix
     bbrf
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager

@@ -16,7 +16,7 @@ in
   modules = [
     ../configuration.nix
     ../modules/bbrf.nix
-    (../systemModules/bbrf.nix { enableNginx = true; })
+    (import ../systemConfiguration/bbrf.nix { enableNginx = true; })
     inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
     inputs.home-manager.nixosModules.home-manager
     {
@@ -57,3 +57,4 @@ in
     }
   ] ++ desktopEnvironments;
 }
+

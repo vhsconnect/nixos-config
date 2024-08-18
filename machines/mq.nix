@@ -13,7 +13,7 @@ in
   modules = [
     ../darwinConfiguration.nix
     ../modules/bbrf.nix
-    (../systemModules/bbrf.nix { enableNginx = false; })
+    (import ../systemConfiguration/bbrf.nix { enableNginx = false; })
     inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
     inputs.home-manager.darwinModules.home-manager
     {

@@ -16,8 +16,7 @@ in
   };
   modules = [
     ../configuration.nix
-    ../systemModules/bbrf.nix
-    ../systemModules/docker.nix
+    ../systemConfiguration/docker.nix
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
     {
