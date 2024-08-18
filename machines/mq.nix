@@ -12,8 +12,9 @@ in
   };
   modules = [
     ../darwinConfiguration.nix
+    ../modules/bbrf.nix
+    (../systemModules/bbrf.nix { enableNginx = false; })
     inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
-    ../systemModules/bbrf.nix
     inputs.home-manager.darwinModules.home-manager
     {
       home-manager.useUserPackages = true;

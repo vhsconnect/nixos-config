@@ -15,7 +15,8 @@ in
   };
   modules = [
     ../configuration.nix
-    ../systemModules/bbrf.nix
+    ../modules/bbrf.nix
+    (../systemModules/bbrf.nix { enableNginx = true; })
     inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
     inputs.home-manager.nixosModules.home-manager
     {

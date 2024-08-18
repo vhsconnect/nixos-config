@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   users.users.vhs.home = "/Users/vhs";
   nixpkgs.config.allowUnfree = true;

@@ -6,21 +6,24 @@ let
     ../desktop/i3.nix
     ../desktop/gnome.nix
   ];
+  system = "x86_64-linux";
+  bbrf = import ../systemModules/bbrf.nix { enableNginx = true; };
 in
 {
-  system = "x86_64-linux";
   specialArgs = {
     inherit inputs;
     inherit user;
     inherit otherHosts;
+    inherit system;
   };
   modules = [
     ../configuration.nix
+    ../modules/bbrf.nix
     ../systemModules/docker.nix
-    # ../systemModules/bbrf.nix
     # ../systemModules/iphone.nix
     ../systemModules/libVirt.nix
     ../systemModules/printing.nix
+    bbrf
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
     {
@@ -32,6 +35,7 @@ in
       home-manager.extraSpecialArgs = {
         inherit inputs;
         inherit user;
+        inherit system;
         _imports = [
           ../homemanager/packages.nix
           ../homemanager/guiPackages.nix

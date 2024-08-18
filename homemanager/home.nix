@@ -2,6 +2,7 @@
   inputs,
   _imports,
   pkgs,
+  system,
   ...
 }:
 {
@@ -10,7 +11,7 @@
       allowUnfree = true;
       permittedInsecurePackages = [ "electron-22.3.27" ];
     };
-    overlays = import ./overlays.nix inputs;
+    overlays = import ./overlays.nix inputs system;
   };
   imports = _imports;
 
