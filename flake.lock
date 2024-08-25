@@ -47,16 +47,18 @@
         "utils": "utils"
       },
       "locked": {
-        "dirtyRev": "bc15fba303a551c398942092055ca487bbb1d5d6-dirty",
-        "dirtyShortRev": "bc15fba-dirty",
-        "lastModified": 1723974190,
-        "narHash": "sha256-B/a/QNg1UnQ0GH1SdQrbl/G+b2FHNR1PL0BrQ6yMUNY=",
-        "type": "git",
-        "url": "file:../../../vhs/Repos/bbrf-radio"
+        "lastModified": 1724613374,
+        "narHash": "sha256-VwKaa8RzAfo5qIYC4JLZSvdxbdjcUJxJ6CAOlaxOP8A=",
+        "owner": "vhsconnect",
+        "repo": "bbrf-radio",
+        "rev": "e10e4929276dc84bca1dc67ce24eb93733cde8d5",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:../../../vhs/Repos/bbrf-radio"
+        "owner": "vhsconnect",
+        "repo": "bbrf-radio",
+        "rev": "e10e4929276dc84bca1dc67ce24eb93733cde8d5",
+        "type": "github"
       }
     },
     "colorschemes": {
