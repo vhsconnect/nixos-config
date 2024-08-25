@@ -131,6 +131,7 @@ let
   '';
   robl = pkgs.writeScriptBin "robl" (builtins.readFile ./robl);
   oneoff = pkgs.writeScriptBin "oneoff" (builtins.readFile ./oneoff.sh);
+  nixrun = pkgs.writeScriptBin "nixrun" (builtins.readFile ./nixrun.sh);
   rave-connect = pkgs.writeScriptBin "rave-connect" (builtins.readFile ./rave-connect.sh);
 in
 {
@@ -149,6 +150,7 @@ in
     monitorsDisconnected
     robl
     oneoff
+    nixrun
     rave-connect
     controlcaps
     mprezrez

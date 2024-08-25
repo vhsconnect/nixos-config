@@ -22,8 +22,8 @@
       nixpkgs = {
         flake = inputs.nixpkgs;
       };
-      unstable = {
-        flake = inputs.nixpkgs-unstable;
+      master = {
+        flake = inputs.nixpkgs-master;
       };
     };
     gc = {
@@ -186,6 +186,7 @@
   networking.firewall.allowedTCPPorts = [
     9000
     3000
+    3307
     8080
   ];
 

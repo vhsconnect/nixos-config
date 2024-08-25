@@ -23,6 +23,8 @@ in
     # ../systemConfiguration/iphone.nix
     ../systemConfiguration/libVirt.nix
     ../systemConfiguration/printing.nix
+    ../systemConfiguration/tailscale.nix
+    ../systemConfiguration/nosleep.nix
     bbrf
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager

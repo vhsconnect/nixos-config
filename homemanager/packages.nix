@@ -6,8 +6,8 @@
       cron
       gnumake
       librespeed-cli
-      prettyping
-      protoc-gen-doc
+      # prettyping
+      # protoc-gen-doc
       tldr
       ponysay
 
@@ -45,7 +45,7 @@
       scdl
 
       # ai
-      # ollama
+      aider
 
       #utils
       zip

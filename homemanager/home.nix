@@ -100,12 +100,6 @@
     backgroundColor = "#202225";
   };
 
-  home.pointerCursor = {
-    package = pkgs.vanilla-dmz;
-    gtk.enable = true;
-    x11.enable = true;
-    name = "Vanilla-DMZ";
-  };
   #IMPORTANT
   home.stateVersion = "21.03";
 }

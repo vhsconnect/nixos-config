@@ -1,11 +1,10 @@
 inputs: system:
 let
+
   p2111 = import inputs.nixpkgs-2111 { inherit system; };
-  unstable = import inputs.nixpkgs-unstable { inherit system; };
-
+  master = import inputs.nixpkgs-master { inherit system; };
   exa-overlay = self: prev: { exa = p2111.exa; };
-
-  ollama-overlay = self: prev: { ollama = unstable.ollama; };
+  aider-overlay = self: prev: { aider = master.aider-chat; };
 
   leap-nvim-overlay = self: prev: {
     leap-nvim = prev.vimUtils.buildVimPlugin {
@@ -59,5 +58,5 @@ in
   coc-nvim-overlay
   leap-nvim-overlay
   codeium-overlay
-  ollama-overlay
+  aider-overlay
 ]
