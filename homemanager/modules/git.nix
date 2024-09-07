@@ -37,7 +37,7 @@
         gpg.format = "ssh";
       };
       signing = {
-        signByDefault = false;
+        signByDefault = true;
         key = builtins.readFile "${user.homeDir}/.ssh/id_ed25519.pub";
       };
       ignores = [ "*.direnv" ];

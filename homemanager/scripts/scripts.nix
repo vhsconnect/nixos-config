@@ -1,23 +1,5 @@
 { pkgs, user, ... }:
 let
-  ttheme1 = pkgs.writeScriptBin "ttheme1" ''
-    #! /usr/bin/env bash
-    CURRENT=$(${pkgs.silver-searcher}/bin/ag "profile =" --nonumbers ~/.config/terminator/config | xargs)
-    X="profile = light"
-    sed -i "s/$CURRENT/$X/" ~/.config/terminator/config
-  '';
-  ttheme2 = pkgs.writeScriptBin "ttheme2" ''
-    #! /usr/bin/env bash
-    CURRENT=$(${pkgs.silver-searcher}/bin/ag "profile =" --nonumbers ~/.config/terminator/config | xargs)
-    X="profile = purple"
-    sed -i "s/$CURRENT/$X/" ~/.config/terminator/config
-  '';
-  ttheme3 = pkgs.writeScriptBin "ttheme3" ''
-    #! /usr/bin/env bash
-    CURRENT=$(${pkgs.silver-searcher}/bin/ag "profile =" --nonumbers ~/.config/terminator/config | xargs)
-    X="profile = dark"
-    sed -i "s/$CURRENT/$X/" ~/.config/terminator/config
-  '';
   allight = pkgs.writeScriptBin "allight" ''
     #! /usr/bin/env bash
 
@@ -115,8 +97,29 @@ let
     --output HDMI-1 --mode 1920x1080 --pos 1440x1480 --rotate normal
     xwallpaper --screen 0 --zoom ~/.background-image
     xwallpaper --screen 1 --stretch ~/.background-image
+  '';
+
+  trips10 = pkgs.writeScriptBin "trips10" ''
+    #! /usr/bin/env zsh
+
+     xrandr \
+     --output eDP-1 --off \
+     --output HDMI-1 --off \
+     --output DP-1 --mode 3440x1440 --pos 1920x0 --rotate normal \
+     --output DP-2 --off \
+     --output DP-3 --off \
+     --output DP-4 --off
+
+    xwallpaper --screen 0 --stretch ~/.background-image
 
   '';
+  trips11 = pkgs.writeScriptBin "trips11" ''
+    #! /usr/bin/env zsh
+
+    xrandr eDP-1 --mode 1920x1200 --pos 0x0 --rotate normal 
+    xwallpaper --screen 0 --zoom ~/.background-image
+  '';
+
   mprezrez = pkgs.writeScriptBin "mprezrez" ''
     xrandr --output eDP1 --mode 1920x1200
     controlcaps
@@ -136,9 +139,6 @@ let
 in
 {
   home.packages = [
-    ttheme1
-    ttheme2
-    ttheme3
     allight
     aldark
     pfire
@@ -147,6 +147,8 @@ in
     keys
     trips4
     trips5
+    trips10
+    trips11
     monitorsDisconnected
     robl
     oneoff

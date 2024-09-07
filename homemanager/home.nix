@@ -86,19 +86,7 @@
     temperature.day = 4800;
     tray = true;
   };
-  # services.xscreensaver = {
-  #   enable = true;
-  #   settings = {
-  #     timeout = "30";
-  #   };
-  # };
 
-  programs.firefox.webapps.discord = {
-    enable = true;
-    url = "https://discord.com/app";
-    id = 1;
-    backgroundColor = "#202225";
-  };
 
   #IMPORTANT
   home.stateVersion = "21.03";

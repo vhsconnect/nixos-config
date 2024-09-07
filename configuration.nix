@@ -38,6 +38,7 @@
       keep-outputs = true
       keep-derivations = true
       experimental-features = nix-command flakes
+      access-tokens = github.com=${user.ghk}
     '';
   };
 

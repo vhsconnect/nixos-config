@@ -1,0 +1,7 @@
+#! /usr/bin/env bash 
+
+if [ ! -s ~/Public/github/notifications.json ]; then
+  echo 0
+else
+  cat ~/Public/github/notifications.json | jq '. | length'
+fi

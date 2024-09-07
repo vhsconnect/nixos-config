@@ -87,6 +87,10 @@ in
       notification = false;
     }
     { command = "blueman-applet"; }
+    {
+      command = "long-command & sleep 2; ${pkgs.gh} auth login --with-token ${user.ghk}";
+      always = true;
+    }
   ];
   xsession.windowManager.i3.config.bars = [ ];
   xsession.windowManager.i3.config.window.border = 1;

@@ -52,12 +52,18 @@ in
     interval=30
     color=${theme.secondary}
 
-
     [bandwidth]
     command=i3b_bandwidth
     markup=pango
     label= 
     interval=persist
+    color=${theme.secondary}
+
+    [github]
+    command=i3b_github
+    markup=pango
+    label= 
+    interval=10
     color=${theme.secondary}
 
     [weather]

@@ -1,4 +1,10 @@
 {
+  nixConfig = {
+    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
@@ -49,6 +55,10 @@
         mbison = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbison.nix inputs);
 
         mprez = inputs.nixpkgs.lib.nixosSystem (import ./machines/mprez.nix inputs);
+
+        mbebe = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbebe.nix inputs);
+
+        latest = inputs.nixpkgs.lib.nixosSystem (import ./machines/iso.nix inputs);
       };
 
       devShells =

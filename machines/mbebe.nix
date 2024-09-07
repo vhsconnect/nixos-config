@@ -1,6 +1,6 @@
 inputs:
 let
-  user = (import ../user.nix).mbison;
+  user = (import ../user.nix).mbebe;
   otherHosts = (import ../user.nix);
   desktopEnvironments = [
     ../desktop/i3.nix
@@ -19,24 +19,11 @@ in
   modules = [
     ../configuration.nix
     ../modules/bbrf.nix
-    ../modules/githubNotify.nix
     ../systemConfiguration/docker.nix
-    # ../systemConfiguration/iphone.nix
     ../systemConfiguration/libVirt.nix
-    ../systemConfiguration/printing.nix
     ../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
     bbrf
-    (
-      { ... }:
-      {
-        services.github-notify = {
-          enable = false;
-          user = "office";
-        };
-      }
-    )
-
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
     {
@@ -63,12 +50,11 @@ in
           ../homemanager/modules/dunst.home.nix
           ../homemanager/modules/rofi.home.nix
           ../homemanager/modules/git.nix
-          ../homemanager/modules/hexchat.nix
           ../homemanager/modules/eww.nix
+          ../homemanager/modules/xScreensaver.nix
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
           ../homemanager/modules/tmux.nix
-          ../homemanager/modules/webapps.nix
           ../homemanager/homeFiles.nix
         ] ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ]);
       };

@@ -1,11 +1,10 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
-    colima
     docker
     slack
     jetbrains.datagrip
-    bruno
+    insomnia
     (google-cloud-sdk.withExtraComponents ([ google-cloud-sdk.components.gke-gcloud-auth-plugin ]))
     google-cloud-sql-proxy
     sops
@@ -13,5 +12,6 @@
     kubernetes-helm
     k9s
     tailscale
+    sops
   ];
 }
