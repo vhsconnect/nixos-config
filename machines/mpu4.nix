@@ -36,7 +36,7 @@ in
             ../homemanager/vim/vim.nix
             ../homemanager/modules/dunst.home.nix
             ../homemanager/modules/rofi.home.nix
-            ../homemanager/modules/git.nix
+            (import ../homemanager/modules/git.nix "vhs")
             ../homemanager/modules/eww.nix
             ../homemanager/modules/hexchat.nix
             ../homemanager/scripts/scripts.nix
@@ -57,4 +57,3 @@ in
     }
   ] ++ desktopEnvironments;
 }
-

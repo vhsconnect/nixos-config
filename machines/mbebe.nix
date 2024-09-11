@@ -49,7 +49,7 @@ in
           ../homemanager/i3/i3.home.nix
           ../homemanager/modules/dunst.home.nix
           ../homemanager/modules/rofi.home.nix
-          ../homemanager/modules/git.nix
+          (../homemanager/modules/git.nix "vhs")
           ../homemanager/modules/eww.nix
           ../homemanager/modules/xScreensaver.nix
           ../homemanager/scripts/scripts.nix

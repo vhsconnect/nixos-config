@@ -63,7 +63,6 @@ in
           ../homemanager/modules/dunst.home.nix
           ../homemanager/modules/rofi.home.nix
           ../homemanager/modules/xScreensaver.nix
-          ../homemanager/modules/git.nix
           ../homemanager/modules/xScreensaver.nix
           ../homemanager/modules/hexchat.nix
           ../homemanager/modules/eww.nix

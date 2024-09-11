@@ -13,7 +13,7 @@
     };
     overlays = import ./overlays.nix inputs system;
   };
-  imports = _imports;
+  imports = _imports ++ [ (import ../homemanager/modules/git.nix "vhs") ];
 
   ######## programs ########
   programs.home-manager.enable = true;
@@ -86,7 +86,6 @@
     temperature.day = 4800;
     tray = true;
   };
-
 
   #IMPORTANT
   home.stateVersion = "21.03";

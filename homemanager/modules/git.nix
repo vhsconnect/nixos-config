@@ -1,3 +1,4 @@
+os_user:
 { user, lib, ... }:
 {
   programs.git =
@@ -38,7 +39,7 @@
       };
       signing = {
         signByDefault = true;
-        key = builtins.readFile "${user.homeDir}/.ssh/id_ed25519.pub";
+        key = builtins.readFile "${user.homeDir os_user}/.ssh/id_ed25519.pub";
       };
       ignores = [ "*.direnv" ];
       userEmail = user.email;
