@@ -1,5 +1,25 @@
 { pkgs, user, ... }:
 let
+  fonts = (import ../fonts.nix { }).fonts;
+  fontString = builtins.concatStringsSep " " fonts;
+  changefont = pkgs.writeScriptBin "changefont" ''
+    #! /usr/bin/env nix-shell
+    #! nix-shell -i bash -p gnused
+
+    set -e
+    options=(${fontString})
+
+    selected_option=$(printf '%s\n' "''${options[@]}" | fzf --height 70% )
+    if [ -z "$selected_option" ]; then
+        echo "Exiting"
+        exit 0
+    fi
+    selected_option+=.toml
+
+    Y="\"~/.config/alacritty/fonts/$selected_option\""
+    sed -i  "/config\/alacritty\/fonts/c\\"$Y\\"" ~/.config/alacritty/alacritty.toml
+
+  '';
   allight = pkgs.writeScriptBin "allight" ''
     #! /usr/bin/env bash
 
@@ -139,6 +159,7 @@ let
 in
 {
   home.packages = [
+    changefont
     allight
     aldark
     pfire

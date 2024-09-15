@@ -1,12 +1,15 @@
 { ... }:
+let
+  defaultEditor = "gnvim";
+in
 {
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
       "application/pdf" = [ "org.gnome.Evince.desktop" ];
       "inode/directory" = [ "Thunar.desktop" ];
-      "text/plain" = [ "gnvim.desktop" ];
-      "text/markdown" = [ "gnvim.desktop" ];
+      "text/plain" = [ "${defaultEditor}.desktop" ];
+      "text/markdown" = [ "${defaultEditor}.desktop" ];
       "application/ogg" = [ "vlc.desktop" ];
       "video/ogg" = [ "vlc.desktop" ];
       "video/x-msvideo" = [ "vlc.desktop" ];

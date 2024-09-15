@@ -1,5 +1,33 @@
 { pkgs, inputs, ... }:
+let
+  fonts = (import ./fonts.nix { }).fonts;
+
+  generateFontTemplate = font_name: ''
+    [font.bold]
+    family = "${font_name} Nerd Font"
+    style = "Italic"
+
+    [font.italic]
+    family = "${font_name} Nerd Font"
+    style = "Regular"
+
+    [font.normal]
+    family = "${font_name} Nerd Font"
+    style = "Regular"
+  '';
+
+in
+
 {
+  xdg.configFile = builtins.listToAttrs (
+    map (font: {
+      name = "alacritty/fonts/${font}.toml";
+      value = {
+        text = generateFontTemplate font;
+      };
+    }) fonts
+  );
+
   home.packages =
     with pkgs;
     [
@@ -63,15 +91,7 @@
       nix-tree
 
       #fonts
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "Iosevka"
-          "JetBrainsMono"
-          "Meslo"
-          "VictorMono"
-        ];
-      })
+      (nerdfonts.override { inherit fonts; })
     ]
     ++ (with pkgs.haskellPackages; [
       floskell
