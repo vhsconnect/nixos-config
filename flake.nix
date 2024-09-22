@@ -12,6 +12,7 @@
     bbrf.url = "github:vhsconnect/bbrf-radio";
 
     editor.url = "github:vhsconnect/nvim";
+
     editor.inputs.nixpkgs.follows = "nixpkgs";
     basmati.url = "github:vhsconnect/basmati";
     alacritty_themes = {

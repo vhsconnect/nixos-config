@@ -31,7 +31,7 @@ in
       { ... }:
       {
         services.github-notify = {
-          enable = false;
+          enable = true;
           user = "office";
         };
       }

@@ -13,5 +13,8 @@
     k9s
     tailscale
     sops
+
+    #utils
+    lsof
   ];
 }

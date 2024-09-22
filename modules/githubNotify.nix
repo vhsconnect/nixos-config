@@ -13,7 +13,7 @@ in
   options.services.github-notify = with lib; {
 
     enable = mkEnableOption ''
-      Enable bbrf
+      Enable github notifications module
     '';
     user = mkOption {
       type = types.str;
