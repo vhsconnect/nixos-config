@@ -33,7 +33,7 @@ in
     color=${theme.secondary}
 
     [memory]
-    label= 
+    label= 
     command=i3b_memory
     interval=2
     color=${theme.secondary}
@@ -63,6 +63,13 @@ in
     command=i3b_github
     markup=pango
     label= 
+    interval=10
+    color=${theme.secondary}
+
+    [tailscale]
+    command=i3b_tailscale ${theme.urgent}
+    markup=pango
+    label= 
     interval=10
     color=${theme.secondary}
 

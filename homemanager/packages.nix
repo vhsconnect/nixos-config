@@ -13,7 +13,7 @@ let
 
     [font.normal]
     family = "${font_name} Nerd Font"
-    style = "Regular"
+    style = "Light"
   '';
 
 in
@@ -92,6 +92,9 @@ in
 
       #fonts
       (nerdfonts.override { inherit fonts; })
+
+      #shells
+      fish
     ]
     ++ (with pkgs.haskellPackages; [
       floskell

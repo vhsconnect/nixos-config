@@ -238,11 +238,11 @@
         "vim-terraform": "vim-terraform"
       },
       "locked": {
-        "lastModified": 1726436571,
-        "narHash": "sha256-q03zGblRPB3pbER3E7jFS7sYpGW3CTaCnjGC6xo/vUU=",
+        "lastModified": 1726943484,
+        "narHash": "sha256-W/xBZt9qlgSSiNlFv8uS/fD2ofNnwH0aG2J2o6rbbVM=",
         "owner": "vhsconnect",
         "repo": "nvim",
-        "rev": "856995354fe829931d91c78d9e64f1ca093c8001",
+        "rev": "4119a7d72430337f457cc899bc8b26b91ecfcfd3",
         "type": "github"
       },
       "original": {

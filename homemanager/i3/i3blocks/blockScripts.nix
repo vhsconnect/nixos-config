@@ -10,6 +10,7 @@
   config.xdg.configFile."i3blocks/weather".text = builtins.readFile ./weather;
   config.xdg.configFile."i3blocks/calendar".text = builtins.readFile ./calendar;
   config.xdg.configFile."i3blocks/github".text = builtins.readFile ./github;
+  config.xdg.configFile."i3blocks/tailscale".text = builtins.readFile ./tailscale;
   config.home.packages = [
     (pkgs.writeScriptBin "i3b_battery" config.xdg.configFile."i3blocks/battery2".text)
     (pkgs.writeScriptBin "i3b_cpu" config.xdg.configFile."i3blocks/cpu".text)
@@ -21,5 +22,6 @@
     (pkgs.writeScriptBin "i3b_weather" config.xdg.configFile."i3blocks/weather".text)
     (pkgs.writeScriptBin "i3b_calendar" config.xdg.configFile."i3blocks/calendar".text)
     (pkgs.writeScriptBin "i3b_github" config.xdg.configFile."i3blocks/github".text)
+    (pkgs.writeScriptBin "i3b_tailscale" config.xdg.configFile."i3blocks/tailscale".text)
   ];
 }

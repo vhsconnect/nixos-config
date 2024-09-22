@@ -1,0 +1,13 @@
+#! /usr/bin/env fish
+
+set IS_STOPPED "Tailscale is stopped."
+
+if command -q tailscale
+    set IS_TAILSCALE_STOPPED $(tailscale status)
+    if test "$IS_TAILSCALE_STOPPED" = "$IS_STOPPED" 
+        echo "Off"
+    else
+        printf "On\n\n#00FF00\n" 
+    end
+end
+
