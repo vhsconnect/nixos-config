@@ -13,6 +13,10 @@
     k9s
     tailscale
     sops
+    awscli2
+
+    postgresql
+    mysql84
 
     #utils
     lsof

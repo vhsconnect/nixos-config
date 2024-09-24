@@ -76,6 +76,54 @@
         "type": "github"
       }
     },
+    "dadbod": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717176478,
+        "narHash": "sha256-8wnUSYctVn3JeCVz2fdi9qcKi8ZyA4To+xs4WaP6rog=",
+        "owner": "tpope",
+        "repo": "vim-dadbod",
+        "rev": "7888cb7164d69783d3dce4e0283decd26b82538b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-dadbod",
+        "type": "github"
+      }
+    },
+    "dadbod-completion": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1723710262,
+        "narHash": "sha256-kci8ksgSRPmRhwTYw7Ya1v4hwPjN4BLFjV6+6YiK1hA=",
+        "owner": "kristijanhusak",
+        "repo": "vim-dadbod-completion",
+        "rev": "880f7e9f2959e567c718d52550f9fae1aa07aa81",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kristijanhusak",
+        "repo": "vim-dadbod-completion",
+        "type": "github"
+      }
+    },
+    "dadbod-ui": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727066614,
+        "narHash": "sha256-mgY/vVrv8hq7TtwX4tvHXfGX3Z3PIcRGdt299WU4YhI=",
+        "owner": "kristijanhusak",
+        "repo": "vim-dadbod-ui",
+        "rev": "f29c85ab42861c6ef683289b0c6a51e0d436dcf6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kristijanhusak",
+        "repo": "vim-dadbod-ui",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -152,6 +200,9 @@
     "editor": {
       "inputs": {
         "colorschemes": "colorschemes",
+        "dadbod": "dadbod",
+        "dadbod-completion": "dadbod-completion",
+        "dadbod-ui": "dadbod-ui",
         "diffview": "diffview",
         "emmet": "emmet",
         "flake-utils": "flake-utils_2",
@@ -221,8 +272,10 @@
         "plugin-render-markdown": "plugin-render-markdown",
         "plugin-rust-tools": "plugin-rust-tools",
         "plugin-scnvim": "plugin-scnvim",
+        "plugin-sqlite": "plugin-sqlite",
         "plugin-sqls-nvim": "plugin-sqls-nvim",
         "plugin-telescope": "plugin-telescope",
+        "plugin-telescope-all-recent": "plugin-telescope-all-recent",
         "plugin-telescope-file-browser": "plugin-telescope-file-browser",
         "plugin-telescope-live-grep-args": "plugin-telescope-live-grep-args",
         "plugin-todo-comments": "plugin-todo-comments",
@@ -238,11 +291,11 @@
         "vim-terraform": "vim-terraform"
       },
       "locked": {
-        "lastModified": 1726943484,
-        "narHash": "sha256-W/xBZt9qlgSSiNlFv8uS/fD2ofNnwH0aG2J2o6rbbVM=",
+        "lastModified": 1727205628,
+        "narHash": "sha256-aEQBJhLfYk32eESaFwX5gwGOypjuEqnrsypmBs5UtEw=",
         "owner": "vhsconnect",
         "repo": "nvim",
-        "rev": "4119a7d72430337f457cc899bc8b26b91ecfcfd3",
+        "rev": "89b054af49f9b203b165bf30caad084625529219",
         "type": "github"
       },
       "original": {
@@ -1631,6 +1684,22 @@
         "type": "github"
       }
     },
+    "plugin-sqlite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713684746,
+        "narHash": "sha256-nbvc2hoOscOYoPPFUPnYdnXDwAPh5kiC2vI3lDP2QNo=",
+        "owner": "kkharji",
+        "repo": "sqlite.lua",
+        "rev": "d0ffd703b56d090d213b497ed4eb840495f14a11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kkharji",
+        "repo": "sqlite.lua",
+        "type": "github"
+      }
+    },
     "plugin-sqls-nvim": {
       "flake": false,
       "locked": {
@@ -1660,6 +1729,22 @@
       "original": {
         "owner": "nvim-telescope",
         "repo": "telescope.nvim",
+        "type": "github"
+      }
+    },
+    "plugin-telescope-all-recent": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716130221,
+        "narHash": "sha256-EYU7HazKcABAGnJ3iqGqM2n+XTo64L1uqoopL/XuLFg=",
+        "owner": "prochri",
+        "repo": "telescope-all-recent.nvim",
+        "rev": "267e9e5fd13a6e9a4cc6ffe00452d446d040401d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "prochri",
+        "repo": "telescope-all-recent.nvim",
         "type": "github"
       }
     },

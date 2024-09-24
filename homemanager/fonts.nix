@@ -12,11 +12,11 @@
     "VictorMono"
     "EnvyCodeR"
     "Hermit"
-    "Gohu"
-    "Go-Mono"
-    "IBMPlexMono"
-    "IntelOneMono"
     "Lekton"
-    "Hasklig"
+    "BitstreamVeraSansMono"
+    "AurulentSansMono"
+    "AnonymousPro"
+    "GeistMono"
+    "RobotoMono"
   ];
 }
