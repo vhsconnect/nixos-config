@@ -126,8 +126,8 @@ let
     --output DP-2 --off \
     --output DP-3 --off \
     --output HDMI-1 --mode 1920x1080 --pos 1440x1480 --rotate normal
-    xwallpaper --screen 0 --zoom ~/.background-image
-    xwallpaper --screen 1 --stretch ~/.background-image
+    xwallpaper --output DP-1 --zoom ~/.background-image
+    xwallpaper --output HDMI-1 --stretch ~/.background-image
   '';
 
   trips10 = pkgs.writeScriptBin "trips10" ''

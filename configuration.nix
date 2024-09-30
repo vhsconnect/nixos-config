@@ -198,36 +198,38 @@
   networking.firewall.checkReversePath = false;
 
   environment.pathsToLink = [ "/share/zsh" ];
-  environment.systemPackages = with pkgs; [
-    (python3.withPackages (p: [
-      p.pynvim
-      p.virtualenv
-    ]))
-    zsh
-    wget
-    curl
-    vim
-    firefox
-    lm_sensors
-    vlc
-    gnupg
-    htop
-    jq
-    docker
-    pavucontrol
-    nmap
-    neovim
-    xfce.xfce4-terminal
-    xclip
-    blueman
-    x11_ssh_askpass
-    nodejs-18_x
-    sysstat
-    docker-compose
-    wireguard-tools
-    git-crypt
-    inputs.basmati.packages.${pkgs.system}.default
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      (python3.withPackages (p: [
+        p.pynvim
+        p.virtualenv
+      ]))
+      zsh
+      wget
+      curl
+      vim
+      firefox
+      lm_sensors
+      vlc
+      gnupg
+      htop
+      jq
+      docker
+      pavucontrol
+      nmap
+      neovim
+      xfce.xfce4-terminal
+      xclip
+      blueman
+      x11_ssh_askpass
+      nodejs-18_x
+      sysstat
+      docker-compose
+      wireguard-tools
+      git-crypt
+      inputs.basmati.packages.${pkgs.system}.default
+    ];
 
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
   programs.ssh.startAgent = true;

@@ -26,6 +26,7 @@ in
     ../systemConfiguration/printing.nix
     ../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
+    ../systemConfiguration/fintech.nix
     bbrf
     (
       { ... }:
@@ -36,7 +37,6 @@ in
         };
       }
     )
-
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
     {
@@ -65,7 +65,6 @@ in
           ../homemanager/modules/xScreensaver.nix
           ../homemanager/modules/xScreensaver.nix
           ../homemanager/modules/hexchat.nix
-          ../homemanager/modules/eww.nix
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
           ../homemanager/modules/tmux.nix

@@ -11,6 +11,7 @@
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
     bbrf.url = "github:vhsconnect/bbrf-radio";
 
+    fintech.url = "github:instabox/fintech-shareware";
     editor.url = "github:vhsconnect/nvim";
 
     editor.inputs.nixpkgs.follows = "nixpkgs";
