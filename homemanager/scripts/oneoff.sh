@@ -20,7 +20,15 @@ PACK=(calibre \
   qbittorrent \
   slack       \
   songrec     \
+  popcorntime     \
   spotify     \
+  freetube     \
+  rhythmbox     \
+  freetube     \
+  tdesktop     \
+  filezilla     \
+  gparted     \
+  syncthingtray     \
   sublime-merge \
   sublime3    \
   teams      \

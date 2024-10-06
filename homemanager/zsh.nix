@@ -22,7 +22,8 @@ in
       VI_MODE_SET_CURSOR = "true";
       MODE_INDICATOR = "%F{yellow}+%f";
       QT_QPA_PLATFORMTHEME = "qt5ct";
-      QT_STYLE_OVERRIDE = "";
+      #Override for qt 6
+      QT_STYLE_OVERRIDE = "adawaita-dark";
       EDITOR = "nvim";
       PATH = "${binPath}:${cargoPath}:${npmPath}:$PATH";
       PROMPT = ''[%F{$(if [ "$IN_NIX_SHELL" = "impure" ] || [[ -n "$SSH_CONNECTION" ]]; then echo "4"; else echo "9"; fi)}${user.promptI}%f] %F{244}%1d%f '';

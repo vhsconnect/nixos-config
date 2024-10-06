@@ -6,10 +6,14 @@ let
     ../desktop/i3.nix
     ../desktop/gnome.nix
   ];
-in
-{
   system = "x86_64-linux";
+  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
+in
+
+{
+  inherit system;
   specialArgs = {
+    inherit system;
     inherit inputs;
     inherit user;
     inherit otherHosts;
@@ -17,8 +21,10 @@ in
   modules = [
     ../configuration.nix
     ../systemConfiguration/docker.nix
+    ../modules/bbrf.nix
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
+    bbrf
     {
       home-manager.useUserPackages = true;
       home-manager.useGlobalPkgs = false;
@@ -27,6 +33,7 @@ in
       home-manager.extraSpecialArgs = {
         inherit inputs;
         inherit user;
+        inherit system;
         _imports = [
           ../homemanager/packages.nix
           ../homemanager/guiPackages.nix

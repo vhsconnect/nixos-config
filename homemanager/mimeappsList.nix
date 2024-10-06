@@ -1,6 +1,6 @@
 { ... }:
 let
-  defaultEditor = "gnvim";
+  defaultEditor = "kate";
 in
 {
   xdg.mimeApps = {
