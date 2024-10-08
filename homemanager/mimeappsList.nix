@@ -1,6 +1,6 @@
 { ... }:
 let
-  defaultEditor = "kate";
+  defaultEditor = "Kate";
 in
 {
   xdg.mimeApps = {
