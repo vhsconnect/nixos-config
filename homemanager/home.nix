@@ -13,7 +13,7 @@
     };
     overlays = import ./overlays.nix inputs system;
   };
-  imports = _imports ++ [ (import ../homemanager/modules/git.nix "vhs") ];
+  imports = _imports;
 
   ######## programs ########
   programs.home-manager.enable = true;

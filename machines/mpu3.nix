@@ -46,7 +46,7 @@ in
           ../homemanager/i3/i3.home.nix
           ../homemanager/modules/dunst.home.nix
           ../homemanager/modules/rofi.home.nix
-          (import ../homemanager/modules/git.nix "vhs")
+          ../homemanager/modules/git.nix
           ../homemanager/modules/hexchat.nix
           ../homemanager/modules/eww.nix
           ../homemanager/scripts/scripts.nix

@@ -1,4 +1,3 @@
-os_user:
 {
   user,
   lib,

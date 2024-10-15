@@ -12,7 +12,7 @@
     };
     overlays = import ./overlays.nix inputs system;
   };
-  imports = _imports ++ [ (import ../homemanager/modules/git.nix "office") ];
+  imports = _imports;
 
   ######## programs ########
   programs.home-manager.enable = true;

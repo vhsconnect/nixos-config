@@ -7,7 +7,7 @@ let
     ../desktop/gnome.nix
   ];
   system = "x86_64-linux";
-  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = true; };
+  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
 in
 {
   specialArgs = {
@@ -63,7 +63,7 @@ in
           ../homemanager/modules/dunst.home.nix
           ../homemanager/modules/rofi.home.nix
           ../homemanager/modules/xScreensaver.nix
-          ../homemanager/modules/xScreensaver.nix
+          ../homemanager/modules/git.nix
           ../homemanager/modules/hexchat.nix
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
