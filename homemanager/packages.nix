@@ -113,7 +113,7 @@ in
       bash-language-server
       typescript-language-server
       typescript
-      vscode-langservers-extracted
+      # vscode-langservers-extracted #broken
     ])
     ++ [
       # additional language servers

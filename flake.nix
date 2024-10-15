@@ -12,9 +12,8 @@
     bbrf.url = "github:vhsconnect/bbrf-radio";
 
     fintech.url = "github:instabox/fintech-shareware";
-    editor.url = "github:vhsconnect/nvim";
+    editor.url = "github:vhsconnect/nvim/9fc50a4a951b37ad154b69c444a502367e41bc73";
 
-    editor.inputs.nixpkgs.follows = "nixpkgs";
     basmati.url = "github:vhsconnect/basmati";
     alacritty_themes = {
       url = "github:alacritty/alacritty-theme";
