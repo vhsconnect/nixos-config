@@ -126,7 +126,7 @@
   services.picom = {
     enable = if user.usei3 then true else false;
     vSync = true;
-    inactiveOpacity = 0.86;
+    inactiveOpacity = 0.96;
     fade = true;
     fadeDelta = 8;
     fadeSteps = [

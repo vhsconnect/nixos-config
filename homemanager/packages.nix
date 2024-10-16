@@ -72,9 +72,6 @@ in
       yt-dlp
       scdl
 
-      # ai
-      aider
-
       #utils
       zip
       exa

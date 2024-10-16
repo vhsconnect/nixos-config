@@ -141,7 +141,7 @@ let
      --output DP-3 --off \
      --output DP-4 --off
 
-    xwallpaper --screen 0 --stretch ~/.background-image
+     xwallpaper --screen 0 --zoom ~/.background-image
 
   '';
   trips11 = pkgs.writeScriptBin "trips11" ''
