@@ -83,6 +83,10 @@ in
       always = true;
     }
     {
+      command = "dropbox";
+      always = true;
+    }
+    {
       command = "gromit-mpx";
       notification = false;
     }

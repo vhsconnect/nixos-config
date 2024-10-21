@@ -10,10 +10,8 @@
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
     bbrf.url = "github:vhsconnect/bbrf-radio";
-
     fintech.url = "github:instabox/fintech-shareware";
-    editor.url = "github:vhsconnect/nvim/9fc50a4a951b37ad154b69c444a502367e41bc73";
-
+    editor.url = "github:vhsconnect/nvim";
     basmati.url = "github:vhsconnect/basmati";
     alacritty_themes = {
       url = "github:alacritty/alacritty-theme";
@@ -28,9 +26,8 @@
         "x86_64-linux"
         "aarch64-darwin"
       ];
-      legacyPackages = inputs.nixpkgs.legacyPackages;
-      fold = builtins.foldl';
-      map = builtins.map;
+      inherit (inputs.nixpkgs) legacyPackages;
+      inherit (builtins) map foldl';
     in
     {
 
@@ -59,7 +56,7 @@
       devShells =
         let
           mapSystems = x: map x systems;
-          mergeAttributeSets = fold (a: b: a // b) { };
+          mergeAttributeSets = foldl' (a: b: a // b) { };
         in
         mergeAttributeSets (
           mapSystems (x: {

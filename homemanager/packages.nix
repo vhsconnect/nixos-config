@@ -83,6 +83,9 @@ in
       tree
       ripgrep
 
+      #daemons
+      dropbox
+
       # nixos vm
       nixos-shell
       nix-tree
@@ -109,12 +112,13 @@ in
     ++ (with pkgs.nodePackages; [
       bash-language-server
       typescript-language-server
-      typescript
+      typescript # needed?
+      prettier
       # vscode-langservers-extracted #broken
     ])
     ++ [
       # additional language servers
       pkgs.lua-language-server
-      pkgs.nil
+      # pkgs.nil
     ];
 }
