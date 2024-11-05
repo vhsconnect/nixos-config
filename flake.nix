@@ -11,7 +11,7 @@
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
     bbrf.url = "github:vhsconnect/bbrf-radio";
     fintech.url = "github:instabox/fintech-shareware";
-    editor.url = "github:vhsconnect/nvim";
+    editor.url = "github:vhsconnect/nvim/1862da35046f7cb07d35743ef4a6389d9a745cfc";
     basmati.url = "github:vhsconnect/basmati";
     alacritty_themes = {
       url = "github:alacritty/alacritty-theme";

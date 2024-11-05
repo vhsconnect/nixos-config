@@ -1,7 +1,7 @@
 inputs:
 let
   user = (import ../user.nix).mbison;
-  otherHosts = (import ../user.nix);
+  otherHosts = import ../user.nix;
   desktopEnvironments = [
     ../desktop/i3.nix
     ../desktop/gnome.nix
@@ -27,6 +27,7 @@ in
     ../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
     ../systemConfiguration/fintech.nix
+
     bbrf
     (
       { ... }:

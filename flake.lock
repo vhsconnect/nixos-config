@@ -209,6 +209,7 @@
         "gen": "gen",
         "gitgutter": "gitgutter",
         "leap-nvim": "leap-nvim",
+        "master": "master",
         "mustache": "mustache",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nil": "nil",
@@ -250,7 +251,6 @@
         "plugin-nvim-autopairs": "plugin-nvim-autopairs",
         "plugin-nvim-bufferline-lua": "plugin-nvim-bufferline-lua",
         "plugin-nvim-cmp": "plugin-nvim-cmp",
-        "plugin-nvim-code-action-menu": "plugin-nvim-code-action-menu",
         "plugin-nvim-cursorline": "plugin-nvim-cursorline",
         "plugin-nvim-dap": "plugin-nvim-dap",
         "plugin-nvim-dap-ui": "plugin-nvim-dap-ui",
@@ -290,16 +290,17 @@
         "vim-terraform": "vim-terraform"
       },
       "locked": {
-        "lastModified": 1729547259,
-        "narHash": "sha256-v3grhjbAoxgxvVurkRaELdB8gNV1WhFFg2sHuQO97iE=",
+        "lastModified": 1730501628,
+        "narHash": "sha256-LN0ow3SQC6+4N791HUqMS5rLOhRuz+1mgWHYYGcxmlI=",
         "owner": "vhsconnect",
         "repo": "nvim",
-        "rev": "693166460923350fa9e08ce5857f0f92263b117d",
+        "rev": "1862da35046f7cb07d35743ef4a6389d9a745cfc",
         "type": "github"
       },
       "original": {
         "owner": "vhsconnect",
         "repo": "nvim",
+        "rev": "1862da35046f7cb07d35743ef4a6389d9a745cfc",
         "type": "github"
       }
     },
@@ -627,6 +628,21 @@
       "original": {
         "owner": "ggandor",
         "repo": "leap.nvim",
+        "type": "github"
+      }
+    },
+    "master": {
+      "locked": {
+        "lastModified": 1730498993,
+        "narHash": "sha256-9rf7G88bnV58UAJk3iD7qDrEudy1a9YXr+o2eQRM4ls=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "93d9c99381b547322d94c04377cd56bf30ad24c1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -1444,22 +1460,6 @@
       "original": {
         "owner": "hrsh7th",
         "repo": "nvim-cmp",
-        "type": "github"
-      }
-    },
-    "plugin-nvim-code-action-menu": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1702287297,
-        "narHash": "sha256-pY+aP9iBuJhvDZzVEsOHZmnfaq3vUP7TfKEEQrj+Mo8=",
-        "owner": "weilbith",
-        "repo": "nvim-code-action-menu",
-        "rev": "8c7672a4b04d3cc4edd2c484d05b660a9cb34a1b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "weilbith",
-        "repo": "nvim-code-action-menu",
         "type": "github"
       }
     },

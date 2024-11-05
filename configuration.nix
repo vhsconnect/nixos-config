@@ -277,6 +277,9 @@
           id = "O3BZUDC-PZCKNWW-VPF53TP-6VXBUBQ-NKNIE6S-3OFE6VK-AZME2JV-WYG7ZQF";
           addresses = [ "tcp://${otherHosts.mbison.ip}:22000" ];
         };
+        mbebe = {
+          id = "7LC7OIU-IOMBDFW-AYPV4QS-FTWVBQV-GEYKNOQ-GMP76LQ-42Y2NG6-HDJELAO";
+        };
       };
       folders = {
         "/home/vhs/Sync" = {

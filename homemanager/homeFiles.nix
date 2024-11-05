@@ -10,6 +10,8 @@
         flake.lock
         package-lock.json
         Cargo.lock
+        .envrc
+        result
       '';
     };
   };
