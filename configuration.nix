@@ -1,9 +1,8 @@
-{
-  pkgs,
-  user,
-  otherHosts,
-  inputs,
-  ...
+{ pkgs
+, user
+, otherHosts
+, inputs
+, ...
 }:
 {
   imports = [ (./. + "/hardware/${user.host}" + "/hardware-configuration.nix") ];
@@ -76,6 +75,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
   networking.hostName = user.host;
   networking.useDHCP = false;
+  networking.networkmanager.enable = true;
 
   networking.extraHosts =
     if user.isWorkComputer then
@@ -174,6 +174,7 @@
         "libvirtd"
         "qemu-libvirtd"
         "syncthing"
+        "networkmanager"
       ];
     };
     users.office = {
@@ -182,7 +183,8 @@
       extraGroups = [
         "wheel"
         "docker"
-        "adbusers"
+        "networkmanager"
+        "syncthing"
       ];
     };
     groups.ops.members = [
@@ -267,15 +269,12 @@
       devices = {
         mpu3 = {
           id = "PJDMPH6-X54CFSG-FFD4AXU-WULBFHJ-KJTGW3Q-DU7GRRV-LTHXKVD-ZGV3TQK";
-          addresses = [ "tcp://${otherHosts.mpu3.ip}:22000" ];
         };
         mpu4 = {
           id = "HGCCQ7Y-APY3WFT-6HHX37C-7NV3ZMR-2EQ2HNW-4IEG3KS-UZHF5KW-KFAEIAU";
-          addresses = [ "tcp://${otherHosts.mpu4.ip}:22000" ];
         };
         mbison = {
           id = "O3BZUDC-PZCKNWW-VPF53TP-6VXBUBQ-NKNIE6S-3OFE6VK-AZME2JV-WYG7ZQF";
-          addresses = [ "tcp://${otherHosts.mbison.ip}:22000" ];
         };
         mbebe = {
           id = "7LC7OIU-IOMBDFW-AYPV4QS-FTWVBQV-GEYKNOQ-GMP76LQ-42Y2NG6-HDJELAO";
@@ -288,6 +287,7 @@
             "mbison"
             "mpu3"
             "mpu4"
+            "mbebe"
           ];
         };
       };

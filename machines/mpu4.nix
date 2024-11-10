@@ -3,20 +3,22 @@ let
   user = (import ../user.nix).mpu4;
   otherHosts = import ../user.nix;
   desktopEnvironments = [
-    ../desktop/gnome.nix
   ] ++ (if (import ../user.nix).mpu4.usei3 then [ ../desktop/i3.nix ] else [ ]);
+  system = "x86_64-linux";
+  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = true; };
 in
 {
-  system = "x86_64-linux";
+  inherit system;
   specialArgs = {
     inherit inputs;
+    inherit system;
     inherit user;
     inherit otherHosts;
   };
   modules = [
     ../configuration.nix
     ../modules/bbrf.nix
-    (import ../systemConfiguration/bbrf.nix { enableNginx = true; })
+    bbrf
     inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
     inputs.home-manager.nixosModules.home-manager
     {
@@ -24,26 +26,43 @@ in
       home-manager.users.vhs = import ../homemanager/home.nix;
       home-manager.extraSpecialArgs = {
         inherit inputs;
-        user = (import ../user.nix).mpu4;
+        inherit user;
+        inherit system;
         _imports =
           [
-            ../homemanager/packages.nix
-            ../homemanager/guiPackages.nix
-            ../homemanager/linuxPackages.nix
-            ../homemanager/themePackages.nix
             ../homemanager/zsh.nix
             ../homemanager/mimeappsList.nix
             ../homemanager/vim/vim.nix
             ../homemanager/modules/dunst.home.nix
             ../homemanager/modules/rofi.home.nix
             ../homemanager/modules/git.nix
-            ../homemanager/modules/eww.nix
-            ../homemanager/modules/hexchat.nix
             ../homemanager/scripts/scripts.nix
             ../homemanager/scripts/templates.nix
-            ../homemanager/modules/webapps.nix
+            ({ pkgs, inputs, ... }: {
+              home.packages = 
+              with pkgs;
+              [
+                xwallpaper
+                networkmanagerapplet
+                alacritty
+                arandr
+                nixpkgs-fmt
+                acpi
+                silver-searcher
+                fd
+                exa
+                (nerdfonts.override { 
+
+                  fonts = [
+                  "FiraCode"
+                  ];
+
+                })
+
+              ];
+
+            })
           ]
-          ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
           ++ (
             if user.usei3 then
               [

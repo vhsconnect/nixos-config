@@ -1,9 +1,9 @@
-{
-  inputs,
-  _imports,
-  pkgs,
-  system,
-  ...
+{ inputs
+, _imports
+, pkgs
+, system
+, user
+, ...
 }:
 {
   nixpkgs = {
@@ -78,7 +78,7 @@
 
   ######### X11 ############
   services.gammastep = {
-    enable = true;
+    enable = user.nightMode;
     dawnTime = "6:00-7:45";
     duskTime = "18:00-19:05";
     longitude = "59.3";

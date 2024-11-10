@@ -37,7 +37,6 @@ in
       # prettyping
       # protoc-gen-doc
       tldr
-      ponysay
 
       #haskell
       cabal-install
