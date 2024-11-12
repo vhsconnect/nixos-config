@@ -1,6 +1,7 @@
 { ... }:
 {
   fonts = [
+    "Meslo"
     "FiraCode"
     "0xProto"
     "CommitMono"

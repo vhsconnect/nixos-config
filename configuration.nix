@@ -1,8 +1,9 @@
-{ pkgs
-, user
-, otherHosts
-, inputs
-, ...
+{
+  pkgs,
+  user,
+  otherHosts,
+  inputs,
+  ...
 }:
 {
   imports = [ (./. + "/hardware/${user.host}" + "/hardware-configuration.nix") ];
@@ -175,6 +176,7 @@
         "qemu-libvirtd"
         "syncthing"
         "networkmanager"
+        "ops"
       ];
     };
     users.office = {
@@ -185,12 +187,15 @@
         "docker"
         "networkmanager"
         "syncthing"
+        "ops"
       ];
     };
+
     groups.ops.members = [
       "vhs"
       "office"
     ];
+
     extraGroups.vboxusers.members = [ "vhs" ];
   };
 
@@ -262,9 +267,10 @@
     enable = true;
     openDefaultPorts = true;
     dataDir = "/home/vhs/Sync";
-    configDir = "/home/vhs/.config/syncthing";
+    configDir = "/home/vhs/.syncthing";
     guiAddress = "localhost:3331";
     user = "vhs";
+    group = "ops";
     settings = {
       devices = {
         mpu3 = {
@@ -283,6 +289,15 @@
       folders = {
         "/home/vhs/Sync" = {
           id = "sync";
+          devices = [
+            "mbison"
+            "mpu3"
+            "mpu4"
+            "mbebe"
+          ];
+        };
+        "/home/common/Folder" = {
+          id = "folder";
           devices = [
             "mbison"
             "mpu3"

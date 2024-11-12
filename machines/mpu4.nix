@@ -2,8 +2,7 @@ inputs:
 let
   user = (import ../user.nix).mpu4;
   otherHosts = import ../user.nix;
-  desktopEnvironments = [
-  ] ++ (if (import ../user.nix).mpu4.usei3 then [ ../desktop/i3.nix ] else [ ]);
+  desktopEnvironments = if (import ../user.nix).mpu4.usei3 then [ ../desktop/i3.nix ] else [ ];
   system = "x86_64-linux";
   bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = true; };
 in
@@ -38,30 +37,23 @@ in
             ../homemanager/modules/git.nix
             ../homemanager/scripts/scripts.nix
             ../homemanager/scripts/templates.nix
-            ({ pkgs, inputs, ... }: {
-              home.packages = 
-              with pkgs;
-              [
-                xwallpaper
-                networkmanagerapplet
-                alacritty
-                arandr
-                nixpkgs-fmt
-                acpi
-                silver-searcher
-                fd
-                exa
-                (nerdfonts.override { 
-
-                  fonts = [
-                  "FiraCode"
-                  ];
-
-                })
-
-              ];
-
-            })
+            (
+              { pkgs, ... }:
+              {
+                home.packages = with pkgs; [
+                  xwallpaper
+                  networkmanagerapplet
+                  alacritty
+                  arandr
+                  nixpkgs-fmt
+                  acpi
+                  silver-searcher
+                  fd
+                  exa
+                  (nerdfonts.override { fonts = [ "FiraCode" ]; })
+                ];
+              }
+            )
           ]
           ++ (
             if user.usei3 then

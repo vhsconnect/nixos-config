@@ -37,7 +37,7 @@ in
       grep = "grep -i";
       c = "xclip -selection clipboard";
       l = "exa -la";
-      v = "vi `fzf`";
+      v = "fd . --type=file --exclude '.git/*' | fzf | xargs nvim";
       si = "du -hd0";
       sic = "du -h --max-depth=1 .";
       nixu = "nix-env --uninstall";
