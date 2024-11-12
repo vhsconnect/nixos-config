@@ -1,7 +1,7 @@
 inputs:
 let
   user = (import ../user.nix).mbebe;
-  otherHosts = (import ../user.nix);
+  otherHosts = import ../user.nix;
   desktopEnvironments = [
     ../desktop/i3.nix
     ../desktop/gnome.nix
@@ -19,11 +19,23 @@ in
   modules = [
     ../configuration.nix
     ../modules/bbrf.nix
+    ../modules/githubNotify.nix
     ../systemConfiguration/docker.nix
     ../systemConfiguration/libVirt.nix
     ../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
+    ../systemConfiguration/fintech.nix
     bbrf
+    (
+      { ... }:
+      {
+        services.github-notify = {
+          enable = true;
+          user = "vhs";
+        };
+      }
+    )
+
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
     {

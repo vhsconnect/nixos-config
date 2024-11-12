@@ -39,6 +39,7 @@ in
         #! /usr/bin/env bash
 
         set -euo pipefail
+        mkdir -p ~/Public/github
 
         DATA=$(${pkgs.curl}/bin/curl -L \
           -H "Accept: application/vnd.github+json" \
