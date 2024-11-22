@@ -47,16 +47,17 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1731096982,
-        "narHash": "sha256-UpPC55ku2pTB79dQ/ASvVryXH8IlY2nRZqQs7WbMzw4=",
+        "lastModified": 1731775926,
+        "narHash": "sha256-0rYfF9ukj+HiUbM+5FnXR58BSyz5xvAmjnBwu0+LRVM=",
         "owner": "vhsconnect",
         "repo": "bbrf-radio",
-        "rev": "88828df4d51c04911f09d3df1349e0c12aa9252d",
+        "rev": "14e5d4ade799b8d85505ddb7176cd9e1e227949e",
         "type": "github"
       },
       "original": {
         "owner": "vhsconnect",
         "repo": "bbrf-radio",
+        "rev": "14e5d4ade799b8d85505ddb7176cd9e1e227949e",
         "type": "github"
       }
     },
@@ -224,6 +225,7 @@
         "plugin-ccls-nvim": "plugin-ccls-nvim",
         "plugin-chatgpt-nvim": "plugin-chatgpt-nvim",
         "plugin-cmp-buffer": "plugin-cmp-buffer",
+        "plugin-cmp-cmdline": "plugin-cmp-cmdline",
         "plugin-cmp-dap": "plugin-cmp-dap",
         "plugin-cmp-nvim-lsp": "plugin-cmp-nvim-lsp",
         "plugin-cmp-path": "plugin-cmp-path",
@@ -275,6 +277,7 @@
         "plugin-sqls-nvim": "plugin-sqls-nvim",
         "plugin-telescope": "plugin-telescope",
         "plugin-telescope-all-recent": "plugin-telescope-all-recent",
+        "plugin-telescope-cmdline": "plugin-telescope-cmdline",
         "plugin-telescope-file-browser": "plugin-telescope-file-browser",
         "plugin-telescope-live-grep-args": "plugin-telescope-live-grep-args",
         "plugin-todo-comments": "plugin-todo-comments",
@@ -290,18 +293,16 @@
         "vim-terraform": "vim-terraform"
       },
       "locked": {
-        "lastModified": 1730501628,
-        "narHash": "sha256-LN0ow3SQC6+4N791HUqMS5rLOhRuz+1mgWHYYGcxmlI=",
-        "owner": "vhsconnect",
-        "repo": "nvim",
-        "rev": "1862da35046f7cb07d35743ef4a6389d9a745cfc",
-        "type": "github"
+        "dirtyRev": "0ed6b988e6f91d7d424056e7cf4136b9131a863f-dirty",
+        "dirtyShortRev": "0ed6b98-dirty",
+        "lastModified": 1732056281,
+        "narHash": "sha256-zpBWEZdpEsU6hrMffvgEbxTvDdSsuYVYf8pdfgm+Efc=",
+        "type": "git",
+        "url": "file:../nvim"
       },
       "original": {
-        "owner": "vhsconnect",
-        "repo": "nvim",
-        "rev": "1862da35046f7cb07d35743ef4a6389d9a745cfc",
-        "type": "github"
+        "type": "git",
+        "url": "file:../nvim"
       }
     },
     "emmet": {
@@ -633,11 +634,11 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1730498993,
-        "narHash": "sha256-9rf7G88bnV58UAJk3iD7qDrEudy1a9YXr+o2eQRM4ls=",
+        "lastModified": 1730488967,
+        "narHash": "sha256-wPIBdVdk2+ctEw65yL9WtYLT2lS4/csjUVRWTGoerJM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "93d9c99381b547322d94c04377cd56bf30ad24c1",
+        "rev": "664c5ad690e074c8339cd20ebc40ca29574724ed",
         "type": "github"
       },
       "original": {
@@ -1030,6 +1031,22 @@
         "type": "github"
       }
     },
+    "plugin-cmp-cmdline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711081050,
+        "narHash": "sha256-iBmXp+gUSMbgfkv7c7RDQAwPq02e07wEnBETP0dWBOo=",
+        "owner": "hrsh7th",
+        "repo": "cmp-cmdline",
+        "rev": "d250c63aa13ead745e3a40f61fdd3470efde3923",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hrsh7th",
+        "repo": "cmp-cmdline",
+        "type": "github"
+      }
+    },
     "plugin-cmp-dap": {
       "flake": false,
       "locked": {
@@ -1369,11 +1386,11 @@
     "plugin-none-ls-extras": {
       "flake": false,
       "locked": {
-        "lastModified": 1728140247,
-        "narHash": "sha256-w4Z2P1Mkx5nfdab23AtU443CRLxzQqKegmPuNB5Rbw8=",
+        "lastModified": 1729515446,
+        "narHash": "sha256-1Mq9IGu3e+ganwLaY+8lE7puvTiQl3WzuvmCqMYXOMc=",
         "owner": "nvimtools",
         "repo": "none-ls-extras.nvim",
-        "rev": "958db3b4575bb96373cb20846b4cc76f3499a9bb",
+        "rev": "f2bb002c8aa644d1f253772ff5d4e75e45ff7f4f",
         "type": "github"
       },
       "original": {
@@ -1401,11 +1418,11 @@
     "plugin-null-ls": {
       "flake": false,
       "locked": {
-        "lastModified": 1728658310,
-        "narHash": "sha256-vDu2DQQuwXFw9noa7cpfXELL3gP3RJssoQ2EruX6spA=",
+        "lastModified": 1729162706,
+        "narHash": "sha256-QHvusRnuK/Xq+4AqcIfu84+/iRTMuaYiLCLqrtrhRNk=",
         "owner": "nvimtools",
         "repo": "none-ls.nvim",
-        "rev": "6bdd9b3364e12ffb346ac224db3df37de0b1429b",
+        "rev": "dcc8cd4efdcb29275681a3c95786a816330dbca6",
         "type": "github"
       },
       "original": {
@@ -1844,6 +1861,22 @@
       "original": {
         "owner": "prochri",
         "repo": "telescope-all-recent.nvim",
+        "type": "github"
+      }
+    },
+    "plugin-telescope-cmdline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1729422170,
+        "narHash": "sha256-huL3BI3YKSvQtk/9PTf4108CWlR+olid515RhkXRGoA=",
+        "owner": "jonarrien",
+        "repo": "telescope-cmdline.nvim",
+        "rev": "8b05928ac1b9f2b772cedde891faa6669b0ec59a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jonarrien",
+        "repo": "telescope-cmdline.nvim",
         "type": "github"
       }
     },

@@ -232,7 +232,7 @@
     xclip
     blueman
     x11_ssh_askpass
-    nodejs-18_x
+    nodejs_22
     sysstat
     docker-compose
     wireguard-tools

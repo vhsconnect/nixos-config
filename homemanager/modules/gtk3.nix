@@ -8,10 +8,8 @@ in
   gtk.gtk3 = {
     extraConfig = {
       gtk-theme-name = "Arc-Dark";
-      gtk-icon-theme-name = if light-icons then "Paper" else "Paper-Mono-Dark";
+      gtk-icon-theme-name = if light-icons then "Rodent" else "Rodent";
       gtk-font-name = "${font} Light 11";
-      # gtk-cursor-theme-name = "capitaine-cursors-light";
-      # gtk-cursor-theme-size = "14";
       gtk-toolbar-style = "GTK_TOOLBAR_BOTH_HORIZ";
       gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
       gtk-button-images = "0";
