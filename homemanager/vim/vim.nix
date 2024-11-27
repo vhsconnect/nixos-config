@@ -63,7 +63,8 @@ else
 
           neodev-nvim
           pkgs.leap-nvim
-          which-key-nvim
+          # which-key-nvim
+          avante-nvim
 
           {
             plugin = telescope-nvim;

@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  user,
-  ...
+{ config
+, pkgs
+, lib
+, user
+, ...
 }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");
@@ -84,10 +83,6 @@ in
       }
       {
         command = "xset -dpms";
-        always = true;
-      }
-      {
-        command = "dropbox";
         always = true;
       }
       {

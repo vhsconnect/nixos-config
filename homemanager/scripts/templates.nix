@@ -22,11 +22,11 @@ let
 
   alacritty_toml = pkgs.writeTextDir "home/vhs/Public/templates/alacritty_toml" ''
 
-    import = [
+    general.import = [
         "~/.config/alacritty/themes/themes/tokyo-night-storm.toml"
     ]
 
-    live_config_reload = true
+    general.live_config_reload = true
 
     [cursor]
     blink_interval = 1000

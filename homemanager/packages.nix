@@ -74,6 +74,7 @@ in
       #utils
       zip
       exa
+      magic-wormhole
       fd
       silver-searcher
       bat
@@ -104,7 +105,7 @@ in
       ormolu
       stack
     ])
-    ++ (with pkgs.python39Packages; [
+    ++ (with pkgs.python312Packages; [
       virtualenv
       pip
     ])

@@ -13,7 +13,7 @@
   };
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     nixPath = [
       "nixpkgs=${inputs.nixpkgs}"
       "nixos-config=${/home/common/SConfig/nixos-config/configuration.nix}"
@@ -143,7 +143,7 @@
   programs.nm-applet.enable = if user.usei3 then true else false;
   programs.sway.enable = if user.usei3 then false else true;
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.settings = {
@@ -154,8 +154,6 @@
       AutoEnable = false;
     };
   };
-
-  sound.enable = false;
 
   services.blueman.enable = true;
 
@@ -252,7 +250,6 @@
   programs.adb.enable = true;
 
   services.openssh.enable = user.enableSSH;
-  services.globalprotect.enable = false;
 
   systemd.extraConfig = ''
     DefaultTimeoutStopSec=10s
@@ -274,7 +271,7 @@
     settings = {
       devices = {
         mpu3 = {
-          id = "PJDMPH6-X54CFSG-FFD4AXU-WULBFHJ-KJTGW3Q-DU7GRRV-LTHXKVD-ZGV3TQK";
+          id = "5XO7ZS3-U7ZD452-Z7U5QI7-K2STPKM-QL7WZBU-GHBHBQR-HR6L57P-32N2VQX";
         };
         mpu4 = {
           id = "MXC4OD2-VXLPIH6-3FGQRL7-AW2YTLZ-FAYEACI-IGXSX5M-DWAUKRH-KSZVFA3";

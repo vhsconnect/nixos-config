@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs-2111.url = "github:NixOS/nixpkgs/nixos-21.11";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
@@ -11,8 +11,7 @@
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
     bbrf.url = "github:vhsconnect/bbrf-radio/14e5d4ade799b8d85505ddb7176cd9e1e227949e";
     fintech.url = "github:instabox/fintech-shareware";
-    #editor.url = "github:vhsconnect/nvim/";
-    editor.url = "git+file:../nvim";
+    editor.url = "github:vhsconnect/nvim";
     basmati.url = "github:vhsconnect/basmati";
     alacritty_themes = {
       url = "github:alacritty/alacritty-theme";

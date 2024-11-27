@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     nix-doc
     steam-run
-    qt5ct
+    libsForQt5.qt5ct
     inotify-tools
     acpi
     coreutils
