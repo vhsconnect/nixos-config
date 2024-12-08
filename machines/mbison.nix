@@ -26,7 +26,7 @@ in
     ../systemConfiguration/printing.nix
     ../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
-    ../systemConfiguration/fintech.nix
+    #    ../systemConfiguration/fintech.nix
 
     bbrf
     (

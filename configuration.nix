@@ -249,6 +249,8 @@
   programs.ssh.extraConfig = "AddKeysToAgent = yes";
 
   programs.zsh.enable = true;
+  programs.fish.enable = false;
+
   programs.dconf.enable = true;
   programs.gnupg.agent = {
     enable = true;

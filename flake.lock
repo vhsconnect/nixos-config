@@ -3,11 +3,11 @@
     "alacritty_themes": {
       "flake": false,
       "locked": {
-        "lastModified": 1732185998,
-        "narHash": "sha256-NWdXouqkLw5DolDvDrKoN41vntiC/1vqyac8GEC5QnQ=",
+        "lastModified": 1733116860,
+        "narHash": "sha256-D37MQtNS20ESny5UhW1u6ELo9czP4l+q0S8neH7Wdbc=",
         "owner": "alacritty",
         "repo": "alacritty-theme",
-        "rev": "9d561e9a256417048b22d639a3efb7db6a97b2eb",
+        "rev": "95a7d695605863ede5b7430eb80d9e80f5f504bc",
         "type": "github"
       },
       "original": {
@@ -165,11 +165,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732229547,
-        "narHash": "sha256-vtUhSQFgDfyyNM6rgmn35A2T+L5PXBS0H89cxWK9N2A=",
+        "lastModified": 1733105089,
+        "narHash": "sha256-Qs3YmoLYUJ8g4RkFj2rMrzrP91e4ShAioC9s+vG6ENM=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "edabc790a834326dcb5810e2698fa743483510d0",
+        "rev": "c6b65d946097baf3915dd51373251de98199280d",
         "type": "github"
       },
       "original": {
@@ -355,25 +355,6 @@
         "type": "github"
       }
     },
-    "fintech": {
-      "inputs": {
-        "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_5"
-      },
-      "locked": {
-        "lastModified": 1731081354,
-        "narHash": "sha256-uZF/3hv2PxZYdH49oZHQhHXBFEO7MwGidj5tj/YciLM=",
-        "owner": "instabox",
-        "repo": "fintech-shareware",
-        "rev": "560ba6098933475cb312d3d699fbb26ea02a1cfd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "instabox",
-        "repo": "fintech-shareware",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -520,24 +501,6 @@
         "type": "github"
       }
     },
-    "flake-utils_4": {
-      "inputs": {
-        "systems": "systems_5"
-      },
-      "locked": {
-        "lastModified": 1726560853,
-        "narHash": "sha256-X6rJYSESBVr3hBoH0WbKE5KvhPU5bloyZ2L4K60/fPQ=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c1dfcf08411b08f6b8615f7d8971a2bfa81d5e8a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "gen": {
       "flake": false,
       "locked": {
@@ -674,11 +637,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1733482664,
-        "narHash": "sha256-ZD+h1fwvZs+Xvg46lzTWveAqyDe18h9m7wZnTIJfFZ4=",
+        "lastModified": 1733050161,
+        "narHash": "sha256-lYnT+EYE47f5yY3KS/Kd4pJ6CO9fhCqumkYYkQ3TK20=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e38d3dd1d355a003cc63e8fe6ff66ef2257509ed",
+        "rev": "62d536255879be574ebfe9b87c4ac194febf47c5",
         "type": "github"
       },
       "original": {
@@ -756,17 +719,17 @@
         "hyprlang": "hyprlang",
         "hyprutils": "hyprutils",
         "hyprwayland-scanner": "hyprwayland-scanner",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "pre-commit-hooks": "pre-commit-hooks",
-        "systems": "systems_6",
+        "systems": "systems_5",
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1733496302,
-        "narHash": "sha256-DSSydpXuUIf5dEYVpQg6IVjXbPcOUR1JWP/fycU9Fys=",
+        "lastModified": 1733601692,
+        "narHash": "sha256-u1OPxcrhRNlsoYVNAd4eHzDhbhZCfCssDag1E0Zu8s0=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "b1e5cc66bdb20b002c93479490c3a317552210b3",
+        "rev": "c106f454c136ecca47f84c659c58e19670050412",
         "type": "github"
       },
       "original": {
@@ -1069,11 +1032,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1732318996,
-        "narHash": "sha256-e0F6B5drXwRYd5R0L3R2ysrZwy1d8Y4+VTTkjZdKLpI=",
+        "lastModified": 1733261916,
+        "narHash": "sha256-d8gzPloAkabYkQM9fzWsBkqgvHRBzW4iVyUnTVTeJNU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "922ba1fed20eee72904bd3cb993fb71327b1b58a",
+        "rev": "7dc4b25deaa517870270998bb74a820587c51698",
         "type": "github"
       },
       "original": {
@@ -1165,22 +1128,6 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1727264057,
-        "narHash": "sha256-KQPI8CTTnB9CrJ7LrmLC4VWbKZfljEPBXOFGZFRpxao=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "759537f06e6999e141588ff1c9be7f3a5c060106",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-24.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_6": {
-      "locked": {
         "lastModified": 1733392399,
         "narHash": "sha256-kEsTJTUQfQFIJOcLYFt/RvNxIK653ZkTBIs4DG+cBns=",
         "owner": "NixOS",
@@ -1195,13 +1142,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_7": {
+    "nixpkgs_6": {
       "locked": {
-        "lastModified": 1733261153,
-        "narHash": "sha256-eq51hyiaIwtWo19fPEeE0Zr2s83DYMKJoukNLgGGpek=",
+        "lastModified": 1733120037,
+        "narHash": "sha256-En+gSoVJ3iQKPDU1FHrR6zIxSLXKjzKY+pnh9tt+Yts=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b681065d0919f7eb5309a93cea2cfa84dec9aa88",
+        "rev": "f9f0d5c5380be0a599b1fb54641fa99af8281539",
         "type": "github"
       },
       "original": {
@@ -2372,10 +2319,9 @@
         "darwin": "darwin",
         "darwinNixpkgs": "darwinNixpkgs",
         "editor": "editor",
-        "fintech": "fintech",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs_7",
+        "nixpkgs": "nixpkgs_6",
         "nixpkgs-2111": "nixpkgs-2111",
         "nixpkgs-master": "nixpkgs-master"
       }
@@ -2486,21 +2432,6 @@
       }
     },
     "systems_5": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_6": {
       "locked": {
         "lastModified": 1689347949,
         "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",

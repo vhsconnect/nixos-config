@@ -5,6 +5,19 @@ let
   npmPath = "$HOME/.npm-global/bin";
 in
 {
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    defaultCommand = "fd . --hidden";
+    changeDirWidgetCommand = "fd --type d --hidden --no-ignore";
+    historyWidgetOptions = [ ];
+    changeDirWidgetOptions = [
+      "--preview 'tree -C {} | head -500'"
+      "--border"
+    ];
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
@@ -12,6 +25,15 @@ in
     syntaxHighlighting.enable = true;
     history.size = 1000000;
     envExtra = ''
+      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+      autoload -Uz compinit
+      compinit
+      setopt autocd
+      #vim-mode
+      bindkey -v
+      autoload edit-command-line
+      zle -N edit-command-line
+      bindkey -M vicmd 'v' edit-command-line
       source ~/.zstuff
     '';
     localVariables = {
@@ -29,27 +51,23 @@ in
       PROMPT = ''[%F{$(if [ "$IN_NIX_SHELL" = "impure" ] || [[ -n "$SSH_CONNECTION" ]]; then echo "4"; else echo "9"; fi)}${user.promptI}%f] %F{244}%1d%f '';
     };
     shellAliases = {
-      nixosconfig = "nvim /Repos/nixos-config/nixos/nixos/configuration.nix";
-      cdconfig = "/home/common/SConfig/nixos-config/";
-      speed = "speedtest-cli";
+      cdconfig = "cd /home/common/SConfig/nixos-config/";
       nixosdir = "cd /etc/nixos";
       managerdir = "cd ~/.config/nixpkgs";
       grep = "grep -i";
       c = "xclip -selection clipboard";
+      cl = "clear";
       l = "exa -la";
+      lg = "exa -la | rg -i";
       v = "fd . --type=file --exclude '.git/*' | fzf | xargs nvim";
+      vl = "git status --short | fzf | cut -c 4- | xargs nvim";
+      vh = "git show --name-only --pretty=format: | fzf | xargs nvim";
       si = "du -hd0";
       sic = "du -h --max-depth=1 .";
-      nixu = "nix-env --uninstall";
-      nixupdate = "nix-channel --update nixos";
-      restartpolybar = "systemctl --user restart polybar.service";
       sz = "source ~/.zstuff";
-      hms = "echo \"use rebuild\"";
-      nixp = "nix-shell -p";
       lock = "xscreensaver-command -lock";
       emoji = "rofi -show emoji -modi emoji";
       allbound = "netstat -tulpn";
-      quickref = "vi ~/Dropbox/quickref";
       tree = "tree -C";
       deli = "tr $1 '\n'";
       img = "gthumb";
@@ -57,29 +75,10 @@ in
       tar-archive = "tar -czvf";
       tar-unarchive = "tar -xzvf";
       nd = "nix develop -c zsh";
-      vl = "git status --short | fzf | cut -c 4- | xargs nvim";
-      vh = "git show --name-only --pretty=format: | fzf | xargs nvim";
+      nixp = "nix-shell -p";
       xargs2 = "xargs -I {} bash -c \"$1\"";
     };
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "z"
-        "colored-man-pages"
-        "vi-mode"
-      ];
-    };
     plugins = [
-      {
-        name = "zsh-nix-shell";
-        file = "nix-shell.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "chisui";
-          repo = "zsh-nix-shell";
-          rev = "v0.4.0";
-          sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
-        };
-      }
       {
         name = "fz";
         file = "fz.plugin.zsh";

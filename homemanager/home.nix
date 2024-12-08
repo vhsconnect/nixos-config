@@ -1,9 +1,10 @@
-{ inputs
-, _imports
-, pkgs
-, system
-, user
-, ...
+{
+  inputs,
+  _imports,
+  pkgs,
+  system,
+  user,
+  ...
 }:
 {
   nixpkgs = {
@@ -17,15 +18,9 @@
 
   ######## programs ########
   programs.home-manager.enable = true;
-  programs.fzf = {
+  programs.nix-index = {
     enable = true;
     enableZshIntegration = true;
-    defaultCommand = "fd . --hidden";
-    changeDirWidgetCommand = "fd --type d --hidden --no-ignore";
-    changeDirWidgetOptions = [
-      "--preview 'tree -C {} | head -500'"
-      "--border"
-    ];
   };
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = false;

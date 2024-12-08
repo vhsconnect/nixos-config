@@ -9,6 +9,7 @@
     google-cloud-sql-proxy
     sops
     kubectl
+    kubectx
     kubernetes-helm
     k9s
     tailscale

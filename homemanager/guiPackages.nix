@@ -12,5 +12,7 @@
     signal-desktop
     popcorntime
     kate
+    element-desktop
+    mongodb-compass
   ];
 }
