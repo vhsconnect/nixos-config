@@ -31,6 +31,9 @@ in
   home.packages =
     with pkgs;
     [
+      #temp 
+      kitty
+
       cron
       gnumake
       librespeed-cli

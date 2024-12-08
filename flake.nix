@@ -9,6 +9,7 @@
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
+    hyprland.url = "github:hyprwm/Hyprland";
     bbrf.url = "github:vhsconnect/bbrf-radio/14e5d4ade799b8d85505ddb7176cd9e1e227949e";
     fintech.url = "github:instabox/fintech-shareware";
     editor.url = "github:vhsconnect/nvim";

@@ -32,13 +32,13 @@
     };
     settings = {
       auto-optimise-store = true;
-      extra-substituters = [
+      extra-trusted-substituters = [
         "https://nix-community.cachix.org"
-        "https://cache.iog.io"
+        # "https://cache.iog.io"
       ];
       extra-trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+        # "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
       ];
     };
     #cache environments for nix-direnv
@@ -119,7 +119,7 @@
     xkb.layout = "us";
     xkb.variant = "altgr-intl";
     # nvidia driver in hardware file
-    videoDrivers = if user.nvidia || user.amd then [ "" ] else [ "intel" ];
+    videoDrivers = if user.nvidia || user.amd then [ "" ] else [ "" ];
     deviceSection = ''
       Option "TearFree" "true"
     '';
@@ -142,6 +142,12 @@
 
   programs.nm-applet.enable = if user.usei3 then true else false;
   programs.sway.enable = if user.usei3 then false else true;
+  programs.hyprland = {
+    enable = if user.usei3 then false else true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
 
   hardware.graphics.enable = true;
   hardware.pulseaudio.enable = false;

@@ -1,7 +1,6 @@
 {
   inputs,
   config,
-  home,
   user,
   lib,
   pkgs,
@@ -133,7 +132,7 @@ in
     extraConfig = ''
       input "type:keyboard" {
         # xkb_options
-        xkb_options ctrl:swap_lalt_lctl,caps:super
+        # xkb_options ctrl:swap_lalt_lctl,caps:super
       }
 
       output * background ~/.background-image fill
