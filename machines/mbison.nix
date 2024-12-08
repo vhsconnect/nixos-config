@@ -26,6 +26,7 @@ in
     ../systemConfiguration/printing.nix
     ../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
+    ../systemConfiguration/jellyfin.nix
     #    ../systemConfiguration/fintech.nix
 
     bbrf
