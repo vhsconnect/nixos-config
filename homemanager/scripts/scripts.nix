@@ -1,6 +1,12 @@
-{ pkgs, user, ... }:
+{
+  pkgs,
+  lib,
+  user,
+  ...
+}:
 let
-  fonts = (import ../fonts.nix { }).fonts;
+  firstAttributeName = x: builtins.head (builtins.attrNames x);
+  fonts = map firstAttributeName (import ../fonts.nix { }).fonts;
   fontString = builtins.concatStringsSep " " fonts;
   changefont = pkgs.writeScriptBin "changefont" ''
     #! /usr/bin/env nix-shell
@@ -77,11 +83,9 @@ let
   nix-watch-exec = pkgs.writeScriptBin "nix-watch-exec" ''
 
     #!/usr/bin/env bash
-
     echo "watching..."
-    while inotifywait -e close_write "$1";
-    do
-        nix eval --expr "builtins.getAttr \"x\" (import $(realpath "$1"))" --impure
+    while inotifywait -e close_write "$1"; do
+    	nix eval --expr "builtins.getAttr \"x\" (import $(realpath "$1") { lib = (import <nixpkgs> {}).lib; })" --impure
     done
   '';
 

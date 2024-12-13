@@ -1,37 +1,39 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
+
+with builtins;
 let
-  fonts = (import ./fonts.nix { }).fonts;
-
-  generateFontTemplate = font_name: ''
-    [font.bold]
-    family = "${font_name} Nerd Font"
-    style = "Italic"
-
-    [font.italic]
-    family = "${font_name} Nerd Font"
-    style = "Regular"
-
-    [font.normal]
-    family = "${font_name} Nerd Font"
-    style = "Light"
-  '';
-
+  inherit (import ./fonts.nix { }) fonts generateFontTemplate;
+  firstAttrName = z: head (attrNames z);
+  firstAttrValue = z: head (attrValues z);
 in
+with lib;
+with lib.trivial;
+with builtins;
 
 {
-  xdg.configFile = builtins.listToAttrs (
-    map (font: {
-      name = "alacritty/fonts/${font}.toml";
-      value = {
-        text = generateFontTemplate font;
-      };
-    }) fonts
-  );
+  xdg.configFile =
+    let
+      mapper = map (y: {
+        name = "alacritty/fonts/${firstAttrName y}.toml";
+        value = {
+          text = generateFontTemplate (firstAttrValue y);
+        };
+      });
+    in
+    pipe fonts [
+      mapper
+      listToAttrs
+    ];
 
   home.packages =
     with pkgs;
     [
-      #temp 
+      #temp
       kitty
 
       cron
@@ -94,7 +96,9 @@ in
       nix-tree
 
       #fonts
-      (nerdfonts.override { inherit fonts; })
+      (nerdfonts.override {
+        fonts = (map firstAttrName fonts);
+      })
 
       #shells
       fish

@@ -118,8 +118,8 @@
     };
     xkb.layout = "us";
     xkb.variant = "altgr-intl";
-    # nvidia driver in hardware file
-    videoDrivers = if user.nvidia || user.amd then [ "" ] else [ "" ];
+    # Add Video drivers rn hardware file
+    # services.xserver.videoDrivers
     deviceSection = ''
       Option "TearFree" "true"
     '';
