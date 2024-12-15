@@ -8,29 +8,8 @@ let
   firstAttributeName = x: builtins.head (builtins.attrNames x);
   fonts = map firstAttributeName (import ../fonts.nix { }).fonts;
   fontString = builtins.concatStringsSep " " fonts;
-  changefont = pkgs.writeScriptBin "changefont" ''
-    #! /usr/bin/env nix-shell
-    #! nix-shell -i bash -p gnused
-
-    set -e
-    options=(${fontString})
-
-    selected_option=$(printf '%s\n' "''${options[@]}" | fzf --height 70% )
-    if [ -z "$selected_option" ]; then
-        echo "Exiting"
-        exit 0
-    fi
-    selected_option+=.toml
-
-    Y="\"~/.config/alacritty/fonts/$selected_option\""
-    sed -i  "/config\/alacritty\/fonts/c\\"$Y\\"" ~/.config/alacritty/alacritty.toml
-
-  '';
   allight = pkgs.writeScriptBin "allight" ''
     #! /usr/bin/env bash
-
-    Y="${user.darkAlacrittyTheme}"
-    X="${user.lightAlacrittyTheme}"
 
     A="ansi"
     B="GitHub"
@@ -41,16 +20,14 @@ let
     C="\$DARK_FZF_TAB"
     D="\$LIGHT_FZF_TAB"
 
-    sed -i "s/$Y/$X/" ~/.config/alacritty/alacritty.toml
+    chterm --pick=${user.lightAlacrittyTheme}.toml -t
+
     sed -i "s/$A/$B/" ~/.zstuff
     sed -i "s/$C/$D/" ~/.zstuff
     sed -i "s/$M/$N/" ~/.zstuff
   '';
   aldark = pkgs.writeScriptBin "aldark" ''
     #! /usr/bin/env bash
-
-    Y="${user.lightAlacrittyTheme}"
-    X="${user.darkAlacrittyTheme}"
 
     A="GitHub"
     B="ansi"
@@ -61,7 +38,8 @@ let
     C="\$LIGHT_FZF_TAB"
     D="\$DARK_FZF_TAB"
 
-    sed -i "s/$Y/$X/" ~/.config/alacritty/alacritty.toml
+    chterm --pick=${user.darkAlacrittyTheme}.toml -t
+
     sed -i "s/$A/$B/" ~/.zstuff
     sed -i "s/$C/$D/" ~/.zstuff
     sed -i "s/$M/$N/" ~/.zstuff
@@ -124,14 +102,14 @@ let
     xwallpaper --screen 1 --stretch ~/.background-image
   '';
   trips5 = pkgs.writeScriptBin "trips5" ''
-    #! /usr/bin/env bash
-    xrandr \
-    --output DP-1 --mode 2560x1440 --pos 0x0 --rotate left \
-    --output DP-2 --off \
-    --output DP-3 --off \
-    --output HDMI-1 --mode 1920x1080 --pos 1440x1480 --rotate normal
-    xwallpaper --output DP-1 --zoom ~/.background-image
-    xwallpaper --output HDMI-1 --stretch ~/.background-image
+    #!/usr/bin/env bash
+    xrandr 
+    --output DisplayPort-0 --primary --mode 2560x1440 --pos 0x0 --rotate left \
+    --output DisplayPort-1 --off \
+    --output DisplayPort-2 --off \
+    --output HDMI-A-0 --mode 1920x1080 --pos 1440x967 --rotate normal
+    xwallpaper --output DisplayPort-0 --zoom ~/.background-image
+    xwallpaper --output HDMI-A-0 --stretch ~/.background-image
   '';
 
   trips10 = pkgs.writeScriptBin "trips10" ''
@@ -155,11 +133,6 @@ let
     xwallpaper --screen 0 --zoom ~/.background-image
   '';
 
-  mprezrez = pkgs.writeScriptBin "mprezrez" ''
-    #! /usr/bin/env bash
-    xrandr --output eDP1 --mode 1920x1200
-    controlcaps
-  '';
   xwall = pkgs.writeScriptBin "xwall" ''
     #! /usr/bin/env bash
     xwallpaper --screen 0 --stretch ~/.background-image
@@ -174,11 +147,17 @@ let
   nixrun = pkgs.writeScriptBin "nixrun" (builtins.readFile ./nixrun.sh);
   rave-connect = pkgs.writeScriptBin "rave-connect" (builtins.readFile ./rave-connect.sh);
   dorebase = pkgs.writeScriptBin "dorebase" (builtins.readFile ./dorebase.sh);
+  chterm = pkgs.writeScriptBin "chterm" (builtins.readFile ./chterm.sh);
+  changefont = pkgs.writeScriptBin "changefont" ''
+    chterm -f "${fontString}"
+  '';
+  changetheme = pkgs.writeScriptBin "changetheme" ''
+    chterm -t
+  '';
 
 in
 {
   home.packages = [
-    changefont
     allight
     aldark
     pfire
@@ -196,8 +175,10 @@ in
     nixrun
     rave-connect
     controlcaps
-    mprezrez
     xwall
     dorebase
+    changefont
+    changetheme
+    chterm
   ];
 }

@@ -120,6 +120,7 @@
     xkb.variant = "altgr-intl";
     # Add Video drivers rn hardware file
     # services.xserver.videoDrivers
+    videoDrivers = user.gpu;
     deviceSection = ''
       Option "TearFree" "true"
     '';
@@ -277,6 +278,10 @@
     user = "vhs";
     group = "ops";
     settings = {
+      gui = {
+        user = "admin";
+        password = user.syncthingGuiPass;
+      };
       devices = {
         mpu3 = {
           id = "5XO7ZS3-U7ZD452-Z7U5QI7-K2STPKM-QL7WZBU-GHBHBQR-HR6L57P-32N2VQX";
