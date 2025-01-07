@@ -63,7 +63,7 @@ let
     #!/usr/bin/env bash
     echo "watching..."
     while inotifywait -e close_write "$1"; do
-    	nix eval --expr "builtins.getAttr \"x\" (import $(realpath "$1") { lib = (import <nixpkgs> {}).lib; })" --impure
+    	nix eval --expr "builtins.getAttr \"x\" (import $(realpath "$1") { lib = (import <nixpkgs> {}).lib;  pkgs = (import <nixpkgs> {}).pkgs; })" --impure
     done
   '';
 
@@ -103,7 +103,7 @@ let
   '';
   trips5 = pkgs.writeScriptBin "trips5" ''
     #!/usr/bin/env bash
-    xrandr 
+    xrandr \
     --output DisplayPort-0 --primary --mode 2560x1440 --pos 0x0 --rotate left \
     --output DisplayPort-1 --off \
     --output DisplayPort-2 --off \

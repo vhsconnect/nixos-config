@@ -3,6 +3,7 @@ let
   binPath = "$HOME/bin";
   cargoPath = "$HOME/.cargo/bin";
   npmPath = "$HOME/.npm-global/bin";
+  nixrunPackages = import ./nixrunPackages.nix;
 in
 {
 
@@ -68,7 +69,8 @@ in
       nd = "nix develop -c zsh";
       nixp = "nix-shell -p";
       xargs2 = "xargs -I {} bash -c \"$1\"";
-    };
+      bluetext = ''magick $1 -fill "darkblue" -fuzz 50% -opaque black output.png'';
+    } // nixrunPackages;
     oh-my-zsh = {
       enable = true;
       plugins = [

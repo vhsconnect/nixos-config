@@ -7,6 +7,7 @@
 }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");
+  inherit (builtins) map concatStringsSep;
 in
 {
   xdg.configFile."i3blocks/config".text = ''
@@ -45,12 +46,16 @@ in
     interval=30
     color=${theme.secondary}
 
-    [disk2]
-    label= 
-    instance=/
-    command=i3b_disk2 ${user.dataPartitionPath}
-    interval=30
-    color=${theme.secondary}
+    ${concatStringsSep "\n" (
+      map (part: ''
+        [disk2]
+        label= 
+        instance=/
+        command=i3b_disk2 ${part}
+        interval=30
+        color=${theme.secondary}
+      '') user.dataPartitionPaths
+    )}
 
     [bandwidth]
     command=i3b_bandwidth

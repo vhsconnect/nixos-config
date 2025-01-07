@@ -44,7 +44,7 @@ in
     {
       home-manager.useUserPackages = true;
       home-manager.useGlobalPkgs = false;
-      home-manager.backupFileExtension = "backup";
+      home-manager.backupFileExtension = "bkup";
       home-manager.users.vhs = import ../homemanager/home.nix;
       home-manager.users.office = import ../homemanager/work.nix;
       home-manager.extraSpecialArgs = {

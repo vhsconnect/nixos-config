@@ -36,6 +36,7 @@
         core = {
           editor = "nvim";
         };
+        rebase.updateRefs = true;
         color.diff-highlight.newNormal = "68 bold";
         color.diff-highlight.newHighlight = "27 bold";
         init.defaultBranch = "master";

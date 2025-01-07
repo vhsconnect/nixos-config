@@ -74,25 +74,36 @@
 
   time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
-  networking.hostName = user.host;
-  networking.useDHCP = false;
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = user.host;
+    useDHCP = false;
+    networkmanager.enable = true;
 
-  networking.extraHosts =
-    if user.isWorkComputer then
-      let
-        readIfExists = x: if builtins.pathExists x then builtins.readFile x else "";
+    extraHosts =
+      if user.isWorkComputer then
+        let
+          readIfExists = x: if builtins.pathExists x then builtins.readFile x else "";
 
-        joinFiles = x: builtins.concatStringsSep "\n" (map readIfExists x);
-      in
-      ''
-        ${joinFiles [
-          /home/vhs/Public/extraHosts
-          /home/office/Public/extraHosts
-        ]}
-      ''
-    else
-      "";
+          joinFiles = x: builtins.concatStringsSep "\n" (map readIfExists x);
+        in
+        ''
+          ${joinFiles [
+            /home/vhs/Public/extraHosts
+            /home/office/Public/extraHosts
+          ]}
+        ''
+      else
+        "";
+
+    firewall.allowedTCPPorts = [
+      9000
+      3000
+      3307
+      8080
+    ];
+
+    firewall.checkReversePath = false;
+  };
 
   console = {
     font = "Lat2-Terminus16";
@@ -203,15 +214,6 @@
 
     extraGroups.vboxusers.members = [ "vhs" ];
   };
-
-  networking.firewall.allowedTCPPorts = [
-    9000
-    3000
-    3307
-    8080
-  ];
-
-  networking.firewall.checkReversePath = false;
 
   environment.pathsToLink = [ "/share/zsh" ];
   environment.systemPackages = with pkgs; [
