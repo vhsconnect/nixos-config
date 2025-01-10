@@ -8,6 +8,7 @@ let
   ];
   system = "x86_64-linux";
   bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
+  immich = import ../systemConfiguration/immich.nix;
 in
 {
   specialArgs = {
@@ -19,6 +20,7 @@ in
   modules = [
     ../configuration.nix
     ../modules/bbrf.nix
+    ../modules/immich.nix
     ../modules/githubNotify.nix
     ../systemConfiguration/docker.nix
     # ../systemConfiguration/iphone.nix
@@ -30,6 +32,7 @@ in
     #    ../systemConfiguration/fintech.nix
 
     bbrf
+    immich
     (
       { ... }:
       {

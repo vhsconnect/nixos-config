@@ -38,6 +38,10 @@
     device = "/dev/disk/by-uuid/64e4ac0a-e5f2-4e0f-afd7-7eaa772e314f";
     noCheck = true;
     fsType = "ext4";
+    options = [
+      "users"
+      "nofail"
+    ];
   };
 
   fileSystems."/home/vhs/Data2" = {

@@ -5,6 +5,7 @@
   inputs,
   ...
 }:
+with builtins;
 {
   imports = [ (./. + "/hardware/${user.host}" + "/hardware-configuration.nix") ];
 
@@ -82,9 +83,9 @@
     extraHosts =
       if user.isWorkComputer then
         let
-          readIfExists = x: if builtins.pathExists x then builtins.readFile x else "";
+          readIfExists = x: if pathExists x then readFile x else "";
 
-          joinFiles = x: builtins.concatStringsSep "\n" (map readIfExists x);
+          joinFiles = x: concatStringsSep "\n" (map readIfExists x);
         in
         ''
           ${joinFiles [
@@ -95,14 +96,17 @@
       else
         "";
 
-    firewall.allowedTCPPorts = [
-      9000
-      3000
-      3307
-      8080
-    ];
+    firewall = {
+      allowedTCPPorts = [
+        9000
+        3000
+        3307
+        8080
+        3600
+      ];
+      checkReversePath = false;
+    };
 
-    firewall.checkReversePath = false;
   };
 
   console = {
@@ -129,8 +133,6 @@
     };
     xkb.layout = "us";
     xkb.variant = "altgr-intl";
-    # Add Video drivers rn hardware file
-    # services.xserver.videoDrivers
     videoDrivers = user.gpu;
     deviceSection = ''
       Option "TearFree" "true"
@@ -211,6 +213,7 @@
       "vhs"
       "office"
     ];
+    groups.ops.gid = 989;
 
     extraGroups.vboxusers.members = [ "vhs" ];
   };
