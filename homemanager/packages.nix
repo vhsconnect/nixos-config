@@ -78,7 +78,7 @@ with builtins;
 
       #utils
       zip
-      exa
+      eza
       magic-wormhole
       fd
       silver-searcher
@@ -87,9 +87,6 @@ with builtins;
       killall
       tree
       ripgrep
-
-      #daemons
-      dropbox
 
       # nixos vm
       nixos-shell
@@ -102,6 +99,10 @@ with builtins;
 
       #shells
       fish
+
+      #misc
+      gh
+
     ]
     ++ (with pkgs.haskellPackages; [
       floskell

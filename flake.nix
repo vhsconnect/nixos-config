@@ -2,18 +2,18 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-2111.url = "github:NixOS/nixpkgs/nixos-21.11";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
-    hyprland.url = "github:hyprwm/Hyprland";
+    #hyprland.url = "github:hyprwm/Hyprland";
     bbrf.url = "github:vhsconnect/bbrf-radio/";
     #fintech.url = "github:instabox/fintech-shareware";
     editor.url = "github:vhsconnect/nvim";
-    basmati.url = "github:vhsconnect/basmati";
+    basmati.url = "github:vhsconnect/basmati/8c836e51fa4476371baadf6fa0545362d61d689e";
+
     alacritty_themes = {
       url = "github:alacritty/alacritty-theme";
       flake = false;

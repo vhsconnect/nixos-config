@@ -154,6 +154,39 @@ let
   changetheme = pkgs.writeScriptBin "changetheme" ''
     chterm -t
   '';
+  clone = pkgs.writeScriptBin "clone" ''
+    #! /usr/bin/env fish
+
+    argparse 'u/user=' -- $argv
+
+
+    if set -q _flag_help
+        echo "Usage: script_name [options] [positional arguments]"
+        echo "Options:"
+        echo "  -h/--help     Show this help message"
+        echo "  -u/--user     User name (required)"
+        return 0
+    end
+
+
+    if not set -q _flag_user
+        echo "Error: --user option is required"
+        return 1
+    end
+
+    if test -z "$_flag_user"
+        echo "Error: --user must have a value"
+        return 1
+    end
+
+
+    echo $_flag_user
+
+    gh repo list $_flag_user --json name | jq 'map(.name)' | jq -r '.[]' | fzf | xargs -I {} bash -c "gh repo clone '$_flag_user/{}'"
+
+
+
+  '';
 
 in
 {
@@ -180,5 +213,6 @@ in
     changefont
     changetheme
     chterm
+    clone
   ];
 }

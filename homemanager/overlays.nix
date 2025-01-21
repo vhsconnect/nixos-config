@@ -1,12 +1,9 @@
 inputs: system:
 let
 
-  p2111 = import inputs.nixpkgs-2111 { inherit system; };
   master = import inputs.nixpkgs-master { inherit system; };
-  exa-overlay = self: prev: { exa = p2111.exa; };
   master-overlay = self: prev: {
-    self.signal = prev.signal;
-    self.dropbox = master.dropbox;
+    self.signal = master.signal;
   };
 
   leap-nvim-overlay = self: prev: {
@@ -57,7 +54,6 @@ let
   };
 in
 [
-  exa-overlay
   coc-nvim-overlay
   leap-nvim-overlay
   codeium-overlay

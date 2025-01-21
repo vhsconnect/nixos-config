@@ -18,6 +18,10 @@ in
       "--border"
     ];
   };
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   programs.zsh = {
     enable = true;
@@ -59,7 +63,6 @@ in
       lock = "xscreensaver-command -lock";
       emoji = "rofi -show emoji -modi emoji";
       allbound = "netstat -tulpn";
-      quickref = "vi ~/Dropbox/quickref";
       tree = "tree -C";
       deli = "tr $1 '\n'";
       img = "gthumb";
@@ -71,11 +74,19 @@ in
       xargs2 = "xargs -I {} bash -c \"$1\"";
       bluetext = ''magick $1 -fill "darkblue" -fuzz 50% -opaque black output.png'';
     } // nixrunPackages;
+    zsh-abbr = {
+      enable = true;
+      abbreviations = {
+        gco = "git checkout";
+        kni = "kubectl --namespace invoicing";
+      };
+    };
     oh-my-zsh = {
       enable = true;
       plugins = [
         "colored-man-pages"
         "vi-mode"
+        "timer"
       ];
     };
     plugins = [
@@ -87,16 +98,6 @@ in
           repo = "zsh-nix-shell";
           rev = "v0.4.0";
           sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
-        };
-      }
-      {
-        name = "fz";
-        file = "fz.plugin.zsh";
-        src = pkgs.fetchFromGitHub {
-          owner = "changyuheng";
-          repo = "fz";
-          rev = "2a4c1bc73664bb938bfcc7c99f473d0065f9dbfd";
-          sha256 = "0fg2a28cp3a4smcq61vngzdvjwq8np35ayq2ix1db34c18s222a4";
         };
       }
       {
