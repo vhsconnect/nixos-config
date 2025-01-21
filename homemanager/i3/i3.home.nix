@@ -35,8 +35,8 @@ in
       "${modifier}+Shift+k" = "move up";
       "${modifier}+Shift+l" = "move right";
 
-      "${modifier}+v" = "split vertically";
-      "${modifier}+b" = "split horizontally";
+      "${modifier}+v" = "split vertical";
+      "${modifier}+b" = "split horizontal";
 
       "${modifier}+d" = ''
         exec "rofi -lines 4 -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
