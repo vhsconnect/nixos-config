@@ -34,11 +34,6 @@
     fsType = "vfat";
   };
 
-  fileSystems."/home/vhs/Data" = {
-    device = "/dev/disk/by-uuid/d536bf84-da2d-49ad-83df-710d3d0daf23";
-    fsType = "ext4";
-  };
-
   swapDevices = [ { device = "/dev/disk/by-uuid/fb2fd9c3-0a5a-4de6-b05d-ed44f2589cab"; } ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

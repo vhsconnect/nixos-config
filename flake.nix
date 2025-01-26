@@ -61,7 +61,14 @@
         in
         mergeAttributeSets (
           mapSystems (x: {
-            ${x}.default = with legacyPackages.${x}; mkShell { buildInputs = [ git-crypt ]; };
+            ${x}.default =
+              with legacyPackages.${x};
+              mkShell {
+                buildInputs = [
+                  git-crypt
+                  nixpkgs-fmt
+                ];
+              };
           })
         );
     };

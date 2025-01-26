@@ -41,15 +41,21 @@ in
               { pkgs, ... }:
               {
                 home.packages = with pkgs; [
-                  xwallpaper
-                  networkmanagerapplet
+                  #themePackages
+                  xfce.xfce4-icon-theme
+                  #guiPackages
                   alacritty
                   arandr
-                  nixpkgs-fmt
+                  #linuxPackages
+                  xwallpaper
                   acpi
+                  networkmanagerapplet
+                  #packages
+                  coreutils
+                  nixpkgs-fmt
                   silver-searcher
                   fd
-                  exa
+                  eza
                   (nerdfonts.override { fonts = [ "FiraCode" ]; })
                 ];
               }

@@ -7,35 +7,18 @@
 
 with builtins;
 let
-  inherit (import ./fonts.nix { }) fonts generateFontTemplate;
+  inherit (import ./fonts.nix { }) fonts;
   firstAttrName = z: head (attrNames z);
-  firstAttrValue = z: head (attrValues z);
 in
 with lib;
 with lib.trivial;
 with builtins;
 
 {
-  xdg.configFile =
-    let
-      mapper = map (y: {
-        name = "alacritty/fonts/${firstAttrName y}.toml";
-        value = {
-          text = generateFontTemplate (firstAttrValue y);
-        };
-      });
-    in
-    pipe fonts [
-      mapper
-      listToAttrs
-    ];
 
   home.packages =
     with pkgs;
     [
-      #temp
-      kitty
-
       cron
       gnumake
       librespeed-cli
@@ -81,7 +64,9 @@ with builtins;
       eza
       magic-wormhole
       fd
+      jq
       silver-searcher
+      fd
       bat
       lf
       killall

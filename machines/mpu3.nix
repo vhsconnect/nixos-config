@@ -40,11 +40,6 @@ in
         inherit system;
         _imports =
           [
-            ../homemanager/packages.nix
-            ../homemanager/waylandPackages.nix
-            ../homemanager/guiPackages.nix
-            ../homemanager/linuxPackages.nix
-            ../homemanager/themePackages.nix
             ../homemanager/zsh.nix
             ../homemanager/mimeappsList.nix
             ../homemanager/vim/vim.nix
@@ -53,13 +48,33 @@ in
             ../homemanager/modules/dunst.home.nix
             ../homemanager/modules/rofi.home.nix
             ../homemanager/modules/git.nix
-            ../homemanager/modules/hexchat.nix
-            ../homemanager/modules/eww.nix
             ../homemanager/scripts/scripts.nix
             ../homemanager/scripts/templates.nix
             ../homemanager/modules/tmux.nix
-            ../homemanager/modules/webapps.nix
             ../homemanager/homeFiles.nix
+            (
+              { pkgs, ... }:
+              {
+                home.packages = with pkgs; [
+                  #themePackages
+                  xfce.xfce4-icon-theme
+                  #guiPackages
+                  alacritty
+                  arandr
+                  #linuxPackages
+                  xwallpaper
+                  acpi
+                  networkmanagerapplet
+                  #packages
+                  coreutils
+                  nixpkgs-fmt
+                  silver-searcher
+                  fd
+                  eza
+                  (nerdfonts.override { fonts = [ "Hack" ]; })
+                ];
+              }
+            )
           ]
           ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
           ++ (if user.usei3 then [ ] else [ ../homemanager/sway.nix ]);

@@ -214,8 +214,7 @@ with builtins;
       "vhs"
       "office"
     ];
-    groups.ops.gid = 989;
-
+    groups.ops.gid = user.opsGID;
     extraGroups.vboxusers.members = [ "vhs" ];
   };
 
@@ -228,23 +227,22 @@ with builtins;
     zsh
     wget
     curl
-    vim
     firefox
     lm_sensors
     vlc
     gnupg
     htop
-    jq
-    docker
     pavucontrol
     nmap
     neovim
-    xfce.xfce4-terminal
+    xterm
     xclip
-    blueman
+    xorg.xmodmap
     x11_ssh_askpass
+    blueman
     nodejs_22
     sysstat
+    docker
     docker-compose
     wireguard-tools
     git-crypt
