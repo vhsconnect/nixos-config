@@ -1,13 +1,15 @@
 #! /usr/bin/env fish
 
 set IS_STOPPED "Tailscale is stopped."
+set LOGGED_OUT "Logged out"
 
 if command -q tailscale
     set IS_TAILSCALE_STOPPED $(tailscale status)
-    if test "$IS_TAILSCALE_STOPPED" = "$IS_STOPPED" 
-        echo "Off"
+    if test "$IS_TAILSCALE_STOPPED" = "$IS_STOPPED"
+        echo Off
+    else if string match -q "*$LOGGED_OUT*" -- "$IS_TAILSCALE_STOPPED"
+        echo Off
     else
-        printf "On\n\n#00FF00\n" 
+        printf "On\n\n#00FF00\n"
     end
 end
-

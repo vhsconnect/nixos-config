@@ -8,11 +8,9 @@
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
-    #hyprland.url = "github:hyprwm/Hyprland";
     bbrf.url = "github:vhsconnect/bbrf-radio/";
-    #fintech.url = "github:instabox/fintech-shareware";
     editor.url = "github:vhsconnect/nvim";
-    basmati.url = "github:vhsconnect/basmati/8c836e51fa4476371baadf6fa0545362d61d689e";
+    basmati.url = "github:vhsconnect/basmati/b7cdd31bcf6b37cc5d572e4b3e77c39f4d7b7468";
 
     alacritty_themes = {
       url = "github:alacritty/alacritty-theme";

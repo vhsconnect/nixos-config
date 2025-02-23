@@ -182,9 +182,43 @@ let
 
     echo $_flag_user
 
-    gh repo list $_flag_user --json name | jq 'map(.name)' | jq -r '.[]' | fzf | xargs -I {} bash -c "gh repo clone '$_flag_user/{}'"
+    gh repo list $_flag_user --limit 100 --json name | jq 'map(.name)' | jq -r '.[]' | fzf | xargs -I {} bash -c "gh repo clone '$_flag_user/{}'"
 
+  '';
+  changels = pkgs.writeScriptBin "changels" (builtins.readFile ./chls.fish);
+  changecompletion = pkgs.writeScriptBin "changecompletion" ''
+    #! /usr/bin/env bash
 
+    Y="export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=$1'"
+    sed -i "/ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE/c\\$Y" ~/.zstuff
+  '';
+  pskill = pkgs.writeScriptBin "pskill" ''
+    #! /usr/bin/env bash
+
+    search_term="$1"
+
+    selected_processes=$(ps -e |
+    	grep -i "$search_term" |
+    	fzf --multi \
+    		--header="kill" \
+    		--layout=reverse \
+    		--border \
+    		--preview="echo {}" \
+    		--preview-window=down:3:wrap)
+
+    pids=$(echo "$selected_processes" | awk '{print $1}')
+
+    for pid in $pids; do
+    	if kill -15 "$pid" 2>/dev/null; then
+    		echo "$pid stopped gracefully"
+    	else
+    		if kill -9 "$pid" 2>/dev/null; then
+    			echo "$pid force killed"
+    		else
+    			echo "$pid is going berserk, failed to force kill"
+    		fi
+    	fi
+    done
 
   '';
 
@@ -214,5 +248,8 @@ in
     changetheme
     chterm
     clone
+    changels
+    changecompletion
+    pskill
   ];
 }
