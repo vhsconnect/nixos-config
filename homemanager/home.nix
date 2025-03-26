@@ -83,5 +83,5 @@
   };
 
   #IMPORTANT
-  home.stateVersion = "21.03";
+  home.stateVersion = "20.09";
 }

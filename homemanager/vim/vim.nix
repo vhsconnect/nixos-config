@@ -62,7 +62,7 @@ else
           nvim-surround
 
           neodev-nvim
-          pkgs.leap-nvim
+          leap-nvim
           # which-key-nvim
           avante-nvim
 
@@ -79,17 +79,6 @@ else
             '';
           }
           null-ls-nvim
-          {
-            plugin = pkgs._codeium;
-            optional = true;
-            config = ''
-              let g:codeium_disable_bindings = 1
-              imap <script><silent><nowait><expr> <C-a><space> codeium#Accept()
-              imap <C-a>. <Cmd>call codeium#CycleCompletions(1)<CR>
-              imap <C-a>, <Cmd>call codeium#CycleCompletions(-1)<CR>
-              imap <C-a> <Cmd>call codeium#Clear()<CR>
-            '';
-          }
         ]
         ++ (
           if user.useCoc then
