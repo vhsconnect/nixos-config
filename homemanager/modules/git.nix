@@ -21,6 +21,7 @@
         options = {
           side-by-side = true;
         };
+
       };
       aliases = {
         amend = "commit --amend -m";
@@ -32,6 +33,7 @@
         c = "commit -S";
       };
       extraConfig = {
+        url."ssh://git@github.com".insteadof = "https://github.com";
         safe.directory = "*";
         core = {
           editor = "nvim";

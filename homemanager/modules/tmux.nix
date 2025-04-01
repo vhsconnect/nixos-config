@@ -58,9 +58,10 @@
   '';
   programs.tmux.plugins = [
     {
-      plugin = pkgs.tmuxPlugins.power-theme;
+      plugin = pkgs.tmuxPlugins.tmux-colors-solarized;
       extraConfig = ''
-        set -g @plugin 'wfxr/tmux-power'
+        set -g @plugin 'seebi/tmux-colors-solarized'
+        set -g @colors-solarized 'dark'
       '';
     }
     # {
