@@ -48,6 +48,7 @@ in
             ../homemanager/scripts/templates.nix
             ../homemanager/modules/tmux.nix
             ../homemanager/homeFiles.nix
+            ../homemanager/atuin.nix
             (
               { pkgs, ... }:
               {

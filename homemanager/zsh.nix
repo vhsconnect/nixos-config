@@ -84,6 +84,7 @@ in
         gp = "git pull";
         kni = "kubectl --namespace invoicing";
         ffmpack = ''ffmpeg -i $1 -c:v libx265 -crf 28 -preset slow -vf "scale=-1:720,fps=24" -c:a aac -b:a 96k output.mkv'';
+        ss = "setsid";
       };
     };
     oh-my-zsh = {
