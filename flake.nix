@@ -45,6 +45,8 @@
 
         mbison = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbison.nix inputs);
 
+        m91 = inputs.nixpkgs.lib.nixosSystem (import ./machines/m91.nix inputs);
+
         mprez = inputs.nixpkgs.lib.nixosSystem (import ./machines/mprez.nix inputs);
 
         mbebe = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbebe.nix inputs);
