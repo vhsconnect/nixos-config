@@ -62,7 +62,7 @@ in
           ../homemanager/themePackages.nix
           ../homemanager/zsh.nix
           ../homemanager/mimeappsList.nix
-           ../homemanager/vim/vim.nix
+          ../homemanager/vim/vim.nix
           ../homemanager/i3/i3blocks.home.nix
           ../homemanager/i3/i3.home.nix
           ../homemanager/modules/dunst.home.nix

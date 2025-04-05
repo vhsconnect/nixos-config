@@ -221,6 +221,28 @@ let
     done
 
   '';
+  vpn = pkgs.writeScriptBin "vpn" ''
+    #! /usr/bin/env fish 
+
+    set configPath /home/vhs/SShark/
+
+    switch $argv[1]
+        case -c
+            set selected_path (find $configPath -type f | fzf --height 40% --reverse)
+            if test -n "$selected_path"
+                nmcli connection import type wireguard file $selected_path
+            end
+        case -d
+            set deletion_config (nmcli connection show | grep wireguard | awk '{print $1}' | fzf --height 40%)
+            nmcli connection delete "$deletion_config"
+        case '*'
+            echo "Usage: "(status filename)" [-c|-d]"
+            echo "  -c    Connect mode - select path with fzf"
+            echo "  -d    Disconnect mode"
+            exit 1
+    end
+
+  '';
 
 in
 {
@@ -251,5 +273,6 @@ in
     changels
     changecompletion
     pskill
+    vpn
   ];
 }

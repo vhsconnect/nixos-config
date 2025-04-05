@@ -48,11 +48,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1733613052,
-        "narHash": "sha256-0rYfF9ukj+HiUbM+5FnXR58BSyz5xvAmjnBwu0+LRVM=",
+        "lastModified": 1743714448,
+        "narHash": "sha256-1TmQa1ohqDfMkcOGPjjAgUfEY7HULEZR3QHqFEP7/vs=",
         "owner": "vhsconnect",
         "repo": "bbrf-radio",
-        "rev": "69ad86f956fe8317edf211c2c36f2d1192daf6b5",
+        "rev": "91421cbe6b26ae72663bf2f143a261762a507602",
         "type": "github"
       },
       "original": {
@@ -790,11 +790,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1741724370,
-        "narHash": "sha256-WsD+8uodhl58jzKKcPH4jH9dLTLFWZpVmGq4W1XDVF4=",
+        "lastModified": 1743703532,
+        "narHash": "sha256-s1KLDALEeqy+ttrvqV3jx9mBZEvmthQErTVOAzbjHZs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "95600680c021743fd87b3e2fe13be7c290e1cac4",
+        "rev": "bdb91860de2f719b57eef819b5617762f7120c70",
         "type": "github"
       },
       "original": {

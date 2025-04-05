@@ -1,7 +1,7 @@
 inputs:
 
 let
-  user = (import ../user.nix).mpu3;
+  user = (import ../user.nix).iso;
   system = "x86_64-linux";
 in
 
@@ -59,9 +59,6 @@ in
             "networkmanager"
           ];
           shell = pkgs.zsh;
-          # openssh.authorizedKeys.keys = [
-          #   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBps9Mp/xZax8/y9fW1Gt73SkskcBux1jDAB8rv0EYUt cardno:000611120054"
-          # ];
         };
         users.extraUsers.root.password = "admin";
 
@@ -93,9 +90,13 @@ in
         networking.wireless.enable = false;
 
         environment.systemPackages = with pkgs; [
-          xfce.xfce4-terminal
+          alacritty
+          ghostty
+          eza
+          xorg.xmodmap
           firefox
           git
+          magic-womrhole
           neovim
           curl
           arandr
@@ -106,6 +107,7 @@ in
           silver-searcher
           fd
           rofi
+          (nerdfonts.override { fonts = [ "Hack" ]; })
         ];
         programs.zsh.enable = true;
       }
@@ -117,7 +119,6 @@ in
       home-manager.useUserPackages = true;
       home-manager.useGlobalPkgs = false;
       home-manager.backupFileExtension = "hmback";
-      # home-manager.users.admin = import ../homemanager/home.nix;
       home-manager.users.admin =
         { lib, config, ... }:
         {
