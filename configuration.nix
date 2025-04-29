@@ -154,19 +154,15 @@ with builtins;
     ];
   };
 
-  programs.nm-applet.enable = if user.usei3 then true else false;
+  programs.nm-applet.enable = true;
+
+  programs.niri.enable = false;
   programs.sway.enable = if user.usei3 then false else true;
-  programs.hyprland = {
-    enable = if user.usei3 then false else true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage =
-      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
 
   hardware.graphics.enable = true;
   hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
-  # hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.powerOnBoot = true;
   hardware.bluetooth.settings = {
     General = {
       Enable = "Source,Sink,Media,Socket";
@@ -323,6 +319,13 @@ with builtins;
         };
       };
     };
+  };
+
+  programs.steam = {
+    enable = false;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
   };
 
   services.fwupd.enable = false;

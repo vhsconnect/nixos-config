@@ -16,6 +16,6 @@
     xorg.xmodmap
     xorg.xev
     xwallpaper
-    skanlite
+    libsForQt5.skanlite
   ];
 }

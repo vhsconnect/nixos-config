@@ -25,6 +25,11 @@ let
     sed -i "s/$A/$B/" ~/.zstuff
     sed -i "s/$C/$D/" ~/.zstuff
     sed -i "s/$M/$N/" ~/.zstuff
+
+    # system lightmode 
+    ${pkgs.dconf}/bin/dconf write \
+            /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+
   '';
   aldark = pkgs.writeScriptBin "aldark" ''
     #! /usr/bin/env bash
@@ -43,6 +48,10 @@ let
     sed -i "s/$A/$B/" ~/.zstuff
     sed -i "s/$C/$D/" ~/.zstuff
     sed -i "s/$M/$N/" ~/.zstuff
+
+    # system darkmode
+    ${pkgs.dconf}/bin/dconf write \
+            /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
   '';
 
   pfire = pkgs.writeScriptBin "pfire" ''
@@ -243,6 +252,23 @@ let
     end
 
   '';
+  tailscaletoggle = pkgs.writeScriptBin "tailscalecheck" ''
+    #! /usr/bin/env fish
+
+    set IS_STOPPED "Tailscale is stopped."
+    set ASKPASS "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass"
+
+    if command -q tailscale
+        set IS_TAILSCALE_STOPPED $(tailscale status)
+        if test "$IS_TAILSCALE_STOPPED" = "$IS_STOPPED"
+          env SUDO_ASKPASS=$ASKPASS sudo -A tailscale up
+        else
+          env SUDO_ASKPASS=$ASKPASS sudo -A tailscale down
+        end
+    end
+    exit 0
+
+  '';
 
 in
 {
@@ -274,5 +300,7 @@ in
     changecompletion
     pskill
     vpn
+    # tailscalecheck
+    # tailscaletoggle
   ];
 }

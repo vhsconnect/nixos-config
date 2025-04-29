@@ -1,9 +1,9 @@
-
-{ config
-, pkgs
-, lib
-, user
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  user,
+  ...
 }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");
@@ -14,7 +14,7 @@ in
 {
   imports = [ ./i3blocks/blockScripts.nix ];
   xsession = {
-    windowManager.i3.enable = true;
+    windowManager.i3.enable = if user.usei3 then true else false;
     windowManager.i3.config.modifier = "Mod1";
     windowManager.i3.config.gaps = {
       outer = 5;
@@ -53,6 +53,8 @@ in
       "F5" = "exec rave-connect";
       "F6" = "exec pamixer -d 5";
       "F7" = "exec pamixer -i 5";
+      "F8" = "exec lowpass";
+
       #"F9" >> reserved for mpx-gromit
       "F10" = "exec xscreensaver-command -lock";
       #"F11" >> reserved for full screen

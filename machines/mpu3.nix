@@ -50,6 +50,7 @@ in
             ../homemanager/modules/git.nix
             ../homemanager/scripts/scripts.nix
             ../homemanager/scripts/templates.nix
+            ../homemanager/easyeffects.nix
             ../homemanager/modules/tmux.nix
             ../homemanager/homeFiles.nix
             (

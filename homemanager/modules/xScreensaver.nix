@@ -1,7 +1,7 @@
-{ ... }:
+{ user, ... }:
 {
   services.xscreensaver = {
-    enable = true;
+    enable = if user.usei3 then true else false;
     settings = {
       timeout = "30";
     };

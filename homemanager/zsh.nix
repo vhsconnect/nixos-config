@@ -77,7 +77,6 @@ in
     zsh-abbr = {
       enable = true;
       abbreviations = {
-        gch = "git checkout";
         gs = "git status";
         gr = "git rebase";
         gp = "git pull";

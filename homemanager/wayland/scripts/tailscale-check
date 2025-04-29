@@ -1,0 +1,21 @@
+#! /usr/bin/env fish
+
+set IS_STOPPED "Tailscale is stopped."
+set LOGGED_OUT "Logged out"
+
+function output -a text class
+    printf '{"text": "%s", "class": "%s", }\n' $text $class
+end
+
+if command -q tailscale
+    set IS_TAILSCALE_STOPPED $(tailscale status)
+    if test "$IS_TAILSCALE_STOPPED" = "$IS_STOPPED"
+        output off base_text
+    else if string match -q "*$LOGGED_OUT*" -- "$IS_TAILSCALE_STOPPED"
+        output off base_text
+    else
+        # printf "On\n\n#00FF00\n"
+        output on green_text
+    end
+end
+exit 0

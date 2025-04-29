@@ -16,4 +16,3 @@ gpg --edit-key <public-key>
 # finally add the new gpg user to git-crypt
 git-crypt add-gpg-user <public-key>
 ```
-

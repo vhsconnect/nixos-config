@@ -1,8 +1,17 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  user,
+  config,
+  ...
+}:
 let
   inherit (import ./fonts.nix { }) fonts generateFontTemplate;
   firstAttrName = z: lib.head (lib.attrNames z);
   firstAttrValue = z: lib.head (lib.attrValues z);
+  theme = import (./themes/. + "/${user.theme}.nix");
+  inherit (user) secondaryFont;
+
 in
 {
 

@@ -66,6 +66,7 @@ in
           ../homemanager/modules/xScreensaver.nix
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
+          ../homemanager/easyeffects.nix
           ../homemanager/modules/tmux.nix
           ../homemanager/homeFiles.nix
         ] ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ]);
