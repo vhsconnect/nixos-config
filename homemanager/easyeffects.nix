@@ -13,7 +13,7 @@
     let
       lowpass = pkgs.writeScriptBin "lowpass" ''
 
-        if ! pgrep -x easyeffects > /dev/null; then
+        if ! pgrep -f easyeffects > /dev/null; then
           nohup ${pkgs.easyeffects}/bin/easyeffects --gapplication-service >/dev/null 2>&1 &
           sleep 1 # give it a moment to register on DBus
         fi
