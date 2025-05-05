@@ -6,6 +6,7 @@
 
 let
   theme = import (../themes/. + "/${user.theme}.nix");
+
   waybarStyles =
     {
       background,
@@ -60,6 +61,7 @@ let
           #tray,
           #custom-tailscale,
           #custom-github,
+          #custom-disks,
           #mode {
               padding: 0 10px;
               margin: 6px 3px; 
@@ -148,7 +150,22 @@ let
               color: ${foreground};
           }
 
+          #custom-disks {
+              background-color: ${background-module};
+              color: ${foreground};
+          }
+
+          #custom-disks.accent-on {
+              background-color: ${accent};
+              color: ${foreground};
+          }
+
           #custom-tailscale {
+              background-color: ${background-module};
+              color: ${foreground};
+          }
+
+          #custom-github {
               background-color: ${background-module};
               color: ${foreground};
           }
@@ -210,7 +227,7 @@ in
     };
 
     ".config/waybar/style-light.css" = waybarStyles {
-      background-module = "grey";
+      background-module = "oldlace";
       background = "white";
       foreground = "rgba(0, 0, 0, 0.9)";
       accent = theme.accent;
@@ -234,10 +251,48 @@ in
               ]
             );
         weather = pkgs.writeScriptBin "exe" (builtins.readFile ./scripts/weather);
-        github = pkgs.writeScriptBin "exe" ''
-          count=`curl -u username:${user.ghk} https://api.github.com/notifications | jq '. | length'`
-          echo '{"text":'$count',"tooltip":"$tooltip","class":"$class"}'
-        '';
+        github =
+          pkgs.writeScriptBin "exe" # bash
+            ''
+              count=`curl -u username:${user.ghk} https://api.github.com/notifications | jq '. | length'`
+              echo '{"text":'$count',"tooltip":"$tooltip","class":"$class"}'
+            '';
+        disks =
+          pkgs.writeScriptBin "exe" # fish
+            ''
+              #! /usr/bin/env fish
+
+              set targets (df -BG --output=target $argv | tail -n +2 | string trim)
+              set percentages (df -BG --output=pcent $argv | tail -n +2 | string trim)
+              set availables (df -BG --output=avail $argv | tail -n +2 | string trim)
+
+              set text
+
+              for i in (seq (count $targets))
+                  set -l target (basename $targets[$i])
+                  set -a text "$target $percentages[$i]"
+              end
+
+              set tooltip
+
+              for i in (seq (count $targets))
+                  set -l target (basename $targets[$i])
+                  set tooltip "$tooltip$target $percentages[$i] $availables[$i] left\n"
+              end
+
+              set class none
+
+              for avail in $availables
+                  set raw (echo $avail | awk '{gsub("G","",$1); print $1}')
+                  if test $raw -lt 70
+                      set class accent-on
+                  end
+              end
+
+              set text (string join ' | ' $text)
+
+              echo "{\"text\":\"$text\",\"tooltip\":\"$tooltip\", \"class\": \"$class\"}" 
+            '';
       in
 
       {
@@ -259,6 +314,7 @@ in
                     "pulseaudio/slider",
                     "bluetooth",
                     "temperature",
+                    "custom/disks",
                     "cpu",
                     "memory",
                     "battery",
@@ -357,6 +413,14 @@ in
                     "interval": 600,
                     "format": "  {}",
                     "on-click": "xdg-open https://github.com/notifications"
+                },
+                "custom/disks": {
+                    "exec": "${disks}/bin/exe ${builtins.concatStringsSep " " user.disks}",
+                    "return-type": "json",
+                    "restart-interval": 4,
+                    "interval": 60,
+                    "format": "  {}",
+                    "tooltip": true
                 }
             }
 

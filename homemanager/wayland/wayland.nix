@@ -1,25 +1,20 @@
 {
-  inputs,
-  config,
   user,
-  lib,
   pkgs,
   ...
 }:
 let
-  modifier = "Mod4";
   theme = import (../themes/. + "/${user.theme}.nix");
 in
 {
+  imports = [ ./waybar.nix ];
   home.packages = with pkgs; [
-    #swaynotificationcenter
-    #xdg-desktop-portal-wlr
     kanshi
     swaylock
     wl-clipboard
     shotman
     grim
-    wofi
+    xscreensaver
     font-awesome
   ];
 
@@ -85,14 +80,6 @@ in
       ];
     };
 
-  };
-
-  programs.waybar = {
-    enable = true;
-    systemd = {
-      enable = false;
-      target = "sway-session.target";
-    };
   };
 
 }

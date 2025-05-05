@@ -35,4 +35,5 @@ else
 	emo=$SUN
 fi
 
-echo "$emo $humidity $temp"
+# echo "$emo $humidity $temp"
+echo "$emo $temp"

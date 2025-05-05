@@ -17,9 +17,9 @@ set $menu "rofi -lines 4 -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
 
 ### Idle configuration
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 3E6473' \
-         timeout 1200 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+         timeout 1200 'xscreensaver-command -activate' \
+         #timeout 2400 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         #before-sleep 'swaylock -f -c 000000'
 
 
 ### Key bindings
