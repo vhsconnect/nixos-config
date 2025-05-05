@@ -15,6 +15,7 @@
     tailscale
     sops
     awscli2
+    filezilla
 
     postgresql
     mysql84
@@ -23,6 +24,6 @@
     lsof
 
     libreoffice
-    
+
   ];
 }

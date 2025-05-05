@@ -36,6 +36,7 @@ in
     # ../systemConfiguration/iphone.nix
     ../systemConfiguration/libVirt.nix
     ../systemConfiguration/printing.nix
+    ../systemConfiguration/ollama.nix
     ../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
     ../systemConfiguration/jellyfin.nix

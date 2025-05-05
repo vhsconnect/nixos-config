@@ -3,9 +3,11 @@
 
   services.ollama = {
     enable = true;
-    environmentVariables = {
-      HSA_OVERRIDE_GFX_VERSION = "10.3.0";
-    };
     acceleration = "rocm";
+    environmentVariables = {
+      HCC_AMDGPU_TARGET = "gfx1031";
+    };
+    rocmOverrideGfx = "10.3.0";
   };
+
 }
