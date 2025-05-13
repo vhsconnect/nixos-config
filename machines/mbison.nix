@@ -4,6 +4,7 @@ let
   otherHosts = import ../user.nix;
   desktopEnvironments = [
     ../desktop/i3.nix
+    ../desktop/gnome.nix
   ];
   system = "x86_64-linux";
   bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };

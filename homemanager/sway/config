@@ -153,6 +153,8 @@ mode "resize" {
 #       middle_emulation enabled
 #   }
 input "type:keyboard" {
+    xkb_layout us
+    xkb_variant altgr-intl
     xkb_options ctrl:nocaps
     repeat_delay 250
     repeat_rate 30

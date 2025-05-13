@@ -7,7 +7,7 @@ let
   theme = import (../themes/. + "/${user.theme}.nix");
 in
 {
-  imports = [ ./waybar.nix ];
+  imports = [ ./waybar2.nix ];
   home.packages = with pkgs; [
     kanshi
     swaylock
@@ -59,17 +59,17 @@ in
           for_window [window_type="notification"] floating enable
 
 
-          for_window [app_id=".*"] border pixel 2
+          for_window [app_id=".*"] border pixel 1
 
-          default_border pixel 2
+          default_border pixel 1
           default_floating_border normal
 
           gaps inner 5
           gaps outer 5
 
-          client.focused          ${theme.main} ${theme.main} ${theme.secondary} ${theme.secondary}
-          client.focused_inactive ${theme.secondary} ${theme.secondary} ${theme.main} ${theme.secondary}
-          client.unfocused        ${theme.secondary} ${theme.secondary} ${theme.main} ${theme.secondary}
+          client.focused          ${theme.secondary} ${theme.secondary} ${theme.main} ${theme.secondary}
+          client.focused_inactive ${theme.main} ${theme.main} ${theme.secondary} ${theme.secondary}
+          client.unfocused        ${theme.main} ${theme.main} ${theme.secondary} ${theme.secondary}
           client.urgent           ${theme.secondary} ${theme.accent2} ${theme.accent2} ${theme.secondary}
 
 

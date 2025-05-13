@@ -17,5 +17,6 @@
     xorg.xev
     xwallpaper
     libsForQt5.skanlite
+    nautilus
   ];
 }

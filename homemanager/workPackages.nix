@@ -16,6 +16,7 @@
     sops
     awscli2
     filezilla
+    mongosh
 
     postgresql
     mysql84
