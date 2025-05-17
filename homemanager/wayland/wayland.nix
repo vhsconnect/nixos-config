@@ -16,6 +16,7 @@ in
     grim
     xscreensaver
     font-awesome
+    wdisplays
   ];
 
   services.cliphist = {

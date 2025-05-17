@@ -13,14 +13,19 @@ let
       background-module,
       foreground,
       accent,
+      unset,
     }:
     {
       enable = true;
       text = # css
         ''
           window#waybar {
-              all:unset;
+              ${if unset then "all:unset;" else "background-color: ${background};"}
               font-family: "${user.secondaryFont}", Helvetica, Arial, sans-serif;
+          }
+
+          #workspaces {
+              margin: 0 2px;
           }
 
           #workspaces button {
@@ -28,13 +33,12 @@ let
               color: ${foreground};
           }
 
-
           #workspaces button.focused {
-              background-color: #64727D;
+              background-color: ${accent};
           }
 
           #workspaces button.urgent {
-              background-color: #eb4d4b;
+              background-color: OrangeRed;
           }
 
           #mode {
@@ -58,9 +62,6 @@ let
               color: ${background-module};
           }
 
-          #workspaces {
-              margin: 0 2px;
-          }
 
           /* If workspaces is the leftmost module, omit left margin */
           .modules-left > widget:first-child > #workspaces {
@@ -212,6 +213,23 @@ in
       background = "rgba(0, 0, 0, 0.9)";
       foreground = "white";
       accent = theme.accent;
+      unset = true;
+    };
+
+    ".config/waybar/style-dark.css" = waybarStyles {
+      background-module = "rgba(0, 0, 0, 1)";
+      background = "rgba(0, 0, 0, 0.97)";
+      foreground = "white";
+      accent = theme.accent;
+      unset = false;
+    };
+
+    ".config/waybar/style-light.css" = waybarStyles {
+      background-module = "oldlace";
+      background = "white";
+      foreground = "rgba(0, 0, 0, 0.9)";
+      accent = theme.accent;
+      unset = false;
     };
 
     ".config/waybar/config.jsonc" =
@@ -280,136 +298,142 @@ in
         enable = true;
         text = # json
           ''
-            {
-                "layer": "top",
-                "position": "bottom",
-                "height": 35,
-                "spacing": 10,
-                "reload_style_on_change": true,
-                "modules-left": ["sway/workspaces"],
-                "modules-center": [],
-                "modules-right": [
-                    "custom/github",
-                    "custom/tailscale",
-                    "network",
-                //    "pulseaudio/slider",
-                    "bluetooth",
-                    "temperature",
-                    "custom/disks",
-                    "cpu",
-                    "memory",
-                    "battery",
-                    "custom/weather",
-                    "clock",
-                    "tray"
-                ],
-                "custom/notification": {
-                    "tooltip": false,
-                    "format": "",
-                    "on-click": "swaync-client -t -sw",
-                    "escape": true
-                },
-                "clock": {
-                    "format": "{:%I:%M} ",
-                    "format-alt": "{:%A, %B %d, %Y (%R)}",
-                    "interval": 15,
-                    "tooltip-format": "<tt>{calendar}</tt>",
-                    "actions": {
-                        "on-click-right": "shift_down",
-                        "on-click": "shift_up"
-                    }
-                },
-                "pulseaudio/slider": {
-                    "format": ""
-                },
-                "network": {
-                    "format": "{bandwidthDownBits} / {bandwidthUpBits} ",
-                    "format-wifi": "{essid} ({signalStrength}%) ",
-                    "format-disconnected": "",
-                    "tooltip-format": "{ifname} via {gwaddr} 󰊗 \n {ipaddr}/{cidr} 󰊗 \n {bandwidthDownBytes} / {bandwidthUpBytes}",
-                    "max-length": 50,
-                    "interval": 10,
-                    "on-click": "nm-connection-editor"
-                },
-                "bluetooth": {
-                    "format-on": "󰂯 ",
-                    "format-off": "BT-off",
-                    "format-disabled": "󰂲",
-                    "format-connected-battery": "{device_battery_percentage}% 󰂯",
-                    "format-alt": "{device_alias} 󰂯",
-                    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-                    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-                    "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
-                    "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
-                    "on-click-right": "blueman-manager"
-                },
-                "temperature": {
-                    "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input",
-                    "format": "{temperatureC}°C "
-                },
-                "battery": {
-                    "interval": 1,
-                    "states": {
-                        "good": 95,
-                        "warning": 30,
-                        "critical": 20
-                    },
-                    "format": "{icon} {capacity}%",
-                    "format-charging": "󰂄 {capacity}%",
-                    "format-plugged": "󰂄  {capacity}%",
-                    "format-alt": "{icon} {time}",
-                    "format-icons": ["󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"]
-                },
-                "cpu": {
-                    "format": "CPU {usage}%",
-                    "interval": 5,
-                    "tooltip": true
-                },
-                "memory": {
-                    "format": "RAM {percentage}%"
-                },
-                "tray": {
-                    "icon-size": 18,
-                    "spacing": 10
-                },
-                "custom/tailscale": {
-                    "exec": "${tailscale-check}/bin/tailscale-check",
-                    "return-type": "json",
-                    "restart-interval": 4,
-                    "interval": 10,
-                    "format": "  {}",
-                    "on-click": "${tailscale-toggle}/bin/tailscale-toggle",
-                },
-                "custom/weather": {
-                    "exec": "${weather}/bin/exe",
-                    "return-type": "simple",
-                    "restart-interval": 4,
-                    "interval": 10,
-                    "format": "{}",
-                    "on-click": "xdg-open https://www.google.com/search?q=weather"
-                },
-                "custom/github": {
-                    "exec": "${github}/bin/exe",
-                    "return-type": "json",
-                    "restart-interval": 4,
-                    "interval": 600,
-                    "format": "  {}",
-                    "on-click": "xdg-open https://github.com/notifications"
-                },
-                "custom/disks": {
-                    "exec": "${disks}/bin/exe ${builtins.concatStringsSep " " user.disks}",
-                    "return-type": "json",
-                    "restart-interval": 4,
-                    "interval": 60,
-                    "format": "  {}",
-                    "tooltip": true
+            [
+              {
+                  "modules-left": ["sway/workspaces"],
+                  "position": "bottom",
+                  "output": "DP-2",
+              },
+              {
+                  "layer": "top",
+                  "position": "bottom",
+                  "output": "!DP-2",
+                  "height": 35,
+                  "spacing": 10,
+                  "reload_style_on_change": true,
+                  "modules-center": [],
+                  "modules-left": ["sway/workspaces"],
+                  "modules-right": [
+                      "custom/github",
+                      "custom/tailscale",
+                      "network",
+                  //    "pulseaudio/slider",
+                      "bluetooth",
+                      "temperature",
+                      "custom/disks",
+                      "cpu",
+                      "memory",
+                      "battery",
+                      "custom/weather",
+                      "clock",
+                      "tray"
+                  ],
+                  "custom/notification": {
+                      "tooltip": false,
+                      "format": "",
+                      "on-click": "swaync-client -t -sw",
+                      "escape": true
+                  },
+                  "clock": {
+                      "format": "{:%I:%M} ",
+                      "format-alt": "{:%A, %B %d, %Y (%R)}",
+                      "interval": 15,
+                      "tooltip-format": "<tt>{calendar}</tt>",
+                      "actions": {
+                          "on-click-right": "shift_down",
+                          "on-click": "shift_up"
+                      }
+                  },
+                  "pulseaudio/slider": {
+                      "format": ""
+                  },
+                  "network": {
+                      "format": "{bandwidthDownBits} / {bandwidthUpBits} ",
+                      "format-wifi": "{essid} ({signalStrength}%) ",
+                      "format-disconnected": "",
+                      "tooltip-format": "{ifname} via {gwaddr} 󰊗 \n {ipaddr}/{cidr} 󰊗 \n {bandwidthDownBytes} / {bandwidthUpBytes}",
+                      "max-length": 50,
+                      "interval": 10,
+                      "on-click": "nm-connection-editor"
+                  },
+                  "bluetooth": {
+                      "format-on": "󰂯 ",
+                      "format-off": "BT-off",
+                      "format-disabled": "󰂲",
+                      "format-connected-battery": "{device_battery_percentage}% 󰂯",
+                      "format-alt": "{device_alias} 󰂯",
+                      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+                      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+                      "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
+                      "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
+                      "on-click-right": "blueman-manager"
+                  },
+                  "temperature": {
+                      "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input",
+                      "format": "{temperatureC}°C "
+                  },
+                  "battery": {
+                      "interval": 1,
+                      "states": {
+                          "good": 95,
+                          "warning": 30,
+                          "critical": 20
+                      },
+                      "format": "{icon} {capacity}%",
+                      "format-charging": "󰂄 {capacity}%",
+                      "format-plugged": "󰂄  {capacity}%",
+                      "format-alt": "{icon} {time}",
+                      "format-icons": ["󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"]
+                  },
+                  "cpu": {
+                      "format": "CPU {usage}%",
+                      "interval": 5,
+                      "tooltip": true
+                  },
+                  "memory": {
+                      "format": "RAM {percentage}%"
+                  },
+                  "tray": {
+                      "icon-size": 18,
+                      "spacing": 10
+                  },
+                  "custom/tailscale": {
+                      "exec": "${tailscale-check}/bin/tailscale-check",
+                      "return-type": "json",
+                      "restart-interval": 4,
+                      "interval": 10,
+                      "format": "  {}",
+                      "on-click": "${tailscale-toggle}/bin/tailscale-toggle",
+                  },
+                  "custom/weather": {
+                      "exec": "${weather}/bin/exe",
+                      "return-type": "simple",
+                      "restart-interval": 4,
+                      "interval": 10,
+                      "format": "{}",
+                      "on-click": "xdg-open https://www.google.com/search?q=weather"
+                  },
+                  "custom/github": {
+                      "exec": "${github}/bin/exe",
+                      "return-type": "json",
+                      "restart-interval": 4,
+                      "interval": 600,
+                      "format": "  {}",
+                      "on-click": "xdg-open https://github.com/notifications"
+                  },
+                  "custom/disks": {
+                      "exec": "${disks}/bin/exe ${builtins.concatStringsSep " " user.disks}",
+                      "return-type": "json",
+                      "restart-interval": 4,
+                      "interval": 60,
+                      "format": "  {}",
+                      "tooltip": true
+                  }
                 }
-            }
+              ]
 
           '';
-
       };
-
   };
 
   programs.waybar = {
