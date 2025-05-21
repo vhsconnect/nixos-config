@@ -284,7 +284,11 @@ with builtins;
         user = "admin";
         password = user.syncthingGuiPass;
       };
+
       devices = {
+        pinser = {
+          id = "V5HK7HA-H564OBH-6SE77S3-RY4AFMR-F3ENF3E-6UV7HSL-CPZ5I6C-SD3HXAQ";
+        };
         mpu3 = {
           id = "5XO7ZS3-U7ZD452-Z7U5QI7-K2STPKM-QL7WZBU-GHBHBQR-HR6L57P-32N2VQX";
         };
@@ -306,6 +310,13 @@ with builtins;
             "mpu3"
             "mpu4"
             "mbebe"
+          ];
+        };
+        "/home/vhs/Sync2" = {
+          id = "sync2";
+          devices = [
+            "mbison"
+            "pinser"
           ];
         };
         "/home/common/Folder" = {

@@ -32,6 +32,7 @@ in
     ../configuration.nix
     ../modules/bbrf.nix
     ../modules/immich.nix
+    ../modules/dlProcess.nix
     ../modules/githubNotify.nix
     ../systemConfiguration/docker.nix
     # ../systemConfiguration/iphone.nix
@@ -51,6 +52,13 @@ in
         services.github-notify = {
           enable = true;
           user = "office";
+        };
+        services.dl-process = {
+          enable = true;
+          user = "vhs";
+          file = "~/dlp-files";
+          errorFile = "~/dlp-error-files";
+          outputDir = "~/Sync2";
         };
       }
     )

@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   user,
   ...
 }:
@@ -102,44 +101,6 @@ let
     xmodmap -e "keysym Caps_Lock = Control_L"
     xmodmap -e "add Lock = Caps_Lock" 
     xmodmap -e "add Control = Control_L" 
-  '';
-  trips4 = pkgs.writeScriptBin "trips4" ''
-    #! /usr/bin/env bash
-    xrandr --auto --output HDMI2 --primary --mode 1920x1080 --same-as eDP1
-    xrandr --auto --output DP1 --mode 2560x1440 --left-of eDP1
-    xwallpaper --screen 0 --stretch ~/.background-image
-    xwallpaper --screen 1 --stretch ~/.background-image
-  '';
-  trips5 = pkgs.writeScriptBin "trips5" ''
-    #!/usr/bin/env bash
-    xrandr \
-    --output DisplayPort-0 --primary --mode 2560x1440 --pos 0x0 --rotate left \
-    --output DisplayPort-1 --off \
-    --output DisplayPort-2 --off \
-    --output HDMI-A-0 --mode 1920x1080 --pos 1440x967 --rotate normal
-    xwallpaper --output DisplayPort-0 --zoom ~/.background-image
-    xwallpaper --output HDMI-A-0 --stretch ~/.background-image
-  '';
-
-  trips10 = pkgs.writeScriptBin "trips10" ''
-    #! /usr/bin/env bash
-
-     xrandr \
-     --output eDP-1 --off \
-     --output HDMI-1 --off \
-     --output DP-1 --mode 3440x1440 --pos 1920x0 --rotate normal \
-     --output DP-2 --off \
-     --output DP-3 --off \
-     --output DP-4 --off
-
-     xwallpaper --screen 0 --zoom ~/.background-image
-
-  '';
-  trips11 = pkgs.writeScriptBin "trips11" ''
-    #! /usr/bin/env bash
-
-    xrandr eDP-1 --mode 1920x1200 --pos 0x0 --rotate normal 
-    xwallpaper --screen 0 --zoom ~/.background-image
   '';
 
   xwall = pkgs.writeScriptBin "xwall" ''
@@ -252,26 +213,11 @@ let
     end
 
   '';
-  tailscaletoggle = pkgs.writeScriptBin "tailscalecheck" ''
-    #! /usr/bin/env fish
-
-    set IS_STOPPED "Tailscale is stopped."
-    set ASKPASS "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass"
-
-    if command -q tailscale
-        set IS_TAILSCALE_STOPPED $(tailscale status)
-        if test "$IS_TAILSCALE_STOPPED" = "$IS_STOPPED"
-          env SUDO_ASKPASS=$ASKPASS sudo -A tailscale up
-        else
-          env SUDO_ASKPASS=$ASKPASS sudo -A tailscale down
-        end
-    end
-    exit 0
-
-  '';
 
 in
 {
+  imports = [ ./displays.nix ];
+
   home.packages = [
     allight
     aldark
@@ -280,10 +226,6 @@ in
     watchexec
     nix-watch-exec
     keys
-    trips4
-    trips5
-    trips10
-    trips11
     monitorsDisconnected
     robl
     oneoff
@@ -300,7 +242,5 @@ in
     changecompletion
     pskill
     vpn
-    # tailscalecheck
-    # tailscaletoggle
   ];
 }

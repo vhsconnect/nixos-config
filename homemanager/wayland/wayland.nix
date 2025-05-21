@@ -76,6 +76,7 @@ in
 
           # startup applications
           exec ${pkgs.blueman}/bin/blueman-applet
+          exec_always ${user.monitorsCmd}
 
         ''
       ];
