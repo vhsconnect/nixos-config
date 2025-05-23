@@ -72,7 +72,7 @@ in
                   silver-searcher
                   fd
                   eza
-                  (nerdfonts.override { fonts = [ "Hack" ]; })
+                  nerd-fonts.hack
                 ];
               }
             )

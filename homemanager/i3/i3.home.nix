@@ -158,7 +158,5 @@ in
       exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt5ct
     '';
 
-    programs.i3lock.enable = true;
-
   };
 }

@@ -154,6 +154,8 @@ with builtins;
     ];
   };
 
+  programs.i3lock.enable = if user.usei3 then true else false;
+
   programs.nm-applet.enable = true;
 
   programs.niri.enable = false;
