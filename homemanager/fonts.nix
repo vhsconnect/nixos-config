@@ -1,26 +1,28 @@
 { ... }:
-
-with builtins;
 {
   fonts = [
-    { Meslo = "MesloLG"; }
-    { FiraCode = "FiraCode"; }
-    { "0xProto" = "0xProto"; }
-    { CommitMono = "CommitMono"; }
-    { Hack = "Hack"; }
-    { SpaceMono = "SpaceMono"; }
-    { Iosevka = "Iosevka"; }
-    { IosevkaTermSlab = "Iosevka"; }
-    { JetBrainsMono = "JetBrainsMono"; }
-    { VictorMono = "VictorMono"; }
-    { EnvyCodeR = "EnvyCodeR"; }
-    { Hermit = "Hurmit"; }
-    { Lekton = "Lekton"; }
-    { BitstreamVeraSansMono = "BitstromWera"; }
-    { AurulentSansMono = "AurulentSansM"; }
-    { AnonymousPro = "AnonymicePro"; }
-    { GeistMono = "GeistMono"; }
-    { RobotoMono = "RobotoMono"; }
+    { _0xproto = "0xProto"; }
+    { anonymice = "AnonymicePro"; }
+    { atkynson-mono = "AtkynsonMono"; }
+    { aurulent-sans-mono = "AurulentSansM"; }
+    { bitstream-vera-sans-mono = "BitstromWera"; }
+    { caskaydia-mono = "CaskaydiaMono"; }
+    { commit-mono = "CommitMono"; }
+    { envy-code-r = "EnvyCodeR"; }
+    { fira-code = "FiraCode"; }
+    { fira-mono = "FiraMono"; }
+    { geist-mono = "GeistMono"; }
+    { hack = "Hack"; }
+    { hurmit = "Hurmit"; }
+    { iosevka = "Iosevka"; }
+    { iosevka-term-slab = "Iosevka"; }
+    { jetbrains-mono = "JetBrainsMono"; }
+    { lekton = "Lekton"; }
+    { meslo-lg = "MesloLG"; }
+    { roboto-mono = "RobotoMono"; }
+    { space-mono = "SpaceMono"; }
+    { victor-mono = "VictorMono"; }
+    { zed-mono = "ZedMono"; }
   ];
 
   generateFontTemplate = font_name: ''

@@ -77,11 +77,6 @@ with builtins;
       nixos-shell
       nix-tree
 
-      #fonts
-      (nerdfonts.override {
-        fonts = (map firstAttrName fonts);
-      })
-
       #shells
       fish
 
@@ -89,6 +84,7 @@ with builtins;
       gh
 
     ]
+    ++ (map (f: nerd-fonts.${firstAttrName f}) fonts)
     ++ (with pkgs.haskellPackages; [
       floskell
       ghc
