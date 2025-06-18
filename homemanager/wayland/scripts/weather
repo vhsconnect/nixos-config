@@ -2,7 +2,7 @@
 
 shopt -s nocasematch
 
-CITY=stockholm
+CITY=$1
 DATA=$(curl -Ss wttr.in/$CITY?format=j1)
 CONDITION=$(curl -Ss wttr.in/$CITY?format="%C\n")
 

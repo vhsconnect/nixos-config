@@ -16,10 +16,12 @@ set $menu "rofi -lines 4 -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
-exec swayidle -w \
-         timeout 1200 'xscreensaver-command -activate' \
-         #timeout 2400 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         #before-sleep 'swaylock -f -c 000000'
+
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 7FFFD4' \
+#          timeout 600 'swaymsg "output * dpms off"' \
+#               resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 000000'
 
 
 ### Key bindings
@@ -34,6 +36,7 @@ bindsym F2 exec "exec rofi -show emoji -modi emoji"
 bindsym F6 exec pamixer -d 5
 bindsym F7 exec pamixer -i 5
 bindsym F8 exec lowpass
+bindsym F9 exec shotman -C -c region
 bindsym F10 exec xscreensaver-command -lock 
 
 
@@ -140,24 +143,22 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-
-
 # input
 
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
 input "type:keyboard" {
     xkb_layout us
     xkb_variant altgr-intl
     xkb_options ctrl:nocaps
     repeat_delay 250
     repeat_rate 30
+}
+
+input "type:touchpad" {
+    click_method clickfinger
+    tap disabled 
+    middle_emulation disabled 
+    tap_button_map lmr
+    clickfinger_button_map lmr
 }
 
 

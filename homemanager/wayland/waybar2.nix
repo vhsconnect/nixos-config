@@ -111,7 +111,7 @@ let
 
           @keyframes blink {
               to {
-                  background-color: #ffffff;
+                  background-color: ${accent};
                   color: #000000;
               }
           }
@@ -221,7 +221,7 @@ in
       background = "rgba(0, 0, 0, 0.97)";
       foreground = "white";
       accent = theme.accent;
-      unset = false;
+      unset = true;
     };
 
     ".config/waybar/style-light.css" = waybarStyles {
@@ -229,7 +229,7 @@ in
       background = "white";
       foreground = "rgba(0, 0, 0, 0.9)";
       accent = theme.accent;
-      unset = false;
+      unset = true;
     };
 
     ".config/waybar/config.jsonc" =
@@ -369,7 +369,7 @@ in
                       "on-click-right": "blueman-manager"
                   },
                   "temperature": {
-                      "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input",
+                      "hwmon-path": "${user.hwmonPath}",
                       "format": "{temperatureC}°C "
                   },
                   "battery": {
@@ -406,7 +406,7 @@ in
                       "on-click": "${tailscale-toggle}/bin/tailscale-toggle",
                   },
                   "custom/weather": {
-                      "exec": "${weather}/bin/exe",
+                      "exec": "${weather}/bin/exe ${user.location}",
                       "return-type": "simple",
                       "restart-interval": 4,
                       "interval": 10,

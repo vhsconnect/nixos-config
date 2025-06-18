@@ -2,7 +2,7 @@
 {
 
   programs.atuin = {
-    enable = true;
+    enable = false;
     enableZshIntegration = true;
 
     flags = [
@@ -20,10 +20,10 @@
 
     };
   };
-  programs.zsh.initExtra = ''
-    export ATUIN_NOBIND="true"
-    eval "$(atuin init zsh)"
-
-    bindkey '^e' atuin-search
-  '';
+  # programs.zsh.initExtra = ''
+  #   export ATUIN_NOBIND="true"
+  #   eval "$(atuin init zsh)"
+  #
+  #   bindkey '^e' atuin-search
+  # '';
 }

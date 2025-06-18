@@ -2,8 +2,10 @@ inputs: system:
 let
 
   master = import inputs.nixpkgs-master { inherit system; };
+
   master-overlay = self: prev: {
     self.signal = master.signal;
+    self.gleam = master.gleam;
   };
 
   leap-nvim-overlay = self: prev: {

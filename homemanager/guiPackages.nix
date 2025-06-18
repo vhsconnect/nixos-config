@@ -5,6 +5,7 @@
     anki
     arandr
     chromium
+   brave 
     evince
     flameshot
     gromit-mpx

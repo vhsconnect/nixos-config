@@ -9,14 +9,15 @@ in
 {
   imports = [ ./waybar2.nix ];
   home.packages = with pkgs; [
-    kanshi
     swaylock
+    swayidle
     wl-clipboard
     shotman
     grim
     xscreensaver
     font-awesome
     wdisplays
+    xorg.xhost
   ];
 
   services.cliphist = {
@@ -30,7 +31,7 @@ in
   };
 
   programs.zsh.shellAliases = {
-    clip = "cliphist-rofi | wofi -show -dmenu| wl-copy";
+    clip = "cliphist-rofi | rofi -show -dmenu| wl-copy";
   };
 
   home.file = {

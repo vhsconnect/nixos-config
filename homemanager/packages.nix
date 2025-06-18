@@ -82,7 +82,8 @@ with builtins;
 
       #misc
       gh
-
+      gleam
+      erlang_28
     ]
     ++ (map (f: nerd-fonts.${firstAttrName f}) fonts)
     ++ (with pkgs.haskellPackages; [

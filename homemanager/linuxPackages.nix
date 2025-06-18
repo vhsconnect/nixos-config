@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    file
     nix-doc
     steam-run
     libsForQt5.qt5ct

@@ -6,8 +6,12 @@
   ...
 }:
 with builtins;
+with pkgs;
 {
-  imports = [ (./. + "/hardware/${user.host}" + "/hardware-configuration.nix") ];
+  imports = [
+
+    (./. + "/hardware/${user.host}" + "/hardware-configuration.nix")
+  ];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -73,7 +77,7 @@ with builtins;
         };
       };
 
-  time.timeZone = "Europe/Paris";
+  time.timeZone = "America/Montreal";
   i18n.defaultLocale = "en_US.UTF-8";
   networking = {
     hostName = user.host;
@@ -162,7 +166,7 @@ with builtins;
   programs.sway.enable = if user.usei3 then false else true;
 
   hardware.graphics.enable = true;
-  hardware.pulseaudio.enable = false;
+
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   hardware.bluetooth.settings = {
@@ -179,8 +183,11 @@ with builtins;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+    jack.enable = false;
     wireplumber.enable = true;
+
   };
+
   users = {
     users.vhs = {
       isNormalUser = true;
@@ -271,8 +278,6 @@ with builtins;
 
   # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];
 
-  services.resolved.enable = true;
-
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
@@ -344,6 +349,7 @@ with builtins;
   services.fwupd.enable = false;
 
   #scheduling process used by pulseaudio
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
