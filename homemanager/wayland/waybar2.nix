@@ -48,6 +48,7 @@ let
           #clock,
           #custom-weather,
           #battery,
+          #bluetooth,
           #cpu,
           #memory,
           #temperature,
@@ -217,7 +218,7 @@ in
     };
 
     ".config/waybar/style-dark.css" = waybarStyles {
-      background-module = "rgba(0, 0, 0, 1)";
+      background-module = "transparent";
       background = "rgba(0, 0, 0, 0.97)";
       foreground = "white";
       accent = theme.accent;
@@ -229,7 +230,7 @@ in
       background = "white";
       foreground = "rgba(0, 0, 0, 0.9)";
       accent = theme.accent;
-      unset = true;
+      unset = false;
     };
 
     ".config/waybar/config.jsonc" =
@@ -317,7 +318,6 @@ in
                       "custom/github",
                       "custom/tailscale",
                       "network",
-                  //    "pulseaudio/slider",
                       "bluetooth",
                       "temperature",
                       "custom/disks",

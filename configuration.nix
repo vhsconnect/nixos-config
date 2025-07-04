@@ -77,7 +77,7 @@ with pkgs;
         };
       };
 
-  time.timeZone = "America/Montreal";
+  time.timeZone = "Europe/Paris";
   i18n.defaultLocale = "en_US.UTF-8";
   networking = {
     hostName = user.host;
