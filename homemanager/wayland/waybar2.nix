@@ -31,14 +31,19 @@ let
           #workspaces button {
               background-color: transparent;
               color: ${foreground};
+              border-radius: 0;
+              
           }
 
           #workspaces button.focused {
               background-color: ${accent};
+              color: ${background};
+              border-radius: 0;
           }
 
           #workspaces button.urgent {
               background-color: OrangeRed;
+              border-radius: 0;
           }
 
           #mode {
@@ -59,7 +64,7 @@ let
           #custom-github,
           #custom-disks {
               padding: 0 10px;
-              margin: 6px 3px; 
+              margin: 5px 3px; 
               color: ${background-module};
           }
 
@@ -99,6 +104,7 @@ let
               background-color: ${background-module};
               color: ${foreground};
           }
+
 
           #battery {
               background-color: ${background-module};
@@ -318,7 +324,6 @@ in
                       "custom/github",
                       "custom/tailscale",
                       "network",
-                      "bluetooth",
                       "temperature",
                       "custom/disks",
                       "cpu",
@@ -348,25 +353,13 @@ in
                       "format": ""
                   },
                   "network": {
-                      "format": "{bandwidthDownBits} / {bandwidthUpBits} ",
-                      "format-wifi": "{essid} ({signalStrength}%) ",
-                      "format-disconnected": "",
+                      "format": "{ifname} ",
+                      "format-wifi": "({ifname} {signalStrength}%) ",
+                      "format-disconnected": "disconnected",
                       "tooltip-format": "{ifname} via {gwaddr} 󰊗 \n {ipaddr}/{cidr} 󰊗 \n {bandwidthDownBytes} / {bandwidthUpBytes}",
-                      "max-length": 50,
+                      "max-length": 100,
                       "interval": 10,
                       "on-click": "nm-connection-editor"
-                  },
-                  "bluetooth": {
-                      "format-on": "󰂯 ",
-                      "format-off": "BT-off",
-                      "format-disabled": "󰂲",
-                      "format-connected-battery": "{device_battery_percentage}% 󰂯",
-                      "format-alt": "{device_alias} 󰂯",
-                      "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-                      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-                      "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
-                      "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
-                      "on-click-right": "blueman-manager"
                   },
                   "temperature": {
                       "hwmon-path": "${user.hwmonPath}",
@@ -386,12 +379,12 @@ in
                       "format-icons": ["󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"]
                   },
                   "cpu": {
-                      "format": "CPU {usage}%",
+                      "format": "C {usage}%",
                       "interval": 5,
                       "tooltip": true
                   },
                   "memory": {
-                      "format": "RAM {percentage}%"
+                      "format": "R {percentage}%"
                   },
                   "tray": {
                       "icon-size": 18,

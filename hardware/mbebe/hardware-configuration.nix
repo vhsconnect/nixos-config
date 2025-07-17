@@ -9,13 +9,6 @@
   ...
 }:
 
-let
-  oldKernel =
-    (import (builtins.fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/nixos-24.11.tar.gz";
-    }) { }).linuxKernel.packages.linux_6_14;
-in
-
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -32,7 +25,7 @@ in
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = oldKernel;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_14;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/eca2d447-c237-4b94-84b2-062263a62df0";

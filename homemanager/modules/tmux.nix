@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.tmux.enable = true;
+  programs.tmux.terminal = "tmux-256color";
   programs.tmux.extraConfig = ''
     # No delay in Vim
     set -s escape-time 0
@@ -37,8 +38,10 @@
     set -g pane-base-index 1
     set-option -g visual-activity on
     set-window-option -g monitor-activity on
-    set -g default-terminal "xterm-256color"
-    set-option -ga terminal-overrides ",xterm-256color:Tc"
+
+    # Current window should stand out
+    set -g window-status-current-style fg=green,bg=black
+
 
     # vi mode
     set-window-option -g mode-keys vi
@@ -58,24 +61,15 @@
   '';
   programs.tmux.plugins = [
     {
-      plugin = pkgs.tmuxPlugins.tmux-colors-solarized;
+      plugin = pkgs.tmuxPlugins.tmux-thumbs;
       extraConfig = ''
-        set -g @plugin 'seebi/tmux-colors-solarized'
-        set -g @colors-solarized 'dark'
+        set -g @thumbs-key f
+        set -g @thumbs-command 'echo -n {} | wl-copy'
+        set -g @thumbs-fg-color '#e5e1e9'
+        set -g @thumbs-bg-color '#434078'
+        set -g @thumbs-hint-fg-color '#ebb9d0'
+        set -g @thumbs-hint-bg-color '#434078'
       '';
     }
-    # {
-    #   plugin = pkgs.tmuxPlugins.resurrect;
-    #   extraConfig = ''
-    #     set -g @plugin 'tmux-plugins/tmux-resurrect'
-    #   '';
-    # }
-    # {
-    #   plugin = pkgs.tmuxPlugins.continuum;
-    #   extraConfig = ''
-    #     set -g @plugin 'tmux-plugins/tmux-continuum'
-    #     set -g @continuum-restore 'on'
-    #   '';
-    # }
   ];
 }

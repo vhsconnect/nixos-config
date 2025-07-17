@@ -12,7 +12,7 @@ with colors;
 {
   main = base0C;
   secondary = horseradishYellow;
-  accent = base00;
+  accent = horseradishYellow;
   accent2 = base08;
   accent3 = base00;
   urgent = base0A;
