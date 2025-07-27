@@ -47,7 +47,7 @@ in
     bbrf
     immich
     (
-      { ... }:
+      { pkgs, ... }:
       {
         services.github-notify = {
           enable = true;
@@ -60,6 +60,11 @@ in
           errorFile = "~/dlp-error-files";
           outputDir = "~/Sync2";
         };
+
+        environment.systemPackages = with pkgs; [
+         lutris 
+          protonup-qt
+        ];
       }
     )
     inputs.bbrf.nixosModules.x86_64-linux.bbrf

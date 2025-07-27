@@ -39,10 +39,34 @@ if [ "$TYPE" = "fonts" ]; then
         options=($1)
         selected_option=$(printf '%s\n' "${options[@]}" | fzf --height 70% )
     fi
-    selected_option+=.toml
 
-    Y="\"~/.config/alacritty/fonts/$selected_option\""
+    font_path=$(echo "$selected_option" | awk -F: '{print $1}')
+    font_qualified_name=$(echo "$selected_option" | awk -F: '{print $2}')
+    selected_option_path="$font_path.toml"
+
+    Y="\"~/.config/alacritty/fonts/$selected_option_path\","
     sed -i "/config\/alacritty\/fonts/c\\$Y" ~/.config/alacritty/alacritty.toml
+
+    echo $font_qualified_name
+
+    AVAILABLE_STYLES=$(fc-list | grep "$font_qualified_name" | grep -o 'style=.*' | cut -d= -f2 | tr ',' '\n' | sort | uniq)
+
+
+    NORMAL=$(echo "$AVAILABLE_STYLES" | fzf --header 'style NORMAL')
+    BOLD=$(echo "$AVAILABLE_STYLES" | fzf --header 'style BOLD')
+    ITALIC=$(echo "$AVAILABLE_STYLES" | fzf --header 'style ITALIC')
+    BOLD_ITALIC=$(echo "$AVAILABLE_STYLES" | fzf --header 'style BOLD ITALIC')
+
+    SN="style = \"$NORMAL\""
+    SB="style = \"$BOLD\""
+    SI="style = \"$ITALIC\""
+    SBI="style = \"$BOLD_ITALIC\""
+
+    sed -i "/^style = /c\\$SN" ~/.config/alacritty/font-styles/normal.toml
+    sed -i "/^style = /c\\$SB" ~/.config/alacritty/font-styles/bold.toml
+    sed -i "/^style = /c\\$SI" ~/.config/alacritty/font-styles/italic.toml
+    sed -i "/^style = /c\\$SBI" ~/.config/alacritty/font-styles/bold-italic.toml
+
 elif [ "$TYPE" = "themes" ]; then
     if [ -n "$PICK" ]; then
         selected_option="$PICK"

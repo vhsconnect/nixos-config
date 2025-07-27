@@ -1,12 +1,20 @@
 {
   pkgs,
+  lib,
   user,
   ...
 }:
+with lib;
+with builtins;
 let
-  firstAttributeName = x: builtins.head (builtins.attrNames x);
-  fonts = map firstAttributeName (import ../fonts.nix { }).fonts;
-  fontString = builtins.concatStringsSep " " fonts;
+  fonts = (import ../fonts.nix { }).fonts;
+  fontString = pipe fonts [
+    (map (mapAttrs (key: value: ''${key}:${value}'')))
+    (fold (a: b: a // b) { })
+    attrValues
+    (concatStringsSep " ")
+  ];
+
   allight = pkgs.writeScriptBin "allight" ''
     #! /usr/bin/env bash
 

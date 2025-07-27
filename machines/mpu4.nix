@@ -18,6 +18,12 @@ in
     ../configuration.nix
     ../modules/bbrf.nix
     bbrf
+    (
+      { ... }:
+      {
+        services.resolved.enable = true;
+      }
+    )
     inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
     inputs.home-manager.nixosModules.home-manager
     {
