@@ -56,7 +56,7 @@ in
                   silver-searcher
                   fd
                   eza
-                  (nerdfonts.override { fonts = [ "FiraCode" ]; })
+                  nerd-fonts.fira-code
                 ];
               }
             )

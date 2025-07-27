@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  user,
-  ...
+{ config
+, pkgs
+, lib
+, user
+, ...
 }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");
@@ -77,11 +76,11 @@ in
     windowManager.i3.config.startup = [
       { command = "systemctl --user import-environment"; }
       {
-        command = "long-command & sleep 2; ${user.monitorsCmd}";
+        command = "long-command & sleep 4; ${user.monitorsCmd}";
         always = true;
       }
       {
-        command = "long-command & sleep 2; controlcaps";
+        command = "long-command & sleep 4; controlcaps";
         always = true;
       }
       {

@@ -1,6 +1,5 @@
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }:
 let
 
@@ -42,6 +41,18 @@ let
     xrandr eDP-1 --mode 1920x1200 --pos 0x0 --rotate normal 
     xwallpaper --screen 0 --zoom ~/.background-image
   '';
+  trips14 = pkgs.writeScriptBin "trips14" ''
+    #! /usr/bin/env bash
+
+    xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 --rotate normal \
+    --output DP-1 --off \
+    --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal \
+    --output DP-2 --off \
+    --output HDMI-2 --off
+
+    xwallpaper --screen 0 --stretch ~/.background-image
+
+  '';
   trips-sway-1 = pkgs.writeScriptBin "trips-sway-1" ''
     #! /usr/bin/env bash
     # double dells
@@ -70,6 +81,7 @@ in
     trips5
     trips10
     trips11
+    trips14
     trips-sway-1
   ];
 }
