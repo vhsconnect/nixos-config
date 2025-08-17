@@ -25,7 +25,7 @@ in
         padding = 16;
         horizontal_padding = 16;
         frame_width = 3;
-        frame_color = theme.secondary;
+        frame_color = theme.dunstFrameAndText or theme.secondary;
         separator_color = "frame";
         font = "${font} Regular 10";
         line_height = 4;
@@ -45,21 +45,21 @@ in
         hide_duplicate_count = true;
       };
       urgency_low = {
-        background = theme.accent3;
-        foreground = theme.secondary;
-        frame_color = theme.secondary;
+        background = theme.dunstBackground or theme.accent3;
+        foreground = theme.dunstFrameAndText or theme.secondary;
+        frame_color = theme.dunstFrameAndText or theme.secondary;
         timeout = 4;
       };
       urgency_normal = {
-        background = theme.accent3;
-        foreground = theme.secondary;
-        frame_color = theme.secondary;
+        background = theme.dunstBackground or theme.accent3;
+        foreground = theme.dunstFrameAndText or theme.secondary;
+        frame_color = theme.dunstFrameAndText or theme.secondary;
         timeout = 4;
       };
       urgency_critical = {
-        background = theme.urgent;
-        foreground = theme.secondary;
-        frame_color = theme.urgent;
+        background = theme.dunstBackgroundAlt or theme.urgent;
+        foreground = theme.dunstFrameAndText or theme.secondary;
+        frame_color = theme.dunstBackgroundAlt or theme.urgent;
         timeout = 10;
       };
       shortcuts = {

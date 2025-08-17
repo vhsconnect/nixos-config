@@ -6,7 +6,7 @@ let
   colors = compose builtins.fromJSON builtins.readFile file;
 in
 with colors;
-{
+rec {
   main = base08;
   secondary = base01;
   accent = base09;
@@ -16,4 +16,8 @@ with colors;
   gray = base01;
   grey = base01;
   debug = base0B;
+
+  dunstFrameAndText = main;
+  dunstBackground = accent3;
+  dunstBackgroundAlt = urgent;
 }
