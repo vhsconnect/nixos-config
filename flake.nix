@@ -4,7 +4,7 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-   # sentinelone.url = "git+file:../sentinelone-nix";
+    # sentinelone.url = "git+file:../sentinelone-nix";
 
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
@@ -38,6 +38,8 @@
 
       nixosConfigurations = {
         mpu3 = inputs.nixpkgs.lib.nixosSystem (import ./machines/mpu3.nix inputs);
+
+        mpu3a = inputs.nixpkgs.lib.nixosSystem (import ./machines/mpu3a.nix inputs);
 
         mpu4 = inputs.nixpkgs.lib.nixosSystem (import ./machines/mpu4.nix inputs);
 
