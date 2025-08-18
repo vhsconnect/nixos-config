@@ -349,8 +349,8 @@ with pkgs;
   services.fwupd.enable = false;
 
   #scheduling process used by pulseaudio
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  services.pulseaudio.enable = false;
 
   security.sudo.wheelNeedsPassword = false;
 

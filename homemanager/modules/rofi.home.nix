@@ -5,18 +5,19 @@
   user,
   ...
 }:
+let
+  rofi = if user.usei3 then pkgs.rofi else pkgs.rofi-wayland;
+in
 {
   programs.rofi = {
     enable = true;
     terminal = if user.usei3 then "${pkgs.xterm}/bin/xterm" else "${pkgs.foot}/bin/foot";
-    package =
-      with pkgs;
-      rofi.override {
-        plugins = [
-          rofi-calc
-          rofi-emoji
-        ];
-      };
+    package = rofi.override {
+      plugins = [
+        pkgs.rofi-calc
+        pkgs.rofi-emoji
+      ];
+    };
     font = "${user.font} Medium 14";
     theme =
       let
