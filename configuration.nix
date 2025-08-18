@@ -1,9 +1,8 @@
-{
-  pkgs,
-  user,
-  otherHosts,
-  inputs,
-  ...
+{ pkgs
+, user
+, otherHosts
+, inputs
+, ...
 }:
 with builtins;
 with pkgs;

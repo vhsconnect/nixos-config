@@ -1,19 +1,18 @@
-{
-  user,
-  pkgs,
-  ...
+{ user
+, pkgs
+, ...
 }:
 
 let
   theme = import (../themes/. + "/${user.theme}.nix");
 
   waybarStyles =
-    {
-      background,
-      background-module,
-      foreground,
-      accent,
-      unset,
+    { background
+    , background-module
+    , foreground
+    , accent
+    , unset
+    ,
     }:
     {
       enable = true;

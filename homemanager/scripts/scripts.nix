@@ -1,7 +1,6 @@
-{
-  pkgs,
-  user,
-  ...
+{ pkgs
+, user
+, ...
 }:
 let
   firstAttributeName = x: builtins.head (builtins.attrNames x);

@@ -1,8 +1,7 @@
-{
-  user,
-  lib,
-  config,
-  ...
+{ user
+, lib
+, config
+, ...
 }:
 {
   programs.git =

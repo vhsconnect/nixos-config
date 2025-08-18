@@ -1,9 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  user,
-  ...
+{ config
+, lib
+, pkgs
+, user
+, ...
 }:
 let
   rofi = if user.usei3 then pkgs.rofi else pkgs.rofi-wayland;

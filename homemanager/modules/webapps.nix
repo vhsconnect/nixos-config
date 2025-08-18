@@ -12,62 +12,64 @@ let
 
   make-app-profiles =
     cfg:
-    mapAttrs' (
-      name: cfg:
-      nameValuePair "home-manager-webapp-${name}" {
-        inherit (cfg) id;
+    mapAttrs'
+      (
+        name: cfg:
+        nameValuePair "home-manager-webapp-${name}" {
+          inherit (cfg) id;
 
-        userChrome = ''
-          @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+          userChrome = ''
+            @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
-          browser {
-            margin-right: 0px; margin-bottom: 0px;
-          }
+            browser {
+              margin-right: 0px; margin-bottom: 0px;
+            }
 
-          #TabsToolbar {
-            visibility: collapse !important;
-          }
+            #TabsToolbar {
+              visibility: collapse !important;
+            }
 
-          #nav-bar {
-            margin-top: 0;
-            margin-bottom: -42px;
-            z-index: -100;
-          }
+            #nav-bar {
+              margin-top: 0;
+              margin-bottom: -42px;
+              z-index: -100;
+            }
 
-          #main-window[windowtype="navigator:browser"] {
-            background-color: transparent !important;
-          }
+            #main-window[windowtype="navigator:browser"] {
+              background-color: transparent !important;
+            }
 
-          .tab-background[selected="true"] {
-            background: ${cfg.backgroundColor} !important;
-          }
-        '';
+            .tab-background[selected="true"] {
+              background: ${cfg.backgroundColor} !important;
+            }
+          '';
 
-        settings = cfg.extraSettings // {
-          "browser.sessionstore.resume_session_once" = false;
-          "browser.sessionstore.resume_from_crash" = false;
-          "browser.cache.disk.enable" = false;
-          "browser.cache.disk.capacity" = 0;
-          "browser.cache.disk.filesystem_reported" = 1;
-          "browser.cache.disk.smart_size.enabled" = false;
-          "browser.cache.disk.smart_size.first_run" = false;
-          "browser.cache.disk.smart_size.use_old_max" = false;
-          "browser.ctrlTab.previews" = true;
-          "browser.tabs.warnOnClose" = false;
-          "plugin.state.flash" = 2;
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-          "browser.tabs.drawInTitlebar" = false;
-          "browser.tabs.inTitlebar" = 0;
-          "browser.contentblocking.category" = "strict";
-          "network.cookie.lifetimePolicy" = 0;
-          "layout.css.prefers-color-scheme.content-override" = getAttr cfg.theme {
-            dark = 0;
-            light = 1;
-            system = 2;
+          settings = cfg.extraSettings // {
+            "browser.sessionstore.resume_session_once" = false;
+            "browser.sessionstore.resume_from_crash" = false;
+            "browser.cache.disk.enable" = false;
+            "browser.cache.disk.capacity" = 0;
+            "browser.cache.disk.filesystem_reported" = 1;
+            "browser.cache.disk.smart_size.enabled" = false;
+            "browser.cache.disk.smart_size.first_run" = false;
+            "browser.cache.disk.smart_size.use_old_max" = false;
+            "browser.ctrlTab.previews" = true;
+            "browser.tabs.warnOnClose" = false;
+            "plugin.state.flash" = 2;
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            "browser.tabs.drawInTitlebar" = false;
+            "browser.tabs.inTitlebar" = 0;
+            "browser.contentblocking.category" = "strict";
+            "network.cookie.lifetimePolicy" = 0;
+            "layout.css.prefers-color-scheme.content-override" = getAttr cfg.theme {
+              dark = 0;
+              light = 1;
+              system = 2;
+            };
           };
-        };
-      }
-    ) cfg;
+        }
+      )
+      cfg;
 in
 {
   options.programs.firefox.webapps = mkOption {
@@ -183,43 +185,45 @@ in
   config = {
     programs.firefox.profiles = make-app-profiles config.programs.firefox.webapps;
 
-    xdg.desktopEntries = mapAttrs (name: cfg: {
-      inherit (cfg)
-        genericName
-        comment
-        categories
-        icon
-        mimeType
-        prefersNonDefaultGPU
-        ;
+    xdg.desktopEntries = mapAttrs
+      (name: cfg: {
+        inherit (cfg)
+          genericName
+          comment
+          categories
+          icon
+          mimeType
+          prefersNonDefaultGPU
+          ;
 
-      name =
-        if cfg.name == null then
-          (toUpper (substring 0 1 name)) + (substring 1 (stringLength name) name)
-        else
-          cfg.name;
+        name =
+          if cfg.name == null then
+            (toUpper (substring 0 1 name)) + (substring 1 (stringLength name) name)
+          else
+            cfg.name;
 
-      startupNotify = true;
-      terminal = false;
-      type = "Application";
+        startupNotify = true;
+        terminal = false;
+        type = "Application";
 
-      exec = concatStringsSep " " (
-        [
-          "${config.programs.firefox.package}/bin/firefox"
-          "--class"
-          "WebApp-${name}"
-          "-P"
-          "${config.programs.firefox.profiles."home-manager-webapp-${name}".path}"
-          "--no-remote"
-        ]
-        ++ cfg.extraArgs
-        ++ [ "${cfg.url}" ]
-      );
+        exec = concatStringsSep " " (
+          [
+            "${config.programs.firefox.package}/bin/firefox"
+            "--class"
+            "WebApp-${name}"
+            "-P"
+            "${config.programs.firefox.profiles."home-manager-webapp-${name}".path}"
+            "--no-remote"
+          ]
+          ++ cfg.extraArgs
+          ++ [ "${cfg.url}" ]
+        );
 
-      settings = {
-        X-MultipleArgs = "false"; # Consider enabling, don't know what this does
-        StartupWMClass = "WebApp-${name}";
-      };
-    }) (filterAttrs (_: webapp: webapp.enable) config.programs.firefox.webapps);
+        settings = {
+          X-MultipleArgs = "false"; # Consider enabling, don't know what this does
+          StartupWMClass = "WebApp-${name}";
+        };
+      })
+      (filterAttrs (_: webapp: webapp.enable) config.programs.firefox.webapps);
   };
 }

@@ -1,9 +1,8 @@
-{
-  pkgs,
-  lib,
-  user,
-  config,
-  ...
+{ pkgs
+, lib
+, user
+, config
+, ...
 }:
 let
   inherit (import ./fonts.nix { }) fonts generateFontTemplate;

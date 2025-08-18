@@ -9,10 +9,11 @@ let
       name' = sanitizeName name + "-src";
     in
     if spec.builtin or true then
-      builtins_fetchurl {
-        inherit (spec) url sha256;
-        name = name';
-      }
+      builtins_fetchurl
+        {
+          inherit (spec) url sha256;
+          name = name';
+        }
     else
       pkgs.fetchurl {
         inherit (spec) url sha256;
@@ -25,10 +26,11 @@ let
       name' = sanitizeName name + "-src";
     in
     if spec.builtin or true then
-      builtins_fetchTarball {
-        name = name';
-        inherit (spec) url sha256;
-      }
+      builtins_fetchTarball
+        {
+          name = name';
+          inherit (spec) url sha256;
+        }
     else
       pkgs.fetchzip {
         name = name';
@@ -53,11 +55,13 @@ let
           nixSupportsSubmodules = builtins.compareVersions builtins.nixVersion "2.4" >= 0;
           emptyArgWithWarning =
             if submodules == true then
-              builtins.trace (
-                "The niv input \"${name}\" uses submodules "
-                + "but your nix's (${builtins.nixVersion}) builtins.fetchGit "
-                + "does not support them"
-              ) { }
+              builtins.trace
+                (
+                  "The niv input \"${name}\" uses submodules "
+                  + "but your nix's (${builtins.nixVersion}) builtins.fetchGit "
+                  + "does not support them"
+                )
+                { }
             else
               { };
         in
@@ -150,10 +154,10 @@ let
     else
     # this turns the string into an actual Nix path (for both absolute and
     # relative paths)
-    if builtins.substring 0 1 ersatz == "/" then
-      /. + ersatz
-    else
-      /. + builtins.getEnv "PWD" + "/${ersatz}";
+      if builtins.substring 0 1 ersatz == "/" then
+        /. + ersatz
+      else
+        /. + builtins.getEnv "PWD" + "/${ersatz}";
 
   # Ports of functions for older nix versions
 
@@ -161,13 +165,15 @@ let
   mapAttrs =
     builtins.mapAttrs or (
       f: set:
-      with builtins;
-      listToAttrs (
-        map (attr: {
-          name = attr;
-          value = f attr set.${attr};
-        }) (attrNames set)
-      )
+        with builtins;
+        listToAttrs (
+          map
+            (attr: {
+              name = attr;
+              value = f attr set.${attr};
+            })
+            (attrNames set)
+        )
     );
 
   # https://github.com/NixOS/nixpkgs/blob/0258808f5744ca980b9a1f24fe0b1e6f0fecee9c/lib/lists.nix#L295
@@ -187,10 +193,10 @@ let
 
   # fetchTarball version that is compatible between all the versions of Nix
   builtins_fetchTarball =
-    {
-      url,
-      name ? null,
-      sha256,
+    { url
+    , name ? null
+    , sha256
+    ,
     }@attrs:
     let
       inherit (builtins) lessThan nixVersion fetchTarball;
@@ -202,10 +208,10 @@ let
 
   # fetchurl version that is compatible between all the versions of Nix
   builtins_fetchurl =
-    {
-      url,
-      name ? null,
-      sha256,
+    { url
+    , name ? null
+    , sha256
+    ,
     }@attrs:
     let
       inherit (builtins) lessThan nixVersion fetchurl;
@@ -218,21 +224,23 @@ let
   # Create the final "sources" from the config
   mkSources =
     config:
-    mapAttrs (
-      name: spec:
-      if builtins.hasAttr "outPath" spec then
-        abort "The values in sources.json should not have an 'outPath' attribute"
-      else
-        spec // { outPath = replace name (fetch config.pkgs name spec); }
-    ) config.sources;
+    mapAttrs
+      (
+        name: spec:
+        if builtins.hasAttr "outPath" spec then
+          abort "The values in sources.json should not have an 'outPath' attribute"
+        else
+          spec // { outPath = replace name (fetch config.pkgs name spec); }
+      )
+      config.sources;
 
   # The "config" used by the fetchers
   mkConfig =
-    {
-      sourcesFile ? if builtins.pathExists ./sources.json then ./sources.json else null,
-      sources ? if isNull sourcesFile then { } else builtins.fromJSON (builtins.readFile sourcesFile),
-      system ? builtins.currentSystem,
-      pkgs ? mkPkgs sources system,
+    { sourcesFile ? if builtins.pathExists ./sources.json then ./sources.json else null
+    , sources ? if isNull sourcesFile then { } else builtins.fromJSON (builtins.readFile sourcesFile)
+    , system ? builtins.currentSystem
+    , pkgs ? mkPkgs sources system
+    ,
     }:
     rec {
       # The sources, i.e. the attribute set of spec name to spec
