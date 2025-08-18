@@ -63,7 +63,6 @@ in
 
         environment.systemPackages = with pkgs; [
           lutris
-          winetricks
           protonup-qt
         ];
       }

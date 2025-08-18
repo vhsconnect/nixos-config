@@ -1,7 +1,6 @@
-{
-  lib,
-  config,
-  ...
+{ lib
+, config
+, ...
 }:
 let
   cfg = config.immich;
@@ -59,11 +58,10 @@ in
         };
       };
       config =
-        {
-          config,
-          pkgs,
-          lib,
-          ...
+        { config
+        , pkgs
+        , lib
+        , ...
         }:
         {
           users.groups.ops = {

@@ -2,6 +2,7 @@ inputs:
 let
   user = (import ../user.nix).mpu3a;
   otherHosts = import ../user.nix;
+
   desktopEnvironments =
     if user.usei3 then
       [
@@ -9,8 +10,20 @@ let
         ../desktop/gnome.nix
       ]
     else
-      [ ../desktop/gnome.nix ];
+      [
+      ];
   system = "x86_64-linux";
+
+  homemanagerDesktopImports =
+    if user.usei3 then
+      [
+        ../homemanager/i3/i3.home.nix
+        ../homemanager/i3/i3blocks.home.nix
+      ]
+    else
+      [
+        ../homemanager/wayland/wayland.nix
+      ];
   bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
 in
 
@@ -28,6 +41,7 @@ in
     ../modules/bbrf.nix
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
+    inputs.disko.nixosModules.disko
     bbrf
     {
       home-manager.useUserPackages = true;
@@ -58,6 +72,7 @@ in
               {
                 home.packages = with pkgs; [
                   #themePackages
+
                   xfce.xfce4-icon-theme
                   #guiPackages
                   alacritty
@@ -78,7 +93,7 @@ in
             )
           ]
           ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
-          ++ (if user.usei3 then [ ] else [ ../homemanager/sway.nix ]);
+          ++ homemanagerDesktopImports;
       };
     }
   ] ++ desktopEnvironments;

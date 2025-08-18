@@ -33,6 +33,7 @@ bindsym $mod+Escape kill
 bindsym $mod+d exec $menu
 
 bindsym F2 exec "exec rofi -show emoji -modi emoji"
+bindsym F3 exec "cliphist-rofi | rofi -show -dmenu | wl-copy"
 bindsym F6 exec pamixer -d 5
 bindsym F7 exec pamixer -i 5
 bindsym F8 exec lowpass
@@ -46,7 +47,7 @@ bindsym F10 exec xscreensaver-command -lock
 # Change normal to inverse to use left mouse button for resizing and right
 
 # mouse button for dragging.
-#floating_modifier $mod normal
+floating_modifier $mod normal
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload

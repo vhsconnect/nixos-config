@@ -1,9 +1,8 @@
-{
-  lib,
-  config,
-  pkgs,
-  user,
-  ...
+{ lib
+, config
+, pkgs
+, user
+, ...
 }:
 let
   cfg = config.services.github-notify;

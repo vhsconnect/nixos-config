@@ -1,8 +1,7 @@
-{
-  pkgs,
-  lib,
-  user,
-  ...
+{ pkgs
+, lib
+, user
+, ...
 }:
 with lib;
 with builtins;

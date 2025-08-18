@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  user,
-  ...
+{ config
+, pkgs
+, lib
+, user
+, ...
 }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");

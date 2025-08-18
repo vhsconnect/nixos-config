@@ -1,9 +1,8 @@
-{
-  pkgs,
-  user,
-  otherHosts,
-  inputs,
-  ...
+{ pkgs
+, user
+, otherHosts
+, inputs
+, ...
 }:
 with builtins;
 with pkgs;
@@ -19,10 +18,10 @@ with pkgs;
 
   nix = {
     package = pkgs.nixVersions.stable;
-    nixPath = [
-      "nixpkgs=${inputs.nixpkgs}"
-      "nixos-config=${/home/common/SConfig/nixos-config/configuration.nix}"
-    ];
+    #   nixPath = [
+    #    "nixpkgs=${inputs.nixpkgs}"
+    #   "nixos-config=${/home/common/SConfig/nixos-config/configuration.nix}"
+    #  ];
     registry = {
       nixpkgs = {
         flake = inputs.nixpkgs;
@@ -349,8 +348,8 @@ with pkgs;
   services.fwupd.enable = false;
 
   #scheduling process used by pulseaudio
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  services.pulseaudio.enable = false;
 
   security.sudo.wheelNeedsPassword = false;
 
