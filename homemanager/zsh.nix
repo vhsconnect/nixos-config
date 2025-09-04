@@ -73,6 +73,10 @@ in
       nixp = "nix-shell -p";
       xargs2 = "xargs -I {} bash -c \"$1\"";
       bluetext = ''magick $1 -fill "darkblue" -fuzz 50% -opaque black output.png'';
+      nix-stray-roots = ''nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory)"'';
+      clear-auto-roots = "sudo rm -rf /nix/var/nix/gcroots/auto/*";
+      #ss = "gscreenshot-cli --clip --selection";
+
     } // nixrunPackages;
     zsh-abbr = {
       enable = true;

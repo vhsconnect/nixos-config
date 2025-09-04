@@ -28,7 +28,9 @@ let
        echo $ErrorFile >> $ErrorFile
        echo $OutputFolder >> $ErrorFile
 
-       cat "$File" | xargs -I {} ${pkgs.fish}/bin/fish -c '${pkgs.yt-dlp}/bin/yt-dlp -x "$argv[1]" -P "$argv[2]" 2>>"$argv[3]"; or echo "$argv[1]" >> "$argv[3]"' '{}' $OutputFolder $ErrorFile
+      # cat "$File" | xargs -I {} ${pkgs.fish}/bin/fish -c '${pkgs.yt-dlp}/bin/yt-dlp -x "$argv[1]" -P "$argv[2]" 2>>"$argv[3]"; or echo "$argv[1]" >> "$argv[3]"' '{}' $OutputFolder $ErrorFile
+
+       cat "$File" | xargs -I {} ${pkgs.fish}/bin/fish -c '${pkgs.nix}/bin/nix run github:nixos/nixpkgs#yt-dlp -- -x "$argv[1]" -P "$argv[2]" 2>>"$argv[3]"; or echo "$argv[1]" >> "$argv[3]"' '{}' $OutputFolder $ErrorFile
 
        echo "" >$File
 

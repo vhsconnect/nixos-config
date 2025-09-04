@@ -31,9 +31,9 @@ in
     #../modules/bbrf.nix
     ../modules/githubNotify.nix
     ../systemConfiguration/docker.nix
-    ../systemConfiguration/printing.nix
+    #../systemConfiguration/printing.nix
     #../systemConfiguration/libVirt.nix
-    ../systemConfiguration/tailscale.nix
+    #../systemConfiguration/tailscale.nix
     #../systemConfiguration/nosleep.nix
     ../systemConfiguration/sentinelone.nix
     # ../systemConfiguration/fintech.nix
@@ -60,32 +60,32 @@ in
         inherit inputs;
         inherit user;
         inherit system;
-        _imports = [
-          ../homemanager/packages.nix
-          ../homemanager/guiPackages.nix
-          ../homemanager/workPackages.nix
-          ../homemanager/linuxPackages.nix
-          ../homemanager/themePackages.nix
-          ../homemanager/zsh.nix
-          ../homemanager/mimeappsList.nix
-          ../homemanager/vim/vim.nix
-          ../homemanager/i3/i3blocks.home.nix
-          ../homemanager/i3/i3.home.nix
-          ../homemanager/modules/dunst.home.nix
-          ../homemanager/modules/rofi.home.nix
-          ../homemanager/atuin.nix
-          ../homemanager/modules/git.nix
-          ../homemanager/modules/xScreensaver.nix
-          ../homemanager/scripts/scripts.nix
-          ../homemanager/scripts/templates.nix
-          ../homemanager/easyeffects.nix
-          ../homemanager/modules/tmux.nix
-          ../homemanager/homeFiles.nix
-        ]
-        ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
-        ++ homemanagerDesktopImports;
+        _imports =
+          [
+            ../homemanager/packages.nix
+            ../homemanager/guiPackages.nix
+            ../homemanager/workPackages.nix
+            ../homemanager/linuxPackages.nix
+            ../homemanager/themePackages.nix
+            ../homemanager/zsh.nix
+            ../homemanager/mimeappsList.nix
+            ../homemanager/vim/vim.nix
+            ../homemanager/i3/i3blocks.home.nix
+            ../homemanager/i3/i3.home.nix
+            ../homemanager/modules/dunst.home.nix
+            ../homemanager/modules/rofi.home.nix
+            ../homemanager/atuin.nix
+            ../homemanager/modules/git.nix
+            ../homemanager/modules/xScreensaver.nix
+            ../homemanager/scripts/scripts.nix
+            ../homemanager/scripts/templates.nix
+            ../homemanager/easyeffects.nix
+            ../homemanager/modules/tmux.nix
+            ../homemanager/homeFiles.nix
+          ]
+          ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
+          ++ homemanagerDesktopImports;
       };
     }
-  ]
-  ++ desktopEnvironments;
+  ] ++ desktopEnvironments;
 }

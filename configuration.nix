@@ -1,8 +1,9 @@
-{ pkgs
-, user
-, otherHosts
-, inputs
-, ...
+{
+  pkgs,
+  user,
+  otherHosts,
+  inputs,
+  ...
 }:
 with builtins;
 with pkgs;
@@ -18,10 +19,10 @@ with pkgs;
 
   nix = {
     package = pkgs.nixVersions.stable;
-    #   nixPath = [
-    #    "nixpkgs=${inputs.nixpkgs}"
-    #   "nixos-config=${/home/common/SConfig/nixos-config/configuration.nix}"
-    #  ];
+    nixPath = [
+      "nixpkgs=${inputs.nixpkgs}"
+      "nixos-config=${/home/common/SConfig/nixos-config/configuration.nix}"
+    ];
     registry = {
       nixpkgs = {
         flake = inputs.nixpkgs;
@@ -38,11 +39,9 @@ with pkgs;
       auto-optimise-store = true;
       extra-trusted-substituters = [
         "https://nix-community.cachix.org"
-        # "https://cache.iog.io"
       ];
       extra-trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        # "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
       ];
     };
     #cache environments for nix-direnv

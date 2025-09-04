@@ -6,7 +6,7 @@ let
   colors = compose builtins.fromJSON builtins.readFile file;
 in
 with colors;
-{
+rec {
   main = base08;
   secondary = base01;
   accent = base09;

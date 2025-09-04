@@ -39,7 +39,7 @@ in
     ../systemConfiguration/libVirt.nix
     ../systemConfiguration/printing.nix
     ../systemConfiguration/ollama.nix
-    ../systemConfiguration/tailscale.nix
+    #../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
     ../systemConfiguration/jellyfin.nix
     # ../systemConfiguration/fintech.nix
@@ -63,6 +63,7 @@ in
 
         environment.systemPackages = with pkgs; [
           lutris
+          winetricks
           protonup-qt
         ];
       }

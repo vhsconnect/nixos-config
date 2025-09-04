@@ -1,18 +1,19 @@
-{ user
-, pkgs
-, ...
+{
+  user,
+  pkgs,
+  ...
 }:
 
 let
   theme = import (../themes/. + "/${user.theme}.nix");
 
   waybarStyles =
-    { background
-    , background-module
-    , foreground
-    , accent
-    , unset
-    ,
+    {
+      background,
+      background-module,
+      foreground,
+      accent,
+      unset,
     }:
     {
       enable = true;
@@ -210,18 +211,17 @@ let
         '';
 
     };
-in
-{
-
-  home.file = {
+  opaqueBar = {
     ".config/waybar/style.css" = waybarStyles {
       background-module = "rgba(0, 0, 0, 0.2)";
       background = "rgba(0, 0, 0, 0.9)";
       foreground = "white";
       accent = theme.accent;
-      unset = true;
-    };
+      unset = false;
 
+    };
+  };
+  dualBars = {
     ".config/waybar/style-dark.css" = waybarStyles {
       background-module = "transparent";
       background = "rgba(0, 0, 0, 0.97)";
@@ -238,6 +238,11 @@ in
       unset = false;
     };
 
+  };
+in
+{
+
+  home.file = {
     ".config/waybar/config.jsonc" =
       let
         tailscale-check = pkgs.writeScriptBin "tailscale-check" (
@@ -426,7 +431,8 @@ in
 
           '';
       };
-  };
+
+  } // (if user.opaqueBars then opaqueBar else dualBars);
 
   programs.waybar = {
     enable = true;
