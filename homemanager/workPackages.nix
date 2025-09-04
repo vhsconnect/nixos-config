@@ -12,7 +12,7 @@
     kubectx
     kubernetes-helm
     k9s
-    tailscale
+    #tailscale
     sops
     awscli2
     filezilla

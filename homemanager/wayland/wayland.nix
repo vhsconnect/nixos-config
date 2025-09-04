@@ -1,6 +1,7 @@
-{ user
-, pkgs
-, ...
+{
+  user,
+  pkgs,
+  ...
 }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");
@@ -75,7 +76,7 @@ in
 
 
           # startup applications
-          exec ${pkgs.blueman}/bin/blueman-applet
+          exec "sh -c sleep 2s && ${pkgs.blueman}/bin/blueman-applet" 
           exec_always ${user.monitorsCmd}
 
         ''

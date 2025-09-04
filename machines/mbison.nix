@@ -42,6 +42,7 @@ in
     #../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
     ../systemConfiguration/jellyfin.nix
+    ../systemConfiguration/syncthing/syncthing.nix
     # ../systemConfiguration/fintech.nix
 
     bbrf
