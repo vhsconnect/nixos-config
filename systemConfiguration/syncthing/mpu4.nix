@@ -60,7 +60,7 @@
         };
         "/home/common/Shared" = {
           id = "shared-1";
-          type = "sendreceive";
+          type = "sendonly";
           devices = [
             "mbison"
             "mpu4"
