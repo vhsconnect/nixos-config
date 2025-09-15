@@ -76,7 +76,7 @@ in
 
 
           # startup applications
-          exec "sh -c sleep 2s && ${pkgs.blueman}/bin/blueman-applet" 
+          exec "sh -c 'sleep 2s' && ${pkgs.blueman}/bin/blueman-applet" 
           exec_always ${user.monitorsCmd}
 
         ''

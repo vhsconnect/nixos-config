@@ -44,7 +44,7 @@ in
       QT_STYLE_OVERRIDE = "Adawaita-Dark";
       EDITOR = "nvim";
       PATH = "${binPath}:${cargoPath}:${npmPath}:$PATH";
-      PROMPT = ''[%F{$(if [ "$IN_NIX_SHELL" = "impure" ] || [[ -n "$SSH_CONNECTION" ]]; then echo "4"; else echo "9"; fi)}${user.promptI}%f] %F{244}%1d%f '';
+      PROMPT = ''[%F{$(if [ "$IN_NIX_SHELL" = "impure" ] || [[ -n "$SSH_CONNECTION" ]]; then echo "1"; else echo "9"; fi)}%B$(if [[ -n "$SSH_CONNECTION" ]]; then echo "$SSH_CONNECTION" | cut -d' ' -f3; else echo "${user.promptI}"; fi)%b%f] %F{244}%1d%f '';
     };
     shellAliases = {
       cdconfig = "/home/common/SConfig/nixos-config/";
@@ -77,7 +77,8 @@ in
       clear-auto-roots = "sudo rm -rf /nix/var/nix/gcroots/auto/*";
       #ss = "gscreenshot-cli --clip --selection";
 
-    } // nixrunPackages;
+    }
+    // nixrunPackages;
     zsh-abbr = {
       enable = true;
       abbreviations = {
