@@ -88,6 +88,7 @@ in
                 fd
                 eza
                 nerd-fonts.hack
+                jq
                 bat
               ];
             }
