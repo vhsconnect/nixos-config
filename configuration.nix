@@ -119,6 +119,7 @@ with pkgs;
   services.libinput = {
     enable = true;
     mouse.accelSpeed = "1.5";
+
   };
 
   services.xserver = {
@@ -264,6 +265,7 @@ with pkgs;
     enable = true;
   };
   programs.adb.enable = true;
+
 
   services.openssh.enable = user.enableSSH;
 

@@ -1,7 +1,8 @@
-{ pkgs
-, lib
-, user
-, ...
+{
+  pkgs,
+  lib,
+  user,
+  ...
 }:
 with lib;
 with builtins;
@@ -69,9 +70,37 @@ let
     chromium --disable-web-security --user-data-dir="Public/chromium"
   '';
   watchexec = pkgs.writeScriptBin "watchexec" ''
-    #! /usr/bin/env bash
-    echo "watching..."
-    while inotifywait -e close_write $1; do $1; done
+    #!/usr/bin/env bash
+
+    FILE="$1"
+
+    if [ ! -f "$FILE" ]; then
+    	echo "Error: File '$FILE' does not exist"
+    	exit 1
+    fi
+
+    if [ $# -lt 3 ] || [ "$2" != "--" ]; then
+    	if [ ! -x "$FILE" ]; then
+    		echo "Error: File '$FILE' is not executable"
+    		echo "Make it executable with: chmod +x $FILE"
+    		exit 1
+    	fi
+
+    	while inotifywait -e close_write $1; do $1; done
+    	exit 1
+
+    fi
+
+    shift 2      
+    COMMAND="$*"
+
+
+    echo "working ._."
+
+    while inotifywait -e close_write "$FILE" 2>/dev/null; do
+    	echo "File changed, running: $COMMAND"
+    	eval "$COMMAND"
+    done
   '';
   nix-watch-exec = pkgs.writeScriptBin "nix-watch-exec" ''
 

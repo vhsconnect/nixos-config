@@ -50,7 +50,8 @@ in
       cdconfig = "/home/common/SConfig/nixos-config/";
       speed = "speedtest-cli";
       grep = "grep -i";
-      c = "xclip -selection clipboard";
+      c-x11 = "xclip -selection clipboard";
+      c = "wl-copy";
       cl = "clear";
       l = "exa -la";
       lsg = "exa -la | rg -i";

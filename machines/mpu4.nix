@@ -17,6 +17,7 @@ in
   modules = [
     ../configuration.nix
     ../modules/bbrf.nix
+    ../systemConfiguration/anki.nix
     bbrf
     (
       { ... }:
@@ -33,50 +34,50 @@ in
         inherit inputs;
         inherit user;
         inherit system;
-        _imports =
-          [
-            ../homemanager/zsh.nix
-            ../homemanager/mimeappsList.nix
-            ../homemanager/vim/vim.nix
-            ../homemanager/modules/dunst.home.nix
-            ../homemanager/modules/rofi.home.nix
-            ../homemanager/modules/git.nix
-            ../homemanager/scripts/scripts.nix
-            ../homemanager/scripts/templates.nix
-            (
-              { pkgs, ... }:
-              {
-                home.packages = with pkgs; [
-                  #themePackages
-                  xfce.xfce4-icon-theme
-                  #guiPackages
-                  alacritty
-                  arandr
-                  #linuxPackages
-                  xwallpaper
-                  acpi
-                  networkmanagerapplet
-                  #packages
-                  coreutils
-                  nixpkgs-fmt
-                  silver-searcher
-                  fd
-                  eza
-                  nerd-fonts.fira-code
-                ];
-              }
-            )
-          ]
-          ++ (
-            if user.usei3 then
-              [
-                ../homemanager/i3/i3blocks.home.nix
-                ../homemanager/i3/i3.home.nix
-              ]
-            else
-              [ ../homemanager/sway.nix ]
-          );
+        _imports = [
+          ../homemanager/zsh.nix
+          ../homemanager/mimeappsList.nix
+          ../homemanager/vim/vim.nix
+          ../homemanager/modules/dunst.home.nix
+          ../homemanager/modules/rofi.home.nix
+          ../homemanager/modules/git.nix
+          ../homemanager/scripts/scripts.nix
+          ../homemanager/scripts/templates.nix
+          (
+            { pkgs, ... }:
+            {
+              home.packages = with pkgs; [
+                #themePackages
+                xfce.xfce4-icon-theme
+                #guiPackages
+                alacritty
+                arandr
+                #linuxPackages
+                xwallpaper
+                acpi
+                networkmanagerapplet
+                #packages
+                coreutils
+                nixpkgs-fmt
+                silver-searcher
+                fd
+                eza
+                nerd-fonts.fira-code
+              ];
+            }
+          )
+        ]
+        ++ (
+          if user.usei3 then
+            [
+              ../homemanager/i3/i3blocks.home.nix
+              ../homemanager/i3/i3.home.nix
+            ]
+          else
+            [ ../homemanager/sway.nix ]
+        );
       };
     }
-  ] ++ desktopEnvironments;
+  ]
+  ++ desktopEnvironments;
 }
