@@ -17,6 +17,7 @@ in
   modules = [
     ../configuration.nix
     ../modules/bbrf.nix
+    ../systemConfiguration/syncthing/syncthing.nix
     ../systemConfiguration/anki.nix
     bbrf
     (

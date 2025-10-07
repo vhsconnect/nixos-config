@@ -62,7 +62,7 @@ in
           id = "sync";
           devices = filterHostList [
             "mbison"
-            "mpu3"
+            "mpu3a"
             "mpu4"
             "mbebe"
           ];
@@ -79,7 +79,7 @@ in
           id = "folder";
           devices = filterHostList [
             "mbison"
-            "mpu3"
+            "mpu3a"
             "mpu4"
             "mbebe"
           ];
@@ -91,6 +91,7 @@ in
             "mbison"
             "mpu4"
             "mbebe"
+            "mpu3a"
           ];
         };
       };
