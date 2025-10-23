@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 let
 
@@ -58,7 +59,7 @@ let
     # double dells
 
     swaymsg output DP-1 mode  2560x1440@59.951hz
-    swaymsg output DP-1 pos 1571 623
+    swaymsg output DP-1 pos 0 0 
     swaymsg output DP-1 transform normal
     swaymsg output DP-1 scale 1.0
     swaymsg output DP-1 scale_filter nearest
@@ -66,7 +67,7 @@ let
     swaymsg output DP-1 dpms on
                   
     swaymsg output DP-2 mode 1600x900@60.0hz
-    swaymsg output DP-2 pos 4131 623
+    swaymsg output DP-2 pos 2560 0
     swaymsg output DP-2 transform 270
     swaymsg output DP-2 scale 1.0
     swaymsg output DP-2 scale_filter nearest

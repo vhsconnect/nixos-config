@@ -81,32 +81,32 @@ in
         inherit inputs;
         inherit user;
         inherit system;
-        _imports =
-          [
-            ../homemanager/packages.nix
-            ../homemanager/guiPackages.nix
-            ../homemanager/workPackages.nix
-            ../homemanager/linuxPackages.nix
-            ../homemanager/themePackages.nix
-            ../homemanager/zsh.nix
-            ../homemanager/mimeappsList.nix
-            ../homemanager/vim/vim.nix
-            ../homemanager/modules/dunst.home.nix
-            ../homemanager/modules/rofi.home.nix
-            ../homemanager/modules/xScreensaver.nix
-            ../homemanager/modules/git.nix
-            ../homemanager/modules/hexchat.nix
-            ../homemanager/scripts/scripts.nix
-            ../homemanager/scripts/templates.nix
-            ../homemanager/modules/tmux.nix
-            ../homemanager/modules/webapps.nix
-            ../homemanager/easyeffects.nix
-            ../homemanager/homeFiles.nix
+        _imports = [
+          ../homemanager/packages.nix
+          ../homemanager/guiPackages.nix
+          ../homemanager/workPackages.nix
+          ../homemanager/linuxPackages.nix
+          ../homemanager/themePackages.nix
+          ../homemanager/zsh.nix
+          ../homemanager/mimeappsList.nix
+          ../homemanager/vim/vim.nix
+          ../homemanager/modules/dunst.home.nix
+          ../homemanager/modules/rofi.home.nix
+          ../homemanager/modules/xScreensaver.nix
+          ../homemanager/modules/git.nix
+          ../homemanager/modules/hexchat.nix
+          ../homemanager/scripts/scripts.nix
+          ../homemanager/scripts/templates.nix
+          ../homemanager/modules/tmux.nix
+          ../homemanager/modules/webapps.nix
+          ../homemanager/easyeffects.nix
+          ../homemanager/homeFiles.nix
 
-          ]
-          ++ homemanagerGtkImports
-          ++ homemanagerDesktopImports;
+        ]
+        ++ homemanagerGtkImports
+        ++ homemanagerDesktopImports;
       };
     }
-  ] ++ desktopEnvironments;
+  ]
+  ++ desktopEnvironments;
 }
