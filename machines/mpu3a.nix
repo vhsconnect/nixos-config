@@ -67,32 +67,7 @@ in
           ../homemanager/easyeffects.nix
           ../homemanager/modules/tmux.nix
           ../homemanager/homeFiles.nix
-          (
-            { pkgs, ... }:
-            {
-              home.packages = with pkgs; [
-                #themePackages
-
-                xfce.xfce4-icon-theme
-                #guiPackages
-                alacritty
-                arandr
-                #linuxPackages
-                xwallpaper
-                acpi
-                networkmanagerapplet
-                #packages
-                coreutils
-                nixpkgs-fmt
-                silver-searcher
-                fd
-                eza
-                nerd-fonts.hack
-                jq
-                bat
-              ];
-            }
-          )
+          ../homemanager/packages-small.nix
         ]
         ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
         ++ homemanagerDesktopImports;

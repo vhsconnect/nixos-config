@@ -230,11 +230,11 @@ let
   vpn = pkgs.writeScriptBin "vpn" ''
     #! /usr/bin/env fish 
 
-    set configPath /home/vhs/SShark/
+    set config_path /home/vhs/SShark/
 
     switch $argv[1]
         case -c
-            set selected_path (find $configPath -type f | fzf --height 40% --reverse)
+            set selected_path (find $config_path -type f | fzf --height 40% --reverse)
             if test -n "$selected_path"
                 nmcli connection import type wireguard file $selected_path
             end
@@ -247,6 +247,19 @@ let
             echo "  -d    Disconnect mode"
             exit 1
     end
+
+  '';
+  init-br = pkgs.writeScriptBin "init-br" ''
+    #! /usr/bin/env bash
+
+    REPO_PATH=$1
+
+    if [[ ! "$REPO_PATH" == *.git ]]; then
+    	echo "Error: Repository path must end with '.git'" >&2
+    	exit 1
+    fi
+
+    sudo -u git git init --bare "$REPO_PATH"
 
   '';
 
@@ -278,5 +291,6 @@ in
     changecompletion
     pskill
     vpn
+    init-br
   ];
 }

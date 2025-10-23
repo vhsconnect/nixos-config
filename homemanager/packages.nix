@@ -62,7 +62,7 @@ with builtins;
       #utils
       zip
       eza
-      magic-wormhole
+      magic-wormhole-rs
       fd
       jq
       silver-searcher

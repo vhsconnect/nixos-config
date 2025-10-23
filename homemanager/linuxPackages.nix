@@ -20,5 +20,6 @@
     libsForQt5.skanlite
     nautilus
     nix-output-monitor
+    lsof
   ];
 }
