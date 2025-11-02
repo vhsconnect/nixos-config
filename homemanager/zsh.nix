@@ -53,6 +53,7 @@ in
       c-x11 = "xclip -selection clipboard";
       c = "wl-copy";
       cl = "clear";
+      cdc = "cdconfig";
       l = "exa -la";
       lsg = "exa -la | rg -i";
       v = "fd . --type=file --exclude '.git/*' | fzf | xargs nvim";
@@ -77,7 +78,8 @@ in
       nix-stray-roots = ''nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory)"'';
       clear-auto-roots = "sudo rm -rf /nix/var/nix/gcroots/auto/*";
 
-    } // nixrunPackages;
+    }
+    // nixrunPackages;
     zsh-abbr = {
       enable = true;
       abbreviations = {

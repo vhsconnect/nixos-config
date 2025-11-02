@@ -34,6 +34,7 @@ in
     ../modules/immich.nix
     ../modules/dlProcess.nix
     ../modules/githubNotify.nix
+    ../modules/icecast.nix
     ../systemConfiguration/docker.nix
     # ../systemConfiguration/iphone.nix
     ../systemConfiguration/libVirt.nix

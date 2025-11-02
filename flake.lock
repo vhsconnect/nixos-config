@@ -47,15 +47,16 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1746351438,
-        "narHash": "sha256-2N9qBUFbMYvBYSvlDFTq75KQjSgdehzEgl365toQT1I=",
+        "lastModified": 1761783744,
+        "narHash": "sha256-xHI4I1loNEf5wbCxb0Q+WGNHWpLFFm0hDQaPljwzp8g=",
         "owner": "vhsconnect",
         "repo": "bbrf-radio",
-        "rev": "c18a2db915736577f982fc22189edba19c7471c6",
+        "rev": "4ea59aeb13b99762f8939fdc5df1ab22eac61056",
         "type": "github"
       },
       "original": {
         "owner": "vhsconnect",
+        "ref": "0.10.0",
         "repo": "bbrf-radio",
         "type": "github"
       }
