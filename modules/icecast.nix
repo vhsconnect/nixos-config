@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  user,
   ...
 }:
 let
@@ -39,8 +40,13 @@ in
     };
     password = mkOption {
       type = types.str;
-      default = "pass36";
+      default = user.obfuscated;
       description = "Password for streams, admin";
+    };
+    openFirewall = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Whether to open firewall in host for port specified";
     };
   };
 
@@ -50,6 +56,8 @@ in
       after = [ "network-online.target" ];
       wants = [ "network-online.target" ];
     };
+
+    networking.firewall.allowedTCPPorts = if cfg.openFirewall then [ cfg.port ] else [ ];
 
     containers.icecast = {
       autoStart = cfg.autoStart;
@@ -90,6 +98,7 @@ in
             {
               enable = true;
               hostname = "localhost";
+              listen.port = cfg.port;
 
               admin = {
                 user = "admin";
@@ -123,7 +132,7 @@ in
             };
 
           services.liquidsoap.streams = lib.genAttrs (cfg.playlists) (x: ''
-            output.icecast(%%mp3(bitrate=128),host=\"127.0.0.1\",port=8000,password=\"${cfg.password}\",mount=\"/${x}\",mksafe(playlist(reload=-1,mode=\"random\",\"/var/lib/liquidsoap/${x}.m3u\")))
+            output.icecast(%%mp3(bitrate=128),host=\"127.0.0.1\",port=${builtins.toString cfg.port},password=\"${cfg.password}\",mount=\"/${x}\",mksafe(playlist(reload=-1,mode=\"random\",\"/var/lib/liquidsoap/${x}.m3u\")))
           '');
 
           system.stateVersion = "25.05";
