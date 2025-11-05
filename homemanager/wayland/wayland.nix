@@ -36,6 +36,25 @@ in
 
   home.file = {
 
+    ".config/xkb/keymap/k400.xkb" = {
+      enable = true;
+
+      text = ''
+        xkb_keymap {
+        	xkb_keycodes  { include "evdev+aliases(qwerty)"	};
+        	xkb_types     { include "complete"	};
+        	xkb_compat    { include "complete"	};
+        	xkb_symbols   { 
+        		include "pc+us+inet(evdev)"
+            replace key <I171> { [ i, I ] };
+            replace key <MUTE> { [ o, O ] }; 
+        	};
+        	xkb_geometry  { include "pc(pc105)"	};
+        };
+
+      '';
+    };
+
     ".config/sway/config" = {
       enable = true;
 

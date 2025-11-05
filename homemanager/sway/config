@@ -146,6 +146,16 @@ mode "resize" {
 
 # input
 
+
+input "1133:16420:Logitech_K400" {
+    xkb_layout us
+    xkb_file ~/.config/xkb/keymap/k400.xkb
+    xkb_variant altgr-intl
+    xkb_options ctrl:nocaps
+    repeat_delay 250
+    repeat_rate 30
+}
+
 input "type:keyboard" {
     xkb_layout us
     xkb_variant altgr-intl
