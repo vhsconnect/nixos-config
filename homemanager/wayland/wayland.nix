@@ -47,6 +47,9 @@ in
         	xkb_symbols   { 
         		include "pc+us+inet(evdev)"
             replace key <I171> { [ i, I ] };
+            replace key <I122> { [ 0 ] };
+            replace key <I172> { [ 7 ] };
+            replace key <I173> { [ 6 ] };
             replace key <MUTE> { [ o, O ] }; 
         	};
         	xkb_geometry  { include "pc(pc105)"	};
