@@ -45,7 +45,11 @@ in
         user = "vhs";
         port = 8898;
         faderValue = 25;
+        serveStaticSite = true;
+        staticSiteServedOn = 8040;
+
       };
+      networking.firewall.allowedTCPPorts = [ 8040 ];
     }
   ];
 }

@@ -142,8 +142,10 @@ with pkgs;
     '';
   };
 
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.windowManager.icewm.enable = true;
+  services.displayManager.autoLogin.enable = user.autoLogin;
+  services.displayManager.autoLogin.user = "vhs";
+  services.xserver.displayManager.gdm.enable = !user.autoLogin;
+  services.xserver.windowManager.icewm.enable = !user.autoLogin;
 
   services.picom = {
     enable = if user.usei3 then true else false;
@@ -265,7 +267,6 @@ with pkgs;
     enable = true;
   };
   programs.adb.enable = true;
-
 
   services.openssh.enable = user.enableSSH;
 

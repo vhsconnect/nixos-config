@@ -19,6 +19,9 @@ in
     ../modules/bbrf.nix
     ../systemConfiguration/syncthing/syncthing.nix
     ../systemConfiguration/anki.nix
+    ../systemConfiguration/gitDaemon.nix
+    ../modules/icecast.nix
+
     bbrf
     (
       { ... }:
@@ -44,25 +47,11 @@ in
           ../homemanager/modules/git.nix
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
+          ../homemanager/packages-small.nix
           (
             { pkgs, ... }:
             {
               home.packages = with pkgs; [
-                #themePackages
-                xfce.xfce4-icon-theme
-                #guiPackages
-                alacritty
-                arandr
-                #linuxPackages
-                xwallpaper
-                acpi
-                networkmanagerapplet
-                #packages
-                coreutils
-                nixpkgs-fmt
-                silver-searcher
-                fd
-                eza
                 nerd-fonts.fira-code
               ];
             }
@@ -75,7 +64,7 @@ in
               ../homemanager/i3/i3.home.nix
             ]
           else
-            [ ../homemanager/sway.nix ]
+            [ ../homemanager/wayland/wayland.nix ]
         );
       };
     }

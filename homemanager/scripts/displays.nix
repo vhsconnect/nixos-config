@@ -75,6 +75,24 @@ let
     swaymsg output DP-2 dpms on
   '';
 
+  trips-sway-tv = pkgs.writeScriptBin "trips-sway-tv" ''
+    #! /usr/bin/env bash
+    # old big samsung
+
+    swaymsg output HDMI-A-1 mode 1920x1080.60hz
+    swaymsg output HDMI-A-1 pos 0 0
+    swaymsg output HDMI-A-1 transform normal 
+    swaymsg output HDMI-A-1 scale 1.0
+    swaymsg output HDMI-A-1 scale_filter nearest
+    swaymsg output HDMI-A-1 adaptive_sync off
+    swaymsg output HDMI-A-1 dpms on
+
+    HDMI=$(swaymsg -t get_outputs | grep HDMI)
+    if [[ -n $HDMI ]]; then
+      swaymsg output eDP-1 disable
+    fi
+  '';
+
 in
 {
   home.packages = [
@@ -84,5 +102,6 @@ in
     trips11
     trips14
     trips-sway-1
+    trips-sway-tv
   ];
 }
