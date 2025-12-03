@@ -256,7 +256,7 @@ with pkgs;
   ];
 
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
-  programs.ssh.startAgent = true;
+  programs.ssh.startAgent = false;
   programs.ssh.extraConfig = "AddKeysToAgent = yes";
 
   programs.zsh.enable = true;
@@ -270,11 +270,11 @@ with pkgs;
 
   services.openssh.enable = user.enableSSH;
 
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=10s
-    DefaultDeviceTimeoutSec=10s
-    TimeoutSec=10s
-  '';
+  # systemd.settings.Manager = ''
+  #   DefaultTimeoutStopSec=10s
+  #   DefaultDeviceTimeoutSec=10s
+  #   TimeoutSec=10s
+  # '';
   systemd.watchdog.runtimeTime = "20s";
 
   # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];

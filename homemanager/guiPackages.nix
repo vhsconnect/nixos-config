@@ -11,7 +11,7 @@
     gthumb
     signal-desktop
     popcorntime
-    libsForQt5.kate
+    notepad-next
     element-desktop
     mongodb-compass
   ];

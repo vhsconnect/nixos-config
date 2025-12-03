@@ -1,17 +1,15 @@
-{ config
-, lib
-, pkgs
-, user
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
 }:
-let
-  rofi = if user.usei3 then pkgs.rofi else pkgs.rofi-wayland;
-in
 {
   programs.rofi = {
     enable = true;
     terminal = if user.usei3 then "${pkgs.xterm}/bin/xterm" else "${pkgs.foot}/bin/foot";
-    package = rofi.override {
+    package = pkgs.rofi.override {
       plugins = [
         pkgs.rofi-calc
         pkgs.rofi-emoji

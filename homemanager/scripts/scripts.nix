@@ -262,6 +262,28 @@ let
     sudo -u git git init --bare "$REPO_PATH"
 
   '';
+  cleanfilenames = pkgs.writeScriptBin "cleanfilenames" ''
+    #! /usr/bin/env bash
+
+    find . -type f | while read -r file; do
+      newname=$(echo "$file" | sed 's/ \[.\{10,11\}\]//')
+    	if [ "$file" != "$newname" ]; then
+    		mv "$file" "$newname"
+    	fi
+    done
+
+    find . -depth -name "* *" -execdir ${pkgs.rename}/bin/rename "s/ /_/g" "{}" \;
+    find . -depth -name "*'*" -execdir ${pkgs.rename}/bin/rename "s/\'/_/g" "{}" \;
+    find . -depth -name "*(*" -execdir ${pkgs.rename}/bin/rename "s/\(/_/g" "{}" \;
+    find . -depth -name "*)*" -execdir ${pkgs.rename}/bin/rename "s/\)/_/g" "{}" \;
+    find . -depth -name "*[*" -execdir ${pkgs.rename}/bin/rename "s/\\[/_/g" "{}" \;
+    find . -depth -name "*]*" -execdir ${pkgs.rename}/bin/rename "s/\\]/_/g" "{}" \;
+    find . -depth -name "*#*" -execdir ${pkgs.rename}/bin/rename "s/\\#/_/g" "{}" \;
+    find . -depth -name "*$*" -execdir ${pkgs.rename}/bin/rename "s/\\$/_/g" "{}" \;
+    find . -depth -name "*&*" -execdir ${pkgs.rename}/bin/rename "s/\\&/and/g" "{}" \;
+    find . -depth -name "*,*" -execdir ${pkgs.rename}/bin/rename "s/\\,//g" "{}" \;
+
+  '';
 
 in
 {
@@ -292,5 +314,6 @@ in
     pskill
     vpn
     init-br
+    cleanfilenames
   ];
 }

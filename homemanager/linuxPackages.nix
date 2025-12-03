@@ -17,7 +17,6 @@
     xorg.xmodmap
     xorg.xev
     xwallpaper
-    libsForQt5.skanlite
     nautilus
     nix-output-monitor
     lsof

@@ -51,8 +51,8 @@ with builtins;
       shellcheck
 
       #git
-      gitAndTools.diff-so-fancy
-      gitAndTools.tig
+      diff-so-fancy
+      tig
 
       #audio/video
       ffmpeg

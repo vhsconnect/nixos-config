@@ -1,6 +1,6 @@
 { ... }:
 let
-  defaultEditor = "Kate";
+  defaultEditor = "NotepadNext";
 in
 {
   xdg.mimeApps = {
