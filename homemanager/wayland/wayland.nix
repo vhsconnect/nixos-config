@@ -1,6 +1,7 @@
-{ user
-, pkgs
-, ...
+{
+  user,
+  pkgs,
+  ...
 }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");
@@ -62,6 +63,8 @@ in
 
       text = builtins.concatStringsSep "\n" [
         (builtins.readFile ../sway/config)
+        (if user.host == "mbison" then "workspace 10 output DP-2" else "")
+
         ''
 
           output * background ~/.background-image fill
@@ -98,6 +101,7 @@ in
 
           # startup applications
           exec "sh -c 'sleep 2s' && ${pkgs.blueman}/bin/blueman-applet" 
+          exec "sh -c 'sleep 2s' && ${pkgs.networkmanagerapplet}/bin/nm-applet" 
           exec_always ${user.monitorsCmd}
 
         ''

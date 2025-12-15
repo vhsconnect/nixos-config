@@ -54,6 +54,15 @@ let
     xwallpaper --screen 0 --stretch ~/.background-image
 
   '';
+
+  trips20 = pkgs.writeScriptBin "trips20" ''
+    #! /usr/bin/env bash
+
+    xrandr --output DisplayPort-0 --primary --mode 2560x1440 --pos 0x344 --rotate normal --output DisplayPort-1 --mode 1920x1080 --pos 2560x0 --rotate left --output DisplayPort-2 --off --output HDMI-A-0 --off
+
+    xwallpaper --screen 0 --center ~/.background-image
+
+  '';
   trips-sway-1 = pkgs.writeScriptBin "trips-sway-1" ''
     #! /usr/bin/env bash
     # double dells
@@ -101,6 +110,7 @@ in
     trips10
     trips11
     trips14
+    trips20
     trips-sway-1
     trips-sway-tv
   ];

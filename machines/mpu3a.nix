@@ -7,13 +7,14 @@ let
     if user.usei3 then
       [
         ../desktop/i3.nix
-        ../desktop/gnome.nix
+        ../systemConfiguration/x11Desktop.nix
+        # ../desktop/gnome.nix
       ]
     else
       [
+        ../systemConfiguration/waylandDesktop.nix
       ];
   system = "x86_64-linux";
-
   homemanagerDesktopImports =
     if user.usei3 then
       [

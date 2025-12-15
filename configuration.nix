@@ -3,6 +3,7 @@
   user,
   otherHosts,
   inputs,
+  system,
   ...
 }:
 with builtins;
@@ -144,27 +145,18 @@ with pkgs;
 
   services.displayManager.autoLogin.enable = user.autoLogin;
   services.displayManager.autoLogin.user = "vhs";
-  services.xserver.displayManager.gdm.enable = !user.autoLogin;
-  services.xserver.windowManager.icewm.enable = !user.autoLogin;
 
-  services.picom = {
-    enable = if user.usei3 then true else false;
-    vSync = true;
-    inactiveOpacity = 0.96;
-    fade = true;
-    fadeDelta = 8;
-    fadeSteps = [
-      2.8e-2
-      3.0e-2
-    ];
+  services.displayManager.ly.enable = !user.autoLogin;
+  services.displayManager.ly.settings = {
+    box_title = user.host;
+    vi_mode = true;
+    save = true;
   };
 
-  programs.i3lock.enable = if user.usei3 then true else false;
+  # fallback
+  services.xserver.windowManager.icewm.enable = !user.autoLogin;
 
   programs.nm-applet.enable = true;
-
-  programs.niri.enable = false;
-  programs.sway.enable = if user.usei3 then false else true;
 
   hardware.graphics.enable = true;
 
@@ -256,7 +248,7 @@ with pkgs;
   ];
 
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
-  programs.ssh.startAgent = false;
+  programs.ssh.startAgent = true;
   programs.ssh.extraConfig = "AddKeysToAgent = yes";
 
   programs.zsh.enable = true;

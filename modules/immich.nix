@@ -43,6 +43,7 @@ in
 
     containers.immich = {
       autoStart = cfg.autoStart;
+      
       ephemeral = false;
       privateNetwork = false;
       forwardPorts = [

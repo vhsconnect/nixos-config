@@ -2,12 +2,20 @@ inputs:
 let
   user = (import ../user.nix).mbison;
   otherHosts = import ../user.nix;
-  desktopEnvironments = [
-    ../desktop/i3.nix
-    ../desktop/gnome.nix
-  ];
+  desktopEnvironments =
+    if user.usei3 then
+      [
+        ../desktop/i3.nix
+        ../systemConfiguration/x11Desktop.nix
+        # ../desktop/gnome.nix
+      ]
+    else
+      [
+        ../systemConfiguration/waylandDesktop.nix
+
+      ];
   system = "x86_64-linux";
-  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
+  # bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
   immich = import ../systemConfiguration/immich.nix;
   homemanagerGtkImports = if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ];
   homemanagerDesktopImports =
@@ -30,7 +38,7 @@ in
   };
   modules = [
     ../configuration.nix
-    ../modules/bbrf.nix
+    # ../modules/bbrf.nix
     ../modules/immich.nix
     ../modules/dlProcess.nix
     ../modules/githubNotify.nix
@@ -47,7 +55,7 @@ in
     ../systemConfiguration/syncthing/syncthing.nix
     # ../systemConfiguration/fintech.nix
 
-    bbrf
+    #    bbrf
     immich
     (
       { pkgs, ... }:
@@ -71,7 +79,7 @@ in
         ];
       }
     )
-    inputs.bbrf.nixosModules.x86_64-linux.bbrf
+    # inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager.useUserPackages = true;
@@ -105,7 +113,7 @@ in
           ../homemanager/homeFiles.nix
 
         ]
-        ++ homemanagerGtkImports
+        # ++ homemanagerGtkImports
         ++ homemanagerDesktopImports;
       };
     }

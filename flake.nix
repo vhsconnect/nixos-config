@@ -11,8 +11,6 @@
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
-    bbrf.url = "github:vhsconnect/bbrf-radio/0.10.0";
-    #bbrf.url = "git+file:../../../vhs/Repos/bbrf-radio";
     editor.url = "github:vhsconnect/nvim";
     basmati.url = "github:vhsconnect/basmati";
 

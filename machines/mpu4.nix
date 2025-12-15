@@ -2,7 +2,17 @@ inputs:
 let
   user = (import ../user.nix).mpu4;
   otherHosts = import ../user.nix;
-  desktopEnvironments = if (import ../user.nix).mpu4.usei3 then [ ../desktop/i3.nix ] else [ ];
+  desktopEnvironments =
+    if user.usei3 then
+      [
+        ../desktop/i3.nix
+        ../systemConfiguration/x11Desktop.nix
+        # ../desktop/gnome.nix
+      ]
+    else
+      [
+        ../systemConfiguration/waylandDesktop.nix
+      ];
   system = "x86_64-linux";
   bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = true; };
 in
