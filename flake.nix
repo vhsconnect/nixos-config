@@ -13,6 +13,7 @@
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
     editor.url = "github:vhsconnect/nvim";
     basmati.url = "github:vhsconnect/basmati";
+    bbrf.url = "github:vhsconnect/bbrf-radio/0.10.0";
 
     alacritty_themes = {
       url = "github:alacritty/alacritty-theme";

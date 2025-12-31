@@ -25,6 +25,9 @@
     jq
     bat
     magic-wormhole-rs
+    inotify-tools
+    # shell
+    fish
   ];
 
 }

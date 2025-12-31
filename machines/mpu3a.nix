@@ -69,6 +69,15 @@ in
           ../homemanager/modules/tmux.nix
           ../homemanager/homeFiles.nix
           ../homemanager/packages-small.nix
+          (
+            { pkgs, ... }:
+            {
+              home.packages = with pkgs; [
+                gleam
+                erlang_28
+              ];
+            }
+          )
         ]
         ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
         ++ homemanagerDesktopImports;

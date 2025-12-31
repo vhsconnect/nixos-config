@@ -146,12 +146,14 @@ with pkgs;
   services.displayManager.autoLogin.enable = user.autoLogin;
   services.displayManager.autoLogin.user = "vhs";
 
-  services.displayManager.ly.enable = !user.autoLogin;
-  services.displayManager.ly.settings = {
-    box_title = user.host;
-    vi_mode = true;
-    save = true;
-  };
+  services.displayManager.gdm.enable = !user.autoLogin;
+
+  # services.displayManager.ly.enable = !user.autoLogin;
+  # services.displayManager.ly.settings = {
+  #   box_title = user.host;
+  #   vi_mode = true;
+  #   save = true;
+  # };
 
   # fallback
   services.xserver.windowManager.icewm.enable = !user.autoLogin;
