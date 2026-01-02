@@ -5,6 +5,9 @@
     xfce.xfce4-icon-theme
     # guiPackages
     alacritty
+    evince
+    gedit
+    nautilus
     # x11
     arandr
     xwallpaper

@@ -6,6 +6,7 @@
     arandr
     chromium
     evince
+    gedit
     flameshot
     gromit-mpx
     gthumb

@@ -1,6 +1,6 @@
 { ... }:
 let
-  defaultEditor = "NotepadNext";
+  defaultEditor = "gedit";
 in
 {
   xdg.mimeApps = {
@@ -29,6 +29,10 @@ in
       "x-scheme-handler/https" = [ "firefox.desktop;" ];
       "x-scheme-handler/ftp" = [ "firefox.desktop;" ];
       "x-scheme-handler/chrome" = [ "firefox.desktop;" ];
+      "x-scheme-handler/about" = [ "firefox.desktop;" ];
+      "x-scheme-handler/unknown" = [ "firefox.desktop;" ];
+      "x-scheme-handler/mailto" = [ "firefox.desktop;" ];
+      "x-scheme-handler/webcal" = [ "firefox.desktop;" ];
       "x-scheme-handler/msteams" = [ "teams.desktop" ];
       "application/x-extension-htm" = [ "firefox.desktop;" ];
       "application/x-extension-html" = [ "firefox.desktop;" ];
