@@ -1,15 +1,17 @@
 { pkgs, ... }:
-{
-  home.packages = with pkgs; [
+rec {
+  essential = with pkgs; [
     # themePackages
     xfce.xfce4-icon-theme
     # guiPackages
+    signal-desktop
     alacritty
     evince
     gedit
     nautilus
-    # x11
+    # display
     arandr
+    wdisplays
     xwallpaper
     # hardware mgmt
     acpi
@@ -17,7 +19,6 @@
     networkmanagerapplet
     #packages
     coreutils
-    nixpkgs-fmt
     # fonts
     nerd-fonts.hack
     # utils
@@ -31,6 +32,9 @@
     inotify-tools
     # shell
     fish
+    # lsp / formatters
+    nixfmt
   ];
 
+  home.packages = essential;
 }

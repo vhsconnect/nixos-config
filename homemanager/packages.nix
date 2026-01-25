@@ -8,6 +8,7 @@
 with builtins;
 let
   inherit (import ./fonts.nix { }) fonts;
+  inherit (import ./packages-small.nix { inherit pkgs; }) essential;
   firstAttrName = z: head (attrNames z);
 in
 with lib;
@@ -34,6 +35,7 @@ with builtins;
       niv
       nix-prefetch-git
       nixpkgs-fmt
+      devenv
 
       # rust
       cargo
@@ -61,13 +63,6 @@ with builtins;
 
       #utils
       zip
-      eza
-      magic-wormhole-rs
-      fd
-      jq
-      silver-searcher
-      fd
-      bat
       lf
       killall
       tree
@@ -77,14 +72,15 @@ with builtins;
       nixos-shell
       nix-tree
 
-      #shells
-      fish
-
       #misc
       gh
       gleam
       erlang_28
+
+      # android
+      android-studio
     ]
+    ++ essential
     ++ (map (f: nerd-fonts.${firstAttrName f}) fonts)
     ++ (with pkgs.haskellPackages; [
       floskell
@@ -109,6 +105,6 @@ with builtins;
     ++ [
       # additional language servers
       pkgs.lua-language-server
-      # pkgs.nil
+      pkgs.nil
     ];
 }
