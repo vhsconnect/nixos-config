@@ -252,6 +252,8 @@ let
   init-br = pkgs.writeScriptBin "init-br" ''
     #! /usr/bin/env bash
 
+    # Usage: ssh <target>  "bash -c 'init-br <path>'"
+
     REPO_PATH=$1
 
     if [[ ! "$REPO_PATH" == *.git ]]; then

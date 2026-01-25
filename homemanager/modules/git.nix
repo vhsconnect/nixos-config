@@ -25,10 +25,9 @@
         options = {
           side-by-side = true;
         };
-
       };
 
-      settings.aliases = {
+      settings.alias = {
         amend = "commit --amend -m";
         fixup = "!f(){ git reset --soft HEAD~\${1} && git commit --amend -C HEAD; };f";
         ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";

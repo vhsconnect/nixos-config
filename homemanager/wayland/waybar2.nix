@@ -432,7 +432,8 @@ in
           '';
       };
 
-  } // (if user.opaqueBars then opaqueBar else dualBars);
+  }
+  // (if user.opaqueBars then opaqueBar else dualBars);
 
   programs.waybar = {
     enable = true;

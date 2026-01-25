@@ -71,6 +71,9 @@ in
           errorFile = "~/dlp-error-files";
           outputDir = "~/Sync2";
         };
+        services.xscreensaver = {
+          enable = true;
+        };
 
         environment.systemPackages = with pkgs; [
           lutris
