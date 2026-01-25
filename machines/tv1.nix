@@ -38,8 +38,10 @@ in
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
-        ] ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ]);
+        ]
+        ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ]);
       };
     }
-  ] ++ desktopEnvironments;
+  ]
+  ++ desktopEnvironments;
 }

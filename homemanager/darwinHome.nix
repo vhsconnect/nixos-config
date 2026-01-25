@@ -1,7 +1,8 @@
-{ system
-, inputs
-, _imports
-, ...
+{
+  system,
+  inputs,
+  _imports,
+  ...
 }:
 {
   nixpkgs = {

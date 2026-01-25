@@ -1,9 +1,10 @@
-{ inputs
-, _imports
-, pkgs
-, system
-, user
-, ...
+{
+  inputs,
+  _imports,
+  pkgs,
+  system,
+  user,
+  ...
 }:
 {
   nixpkgs = {

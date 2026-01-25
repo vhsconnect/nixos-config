@@ -9,10 +9,11 @@ in
   system = "x86_64-linux";
   modules = [
     (
-      { pkgs
-      , modulesPath
-      , lib
-      , ...
+      {
+        pkgs,
+        modulesPath,
+        lib,
+        ...
       }:
       {
 

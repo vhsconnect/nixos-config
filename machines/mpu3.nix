@@ -38,48 +38,48 @@ in
         inherit inputs;
         inherit user;
         inherit system;
-        _imports =
-          [
-            ../homemanager/zsh.nix
-            ../homemanager/mimeappsList.nix
-            ../homemanager/vim/vim.nix
-            ../homemanager/i3/i3blocks.home.nix
-            ../homemanager/i3/i3.home.nix
-            ../homemanager/modules/dunst.home.nix
-            ../homemanager/modules/rofi.home.nix
-            ../homemanager/modules/git.nix
-            ../homemanager/scripts/scripts.nix
-            ../homemanager/scripts/templates.nix
-            ../homemanager/easyeffects.nix
-            ../homemanager/modules/tmux.nix
-            ../homemanager/homeFiles.nix
-            (
-              { pkgs, ... }:
-              {
-                home.packages = with pkgs; [
-                  #themePackages
-                  xfce.xfce4-icon-theme
-                  #guiPackages
-                  alacritty
-                  arandr
-                  #linuxPackages
-                  xwallpaper
-                  acpi
-                  networkmanagerapplet
-                  #packages
-                  coreutils
-                  nixpkgs-fmt
-                  silver-searcher
-                  fd
-                  eza
-                  nerd-fonts.hack
-                ];
-              }
-            )
-          ]
-          ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
-          ++ (if user.usei3 then [ ] else [ ../homemanager/sway.nix ]);
+        _imports = [
+          ../homemanager/zsh.nix
+          ../homemanager/mimeappsList.nix
+          ../homemanager/vim/vim.nix
+          ../homemanager/i3/i3blocks.home.nix
+          ../homemanager/i3/i3.home.nix
+          ../homemanager/modules/dunst.home.nix
+          ../homemanager/modules/rofi.home.nix
+          ../homemanager/modules/git.nix
+          ../homemanager/scripts/scripts.nix
+          ../homemanager/scripts/templates.nix
+          ../homemanager/easyeffects.nix
+          ../homemanager/modules/tmux.nix
+          ../homemanager/homeFiles.nix
+          (
+            { pkgs, ... }:
+            {
+              home.packages = with pkgs; [
+                #themePackages
+                xfce.xfce4-icon-theme
+                #guiPackages
+                alacritty
+                arandr
+                #linuxPackages
+                xwallpaper
+                acpi
+                networkmanagerapplet
+                #packages
+                coreutils
+                nixpkgs-fmt
+                silver-searcher
+                fd
+                eza
+                nerd-fonts.hack
+              ];
+            }
+          )
+        ]
+        ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
+        ++ (if user.usei3 then [ ] else [ ../homemanager/sway.nix ]);
       };
     }
-  ] ++ desktopEnvironments;
+  ]
+  ++ desktopEnvironments;
 }

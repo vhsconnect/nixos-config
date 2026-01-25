@@ -1,7 +1,8 @@
-{ lib
-, config
-, system
-, ...
+{
+  lib,
+  config,
+  system,
+  ...
 }:
 let
   cfg = config.services.bbrf-radio;
@@ -25,7 +26,11 @@ in
 
   config = lib.mkMerge [
     (lib.optionalAttrs (isLinux) {
-      networking.firewall.allowedTCPPorts = let ports = if cfg.withNginxProxy then [ 80 ] else [ ]; in ports;
+      networking.firewall.allowedTCPPorts =
+        let
+          ports = if cfg.withNginxProxy then [ 80 ] else [ ];
+        in
+        ports;
       services.nginx = {
         enable = cfg.withNginxProxy;
         virtualHosts = {

@@ -1,8 +1,9 @@
-{ pkgs
-, user
-, system
-, inputs
-, ...
+{
+  pkgs,
+  user,
+  system,
+  inputs,
+  ...
 }:
 let
   pathToVimSnippets = "~/Public/snippets/";
