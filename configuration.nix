@@ -37,12 +37,19 @@ with pkgs;
       options = "--delete-older-than 7d";
     };
     settings = {
+      trusted-users = [
+        "root"
+        "vhs"
+        "office"
+      ];
       auto-optimise-store = true;
       extra-trusted-substituters = [
         "https://nix-community.cachix.org"
+        "https://devenv.cachix.org"
       ];
       extra-trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
     };
     #cache environments for nix-direnv
@@ -148,13 +155,6 @@ with pkgs;
 
   services.displayManager.gdm.enable = !user.autoLogin;
 
-  # services.displayManager.ly.enable = !user.autoLogin;
-  # services.displayManager.ly.settings = {
-  #   box_title = user.host;
-  #   vi_mode = true;
-  #   save = true;
-  # };
-
   # fallback
   services.xserver.windowManager.icewm.enable = !user.autoLogin;
 
@@ -183,6 +183,11 @@ with pkgs;
 
   };
 
+  services.udisks2 = {
+    enable = true;
+    mountOnMedia = true;
+  };
+
   users = {
     users.vhs = {
       isNormalUser = true;
@@ -196,6 +201,7 @@ with pkgs;
         "syncthing"
         "networkmanager"
         "ops"
+        "kvm"
       ];
     };
     users.office = {
@@ -207,6 +213,7 @@ with pkgs;
         "networkmanager"
         "syncthing"
         "ops"
+        "kvm"
       ];
     };
 
