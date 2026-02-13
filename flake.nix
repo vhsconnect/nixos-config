@@ -4,9 +4,9 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     disko.url = "github:nix-community/disko";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+       home-manager.inputs.nixpkgs.follows = "nixpkgs";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    # sentinelone.url = "git+file:../sentinelone-nix";
+    sentinelone.url = "git+file:../sentinelone-nix";
 
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";

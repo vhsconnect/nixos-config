@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ pkgs, ... }:
 let
   binPath = "$HOME/bin";
   cargoPath = "$HOME/.cargo/bin";

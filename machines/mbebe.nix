@@ -38,10 +38,11 @@ in
     ../modules/githubNotify.nix
     ../systemConfiguration/docker.nix
     #../systemConfiguration/printing.nix
+    ../systemConfiguration/syncthing/syncthing.nix
     #../systemConfiguration/libVirt.nix
-    #../systemConfiguration/tailscale.nix
+    ../systemConfiguration/tailscale.nix
     #../systemConfiguration/nosleep.nix
-    ../systemConfiguration/sentinelone.nix
+    # ../systemConfiguration/sentinelone.nix
     # ../systemConfiguration/fintech.nix
     # bbrf
     (

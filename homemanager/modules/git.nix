@@ -5,6 +5,7 @@
   ...
 }:
 {
+
   programs.git =
     let
       excludeFiles = [
@@ -19,13 +20,6 @@
 
       settings.user.name = user.handle;
       settings.user.email = user.email;
-
-      settings.delta = {
-        enable = true;
-        options = {
-          side-by-side = true;
-        };
-      };
 
       settings.alias = {
         amend = "commit --amend -m";
@@ -58,5 +52,13 @@
       };
 
       ignores = [ "*.direnv" ];
+
+      delta = {
+        enable = true;
+        options = {
+          side-by-side = true;
+        };
+      };
+
     };
 }
