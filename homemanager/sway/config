@@ -36,9 +36,10 @@ bindsym F2 exec "exec rofi -show emoji -modi emoji"
 bindsym F3 exec "cliphist-rofi | rofi -show -dmenu | wl-copy"
 bindsym F6 exec pamixer -d 5
 bindsym F7 exec pamixer -i 5
-bindsym F8 exec lowpass
-bindsym F9 exec shotman -C -c region
+bindsym F8 exec lowpass_toggle 
+bindsym F9 exec reverb_toggle
 bindsym F10 exec xscreensaver-command -lock 
+bindsym F11 exec shotman -C -c region
 
 
 # Drag floating windows by holding down $mod and left mouse button.

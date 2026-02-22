@@ -49,7 +49,7 @@ in
     ../systemConfiguration/libVirt.nix
     ../systemConfiguration/printing.nix
     ../systemConfiguration/ollama.nix
-    #../systemConfiguration/tailscale.nix
+    ../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
     ../systemConfiguration/jellyfin.nix
     ../systemConfiguration/syncthing/syncthing.nix
@@ -79,6 +79,8 @@ in
           lutris
           winetricks
           protonup-qt
+          jamesdsp
+          dart
         ];
       }
     )
