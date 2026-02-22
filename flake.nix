@@ -7,7 +7,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     #sentinelone.url = "git+file:../sentinelone-nix";
-
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";

@@ -1,0 +1,180 @@
+{ ... }:
+{
+
+  home.file = {
+    ".config/jamesdsp/presets/balanced.conf" = {
+      enable = true;
+      text = ''
+        bass_enable=false
+        bass_maxgain=5
+        compander_enable=false
+        compander_granularity=2
+        compander_response=95.0;200.0;400.0;800.0;1600.0;3400.0;7500.0;0;0;0;0;0;0;0
+        compander_time_freq_transforms=0
+        compander_timeconstant=0.22000
+        convolver_enable=false
+        convolver_file=
+        convolver_optimization_mode=0
+        convolver_waveform_edit=-80;-100;0;0;0;0
+        crossfeed_bs2b_fcut=650
+        crossfeed_bs2b_feed=95
+        crossfeed_enable=false
+        crossfeed_mode=1
+        ddc_enable=false
+        ddc_file=
+        graphiceq_enable=false
+        graphiceq_param=GraphicEQ: 25 0; 40 0; 63 0; 100 0; 160 0; 250 0; 400 0; 630 0; 1000 0; 1600 0; 2500 0; 4000 0; 6300 0; 10000 0; 16000 0
+        liveprog_enable=false
+        liveprog_file=
+        master_enable=true
+        master_limrelease=60
+        master_limthreshold=0
+        master_postgain=0
+        reverb_bassboost=0.10000
+        reverb_decay=0.80000
+        reverb_delay=0.00000
+        reverb_enable=false
+        reverb_finaldry=-6.00000
+        reverb_finalwet=-7.00000
+        reverb_lfo_spin=1.60000
+        reverb_lfo_wander=0.20000
+        reverb_lpf_bass=1000
+        reverb_lpf_damp=18000
+        reverb_lpf_input=18000
+        reverb_lpf_output=18000
+        reverb_osf=1
+        reverb_reflection_amount=0.50000
+        reverb_reflection_factor=1.20000
+        reverb_reflection_width=-0.40000
+        reverb_wet=-70.00000
+        reverb_width=0.80000
+        stereowide_enable=true
+        stereowide_level=40
+        tone_enable=true
+        tone_eq=25;40;63;100;147.6;243.4;424.7;603;821.5;968.8;1556.6;2450.1;3936.7;6196.1;12490;0;0;0;0;-0.4;-1.2;-1.1;-1.1;-1.7;-1.1;-1.1;-1.1;-1.1;-1.1;-0.5
+        tone_filtertype=1
+        tone_interpolation=1
+        tube_enable=false
+        tube_pregain=200             
+
+
+      '';
+    };
+    ".config/jamesdsp/presets/lowpass.conf" = {
+      enable = true;
+      text = ''
+        bass_enable=false
+        bass_maxgain=5
+        compander_enable=false
+        compander_granularity=2
+        compander_response=95.0;200.0;400.0;800.0;1600.0;3400.0;7500.0;0;0;0;0;0;0;0
+        compander_time_freq_transforms=0
+        compander_timeconstant=0.22000
+        convolver_enable=false
+        convolver_file=
+        convolver_optimization_mode=0
+        convolver_waveform_edit=-80;-100;0;0;0;0
+        crossfeed_bs2b_fcut=650
+        crossfeed_bs2b_feed=95
+        crossfeed_enable=false
+        crossfeed_mode=1
+        ddc_enable=false
+        ddc_file=
+        graphiceq_enable=false
+        graphiceq_param=GraphicEQ: 25 0; 40 0; 63 0; 100 0; 160 0; 250 0; 400 0; 630 0; 1000 0; 1600 0; 2500 0; 4000 0; 6300 0; 10000 0; 16000 0
+        liveprog_enable=false
+        liveprog_file=
+        master_enable=true
+        master_limrelease=60
+        master_limthreshold=0
+        master_postgain=0
+        reverb_bassboost=0.10000
+        reverb_decay=0.80000
+        reverb_delay=0.00000
+        reverb_enable=false
+        reverb_finaldry=-6.00000
+        reverb_finalwet=-7.00000
+        reverb_lfo_spin=1.60000
+        reverb_lfo_wander=0.20000
+        reverb_lpf_bass=1000
+        reverb_lpf_damp=18000
+        reverb_lpf_input=18000
+        reverb_lpf_output=18000
+        reverb_osf=1
+        reverb_reflection_amount=0.50000
+        reverb_reflection_factor=1.20000
+        reverb_reflection_width=-0.40000
+        reverb_wet=-70.00000
+        reverb_width=0.80000
+        stereowide_enable=true
+        stereowide_level=40
+        tone_enable=true
+        tone_eq=25;40;63;100;147.6;243.4;353;505.5;678.9;802;1305.5;2019;3244.7;5148.3;16510;0;0;0;0;-0.4;-1.2;-34.7;-34.8;-35.3;-34.8;-34.8;-34.8;-34.8;-34.8;-75.6
+        tone_filtertype=1
+        tone_interpolation=1
+        tube_enable=false
+        tube_pregain=200
+
+
+      '';
+    };
+    ".config/jamesdsp/presets/reverb.conf" = {
+      enable = true;
+      text = ''
+        bass_enable=false
+        bass_maxgain=5
+        compander_enable=false
+        compander_granularity=2
+        compander_response=95.0;200.0;400.0;800.0;1600.0;3400.0;7500.0;0;0;0;0;0;0;0
+        compander_time_freq_transforms=0
+        compander_timeconstant=0.22000
+        convolver_enable=false
+        convolver_file=
+        convolver_optimization_mode=0
+        convolver_waveform_edit=-80;-100;0;0;0;0
+        crossfeed_bs2b_fcut=650
+        crossfeed_bs2b_feed=95
+        crossfeed_enable=false
+        crossfeed_mode=1
+        ddc_enable=false
+        ddc_file=
+        graphiceq_enable=false
+        graphiceq_param=GraphicEQ: 25 0; 40 0; 63 0; 100 0; 160 0; 250 0; 400 0; 630 0; 1000 0; 1600 0; 2500 0; 4000 0; 6300 0; 10000 0; 16000 0
+        liveprog_enable=false
+        liveprog_file=
+        master_enable=true
+        master_limrelease=60
+        master_limthreshold=0
+        master_postgain=0
+        reverb_bassboost=0.05000
+        reverb_decay=9.14000
+        reverb_delay=-77.80000
+        reverb_enable=true
+        reverb_finaldry=-14.00000
+        reverb_finalwet=-16.00000
+        reverb_lfo_spin=1.00000
+        reverb_lfo_wander=0.35000
+        reverb_lpf_bass=100
+        reverb_lpf_damp=10000
+        reverb_lpf_input=18000
+        reverb_lpf_output=18000
+        reverb_osf=2
+        reverb_reflection_amount=0.10000
+        reverb_reflection_factor=1.00000
+        reverb_reflection_width=0.10000
+        reverb_wet=-13.50000
+        reverb_width=1.00000
+        stereowide_enable=true
+        stereowide_level=40
+        tone_enable=true
+        tone_eq=25;40;63;100;147.6;243.4;424.7;603;821.5;968.8;1556.6;2450.1;3936.7;6196.1;12490;0;0;0;0;-0.4;-1.2;-1.1;-1.1;-1.7;-1.1;-1.1;-1.1;-1.1;-1.1;-0.5
+        tone_filtertype=1
+        tone_interpolation=1
+        tube_enable=false
+        tube_pregain=200
+
+      '';
+    };
+  };
+
+}

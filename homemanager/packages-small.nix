@@ -1,5 +1,5 @@
 { pkgs, ... }:
-rec {
+{
   essential = with pkgs; [
     # themePackages
     xfce.xfce4-icon-theme
@@ -10,6 +10,8 @@ rec {
     gedit
     nautilus
     # display
+    signal-desktop
+    # x11
     arandr
     wdisplays
     xwallpaper
@@ -27,14 +29,15 @@ rec {
     fd
     lsof
     jq
+    tree
     bat
     magic-wormhole-rs
     inotify-tools
+    nodePackages.typescript-language-server
     # shell
     fish
     # lsp / formatters
     nixfmt
   ];
 
-  home.packages = essential;
 }

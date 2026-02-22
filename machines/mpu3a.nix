@@ -2,6 +2,7 @@ inputs:
 let
   user = (import ../user.nix).mpu3a;
   otherHosts = import ../user.nix;
+  packagesSmall = import ../homemanager/packages-small.nix;
 
   desktopEnvironments =
     if user.usei3 then
@@ -65,17 +66,21 @@ in
           ../homemanager/modules/git.nix
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
-          ../homemanager/easyeffects.nix
           ../homemanager/modules/tmux.nix
+          ../homemanager/easyeffects.nix
+          ../homemanager/eq.nix
           ../homemanager/homeFiles.nix
-          ../homemanager/packages-small.nix
           (
             { pkgs, ... }:
             {
-              home.packages = with pkgs; [
-                gleam
-                erlang_28
-              ];
+              home.packages =
+                with pkgs;
+                [
+                  gleam
+                  erlang_28
+                  jamesdsp
+                ]
+                ++ (packagesSmall pkgs).essential;
             }
           )
         ]

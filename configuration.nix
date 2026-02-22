@@ -38,7 +38,6 @@ with pkgs;
     };
     settings = {
       trusted-users = [
-        "root"
         "vhs"
         "office"
       ];
@@ -173,6 +172,7 @@ with pkgs;
     };
   };
 
+  # services.blueman.enable = false;
   services.blueman.enable = true;
 
   services.pipewire = {
