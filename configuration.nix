@@ -257,7 +257,6 @@ with pkgs;
   ];
 
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
-  programs.ssh.startAgent = true;
   programs.ssh.extraConfig = "AddKeysToAgent = yes";
 
   programs.zsh.enable = true;

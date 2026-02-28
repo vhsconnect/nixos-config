@@ -13,7 +13,7 @@ let
       ]
     else
       [
-        ../systemConfiguration/waylandDesktop.nix
+        ../systemConfiguration/niriDesktop.nix
       ];
   system = "x86_64-linux";
   homemanagerDesktopImports =
