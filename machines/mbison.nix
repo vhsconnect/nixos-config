@@ -11,8 +11,8 @@ let
       ]
     else
       [
-        ../systemConfiguration/waylandDesktop.nix
-
+        # ../systemConfiguration/waylandDesktop.nix
+        ../systemConfiguration/niriDesktop.nix
       ];
   system = "x86_64-linux";
   # bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
@@ -115,6 +115,7 @@ in
           ../homemanager/modules/tmux.nix
           ../homemanager/modules/webapps.nix
           ../homemanager/easyeffects.nix
+          ../homemanager/eq.nix
           ../homemanager/homeFiles.nix
 
         ]

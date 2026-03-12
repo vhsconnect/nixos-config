@@ -109,6 +109,7 @@ with pkgs;
       allowedTCPPorts = [
         9000
         3000
+        3333
         3307
         8080
         3600

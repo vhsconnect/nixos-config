@@ -36,6 +36,8 @@
     nodePackages.typescript-language-server
     # shell
     fish
+    # lang
+    bb
     # lsp / formatters
     nixfmt
   ];

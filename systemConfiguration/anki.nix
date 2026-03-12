@@ -2,6 +2,7 @@
 let
   port = 3338;
 in
+# update mbison -> mbison push (sync from gui) -> anki-sync-server updates <- ankidroid pull
 {
 
   networking.firewall.allowedTCPPorts = [

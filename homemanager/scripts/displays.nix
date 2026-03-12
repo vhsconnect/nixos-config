@@ -83,6 +83,20 @@ let
     swaymsg output DP-2 adaptive_sync off
     swaymsg output DP-2 dpms on
   '';
+  trips-niri-1 = pkgs.writeScriptBin "trips-niri-1" ''
+    #! /usr/bin/env bash
+    # double dells
+
+    niri msg output DP-1 mode 2560x1440@60
+    niri msg output DP-1 position set 0 0
+    niri msg output DP-1 transform normal
+    niri msg output DP-1 scale 1.0
+
+    niri msg output DP-2 mode 1920x1080@60
+    niri msg output DP-2 position set 2560 0
+    niri msg output DP-2 transform 90
+    niri msg output DP-2 scale 1.0
+  '';
 
   trips-sway-tv = pkgs.writeScriptBin "trips-sway-tv" ''
     #! /usr/bin/env bash
@@ -113,5 +127,6 @@ in
     trips20
     trips-sway-1
     trips-sway-tv
+    trips-niri-1
   ];
 }
