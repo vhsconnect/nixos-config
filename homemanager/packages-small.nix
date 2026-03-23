@@ -15,6 +15,7 @@
     arandr
     wdisplays
     xwallpaper
+    libnotify
     # hardware mgmt
     acpi
     # applets

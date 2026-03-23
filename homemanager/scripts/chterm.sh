@@ -71,12 +71,12 @@ elif [ "$TYPE" = "themes" ]; then
     if [ -n "$PICK" ]; then
         selected_option="$PICK"
     else
-        options=($(ls ~/.config/alacritty/themes/themes/))
+        options=($(ls ~/.config/alacritty/themes/))
         selected_option=$(printf '%s\n' "${options[@]}" | fzf)
     fi
     echo "$selected_option"
-    Y="\"~/.config/alacritty/themes/themes/$selected_option\","
-    sed -i "/config\/alacritty\/themes\/themes/c\\$Y" ~/.config/alacritty/alacritty.toml
+    Y="\"~/.config/alacritty/themes/$selected_option\","
+    sed -i "/config\/alacritty\/themes/c\\$Y" ~/.config/alacritty/alacritty.toml
 fi
 
 

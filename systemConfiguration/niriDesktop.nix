@@ -41,6 +41,7 @@
     playerctl
     pavucontrol
     wdisplays
+    xwayland-satellite
   ];
 
 }
