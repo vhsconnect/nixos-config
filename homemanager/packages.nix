@@ -74,14 +74,7 @@ with builtins;
 
       #misc
       gh
-      gleam
-      erlang_28
-      luajitPackages.fennel
-      fennel-ls
-      clojure-lsp
 
-      # android
-      android-studio
     ]
     ++ essential
     ++ (map (f: nerd-fonts.${firstAttrName f}) fonts)

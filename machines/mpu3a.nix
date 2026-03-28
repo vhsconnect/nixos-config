@@ -3,6 +3,7 @@ let
   user = (import ../user.nix).mpu3a;
   otherHosts = import ../user.nix;
   packagesSmall = import ../homemanager/packages-small.nix;
+  packagesDev = import ../homemanager/packages-dev.nix;
 
   desktopEnvironments =
     if user.usei3 then
@@ -73,14 +74,10 @@ in
           (
             { pkgs, ... }:
             {
-              home.packages =
-                with pkgs;
-                [
-                  gleam
-                  erlang_28
-                  jamesdsp
-                ]
-                ++ (packagesSmall pkgs).essential;
+              home.packages = [
+              ]
+              ++ (packagesSmall pkgs).essential
+              ++ (packagesDev pkgs).ps;
             }
           )
         ]

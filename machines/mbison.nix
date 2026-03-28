@@ -2,6 +2,7 @@ inputs:
 let
   user = (import ../user.nix).mbison;
   otherHosts = import ../user.nix;
+  packagesDev = import ../homemanager/packages-dev.nix;
   desktopEnvironments =
     if user.usei3 then
       [
@@ -79,9 +80,13 @@ in
           lutris
           winetricks
           protonup-qt
-          jamesdsp
           dart
         ];
+
+        home.packages =
+
+          (packagesDev pkgs).ps;
+
       }
     )
     # inputs.bbrf.nixosModules.x86_64-linux.bbrf

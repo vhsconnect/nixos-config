@@ -22,6 +22,8 @@
     networkmanagerapplet
     #packages
     coreutils
+    #audio
+    jamesdsp
     # fonts
     nerd-fonts.hack
     # utils

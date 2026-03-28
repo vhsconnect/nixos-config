@@ -25,6 +25,7 @@
     lsof
 
     libreoffice
+    thunderbird
 
   ];
 }

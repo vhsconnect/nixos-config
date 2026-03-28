@@ -2,6 +2,7 @@ inputs:
 let
   user = (import ../user.nix).mbebe;
   otherHosts = import ../user.nix;
+  packagesDev = import ../homemanager/packages-dev.nix;
   desktopEnvironments =
     if user.usei3 then
       [
@@ -10,7 +11,8 @@ let
       ]
     else
       [
-        ../systemConfiguration/waylandDesktop.nix
+        # ../systemConfiguration/waylandDesktop.nix
+        ../systemConfiguration/niriDesktop.nix
       ];
   system = "x86_64-linux";
   #  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
@@ -52,6 +54,9 @@ in
           enable = true;
           user = "vhs";
         };
+
+        programs.thunderbird.enable = true;
+
       }
     )
 
@@ -85,9 +90,18 @@ in
           ../homemanager/modules/xScreensaver.nix
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
-          ../homemanager/easyeffects.nix
+          # ../homemanager/easyeffects.nix
+          ../homemanager/eq.nix
           ../homemanager/modules/tmux.nix
           ../homemanager/homeFiles.nix
+          (
+            { pkgs, ... }:
+            {
+              home.packages = [
+              ]
+              ++ (packagesDev pkgs).ps;
+            }
+          )
         ]
         ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
         ++ homemanagerDesktopImports;
