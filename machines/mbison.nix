@@ -83,10 +83,6 @@ in
           dart
         ];
 
-        home.packages =
-
-          (packagesDev pkgs).ps;
-
       }
     )
     # inputs.bbrf.nixosModules.x86_64-linux.bbrf
@@ -122,9 +118,15 @@ in
           ../homemanager/easyeffects.nix
           ../homemanager/eq.nix
           ../homemanager/homeFiles.nix
+          (
+            { pkgs, ... }:
+            {
+              home.packages = (packagesDev pkgs).ps;
+            }
+          )
 
         ]
-        # ++ homemanagerGtkImports
+        ++ homemanagerGtkImports
         ++ homemanagerDesktopImports;
       };
     }

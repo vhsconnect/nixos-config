@@ -97,9 +97,7 @@ in
           (
             { pkgs, ... }:
             {
-              home.packages = [
-              ]
-              ++ (packagesDev pkgs).ps;
+              home.packages = (packagesDev pkgs).ps;
             }
           )
         ]

@@ -324,6 +324,7 @@ in
                   "reload_style_on_change": true,
                   "modules-center": [],
                   "modules-left": ["sway/workspaces"],
+                  "modules-left": ["niri/workspaces"],
                   "modules-right": [
                       "custom/github",
                       "custom/tailscale",

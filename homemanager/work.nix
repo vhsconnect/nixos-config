@@ -2,6 +2,7 @@
   inputs,
   _imports,
   system,
+  stdenv,
   pkgs,
   ...
 }:
@@ -11,7 +12,7 @@
       allowUnfree = true;
       permittedInsecurePackages = [ "electron-22.3.27" ];
     };
-    overlays = import ./overlays.nix inputs system;
+    overlays = import ./overlays.nix inputs stdenv.hostPlatform.system;
   };
   imports = _imports;
 

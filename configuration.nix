@@ -3,7 +3,6 @@
   user,
   otherHosts,
   inputs,
-  system,
   ...
 }:
 with builtins;
@@ -173,7 +172,6 @@ with pkgs;
     };
   };
 
-  # services.blueman.enable = false;
   services.blueman.enable = true;
 
   services.pipewire = {
@@ -254,7 +252,7 @@ with pkgs;
     docker-compose
     wireguard-tools
     git-crypt
-    inputs.basmati.packages.${pkgs.system}.default
+    inputs.basmati.packages.${stdenv.hostPlatform.system}.default
   ];
 
   programs.ssh.askPassword = "${pkgs.x11_ssh_askpass}/libexec/x11-ssh-askpass";
@@ -276,7 +274,7 @@ with pkgs;
   #   DefaultDeviceTimeoutSec=10s
   #   TimeoutSec=10s
   # '';
-  systemd.watchdog.runtimeTime = "20s";
+  systemd.settings.Manager.RuntimeWatchdogSec = "20s";
 
   # systemd.additionalUpstreamSystemUnits = [ "debug-shell.service" ];
 
