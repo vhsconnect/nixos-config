@@ -22,18 +22,22 @@ let
           window#waybar {
               ${if unset then "all:unset;" else "background-color: ${background};"}
               font-family: "${user.secondaryFont}", Helvetica, Arial, sans-serif;
+              font-size: 11;
           }
 
           #workspaces {
-              margin: 0 2px;
+              margin: 2px 2px;
           }
 
+
           #workspaces button {
-              background-color: transparent;
-              color: ${foreground};
-              border-radius: 0;
-              
+              padding: 0 6px;
+              margin: 0;
+              min-height: 0;
+              min-width: 0;
+              border: none;
           }
+
 
           #workspaces button.focused {
               background-color: ${accent};
@@ -231,7 +235,7 @@ let
     };
 
     ".config/waybar/style-light.css" = waybarStyles {
-      background-module = "oldlace";
+      background-module = theme.waybarLight or theme.secondary;
       background = "white";
       foreground = "rgba(0, 0, 0, 0.9)";
       accent = theme.accent;
@@ -314,12 +318,13 @@ in
                   "modules-left": ["sway/workspaces"],
                   "position": "bottom",
                   "output": "DP-2",
+                  "height": 24
               },
               {
                   "layer": "top",
                   "position": "bottom",
                   "output": "!DP-2",
-                  "height": 35,
+                  "height": 24,
                   "spacing": 10,
                   "reload_style_on_change": true,
                   "modules-center": [],

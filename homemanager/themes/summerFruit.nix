@@ -18,4 +18,6 @@ with colors;
   gray = base06;
   grey = base06;
   debug = base0B;
+  waybarLight = base04;
+
 }
