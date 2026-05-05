@@ -163,6 +163,13 @@ in
   };
 
   home.file = {
+    ".config/niri/config.kdl" = {
+      enable = true;
+      text = builtins.readFile ./niri/config.kdl;
+    };
+  };
+
+  home.file = {
     "_sshagent-load" = {
       enable = true;
       text = ''
@@ -188,6 +195,7 @@ in
 
       '';
     };
+
   };
 
 }
