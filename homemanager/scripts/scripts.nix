@@ -9,7 +9,7 @@ with builtins;
 let
   fonts = (import ../fonts.nix { }).fonts;
   fontString = pipe fonts [
-    (map (mapAttrs (key: value: ''${key}:${value}'')))
+    (map (mapAttrs (key: value: "${key}:${value}")))
     (fold (a: b: a // b) { })
     attrValues
     (concatStringsSep " ")

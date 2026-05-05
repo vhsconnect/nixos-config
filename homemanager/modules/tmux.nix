@@ -48,6 +48,12 @@ with theme;
     # Current window should stand out
     set -g window-status-current-style fg=green,bg=black
 
+    # Set extended keys (pi)
+    set extended-keys on
+
+
+    # Sync bat theme
+    set -ga update-environment "BAT_THEME"
 
     # vi mode
     set-window-option -g mode-keys vi

@@ -9,6 +9,7 @@
     erlang_28
     dart
     android-studio
+    sqlite
 
   ];
 
