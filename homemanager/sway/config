@@ -1,8 +1,4 @@
 set $mod Mod1
-set $left h
-set $down j
-set $up k
-set $right l
 set $term alacritty 
 set $menu "rofi -lines 4 -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
 
@@ -17,11 +13,11 @@ set $menu "rofi -lines 4 -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
 
 ### Idle configuration
 
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 7FFFD4' \
-#          timeout 600 'swaymsg "output * dpms off"' \
-#               resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 7FFFD4' \
+         timeout 600 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f -c 3D140B'
 
 
 ### Key bindings
@@ -42,6 +38,10 @@ bindsym F10 exec xscreensaver-command -lock
 bindsym F11 exec shotman -C -c region
 
 
+# mouse buttons
+bindsym --whole-window $mod+button4 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+
+bindsym --whole-window $mod+button5 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-
+
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
 # Despite the name, also works for non-floating windows.
@@ -55,29 +55,6 @@ bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-
-
-# Move your focus around
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-# Or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# Move the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-# Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 
 # Switch to workspace
@@ -128,22 +105,25 @@ bindsym $mod+minus scratchpad show
 
 bindsym $mod+r mode "resize"
 
-mode "resize" {
-    bindsym $left resize shrink width 20px
-    bindsym $down resize grow height 20px
-    bindsym $up resize shrink height 20px
-    bindsym $right resize grow width 20px
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 20px
-    bindsym Down resize grow height 20px
-    bindsym Up resize shrink height 20px
-    bindsym Right resize grow width 20px
 
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+for_window [window_type="dialog"] floating enable
+for_window [window_type="utility"] floating enable
+for_window [window_type="toolbar"] floating enable
+for_window [window_type="splash"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_type="dropdown_menu"] floating enable
+for_window [window_type="popup_menu"] floating enable
+for_window [window_type="tooltip"] floating enable
+for_window [window_type="notification"] floating enable
+for_window [app_id=".*"] border pixel 1
+
+default_border pixel 1
+default_floating_border normal
+
+gaps inner 5
+gaps outer 5
+
 
 # input
 

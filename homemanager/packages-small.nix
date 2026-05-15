@@ -30,6 +30,7 @@
     eza
     silver-searcher
     fd
+    sd # find alternative
     lsof
     jq
     tree

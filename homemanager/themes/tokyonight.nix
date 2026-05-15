@@ -17,4 +17,5 @@ with colors;
   urgent = base0E;
   grey = base04;
   debug = base05;
+  waybarLight = base0B;
 }
