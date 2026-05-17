@@ -6,6 +6,16 @@
 
 let
   theme = import (../themes/. + "/${user.theme}.nix");
+  dunstCombination = {
+    colorBase = theme.theme.dunstFrameAndText or theme.secondary;
+    colorPop = theme.dunstBackground or theme.accent3;
+
+  };
+  tmuxCombination = {
+    colorBase = theme.theme.dunstFrameAndText or theme.secondary;
+    colorPop = theme.main;
+  };
+  combination = dunstCombination;
 
   waybarStyles =
     {
@@ -13,6 +23,8 @@ let
       background-module,
       foreground,
       accent,
+      workspaceBackground,
+      workspaceForeground,
       unset,
     }:
     {
@@ -36,12 +48,14 @@ let
               min-height: 0;
               min-width: 0;
               border: none;
+              border-radius: 0;
+              background-color: ${workspaceBackground};
+              color: ${workspaceForeground};
           }
 
-
           #workspaces button.focused {
-              background-color: ${accent};
-              color: ${background};
+              background-color: ${workspaceForeground};
+              color: ${workspaceBackground};
               border-radius: 0;
           }
 
@@ -66,6 +80,7 @@ let
           #pulseaudio,
           #custom-tailscale,
           #custom-github,
+          #custom-smartd,
           #custom-disks {
               padding: 0 10px;
               margin: 5px 3px; 
@@ -221,6 +236,8 @@ let
       background = "rgba(0, 0, 0, 0.9)";
       foreground = "white";
       accent = theme.accent;
+      workspaceBackground = combination.colorBase;
+      workspaceForeground = combination.colorPop;
       unset = false;
 
     };
@@ -231,14 +248,19 @@ let
       background = "rgba(0, 0, 0, 0.97)";
       foreground = "white";
       accent = theme.accent;
+      workspaceBackground = combination.colorBase;
+      workspaceForeground = combination.colorPop;
       unset = true;
     };
 
     ".config/waybar/style-light.css" = waybarStyles {
-      background-module = theme.waybarLight or theme.secondary;
+      # background-module = combination.color2;
+      background-module = combination.colorPop;
       background = "white";
       foreground = "rgba(0, 0, 0, 0.9)";
       accent = theme.accent;
+      workspaceBackground = "white";
+      workspaceForeground = combination.colorPop;
       unset = false;
     };
 
@@ -307,6 +329,42 @@ in
 
               echo "{\"text\":\"$text\",\"tooltip\":\"$tooltip\", \"class\": \"$class\"}" 
             '';
+        smartd =
+          pkgs.writeScriptBin "exe" # bash
+            ''
+              #! /usr/bin/env bash
+
+              # devices to check
+              DEVICES=${builtins.concatStringsSep " " user.disks}
+
+              # smartd inactive -> blue state
+              if ! systemctl is-active --quiet smartd; then
+              	echo '{"text":"SMART","class":"none","tooltip":"smartd not running"}'
+              	exit 0
+              fi
+
+              bad=0
+              tooltip=""
+
+              for dev in $DEVICES; do
+              	result=$(sudo smartctl -H "$dev" 2>/dev/null)
+
+              	if echo "$result" | grep -qi "PASSED"; then
+              		tooltip="$tooltip $dev: PASSED\n"
+              	else
+              		bad=1
+              		tooltip="$tooltip $dev: FAILING\n"
+              	fi
+              done
+
+              if [ "$bad" -eq 1 ]; then
+              	echo "{\"text\":\"Disk Bad\",\"class\":\"accent-on\",\"tooltip\":\"$tooltip\"}"
+              else
+              	echo "{\"text\":\"Disk Ok\",\"class\":\"healthy\",\"tooltip\":\"$tooltip\"}"
+              fi
+
+
+            '';
       in
 
       {
@@ -331,6 +389,7 @@ in
                   "modules-left": ["sway/workspaces"],
                   "modules-right": [
                       "custom/github",
+                      "custom/smartd",
                       "custom/tailscale",
                       "network",
                       "temperature",
@@ -429,6 +488,14 @@ in
                       "restart-interval": 4,
                       "interval": 60,
                       "format": "  {}",
+                      "tooltip": true
+                  },
+                  "custom/smartd": {
+                      "exec": "${smartd}/bin/exe",
+                      "return-type": "json",
+                      "restart-interval": 4,
+                      "interval": 600,
+                      "format": "  {}",
                       "tooltip": true
                   }
                 }

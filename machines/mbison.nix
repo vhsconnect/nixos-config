@@ -81,7 +81,19 @@ in
           winetricks
           protonup-qt
           dart
+
+          smartmontools
         ];
+
+        services.smartd = {
+          enable = true;
+
+          devices = [
+            {
+              device = "/dev/disk/by-uuid/eae8ee16-4b29-44ce-95b7-3d98f809d467";
+            }
+          ];
+        };
 
       }
     )
@@ -114,7 +126,7 @@ in
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
           ../homemanager/modules/tmux.nix
-          ../homemanager/modules/webapps.nix
+          #../homemanager/modules/webapps.nix
           ../homemanager/easyeffects.nix
           ../homemanager/eq.nix
           ../homemanager/homeFiles.nix

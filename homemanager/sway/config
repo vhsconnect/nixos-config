@@ -39,8 +39,8 @@ bindsym F11 exec shotman -C -c region
 
 
 # mouse buttons
-bindsym --whole-window $mod+button4 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+
-bindsym --whole-window $mod+button5 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-
+bindsym --whole-window $mod+button4 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+
+bindsym --whole-window $mod+button5 exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -88,8 +88,14 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
+
+# Bind workspace
+workspace 10 output DP-2
+#
+
 # Move focus to the parent container
 bindsym $mod+a focus parent
+
 
 
 
@@ -131,6 +137,14 @@ gaps outer 5
 input "1133:16420:Logitech_K400" {
     xkb_layout us
     xkb_file ~/.config/xkb/keymap/k400.xkb
+    xkb_variant altgr-intl
+    xkb_options ctrl:nocaps
+    repeat_delay 250
+    repeat_rate 30
+}
+
+input "20307:12336:Qwertykeys_qk100_ANSI_Keyboard" {
+    xkb_layout us
     xkb_variant altgr-intl
     xkb_options ctrl:nocaps
     repeat_delay 250

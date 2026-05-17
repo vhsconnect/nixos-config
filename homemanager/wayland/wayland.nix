@@ -6,35 +6,39 @@
 let
   theme = import (../themes/. + "/${user.theme}.nix");
   script = ''
+
+    #!/usr/bin/env bash
     DIRECTION=$1
-    WS_DIR=$2
+    FORWARD=$2
 
-    # Get geometry of focused window and the workspace area
     TREE=$(swaymsg -t get_tree)
-
     FOCUSED=$(echo "$TREE" | jq '.. | objects | select(.focused? == true)')
-    F_X=$(echo "$FOCUSED" | jq '.rect.x')
     F_Y=$(echo "$FOCUSED" | jq '.rect.y')
-    F_W=$(echo "$FOCUSED" | jq '.rect.width')
     F_H=$(echo "$FOCUSED" | jq '.rect.height')
 
-    # Get current workspace rect
     WS=$(swaymsg -t get_workspaces | jq '.[] | select(.focused==true)')
-    WS_X=$(echo "$WS" | jq '.rect.x')
     WS_Y=$(echo "$WS" | jq '.rect.y')
-    WS_W=$(echo "$WS" | jq '.rect.width')
     WS_H=$(echo "$WS" | jq '.rect.height')
+    WS_NUM=$(echo "$WS" | jq '.num')
+    CURRENT_OUTPUT=$(echo "$WS" | jq -r '.output')
 
-    # Check if window is flush against the edge in the given direction
+    OUTPUT_WS=$(swaymsg -t get_workspaces | jq "[.[] | select(.output==\"$CURRENT_OUTPUT\") | .num] | sort[]")
+
     case "$DIRECTION" in
-        left)  AT_EDGE=$(( F_X <= WS_X )) ;;
-        right) AT_EDGE=$(( F_X + F_W >= WS_X + WS_W )) ;;
-        up)    AT_EDGE=$(( F_Y <= WS_Y )) ;;
-        down)  AT_EDGE=$(( F_Y + F_H >= WS_Y + WS_H )) ;;
+        up)   AT_EDGE=$(( F_Y <= WS_Y + 20 )) ;;
+        down) AT_EDGE=$(( F_Y + F_H >= WS_Y + WS_H - 20 )) ;;
     esac
 
     if [ "$AT_EDGE" = "1" ]; then
-        swaymsg workspace "$WS_DIR"_on_output
+        if [ "$FORWARD" = "1" ]; then
+            TARGET=$(echo "$OUTPUT_WS" | awk -v cur="$WS_NUM" '$1 > cur {print $1; exit}')
+        else
+            TARGET=$(echo "$OUTPUT_WS" | awk -v cur="$WS_NUM" '$1 < cur {print $1}' | tail -1)
+        fi
+
+        if [ -n "$TARGET" ]; then
+            swaymsg workspace "$TARGET"
+        fi
     else
         swaymsg focus "$DIRECTION"
     fi
@@ -118,8 +122,8 @@ in
 
           # Move your focus around
           bindsym $mod+$left focus left
-          bindsym $mod+$down exec "${move_flip}/bin/exe down next"
-          bindsym $mod+$up exec "${move_flip}/bin/exe up previous"
+          bindsym $mod+$down exec "${move_flip}/bin/exe down 1"
+          bindsym $mod+$up exec "${move_flip}/bin/exe up 0"
           bindsym $mod+$right focus right
           # Or use $mod+[up|down|left|right]
           bindsym $mod+Left focus left
