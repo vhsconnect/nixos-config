@@ -10,6 +10,7 @@
     dart
     android-studio
     sqlite
+    duckdb
 
   ];
 

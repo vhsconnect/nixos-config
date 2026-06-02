@@ -16,4 +16,5 @@ with colors;
   urgent = base0F;
   grey = base0E;
   debug = base0F;
+  dunstFrameAndText = white;
 }

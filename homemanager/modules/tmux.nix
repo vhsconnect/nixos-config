@@ -48,9 +48,9 @@ with theme;
     # Current window should stand out
     set -g window-status-current-style fg=green,bg=black
 
-    # Set extended keys (pi)
-    set extended-keys on
-
+    # remote control (pi, claude)
+    set -g extended-keys on
+    set -g focus-events on
 
     # Sync bat theme
     set -ga update-environment "BAT_THEME"

@@ -12,7 +12,7 @@ with colors;
   main = base0B;
   secondary = base00;
   accent = base00;
-  accent2 = base00;
+  accent2 = base04;
   accent3 = base05;
   urgent = base03;
   grey = base08;

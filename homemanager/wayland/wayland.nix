@@ -5,7 +5,7 @@
 }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");
-  script = ''
+  script1 = ''
 
     #!/usr/bin/env bash
     DIRECTION=$1
@@ -45,7 +45,74 @@ let
 
   '';
 
-  move_flip = pkgs.writeScriptBin "exe" script;
+  script2 =
+    # bash
+    ''
+
+      #!/usr/bin/env bash
+      MODE=$1
+      DIRECTION=$2
+      FORWARD=$3
+
+      TREE=$(swaymsg -t get_tree)
+      EFFECTIVE=$(echo "$TREE" | jq '
+          def effective_ancestor($root):
+              . as $current_id |
+              ($root | [.. | objects | select(
+                  .nodes? and (.nodes | type == "array") and
+                  (.nodes | any(.id? == $current_id))
+              )] | last) as $parent |
+              if ($parent | type) == "object" and
+                 ($parent.layout? == "tabbed" or $parent.layout? == "stacked") then
+                  $parent.id | effective_ancestor($root)
+              else
+                  $current_id
+              end
+          ;
+
+          . as $root |
+          ($root | .. | objects | select(.focused? == true) | .id) | effective_ancestor($root) as $eid |
+          $root | .. | objects | select(.id? == $eid) | .rect
+      ')
+      E_Y=$(echo "$EFFECTIVE" | jq '.y')
+      E_H=$(echo "$EFFECTIVE" | jq '.height')
+
+      WS=$(swaymsg -t get_workspaces | jq '.[] | select(.focused==true)')
+      WS_Y=$(echo "$WS" | jq '.rect.y')
+      WS_H=$(echo "$WS" | jq '.rect.height')
+      WS_NUM=$(echo "$WS" | jq '.num')
+      CURRENT_OUTPUT=$(echo "$WS" | jq -r '.output')
+
+      OUTPUT_WS=$(swaymsg -t get_workspaces | jq "[.[] | select(.output==\"$CURRENT_OUTPUT\") | .num] | sort[]")
+
+      case "$DIRECTION" in
+          up)   AT_EDGE=$(( E_Y <= WS_Y + 20 )) ;;
+          down) AT_EDGE=$(( E_Y + E_H >= WS_Y + WS_H - 20 )) ;;
+      esac
+
+      if [ "$AT_EDGE" = "1" ]; then
+          if [ "$FORWARD" = "1" ]; then
+              TARGET=$(echo "$OUTPUT_WS" | awk -v cur="$WS_NUM" '$1 > cur {print $1; exit}')
+          else
+              TARGET=$(echo "$OUTPUT_WS" | awk -v cur="$WS_NUM" '$1 < cur {print $1}' | tail -1)
+          fi
+
+          if [ -n "$TARGET" ]; then
+              case "$MODE" in
+                  focus) swaymsg workspace "$TARGET" ;;
+                  move)  swaymsg move container to workspace "$TARGET", workspace "$TARGET" ;;
+              esac
+          fi
+      else
+          case "$MODE" in
+              focus) swaymsg focus "$DIRECTION" ;;
+              move)  swaymsg move "$DIRECTION" ;;
+          esac
+      fi
+
+    '';
+
+  move = pkgs.writeScriptBin "exe" script2;
 
 in
 {
@@ -122,8 +189,8 @@ in
 
           # Move your focus around
           bindsym $mod+$left focus left
-          bindsym $mod+$down exec "${move_flip}/bin/exe down 1"
-          bindsym $mod+$up exec "${move_flip}/bin/exe up 0"
+          bindsym $mod+$down exec "${move}/bin/exe focus down 1"
+          bindsym $mod+$up exec "${move}/bin/exe focus up 0"
           bindsym $mod+$right focus right
           # Or use $mod+[up|down|left|right]
           bindsym $mod+Left focus left
@@ -133,9 +200,12 @@ in
 
           # Move the focused window with the same, but add Shift
           bindsym $mod+Shift+$left move left
-          bindsym $mod+Shift+$down move down
-          bindsym $mod+Shift+$up move up
           bindsym $mod+Shift+$right move right
+
+          # Move the focused window across workspaces
+          bindsym $mod+Shift+$down exec "${move}/bin/exe move down 1"
+          bindsym $mod+Shift+$up exec "${move}/bin/exe move up 0"
+
           # Ditto, with arrow keys
           bindsym $mod+Shift+Left move left
           bindsym $mod+Shift+Down move down

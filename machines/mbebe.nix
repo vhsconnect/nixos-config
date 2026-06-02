@@ -11,8 +11,8 @@ let
       ]
     else
       [
-        # ../systemConfiguration/waylandDesktop.nix
-        ../systemConfiguration/niriDesktop.nix
+        ../systemConfiguration/waylandDesktop.nix
+        # ../systemConfiguration/niriDesktop.nix
       ];
   system = "x86_64-linux";
   #  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
@@ -97,7 +97,11 @@ in
           (
             { pkgs, ... }:
             {
-              home.packages = (packagesDev pkgs).ps;
+              home.packages = (packagesDev pkgs).ps ++ [
+                pkgs.sublime-merge
+                pkgs.obsidian
+                pkgs.claude-code
+              ];
             }
           )
         ]

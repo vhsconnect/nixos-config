@@ -25,6 +25,9 @@ input {
         // accel-profile "flat"
         // scroll-method "two-finger"
         // disabled-on-external-mouse
+        // middle-emulation
+        click-method "clickfinger"
+        tap-button-map "left-middle-right"
     }
 
     mouse {
