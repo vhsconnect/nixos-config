@@ -53,12 +53,13 @@
 
       ignores = [ "*.direnv" ];
 
-      delta = {
-        enable = true;
-        options = {
-          side-by-side = true;
-        };
-      };
-
     };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      side-by-side = true;
+    };
+  };
 }
