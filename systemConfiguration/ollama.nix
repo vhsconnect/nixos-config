@@ -1,9 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 {
 
   services.ollama = {
     enable = true;
-    acceleration = "rocm";
+    package = pkgs.ollama-rocm;
     environmentVariables = {
       HCC_AMDGPU_TARGET = "gfx1031";
     };

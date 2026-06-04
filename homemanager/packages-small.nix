@@ -37,13 +37,15 @@
     bat
     magic-wormhole-rs
     inotify-tools
-    nodePackages.typescript-language-server
+    typescript-language-server
     # shell
     fish
     # lang
     bb
     # lsp / formatters
     nixfmt
+    # android
+    android-tools
   ];
 
 }

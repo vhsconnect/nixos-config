@@ -1,18 +1,18 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     disko.url = "github:nix-community/disko";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     #sentinelone.url = "git+file:../sentinelone-nix";
-    darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
+    darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
     editor.url = "github:vhsconnect/nvim";
     basmati.url = "github:vhsconnect/basmati";
-    bbrf.url = "github:vhsconnect/bbrf-radio/0.10.0";
+    bbrf.url = "github:vhsconnect/bbrf-radio";
 
     alacritty_themes = {
       url = "github:alacritty/alacritty-theme";

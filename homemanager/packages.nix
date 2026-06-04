@@ -75,6 +75,13 @@ with builtins;
       #misc
       gh
 
+      # node packages
+      bash-language-server
+      typescript-language-server
+      typescript # needed?
+      prettier
+      # vscode-langservers-extracted #broken
+
     ]
     ++ essential
     ++ (map (f: nerd-fonts.${firstAttrName f}) fonts)
@@ -90,13 +97,6 @@ with builtins;
     ++ (with pkgs.python312Packages; [
       virtualenv
       pip
-    ])
-    ++ (with pkgs.nodePackages; [
-      bash-language-server
-      typescript-language-server
-      typescript # needed?
-      prettier
-      # vscode-langservers-extracted #broken
     ])
     ++ [
       # additional language servers

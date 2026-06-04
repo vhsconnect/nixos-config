@@ -152,7 +152,8 @@ with pkgs;
   services.displayManager.autoLogin.enable = user.autoLogin;
   services.displayManager.autoLogin.user = "vhs";
 
-  services.displayManager.gdm.enable = !user.autoLogin;
+  # services.displayManager.gdm.enable = !user.autoLogin;
+  services.displayManager.sddm.enable = true;
 
   # fallback
   services.xserver.windowManager.icewm.enable = !user.autoLogin;
@@ -194,7 +195,7 @@ with pkgs;
       extraGroups = [
         "wheel"
         "docker"
-        "adbusers"
+        # "adbusers"
         "libvirtd"
         "qemu-libvirtd"
         "syncthing"
@@ -233,7 +234,7 @@ with pkgs;
     zsh
     wget
     curl
-    firefox
+    firefox-bin
     lm_sensors
     vlc
     gnupg
@@ -265,7 +266,6 @@ with pkgs;
   programs.gnupg.agent = {
     enable = true;
   };
-  programs.adb.enable = true;
 
   services.openssh.enable = user.enableSSH;
 

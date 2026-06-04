@@ -69,6 +69,9 @@ let
     #! /usr/bin/env bash 
     chromium --disable-web-security --user-data-dir="Public/chromium"
   '';
+
+  _dl-process = pkgs.writeScriptBin "_dl-process" (import ./dlProcess.nix { inherit pkgs; }).script;
+
   watchexec = pkgs.writeScriptBin "watchexec" ''
     #!/usr/bin/env bash
 
@@ -235,8 +238,11 @@ let
     switch $argv[1]
         case -c
             set selected_path (find $config_path -type f | fzf --height 40% --reverse)
+            set conn_name (basename $selected_path | cut -d '.' -f1)
+            echo $conn_name
             if test -n "$selected_path"
                 nmcli connection import type wireguard file $selected_path
+                nmcli connection modify $conn_name connection.autoconnect no
             end
         case -d
             set deletion_config (nmcli connection show | grep wireguard | awk '{print $1}' | fzf --height 40%)
@@ -317,5 +323,6 @@ in
     vpn
     init-br
     cleanfilenames
+    _dl-process
   ];
 }
