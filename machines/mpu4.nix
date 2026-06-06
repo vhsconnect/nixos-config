@@ -7,8 +7,7 @@ let
       [
         ../desktop/i3.nix
         ../systemConfiguration/x11Desktop.nix
-        # ../desktop/gnome.nix
-      ]
+        # ../desktop/gnome.nix ]
     else
       [
         ../systemConfiguration/waylandDesktop.nix
@@ -37,8 +36,8 @@ in
       { ... }:
       {
         services.resolved.enable = true;
-      }
-    )
+        system.stateVersion = "20.09";
+      })
     inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
     inputs.home-manager.nixosModules.home-manager
     {
