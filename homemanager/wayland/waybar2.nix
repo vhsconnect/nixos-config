@@ -237,7 +237,7 @@ let
       foreground = "white";
       accent = theme.accent;
       workspaceBackground = combination.colorBase;
-      workspaceForeground = combination.colorPop;
+      workspaceForeground = "white";
       unset = false;
 
     };
@@ -381,7 +381,7 @@ in
               {
                   "layer": "top",
                   "position": "bottom",
-                  "output": "!DP-2",
+                  "output": "!DP-3",
                   "height": 24,
                   "spacing": 10,
                   "reload_style_on_change": true,
