@@ -1,5 +1,40 @@
 { pkgs, ... }:
 {
+  tiny = with pkgs; [
+    # guiPackages
+    alacritty
+    evince
+    gedit
+    nautilus
+    # x11
+    wdisplays
+    xwallpaper
+    libnotify
+    # hardware mgmt
+    acpi
+    # applets
+    networkmanagerapplet
+    #packages
+    coreutils
+    #audio
+    nerd-fonts.hack
+    # utils
+    eza
+    silver-searcher
+    fd
+    lsof
+    jq
+    tree
+    bat
+    magic-wormhole-rs
+    inotify-tools
+    # shell
+    fish
+    # lsp / formatters
+    nixfmt
+
+  ];
+
   essential = with pkgs; [
     # themePackages
     xfce.xfce4-icon-theme
