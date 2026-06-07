@@ -8,10 +8,6 @@
 with builtins;
 with pkgs;
 {
-  imports = [
-
-    (./. + "/hardware/${user.host}" + "/hardware-configuration.nix")
-  ];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -21,7 +17,6 @@ with pkgs;
     package = pkgs.nixVersions.stable;
     nixPath = [
       "nixpkgs=${inputs.nixpkgs}"
-      "nixos-config=${/home/common/SConfig/nixos-config/configuration.nix}"
     ];
     registry = {
       nixpkgs = {

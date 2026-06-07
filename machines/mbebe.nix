@@ -47,9 +47,15 @@ in
     # ../systemConfiguration/sentinelone.nix
     # ../systemConfiguration/fintech.nix
     # bbrf
+
     (
       { ... }:
       {
+        imports = [
+
+          (../. + "/hardware/${user.host}" + "/hardware-configuration.nix")
+        ];
+
         services.github-notify = {
           enable = true;
           user = "vhs";
