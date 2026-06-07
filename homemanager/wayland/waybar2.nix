@@ -6,6 +6,7 @@
 
 let
   theme = import (../themes/. + "/${user.theme}.nix");
+
   dunstCombination = {
     colorBase = theme.theme.dunstFrameAndText or theme.secondary;
     colorPop = theme.dunstBackground or theme.accent3;
@@ -15,7 +16,12 @@ let
     colorBase = theme.theme.dunstFrameAndText or theme.secondary;
     colorPop = theme.main;
   };
-  combination = dunstCombination;
+
+  themeMap = {
+    "summerFruit" = tmuxCombination;
+  };
+
+  combination = themeMap.${user.theme} or dunstCombination;
 
   waybarStyles =
     {
@@ -166,6 +172,11 @@ let
               color: ${foreground};
           }
 
+          #custom-smartd {
+              background-color: ${background-module};
+              color: ${foreground};
+          }
+
           #custom-disks {
               background-color: ${background-module};
               color: ${foreground};
@@ -237,7 +248,7 @@ let
       foreground = "white";
       accent = theme.accent;
       workspaceBackground = combination.colorBase;
-      workspaceForeground = "white";
+      workspaceForeground = combination.colorPop;
       unset = false;
 
     };
@@ -375,7 +386,7 @@ in
               {
                   "modules-left": ["sway/workspaces"],
                   "position": "bottom",
-                  "output": "DP-2",
+                  "output": "DP-3",
                   "height": 24
               },
               {

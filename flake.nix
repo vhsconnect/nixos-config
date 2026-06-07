@@ -45,15 +45,9 @@
 
         mpu4 = inputs.nixpkgs.lib.nixosSystem (import ./machines/mpu4.nix inputs);
 
-        tv1 = inputs.nixpkgs.lib.nixosSystem (import ./machines/tv1.nix inputs);
-
         munin = inputs.nixpkgs.lib.nixosSystem (import ./machines/munin.nix inputs);
 
         mbison = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbison.nix inputs);
-
-        m91 = inputs.nixpkgs.lib.nixosSystem (import ./machines/m91.nix inputs);
-
-        mprez = inputs.nixpkgs.lib.nixosSystem (import ./machines/mprez.nix inputs);
 
         mbebe = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbebe.nix inputs);
 
