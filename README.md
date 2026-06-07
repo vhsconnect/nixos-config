@@ -15,4 +15,14 @@ gpg --edit-key <public-key>
 > quit
 # finally add the new gpg user to git-crypt
 git-crypt add-gpg-user <public-key>
+
 ```
+
+
+### Streamed install
+```bash
+
+nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./hardware/generic/hardware-configuration.nix --flake .#generic --target-host root@<ip>
+
+```
+

@@ -56,7 +56,7 @@ in
         };
 
         programs.thunderbird.enable = true;
-	system.stateVersion = "20.09";
+        system.stateVersion = "20.09";
       }
     )
 

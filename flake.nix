@@ -58,6 +58,8 @@
         mbebe = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbebe.nix inputs);
 
         latest = inputs.nixpkgs.lib.nixosSystem (import ./machines/iso.nix inputs);
+
+        generic = inputs.nixpkgs.lib.nixosSystem (import ./machines/generic.nix inputs);
       };
 
       devShells =
