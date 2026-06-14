@@ -46,6 +46,17 @@ in
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.disko
+    (
+      { ... }:
+      {
+
+        imports = [
+
+          (../. + "/hardware/${user.host}" + "/hardware-configuration.nix")
+        ];
+        system.stateVersion = "26.05";
+      }
+    )
     bbrf
     {
       home-manager.useUserPackages = true;
