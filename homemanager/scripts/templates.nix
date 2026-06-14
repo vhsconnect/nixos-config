@@ -48,21 +48,9 @@ let
     [font]
     size = 12
 
-    [font.bold]
-    family = "VictorMono Nerd Font"
-    style = "Italic"
-
     [font.glyph_offset]
     x = 0
     y = 0
-
-    [font.italic]
-    family = "VictorMono Nerd Font"
-    style = "Light Italic"
-
-    [font.normal]
-    family = "Iosevka Nerd Font"
-    style = "Medium"
 
     [font.offset]
     x = 0
