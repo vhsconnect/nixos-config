@@ -226,6 +226,7 @@ with pkgs;
       p.pynvim
       p.virtualenv
     ]))
+    alacritty
     zsh
     wget
     curl
@@ -239,14 +240,16 @@ with pkgs;
     neovim
     xterm
     xclip
-    xorg.xmodmap
+    xmodmap
     x11_ssh_askpass
     blueman
     nodejs_22
     sysstat
     docker
+    fish
     docker-compose
     wireguard-tools
+    git
     git-crypt
     inputs.basmati.packages.${stdenv.hostPlatform.system}.default
   ];
@@ -260,6 +263,8 @@ with pkgs;
   programs.dconf.enable = true;
   programs.gnupg.agent = {
     enable = true;
+    enableSSHSupport = false;
+    pinentryPackage = pkgs.pinentry-gtk2;
   };
 
   services.openssh.enable = user.enableSSH;

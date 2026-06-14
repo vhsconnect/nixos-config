@@ -45,8 +45,6 @@
 
         mpu4 = inputs.nixpkgs.lib.nixosSystem (import ./machines/mpu4.nix inputs);
 
-        munin = inputs.nixpkgs.lib.nixosSystem (import ./machines/munin.nix inputs);
-
         mbison = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbison.nix inputs);
 
         mbebe = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbebe.nix inputs);

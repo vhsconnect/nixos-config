@@ -386,13 +386,13 @@ in
               {
                   "modules-left": ["sway/workspaces"],
                   "position": "bottom",
-                  "output": "DP-3",
+                  "output": "DP-2",
                   "height": 24
               },
               {
                   "layer": "top",
                   "position": "bottom",
-                  "output": "!DP-3",
+                  "output": "!DP-2",
                   "height": 24,
                   "spacing": 10,
                   "reload_style_on_change": true,
@@ -522,7 +522,7 @@ in
     enable = true;
     systemd = {
       enable = false;
-      target = "sway-session.target";
+      targets = [ "sway-session.target" ];
     };
   };
 
