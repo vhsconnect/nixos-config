@@ -47,6 +47,8 @@
 
         mbison = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbison.nix inputs);
 
+        fbison = inputs.nixpkgs.lib.nixosSystem (import ./machines/fbison.nix inputs);
+
         mbebe = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbebe.nix inputs);
 
         latest = inputs.nixpkgs.lib.nixosSystem (import ./machines/iso.nix inputs);

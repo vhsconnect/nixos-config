@@ -1,9 +1,8 @@
 inputs:
 let
-  user = (import ../user.nix).generic;
+  user = (import ../user.nix).fbison;
   otherHosts = import ../user.nix;
-  packagesSmall = import ../homemanager/packages-small.nix;
-
+  packagesDev = import ../homemanager/packages-dev.nix;
   desktopEnvironments =
     if user.usei3 then
       [
@@ -13,10 +12,11 @@ let
       ]
     else
       [
-        # ../systemConfiguration/niriDesktop.nix
         ../systemConfiguration/waylandDesktop.nix
+        # ../systemConfiguration/niriDesktop.nix
       ];
   system = "x86_64-linux";
+  homemanagerGtkImports = if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ];
   homemanagerDesktopImports =
     if user.usei3 then
       [
@@ -27,68 +27,100 @@ let
       [
         ../homemanager/wayland/wayland.nix
       ];
-  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
 in
-
 {
-  inherit system;
   specialArgs = {
-    inherit system;
     inherit inputs;
     inherit user;
     inherit otherHosts;
+    inherit system;
   };
   modules = [
     ../configuration.nix
+    ../modules/dlProcess.nix
+    ../modules/githubNotify.nix
+    ../modules/icecast.nix
     ../systemConfiguration/docker.nix
+    ../systemConfiguration/icecastConfiguration.nix
+    ../systemConfiguration/libVirt.nix
+    ../systemConfiguration/printing.nix
+    ../systemConfiguration/ollama.nix
+    ../systemConfiguration/tailscale.nix
+    ../systemConfiguration/jellyfin.nix
     ../systemConfiguration/syncthing/syncthing.nix
-    ../modules/bbrf.nix
-    inputs.bbrf.nixosModules.x86_64-linux.bbrf
-    inputs.home-manager.nixosModules.home-manager
-    inputs.disko.nixosModules.disko
-    bbrf
+    # ../systemConfiguration/iphone.nix
     (
       { pkgs, ... }:
       {
-        # hard set as will be built with a different user
+
         imports = [
-          (../. + "/hardware/generic" + "/hardware-configuration.nix")
-          (../. + "/hardware/generic" + "/disko.nix")
+
+          (../. + "/hardware/${user.host}" + "/hardware-configuration.nix")
         ];
 
         system.stateVersion = "26.05";
-        users.users.vhs.initialPassword = "password";
+
+        services.github-notify = {
+
+          enable = true;
+          user = "office";
+        };
+        services.dl-process = {
+          enable = true;
+          user = "vhs";
+          file = "~/dlp-files";
+          errorFile = "~/dlp-error-files";
+          outputDir = "~/Sync2";
+        };
+        services.xscreensaver = {
+          enable = false;
+        };
+
+        # gaming
+        environment.systemPackages = with pkgs; [
+          lutris
+          winetricks
+          protonup-qt
+        ];
+
+        services.smartd = {
+          enable = true;
+          devices = [ ];
+        };
 
       }
     )
+    inputs.home-manager.nixosModules.home-manager
     {
       home-manager.useUserPackages = true;
       home-manager.useGlobalPkgs = false;
-      home-manager.backupFileExtension = "hmback";
+      home-manager.backupFileExtension = "bkup";
       home-manager.users.vhs = import ../homemanager/home.nix;
+      home-manager.users.office = import ../homemanager/work.nix;
       home-manager.extraSpecialArgs = {
         inherit inputs;
         inherit user;
         inherit system;
         _imports = [
+          ../homemanager/packages.nix
+          ../homemanager/guiPackages.nix
+          ../homemanager/linuxPackages.nix
+          ../homemanager/themePackages.nix
           ../homemanager/zsh.nix
+          ../homemanager/mimeappsList.nix
           ../homemanager/vim/vim.nix
-          ../homemanager/i3/i3blocks.home.nix
-          ../homemanager/i3/i3.home.nix
           ../homemanager/modules/dunst.home.nix
           ../homemanager/modules/rofi.home.nix
+          ../homemanager/modules/git.nix
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
           ../homemanager/modules/tmux.nix
+          ../homemanager/easyeffects.nix
           ../homemanager/eq.nix
           ../homemanager/homeFiles.nix
-
           (
             { pkgs, ... }:
             {
-              home.packages = [
-              ]
-              ++ (packagesSmall pkgs).tiny;
 
               home.file = {
                 ".background-image" = {
@@ -97,10 +129,12 @@ in
                 };
               };
 
+              home.packages = (packagesDev pkgs).ps;
             }
           )
+
         ]
-        ++ (if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ])
+        ++ homemanagerGtkImports
         ++ homemanagerDesktopImports;
       };
     }
