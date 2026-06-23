@@ -18,18 +18,78 @@ in
 
   xdg.configFile =
     let
-      mapper = map (y: {
-        name = "alacritty/fonts/${firstAttrName y}.toml";
-        value = {
-          text = generateFontTemplate (firstAttrValue y);
-        };
-      });
-      allacrittyFontTemplates = lib.pipe fonts [
-        mapper
-        lib.listToAttrs
+      fontFamilyFiles = lib.listToAttrs (
+        map (
+          y:
+          let
+            fileName = firstAttrName y;
+            qualifiedName = y.${fileName};
+          in
+          {
+            name = "alacritty/fonts/${fileName}.toml";
+            value = {
+              text = generateFontTemplate (firstAttrValue y);
+
+            };
+          }
+        ) fonts
+      );
+
+      categories = [
+        "normal"
+        "bold"
+        "italic"
+        "bold_italic"
       ];
+      styles = [
+        "Thin"
+        "ExtraLight"
+        "Light"
+        "Regular"
+        "Medium"
+        "SemiBold"
+        "Bold"
+        "ExtraBold"
+        "Heavy"
+        "Italic"
+        "Thin Italic"
+        "ExtraLight Italic"
+        "Light Italic"
+        "Medium Italic"
+        "SemiBold Italic"
+        "Bold Italic"
+        "ExtraBold Italic"
+        "Heavy Italic"
+        "Oblique"
+        "Thin Oblique"
+        "ExtraLight Oblique"
+        "Light Oblique"
+        "Medium Oblique"
+        "SemiBold Oblique"
+        "Bold Oblique"
+        "ExtraBold Oblique"
+        "Heavy Oblique"
+      ];
+
+      combinations = lib.concatMap (cat: map (style: { inherit cat style; }) styles) categories;
+
+      fontStyleFiles = lib.listToAttrs (
+        map ({ cat, style }: {
+          name = "alacritty/font-styles/${cat}-${
+            lib.replaceStrings [ " " ] [ "-" ] (lib.toLower style)
+          }.toml";
+          value = {
+            text = ''
+              [font.${cat}]
+              style = "${style}"
+            '';
+          };
+        }) combinations
+      );
+
+      allTemplates = fontFamilyFiles // fontStyleFiles;
     in
-    allacrittyFontTemplates
+    allTemplates
     // {
       "alacritty/themes".source = inputs.alacritty_themes.outPath + "/themes";
     };

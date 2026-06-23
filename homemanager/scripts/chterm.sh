@@ -1,6 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i bash -p gnused
-#/* vim: set filetype=bash : */
+#! nix-shell -i bash -p gnused fzf fontconfig
 
 set -e
 usage() { echo "Usage: $0 [-f|-t] [--pick=selection] string_list"; exit 1; }
@@ -25,7 +24,9 @@ while getopts "ft" opt; do
 done
 shift $((OPTIND-1))
 
-
+sanitize_style_path() {
+    echo "$1" | tr '[:upper:]' '[:lower:]' | tr ' ' '-'
+}
 
 if [ "$TYPE" = "fonts" ]; then
     if [ $# -lt 1 ]; then
@@ -45,27 +46,26 @@ if [ "$TYPE" = "fonts" ]; then
     selected_option_path="$font_path.toml"
 
     Y="\"~/.config/alacritty/fonts/$selected_option_path\","
-    sed -i "/config\/alacritty\/fonts/c\\$Y" ~/.config/alacritty/alacritty.toml
+    sed -i "/config\/alacritty\/fonts/c\\  $Y" ~/.config/alacritty/alacritty.toml
 
-    echo $font_qualified_name
+    echo "Switched to Family: $font_qualified_name"
 
     AVAILABLE_STYLES=$(fc-list | grep "$font_qualified_name" | grep -o 'style=.*' | cut -d= -f2 | tr ',' '\n' | sort | uniq)
-
 
     NORMAL=$(echo "$AVAILABLE_STYLES" | fzf --header 'style NORMAL')
     BOLD=$(echo "$AVAILABLE_STYLES" | fzf --header 'style BOLD')
     ITALIC=$(echo "$AVAILABLE_STYLES" | fzf --header 'style ITALIC')
     BOLD_ITALIC=$(echo "$AVAILABLE_STYLES" | fzf --header 'style BOLD ITALIC')
 
-    SN="style = \"$NORMAL\""
-    SB="style = \"$BOLD\""
-    SI="style = \"$ITALIC\""
-    SBI="style = \"$BOLD_ITALIC\""
+    PATH_NORMAL=$(sanitize_style_path "$NORMAL")
+    PATH_BOLD=$(sanitize_style_path "$BOLD")
+    PATH_ITALIC=$(sanitize_style_path "$ITALIC")
+    PATH_BOLD_ITALIC=$(sanitize_style_path "$BOLD_ITALIC")
 
-    sed -i "/^style = /c\\$SN" ~/.config/alacritty/font-styles/normal.toml
-    sed -i "/^style = /c\\$SB" ~/.config/alacritty/font-styles/bold.toml
-    sed -i "/^style = /c\\$SI" ~/.config/alacritty/font-styles/italic.toml
-    sed -i "/^style = /c\\$SBI" ~/.config/alacritty/font-styles/bold-italic.toml
+    sed -i "/config\/alacritty\/font-styles\/normal-/c\\  \"~/.config/alacritty/font-styles/normal-$PATH_NORMAL.toml\"," ~/.config/alacritty/alacritty.toml
+    sed -i "/config\/alacritty\/font-styles\/bold-/c\\  \"~/.config/alacritty/font-styles/bold-$PATH_BOLD.toml\"," ~/.config/alacritty/alacritty.toml
+    sed -i "/config\/alacritty\/font-styles\/italic-/c\\  \"~/.config/alacritty/font-styles/italic-$PATH_ITALIC.toml\"," ~/.config/alacritty/alacritty.toml
+    sed -i "/config\/alacritty\/font-styles\/bold_italic-/c\\  \"~/.config/alacritty/font-styles/bold_italic-$PATH_BOLD_ITALIC.toml\"," ~/.config/alacritty/alacritty.toml
 
 elif [ "$TYPE" = "themes" ]; then
     if [ -n "$PICK" ]; then
@@ -76,8 +76,5 @@ elif [ "$TYPE" = "themes" ]; then
     fi
     echo "$selected_option"
     Y="\"~/.config/alacritty/themes/$selected_option\","
-    sed -i "/config\/alacritty\/themes/c\\$Y" ~/.config/alacritty/alacritty.toml
+    sed -i "/config\/alacritty\/themes/c\\  $Y" ~/.config/alacritty/alacritty.toml
 fi
-
-
-

@@ -28,15 +28,15 @@
   generateFontTemplate = font_name: ''
     [font.bold]
     family = "${font_name} Nerd Font"
-    style = "Italic"
 
     [font.italic]
     family = "${font_name} Nerd Font"
-    style = "Regular"
 
     [font.normal]
     family = "${font_name} Nerd Font"
-    style = "Light"
+
+    [font.bold_italic]
+    family = "${font_name} Nerd Font"
   '';
 
 }
