@@ -14,6 +14,9 @@ let
     mbison = {
       id = "3MOHUU5-GYFZ3WD-O6VI3ZX-RWSBMFP-ZTMKNQ6-5VTXMT3-FVZ377Y-SOPNTQV";
     };
+    fbison = {
+      id = "2RIEHXL-WCZWOC4-NJT4PML-DXYDCCM-NK5BDVV-G3TTRUF-TDMPP24-DKYMCQ4";
+    };
     mbebe = {
       id = "WBPCZ3R-A32TI6D-OR4XP34-2OFBY2J-O2GGES3-Q36MKQ6-E7TBA22-37SPUQW";
     };
@@ -61,6 +64,7 @@ in
         "/home/vhs/Sync" = {
           id = "sync";
           devices = filterHostList [
+            "fbison"
             "mbison"
             "mpu3a"
             "mpu4"
@@ -70,6 +74,7 @@ in
         "/home/vhs/Sync2" = {
           id = "sync2";
           devices = filterHostList [
+            "fbison"
             "mbison"
             "pinser"
             "mpu4"
@@ -78,6 +83,7 @@ in
         "/home/common/Folder" = {
           id = "folder";
           devices = filterHostList [
+            "fbison"
             "mbison"
             "mpu3a"
             "mpu4"
@@ -88,6 +94,7 @@ in
           id = "shared-1";
           type = "sendreceive";
           devices = filterHostList [
+            "fbison"
             "mbison"
             "mpu4"
             "mbebe"
