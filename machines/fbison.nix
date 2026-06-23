@@ -16,6 +16,7 @@ let
         # ../systemConfiguration/niriDesktop.nix
       ];
   system = "x86_64-linux";
+  immich = import ../systemConfiguration/immich.nix;
   homemanagerGtkImports = if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ];
   homemanagerDesktopImports =
     if user.usei3 then
@@ -36,19 +37,23 @@ in
     inherit system;
   };
   modules = [
+    inputs.disko.nixosModules.disko
+
+    ../modules/immich.nix
+    immich
+
     ../configuration.nix
     ../modules/dlProcess.nix
     ../modules/githubNotify.nix
-    ../modules/icecast.nix
+    # ../modules/icecast.nix
     ../systemConfiguration/docker.nix
-    ../systemConfiguration/icecastConfiguration.nix
+    # ../systemConfiguration/icecastConfiguration.nix
     ../systemConfiguration/libVirt.nix
-    ../systemConfiguration/printing.nix
-    ../systemConfiguration/ollama.nix
-    ../systemConfiguration/tailscale.nix
-    ../systemConfiguration/jellyfin.nix
+    # ../systemConfiguration/printing.nix
     ../systemConfiguration/syncthing/syncthing.nix
+    ../systemConfiguration/jellyfin.nix
     # ../systemConfiguration/iphone.nix
+
     (
       { pkgs, ... }:
       {
@@ -77,16 +82,12 @@ in
         };
 
         # gaming
-        environment.systemPackages = with pkgs; [
-          lutris
-          winetricks
-          protonup-qt
-        ];
+        # environment.systemPackages = with pkgs; [
+        #   lutris
+        #   winetricks
+        #   protonup-qt
+        # ];
 
-        services.smartd = {
-          enable = true;
-          devices = [ ];
-        };
 
       }
     )
@@ -125,7 +126,7 @@ in
               home.file = {
                 ".background-image" = {
                   enable = true;
-                  source = ../nixos.jpg;
+                  source = ../nixos.png;
                 };
               };
 

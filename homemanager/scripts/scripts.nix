@@ -293,78 +293,87 @@ let
 
   '';
   bootstrap-config = pkgs.writers.writeFishBin "__bootstrap-config" ''
-  # prompts for user, gpg keys, path for ssh, path for config
+    # prompts for user, gpg keys, path for ssh, path for config
 
-    function prompt_fzf
-        set -l question $argv[1]
-        set -l command $argv[2]
-        set -l varname $argv[3]
+      function prompt_fzf
+          set -l question $argv[1]
+          set -l command $argv[2]
+          set -l varname $argv[3]
 
-        set -l chosen (eval $command | fzf --prompt="$question > " --height=40% --border --layout=reverse)
+          set -l chosen (eval $command | fzf --prompt="$question > " --height=40% --border --layout=reverse)
 
-        if test -z "$chosen"
-            set -g $varname ""
-            return 1
-        end
+          if test -z "$chosen"
+              set -g $varname ""
+              return 1
+          end
 
-        set -g $varname $chosen
-    end
+          set -g $varname $chosen
+      end
 
-    function prompt
-        set -l question $argv[1]
-        set -l varname $argv[3]
-        set -l default $argv[2]
+      function prompt
+          set -l question $argv[1]
+          set -l varname $argv[3]
+          set -l default $argv[2]
 
-        if test -n "$default"
-            read -P "$question [$default]: " -l raw
-            set raw (string trim -- $raw)
-            set -g $varname (test -n "$raw"; and echo $raw; or echo $default)
-        else
-            read -P "$question: " -l raw
-            set -g $varname (string trim -- $raw)
-        end
-    end
+          if test -n "$default"
+              read -P "$question [$default]: " -l raw
+              set raw (string trim -- $raw)
+              set -g $varname (test -n "$raw"; and echo $raw; or echo $default)
+          else
+              read -P "$question: " -l raw
+              set -g $varname (string trim -- $raw)
+          end
+      end
 
-    prompt "Which user" \
-        vhs \
-        USER
+      prompt "Which user" \
+          vhs \
+          USER
 
-    echo "Creating the ssh keys"
+      prompt "Which second user: ssh keys only" \
+          office \
+          USER2
 
-    sudo -u $USER ssh-keygen \
-        -t ed25519 \
-        -C "90valentin@gmail.com" \
-        -f /home/$USER/.ssh/id_ed25519
+      echo "Creating the ssh keys"
 
-    echo "creating nixos-config directory"
+      sudo -u $USER ssh-keygen \
+          -t ed25519 \
+          -C "90valentin@gmail.com" \
+          -f /home/$USER/.ssh/id_ed25519
 
-    prompt "Where do you want to pull nixos-config" \
-        /home/common/SConfig/ \
-        NIXOS_CONFIG_PATH
+      sudo -u $USER ssh-keygen \
+          -t ed25519 \
+          -C "90valentin@gmail.com" \
+          -f /home/$USER2/.ssh/id_ed25519
 
-    mkdir -p $NIXOS_CONFIG_PATH
-    cd $NIXOS_CONFIG_PATH
-    chown $USER
-    git clone https://github.com/vhsconnect/nixos-config
+      echo "creating nixos-config directory"
 
-    echo "setting up gpg keys for gnupg"
+      prompt "Where do you want to pull nixos-config" \
+          /home/common/SConfig/ \
+          NIXOS_CONFIG_PATH
 
-    prompt "where is the asc file" \
-        /home/$USER/gpg.asc \
-        KEYS
+      mkdir -p $NIXOS_CONFIG_PATH
+      cd $NIXOS_CONFIG_PATH
+      chown $USER
+      git clone https://github.com/vhsconnect/nixos-config
 
-    set TARGET_HOME "/home/$USER/.gnupg"
+      echo "setting up gpg keys for gnupg"
 
-    sudo -u $USER gpg --import $KEYS
+      prompt "where is the asc file" \
+          /home/$USER/gpg.asc \
+          KEYS
 
-    gpg --homedir $TARGET_HOME \
-        --list-packets $KEYS \
-        | awk '/keyid:/{print $2}' \
-        | tail -n 1 \
-        | xargs -I {} echo "{}:6:" \
-        | gpg --import-ownertrust
+      set TARGET_HOME "/home/$USER/.gnupg"
 
-    chown $USER -R $TARGET_HOME
+      sudo -u $USER gpg --import $KEYS
+
+      gpg --homedir $TARGET_HOME \
+          --list-packets $KEYS \
+          | awk '/keyid:/{print $2}' \
+          | tail -n 1 \
+          | xargs -I {} echo "{}:6:" \
+          | gpg --import-ownertrust
+
+      chown $USER -R $TARGET_HOME
 
   '';
 
