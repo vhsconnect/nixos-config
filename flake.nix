@@ -41,6 +41,8 @@
 
         mpu3a = inputs.nixpkgs.lib.nixosSystem (import ./machines/mpu3a.nix inputs);
 
+        mpu3b = inputs.nixpkgs.lib.nixosSystem (import ./machines/mpu3b.nix inputs);
+
         mbt = inputs.nixpkgs.lib.nixosSystem (import ./machines/mbt.nix inputs);
 
         mpu4 = inputs.nixpkgs.lib.nixosSystem (import ./machines/mpu4.nix inputs);
