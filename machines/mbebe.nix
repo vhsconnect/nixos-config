@@ -43,7 +43,7 @@ in
     ../systemConfiguration/syncthing/syncthing.nix
     #../systemConfiguration/libVirt.nix
     ../systemConfiguration/tailscale.nix
-    #../systemConfiguration/nosleep.nix
+    ../systemConfiguration/nosleep.nix
     # ../systemConfiguration/sentinelone.nix
     # ../systemConfiguration/fintech.nix
     # bbrf

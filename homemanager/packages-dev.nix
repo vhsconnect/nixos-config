@@ -12,6 +12,10 @@
     sqlite
     duckdb
     prettier
+    git-absorb
+
+    # claude push to speak dep
+    sox
 
   ];
 

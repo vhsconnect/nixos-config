@@ -82,7 +82,6 @@ in
           ../homemanager/modules/tmux.nix
           ../homemanager/eq.nix
           ../homemanager/homeFiles.nix
-
           (
             { pkgs, ... }:
             {

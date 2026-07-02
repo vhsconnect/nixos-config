@@ -24,4 +24,17 @@
   ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  systemd.user.services.kanshi = {
+    enable = true;
+    description = "kanshi daemon";
+    wantedBy = [ "sway-session.target" ];
+    bindsTo = [ "sway-session.target" ];
+    after = [ "sway-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.kanshi}/bin/kanshi";
+      Restart = "on-failure";
+    };
+  };
+
 }

@@ -12,6 +12,7 @@
         "yarn.lock"
         "package-lock.json"
         "flake.lock"
+        "pnpm-lock.yaml"
       ];
       difOptions = lib.strings.concatMapStrings (x: " ':(exclude)${x}'") excludeFiles;
     in
