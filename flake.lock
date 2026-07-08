@@ -992,6 +992,22 @@
         "type": "github"
       }
     },
+    "pi_themes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1782399550,
+        "narHash": "sha256-uUGvQd82Ut1kIUoxuTLBRTYIoqO17kmU6sXaorDvod8=",
+        "owner": "hasit",
+        "repo": "pi-community-themes",
+        "rev": "1f8830e60cd6175047837d35f2db489412a2141a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hasit",
+        "repo": "pi-community-themes",
+        "type": "github"
+      }
+    },
     "plugin-avante-nvim": {
       "flake": false,
       "locked": {
@@ -2177,7 +2193,8 @@
         "editor": "editor",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_7",
-        "nixpkgs-master": "nixpkgs-master"
+        "nixpkgs-master": "nixpkgs-master",
+        "pi_themes": "pi_themes"
       }
     },
     "scope-gutter": {

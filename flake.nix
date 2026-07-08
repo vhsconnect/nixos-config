@@ -18,6 +18,12 @@
       url = "github:alacritty/alacritty-theme";
       flake = false;
     };
+
+    pi_themes = {
+      url = "github:hasit/pi-community-themes";
+      flake = false;
+    };
+
   };
   outputs =
     inputs:

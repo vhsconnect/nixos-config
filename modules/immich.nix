@@ -87,6 +87,7 @@ in
               };
             };
             mediaLocation = "/media";
+            machine-learning.enable = true;
             openFirewall = true;
             user = "immich";
             group = cfg.group;

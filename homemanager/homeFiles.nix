@@ -1,8 +1,6 @@
 {
-  pkgs,
   lib,
   user,
-  config,
   inputs,
   ...
 }:
@@ -10,8 +8,6 @@ let
   inherit (import ./fonts.nix { }) fonts generateFontTemplate;
   firstAttrName = z: lib.head (lib.attrNames z);
   firstAttrValue = z: lib.head (lib.attrValues z);
-  theme = import (./themes/. + "/${user.theme}.nix");
-  inherit (user) secondaryFont;
 
 in
 {
@@ -23,7 +19,6 @@ in
           y:
           let
             fileName = firstAttrName y;
-            qualifiedName = y.${fileName};
           in
           {
             name = "alacritty/fonts/${fileName}.toml";
@@ -93,6 +88,10 @@ in
     // {
       "alacritty/themes".source = inputs.alacritty_themes.outPath + "/themes";
     };
+
+  home.file.".pi/agent/themes" = {
+    source = inputs.pi_themes.outPath + "/themes";
+  };
 
   home.file = {
     ".ignore" = {

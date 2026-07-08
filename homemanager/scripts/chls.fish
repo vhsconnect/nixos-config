@@ -1,6 +1,10 @@
 #!/usr/bin/env fish
 
-# COLORS
+# Example
+# export EXA_COLORS="di=96:ln=94:so=91:pi=91:ex=91:bd=91:cd=91:su=91:sg=91:tw=91:ow=91:da=37:ur=92:uw=93:ux=91:gr=92:gw=93:gx=91:tr=92:tw=93:tx=91:sn=36:un=36:ga=36:in=90:hd=36:lp=31:cc=36:bO=36:gm=36:gd=36:gv=36:gt=36:xx=90"
+
+set FILE ~/.zstuff
+
 set BRIGHT_BLACK 90
 set BRIGHT_RED 91
 set BRIGHT_GREEN 92
@@ -110,32 +114,79 @@ set -a ELEMENTS GIT_RENAMED
 set -a ELEMENTS GIT_TYPE_CHANGE
 set -a ELEMENTS PUNCTUATION
 
+set -l DEFAULT_COLORS
+set -a DEFAULT_COLORS "$DIRECTORY=$BRIGHT_BLACK"
+set -a DEFAULT_COLORS "$SYMBOLIC_LINK=$BRIGHT_BLUE"
+set -a DEFAULT_COLORS "$SOCKET=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$PIPE=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$EXECUTABLE=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$BLOCK_DEVICE=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$CHARACTER_DEVICE=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$SETUID=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$SETGID=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$STICKY_WRITABLE=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$OTHER_WRITABLE=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$DATE=$WHITE"
+set -a DEFAULT_COLORS "$USER_READ_PERMISSION=$BRIGHT_GREEN"
+set -a DEFAULT_COLORS "$USER_WRITE_PERMISSION=$BRIGHT_YELLOW"
+set -a DEFAULT_COLORS "$USER_EXECUTE_PERMISSION=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$GROUP_READ_PERMISSION=$BRIGHT_GREEN"
+set -a DEFAULT_COLORS "$GROUP_WRITE_PERMISSION=$BRIGHT_YELLOW"
+set -a DEFAULT_COLORS "$GROUP_EXECUTE_PERMISSION=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$OTHERS_READ_PERMISSION=$BRIGHT_GREEN"
+set -a DEFAULT_COLORS "$OTHERS_WRITE_PERMISSION=$BRIGHT_YELLOW"
+set -a DEFAULT_COLORS "$OTHERS_EXECUTE_PERMISSION=$BRIGHT_RED"
+set -a DEFAULT_COLORS "$FILE_SIZE=$CYAN"
+set -a DEFAULT_COLORS "$FILE_OWNER=$GREEN"
+set -a DEFAULT_COLORS "$GROUP_NAME=$MAGENTA"
+set -a DEFAULT_COLORS "$INODE_NUMBER=$BRIGHT_BLACK"
+set -a DEFAULT_COLORS "$HARD_LINK_COUNT=$CYAN"
+set -a DEFAULT_COLORS "$LINK_TARGET_PATH=$RED"
+set -a DEFAULT_COLORS "$CONTROL_CHARACTERS=$RED"
+set -a DEFAULT_COLORS "$BLOCK_SIZE=$CYAN"
+set -a DEFAULT_COLORS "$GIT_MODIFIED=$RED"
+set -a DEFAULT_COLORS "$GIT_DELETED=$RED"
+set -a DEFAULT_COLORS "$GIT_RENAMED=$YELLOW"
+set -a DEFAULT_COLORS "$GIT_TYPE_CHANGE=$YELLOW"
+set -a DEFAULT_COLORS "$PUNCTUATION=$BRIGHT_BLACK"
+set DEFAULT_LS (string join ":" $DEFAULT_COLORS)
 
-set FILE ~/_ls-colors
+# precedence: existing line in $FILE > $EXA_COLORS env > built-in default
+set -l from_file
+if test -f $FILE
+    set from_file (grep '^EXA_COLORS=' $FILE 2>/dev/null | head -n1 | string replace -r '^EXA_COLORS=' '')
+end
 
-if test ! -f $FILE
-    echo file does not exist, creating...
-    cp ~/Public/templates/_ls-colors ~/_ls-colors
-    chmod +x ~/_ls-colors
-    exit 0
+if test -n "$from_file"
+    set CURRENT_LS $from_file
+else if test -n "$EXA_COLORS"
+    set CURRENT_LS $EXA_COLORS
+else
+    set CURRENT_LS $DEFAULT_LS
 end
 
 set SELECTED_EL (printf '%s\n' $ELEMENTS | fzf --prompt="Select an element: ")
-set SELECTED_COLOR (echo '$'(printf '%s\n' $COLORS | fzf --prompt="Select a color: "))
+set -l color_name (printf '%s\n' $COLORS | fzf --prompt="Select a color: ")
+set SELECTED_COLOR $$color_name
 
+set -l el_code $$SELECTED_EL
 
-set LINE_NUM (grep -n '\$'"$SELECTED_EL" "$FILE" | cut -d: -f1 | head -n1)
-set LINE (sed -n "$LINE_NUM"p "$FILE")
+set -l next
 
-set -l target
-
-
-for C in $COLORS
-    if string match -q "*$C*" "$LINE"
-        set target (echo '$'$C)
-        break
+for pair in (string split ":" $CURRENT_LS)
+    set e (string  split "=" $pair)[1]
+    set c (string split "=" $pair)[2]
+    if test "$e" = "$el_code"
+        set -a next "$e=$SELECTED_COLOR"
+    else
+        set -a next $pair
     end
 end
 
+set x "EXA_COLORS="(string join ":" $next)
 
-sed -i "$LINE_NUM"s/$target/$SELECTED_COLOR/g $FILE
+if grep -q '^EXA_COLORS=' $FILE 2>/dev/null
+    sed -i "s/.*EXA_COLORS.*/$x/" $FILE
+else
+    echo $x >>$FILE
+end

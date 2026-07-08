@@ -76,7 +76,7 @@
     # shell
     fish
     # lang
-    bb
+    babashka
     # lsp / formatters
     nixfmt
     # android

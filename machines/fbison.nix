@@ -47,6 +47,7 @@ in
     ../modules/githubNotify.nix
     # ../modules/icecast.nix
     ../systemConfiguration/docker.nix
+    ../systemConfiguration/ollama.nix
     # ../systemConfiguration/icecastConfiguration.nix
     ../systemConfiguration/libVirt.nix
     # ../systemConfiguration/printing.nix
@@ -82,12 +83,11 @@ in
         };
 
         # gaming
-        # environment.systemPackages = with pkgs; [
-        #   lutris
-        #   winetricks
-        #   protonup-qt
-        # ];
-
+        environment.systemPackages = with pkgs; [
+          lutris
+          winetricks
+          protonup-qt
+        ];
 
       }
     )
