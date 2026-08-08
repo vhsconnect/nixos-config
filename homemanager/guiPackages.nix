@@ -10,6 +10,6 @@
     popcorntime
     notepad-next
     element-desktop
-    mongodb-compass
+    # mongodb-compass
   ];
 }

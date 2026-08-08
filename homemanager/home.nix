@@ -9,7 +9,7 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-      permittedInsecurePackages = [ "electron-22.3.27" ];
+      #permittedInsecurePackages = [ "electron-22.3.27" ];
     };
     overlays = import ./overlays.nix inputs stdenv.hostPlatform.system;
   };

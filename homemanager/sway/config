@@ -13,11 +13,11 @@ set $menu "rofi -lines 4 -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
 
 ### Idle configuration
 
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 7FFFD4' \
-         timeout 600 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 3D140B'
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 7FFFD4' \
+#          timeout 600 'swaymsg "output * dpms off"' \
+#               resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 3D140B'
 
 
 ### Key bindings

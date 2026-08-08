@@ -13,6 +13,7 @@
     editor.url = "github:vhsconnect/nvim";
     basmati.url = "github:vhsconnect/basmati";
     bbrf.url = "github:vhsconnect/bbrf-radio";
+    extra-container.url = "github:vhsconnect/extra-container";
 
     alacritty_themes = {
       url = "github:alacritty/alacritty-theme";

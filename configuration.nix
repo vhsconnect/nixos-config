@@ -12,6 +12,9 @@ with pkgs;
   nixpkgs.config = {
     allowUnfree = true;
   };
+  nixpkgs.overlays = ((import ./overlays.nix) inputs pkgs.stdenv.hostPlatform.system)
+
+  ;
 
   nix = {
     package = pkgs.nixVersions.stable;
@@ -106,6 +109,7 @@ with pkgs;
         3333
         3307
         8080
+        8100
         3600
       ];
       checkReversePath = false;
@@ -154,6 +158,7 @@ with pkgs;
   services.xserver.windowManager.icewm.enable = !user.autoLogin;
 
   programs.nm-applet.enable = true;
+  programs.extra-container.enable = true;
 
   hardware.graphics.enable = true;
 
@@ -197,6 +202,7 @@ with pkgs;
         "networkmanager"
         "ops"
         "kvm"
+
       ];
     };
     users.office = {
@@ -227,6 +233,7 @@ with pkgs;
       p.virtualenv
     ]))
     alacritty
+    nixos-container
     zsh
     wget
     curl

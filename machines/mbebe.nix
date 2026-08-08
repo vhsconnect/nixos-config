@@ -42,6 +42,7 @@ in
     #../systemConfiguration/printing.nix
     ../systemConfiguration/syncthing/syncthing.nix
     #../systemConfiguration/libVirt.nix
+    # ../systemConfiguration/elf.nix
     ../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
     # ../systemConfiguration/sentinelone.nix

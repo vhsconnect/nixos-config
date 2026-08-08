@@ -8,21 +8,6 @@ let
     self.gleam = master.gleam;
   };
 
-  leap-nvim-overlay = self: prev: {
-    leap-nvim = prev.vimUtils.buildVimPlugin {
-      pname = "leap.nvim";
-      version = "2022-10-01";
-      src = prev.fetchFromGitHub {
-        owner = "ggandor";
-        repo = "leap.nvim";
-        rev = "5a09c30bf676d1392ff00eb9a41e0a1fc9b60a1b";
-        sha256 = "xmqb3s31J1UxifXauBzBo5EkhafBEnq2YUYKRXJLGB0=";
-      };
-
-      meta.homepage = "https://github.com/ggandor/leap.nvim/";
-    };
-  };
-
   codeium-overlay = self: prev: {
     _codeium = prev.vimUtils.buildVimPlugin {
       name = "codeium.vim";
@@ -41,23 +26,8 @@ let
     };
   };
 
-  coc-nvim-overlay = self: prev: {
-    coc-nvim-fixed = prev.vimUtils.buildVimPlugin {
-      pname = "coc.nvim";
-      version = "2021-09-04";
-      src = prev.fetchFromGitHub {
-        owner = "neoclide";
-        repo = "coc.nvim";
-        rev = "0d84bcdec47bcef553b54433bf8372ca4964a7f9";
-        sha256 = "0zz6lbbvrm3jx8yb096hb3jd4g4ph4abyrbs2gwv39flfyw9yqjp";
-      };
-      meta.homepage = "https://github.com/neoclide/coc.nvim/";
-    };
-  };
 in
 [
-  coc-nvim-overlay
-  leap-nvim-overlay
   codeium-overlay
   master-overlay
 ]
