@@ -14,6 +14,7 @@ let
     attrValues
     (concatStringsSep " ")
   ];
+  volume = pkgs.writeScriptBin "volume" (builtins.readFile ./volume.bb);
 
   allight = pkgs.writeScriptBin "allight" ''
     #! /usr/bin/env bash
@@ -409,5 +410,6 @@ in
     cleanfilenames
     _dl-process
     bootstrap-config
+    volume
   ];
 }

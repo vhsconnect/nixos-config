@@ -9,9 +9,9 @@
     lxqt.lxqt-openssh-askpass
     lxappearance
     pamixer
-    xfce.thunar
-    xorg.xmodmap
-    xorg.xev
+    thunar
+    xmodmap
+    xev
     xwallpaper
     nautilus
     nix-output-monitor

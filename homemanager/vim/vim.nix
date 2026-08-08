@@ -14,7 +14,8 @@ let
   joinFiles = x: builtins.concatStringsSep "\n" (map builtins.readFile x);
 in
 if user.useNeovimFlake then
-  { home.packages = [ inputs.editor.packages.${system}.neovim ]; }
+  #{ home.packages = [ inputs.editor.packages.${system}.neovim ]; }
+  { home.packages = [ ]; }
 else
   {
     xdg.configFile = {

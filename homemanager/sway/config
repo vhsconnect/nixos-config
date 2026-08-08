@@ -124,6 +124,21 @@ for_window [window_type="tooltip"] floating enable
 for_window [window_type="notification"] floating enable
 for_window [app_id=".*"] border pixel 1
 
+
+
+### vault ###
+exec "sh -c 'sleep 60s && alacritty --class=vault-term --working-directory /home/common/Shared/vault -e nvim' 
+
+for_window [app_id="vault-term"] {
+  floating enable
+  mark "vault_scratchpad"
+  move scratchpad
+  move position center
+}
+
+bindsym $mod+equal [con_mark="vault_scratchpad"] scratchpad show; [con_mark="vault_scratchpad"] resize set 1200 800, move position center
+### vault end ###
+
 default_border pixel 1
 default_floating_border normal
 
