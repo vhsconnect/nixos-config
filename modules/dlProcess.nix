@@ -25,10 +25,15 @@ in
       default = null;
       description = "Path to file to process";
     };
+    logFile = mkOption {
+      type = types.str;
+      default = null;
+      description = "Path to append stdout";
+    };
     errorFile = mkOption {
       type = types.str;
       default = null;
-      description = "Path to file to log to";
+      description = "Path to file to error log to";
     };
     outputDir = mkOption {
       type = types.str;
@@ -55,7 +60,7 @@ in
       {
 
         script = ''
-          ${pkgs.fish}/bin/fish ${binScript}/bin/_dl-process ${cfg.file} ${cfg.errorFile} ${cfg.outputDir}
+          ${pkgs.babashka}/bin/bb ${binScript}/bin/_dl-process --file ${cfg.file} --log-file ${cfg.logFile} --error-file ${cfg.errorFile} --output-dir ${cfg.outputDir}
         '';
 
         serviceConfig = {

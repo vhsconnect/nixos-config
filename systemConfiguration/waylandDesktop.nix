@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }:
 
@@ -12,6 +11,10 @@
   programs.ssh.startAgent = true;
   xdg.portal.enable = true;
   xdg.portal.wlr.enable = true;
+  xdg.portal.wlr.settings.screencast = {
+    chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+    chooser_type = "simple";
+  };
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   environment.systemPackages = with pkgs; [ kanshi ];

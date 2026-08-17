@@ -75,8 +75,9 @@ in
           enable = true;
           user = "vhs";
           file = "~/dlp-files";
+          logFile = " ~/dlp-logs";
           errorFile = "~/dlp-error-files";
-          outputDir = "~/Sync2";
+          outputDir = "~/Sync2/audio";
         };
         services.xscreensaver = {
           enable = false;

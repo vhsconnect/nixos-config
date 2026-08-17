@@ -2,34 +2,42 @@
 {
 
   script = ''
-    #! /usr/bin/env fish
+    #! /usr/bin/env bb
 
-    function exitEarly
-      echo "Exiting early ..."
-      exit 1
-    end
+    (require '[babashka.cli :as cli]
+             '[clojure.string :as s]
+             '[babashka.process :refer [sh shell]])
 
-    set file $argv[0]
-    set errorFile $argv[1]
-    set outputDir $argv[2]
+    (def cli-options
+      {:file {:coerce :string}
+       :log-file {:coerce :string}
+       :error-file {:coerce :string}
+       :output-dir {:coerce :string}})
 
-    test (${pkgs.wireguard-tools}/bin/wg show interfaces | wc -l) -gt 0; or exitEarly
+    (let [opts (cli/parse-opts *command-line-args* {:spec cli-options})
 
-    set File (realpath $file)
-    set ErrorFile (realpath $errorFile)
-
-    set SubDir (date '+%m_%d')
-    set OutputFolder (realpath $outputDir/$SubDir)
-
-    mkdir -p $OutputFolder
-
-    echo $File  >> $ErrorFile
-    echo $ErrorFile >> $ErrorFile
-    echo $OutputFolder >> $ErrorFile
-
-    cat "$File" | xargs -I {} ${pkgs.fish}/bin/fish -c '${pkgs.nix}/bin/nix run github:nixos/nixpkgs#yt-dlp -- -x "$argv[1]" -P "$argv[2]" 2>>"$argv[3]"; or echo "$argv[1]" >> "$argv[3]"' '{}' $OutputFolder $ErrorFile
-
-    echo "" >$File
+          {:keys [file log-file error-file output-dir]} opts
+          contents (:out (sh (str "cat " file)) true)
+          arr (s/split contents #"\n")
+          vpn-interfaces  (:out
+                           (sh [
+                           "${pkgs.bash}/bin/bash"
+                           "-c" 
+                           "${pkgs.wireguard-tools}/bin/wg show interfaces | wc -l"])
+                           true)]
+      (println vpn-interfaces)
+      (when (not (= "0" vpn-interfaces))
+        (doseq [x arr]
+          (let [filename (str output-dir "/%(title)s.%(ext)s")
+                p (shell
+                   {:out :string :error :string :continue true}
+                   (str
+                    "${pkgs.nix}/bin/nix run github:nixos/nixpkgs#yt-dlp -- -o "
+                    filename
+                    " -x "
+                    x))]
+            (spit log-file (str (:out p) "\n") :append true)
+            (spit error-file (str (:error p) "\n") :append true)))))
 
   '';
 

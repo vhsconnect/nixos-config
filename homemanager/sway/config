@@ -127,7 +127,7 @@ for_window [app_id=".*"] border pixel 1
 
 
 ### vault ###
-exec "sh -c 'sleep 60s && alacritty --class=vault-term --working-directory /home/common/Shared/vault -e nvim' 
+exec "sh -c 'sleep 60s && alacritty --class=vault-term --working-directory /home/common/Shared/vault' 
 
 for_window [app_id="vault-term"] {
   floating enable

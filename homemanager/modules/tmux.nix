@@ -134,6 +134,9 @@ with theme;
     set -g default-terminal "screen-256color"
     set -ga terminal-overrides ",*256col*:Tc"
 
+    # better support for modern terminal standards
+    set -g extended-keys-format csi-u
+
   '';
   programs.tmux.plugins = [
     {
