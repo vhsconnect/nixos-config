@@ -78,6 +78,7 @@ in
       nix-stray-roots = ''nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory)"'';
       clear-auto-roots = "sudo rm -rf /nix/var/nix/gcroots/auto/*";
       lsproc = "ls -l /proc//cwd";
+      gr = "nvim -p $(git status --porcelain | awk '{print $2}')";
 
     }
     // nixrunPackages;

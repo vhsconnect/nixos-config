@@ -3,6 +3,7 @@
   _imports,
   stdenv,
   user,
+  pkgs,
   ...
 }:
 {
@@ -32,6 +33,25 @@
     settings.modal = true;
     enableZshIntegration = true;
   };
+
+  programs.bat = {
+    enable = true;
+    syntaxes = {
+      fennel = {
+        src =
+          let
+            repo = pkgs.fetchFromGitHub {
+              owner = "gbaptista";
+              repo = "sublime-text-fennel";
+              rev = "main";
+              sha256 = "sha256-puHDk0xDvdOfNGOkuc4AqaE/fSNm5vVFqoaFkL2vXIY=";
+            };
+          in
+          "${repo}/Fennel.sublime-syntax";
+      };
+    };
+  };
+
   programs.htop = {
     enable = true;
     settings = {

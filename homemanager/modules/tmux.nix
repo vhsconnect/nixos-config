@@ -139,6 +139,7 @@ with theme;
 
   '';
   programs.tmux.plugins = [
+    { plugin = pkgs.tmuxPlugins.tmux-fzf; }
     {
       plugin = pkgs.tmuxPlugins.tmux-thumbs;
       extraConfig = ''

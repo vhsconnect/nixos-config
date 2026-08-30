@@ -57,6 +57,8 @@
     TMPDIR = "/home/office/Public/tmp";
   };
 
+  home.packages = [ pkgs.slack ];
+
   home.username = "office";
   home.homeDirectory = "/home/office";
 
