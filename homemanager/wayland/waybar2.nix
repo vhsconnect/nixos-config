@@ -137,8 +137,8 @@ let
           }
 
           #battery.charging {
-              color: ${foreground};
               background-color: ${background-module};
+              color: ${foreground};
           }
 
           @keyframes blink {
@@ -268,7 +268,8 @@ let
       # background-module = combination.color2;
       background-module = combination.colorPop;
       background = "white";
-      foreground = "rgba(0, 0, 0, 0.9)";
+      #foreground = "rgba(0, 0, 0, 0.9)";
+      foreground = "white";
       accent = theme.accent;
       workspaceBackground = "white";
       workspaceForeground = combination.colorPop;

@@ -217,7 +217,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {
     // off
-     slowdown 0.1 
+     slowdown 0.6
 }
 
 window-rule {

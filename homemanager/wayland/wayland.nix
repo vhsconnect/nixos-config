@@ -242,7 +242,6 @@ in
           exec "sh -c 'sleep 2s' && ${pkgs.networkmanagerapplet}/bin/nm-applet" 
           exec "sh -c 'sleep 2s' && ${pkgs.jamesdsp}/bin/jamesdsp --tray" 
           exec_always ${user.monitorsCmd}
-          exec firefox 
 
         ''
       ];

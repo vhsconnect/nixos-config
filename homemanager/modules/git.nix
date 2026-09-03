@@ -28,6 +28,7 @@
         ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
         ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
         dif = "diff -- .${difOptions}";
+        diffs = "-c delta.side-by-side=false diff";
         sta = "stash --include-untracked";
         c = "commit -S";
       };
@@ -46,6 +47,9 @@
 
         init.defaultBranch = "master";
         gpg.format = "ssh";
+        rerere.enable = true;
+        branch.sort = "-committerdate";
+
       };
 
       signing = {

@@ -41,6 +41,9 @@ with builtins;
       cargo
       rustc
 
+      # files
+      yazi
+
       #python
       pyright
       pycritty

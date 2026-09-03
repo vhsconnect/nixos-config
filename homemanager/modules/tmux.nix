@@ -133,6 +133,8 @@ with theme;
     # Optional: Enable true color support if your terminal supports it
     set -g default-terminal "screen-256color"
     set -ga terminal-overrides ",*256col*:Tc"
+    # claude bug - highlighting escape code
+    set -ag terminal-overrides ',*:bce'
 
     # better support for modern terminal standards
     set -g extended-keys-format csi-u

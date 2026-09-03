@@ -44,7 +44,7 @@
               owner = "gbaptista";
               repo = "sublime-text-fennel";
               rev = "main";
-              sha256 = "sha256-puHDk0xDvdOfNGOkuc4AqaE/fSNm5vVFqoaFkL2vXIY=";
+              sha256 = "sha256-puHDk0xDvdOfNGOkuc4AqaE/fSNm5vVFqoaFkL1vXIY=";
             };
           in
           "${repo}/Fennel.sublime-syntax";
