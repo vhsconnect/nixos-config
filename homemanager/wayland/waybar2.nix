@@ -1,6 +1,7 @@
 {
   user,
   pkgs,
+  osConfig,
   ...
 }:
 
@@ -87,7 +88,8 @@ let
           #custom-tailscale,
           #custom-github,
           #custom-smartd,
-          #custom-disks {
+          #custom-disks,
+          #custom-radio {
               padding: 0 10px;
               margin: 5px 3px; 
               color: ${background-module};
@@ -238,6 +240,16 @@ let
             background-color: green;
           }
 
+          #custom-radio {
+              background-color: ${background-module};
+              color: ${foreground};
+          }
+
+          #custom-radio.audible {
+              background-color: #f0932b;
+              color : rgba(0, 0, 0, 0.9);
+          }
+
         '';
 
     };
@@ -298,6 +310,28 @@ in
                 (builtins.readFile ./scripts/tailscale-toggle)
               ]
             );
+        radio-waybar =
+          let
+            bbrfStation =
+              if (osConfig ? services.bbrf-radio) && (osConfig.services.bbrf-radio ? radioBroadcast) then
+                osConfig.services.bbrf-radio.radioBroadcast
+              else
+                "radio";
+          in
+
+          pkgs.writeScriptBin "radio-waybar" (
+            builtins.concatStringsSep "\n" [
+              ''
+                #!/usr/bin/env fish
+                set SOCAT "${pkgs.socat}/bin/socat"
+                set JQ "${pkgs.jq}/bin/jq"
+                set SOCKET "$XDG_RUNTIME_DIR/radio.sock"
+                set DEFAULT_STATION "${bbrfStation}"
+              ''
+              (builtins.readFile ./scripts/radio-waybar)
+            ]
+          );
+
         weather = pkgs.writeScriptBin "exe" (builtins.readFile ./scripts/weather);
         github =
           pkgs.writeScriptBin "exe" # bash
@@ -400,6 +434,7 @@ in
                   "modules-center": [],
                   "modules-left": ["sway/workspaces"],
                   "modules-right": [
+                      "custom/radio",
                       "custom/github",
                       "custom/smartd",
                       "custom/tailscale",
@@ -477,6 +512,16 @@ in
                       "interval": 10,
                       "format": "  {}",
                       "on-click": "${tailscale-toggle}/bin/tailscale-toggle",
+                  },
+                  "custom/radio": {
+                      "exec": "${radio-waybar}/bin/radio-waybar",
+                      "exec-if": "test -S \"$XDG_RUNTIME_DIR/radio.sock\"",
+                      "return-type": "json",
+                      "restart-interval": 4,
+                      "interval": 2,
+                      "format": "  {}",
+                      "tooltip": true,
+                      "on-click": "${radio-waybar}/bin/radio-waybar toggle",
                   },
                   "custom/weather": {
                       "exec": "${weather}/bin/exe ${user.location}",

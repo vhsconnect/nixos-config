@@ -27,6 +27,7 @@ set $menu "rofi -lines 4 -run-command '/usr/bin/env zsh -c -i {cmd}' -show run"
 bindsym $mod+Return exec $term
 bindsym $mod+Escape kill
 bindsym $mod+d exec $menu
+bindsym $mod+t exec radio pick
 
 bindsym F2 exec "exec rofi -show emoji -modi emoji"
 bindsym F3 exec "cliphist-rofi | rofi -show -dmenu | wl-copy"
