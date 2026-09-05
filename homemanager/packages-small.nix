@@ -37,7 +37,7 @@
 
   essential = with pkgs; [
     # themePackages
-    xfce.xfce4-icon-theme
+    xfce4-icon-theme
     # guiPackages
     signal-desktop
     alacritty

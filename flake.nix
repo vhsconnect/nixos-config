@@ -10,7 +10,7 @@
     darwinNixpkgs.url = "github:nixos/nixpkgs/nixpkgs-26.05-darwin";
     darwin.url = "github:lnl7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "darwinNixpkgs";
-   # editor.url = "github:vhsconnect/nvim";
+    # editor.url = "github:vhsconnect/nvim";
     basmati.url = "github:vhsconnect/basmati";
     bbrf.url = "github:vhsconnect/bbrf-radio";
     extra-container.url = "github:vhsconnect/extra-container";

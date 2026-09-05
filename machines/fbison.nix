@@ -16,6 +16,7 @@ let
         # ../systemConfiguration/niriDesktop.nix
       ];
   system = "x86_64-linux";
+  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = true; };
   immich = import ../systemConfiguration/immich.nix;
   homemanagerGtkImports = if user.withgtk then [ ../homemanager/modules/gtk3.nix ] else [ ];
   homemanagerDesktopImports =
@@ -44,6 +45,7 @@ in
 
     ../configuration.nix
     ../modules/dlProcess.nix
+
     ../modules/githubNotify.nix
     # ../modules/icecast.nix
     ../systemConfiguration/docker.nix
@@ -54,6 +56,9 @@ in
     ../systemConfiguration/syncthing/syncthing.nix
     ../systemConfiguration/jellyfin.nix
     # ../systemConfiguration/iphone.nix
+
+    ../modules/bbrf.nix
+    bbrf
 
     (
       { pkgs, ... }:
@@ -66,6 +71,7 @@ in
 
         system.stateVersion = "26.05";
 
+        services.resolved.enable = true;
         services.github-notify = {
 
           enable = true;
@@ -93,6 +99,7 @@ in
       }
     )
     inputs.home-manager.nixosModules.home-manager
+    inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
     {
       home-manager.useUserPackages = true;
       home-manager.useGlobalPkgs = false;
