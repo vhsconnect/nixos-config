@@ -30,7 +30,7 @@ bindsym $mod+d exec $menu
 bindsym $mod+t exec radio pick
 
 bindsym F2 exec "exec rofi -show emoji -modi emoji"
-bindsym F3 exec "cliphist-rofi | rofi -show -dmenu | wl-copy"
+bindsym F3 exec "cliphist-rofi | rofi -show -dmenu | cut -d ' ' -f 2- | wl-copy"
 bindsym F6 exec pamixer -d 5
 bindsym F7 exec pamixer -i 5
 bindsym F8 exec lowpass_toggle 
