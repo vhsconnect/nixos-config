@@ -15,7 +15,7 @@ let
         #../systemConfiguration/niriDesktop.nix
       ];
   system = "x86_64-linux";
-  #  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
+  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
   homemanagerDesktopImports =
     if user.usei3 then
       [
@@ -36,7 +36,7 @@ in
   };
   modules = [
     ../configuration.nix
-    #../modules/bbrf.nix
+    ../modules/bbrf.nix
     ../modules/githubNotify.nix
     ../systemConfiguration/docker.nix
     #../systemConfiguration/printing.nix
@@ -47,7 +47,7 @@ in
     ../systemConfiguration/nosleep.nix
     # ../systemConfiguration/sentinelone.nix
     # ../systemConfiguration/fintech.nix
-    # bbrf
+    bbrf
 
     (
       { ... }:

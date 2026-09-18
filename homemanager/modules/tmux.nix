@@ -54,6 +54,7 @@ with theme;
 
     # Sync bat theme
     set -ga update-environment "BAT_THEME"
+    set -ga update-environment "WAYLAND_DISPLAY"
 
     # vi mode
     set-window-option -g mode-keys vi
@@ -77,7 +78,7 @@ with theme;
 
     # Left side of status bar (session info)
     set -g status-left-length 50
-    set -g status-left-style "bg=${accent},fg=${main},bold"
+    set -g status-left-style "bg=${accent},fg=${secondary},bold"
     set -g status-left " #S "
 
     # Window status formats
