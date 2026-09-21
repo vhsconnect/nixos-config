@@ -14,7 +14,13 @@ let
         ../systemConfiguration/waylandDesktop.nix
       ];
   system = "x86_64-linux";
-  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = true; };
+  bbrf = {
+    services.bbrf-radio = {
+      enable = true;
+      withNginxProxy = true;
+      radioBroadcast = user.alwaysOnRadioStation;
+    };
+  };
 in
 {
   inherit system;

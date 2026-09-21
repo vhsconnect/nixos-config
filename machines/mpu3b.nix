@@ -27,7 +27,13 @@ let
       [
         ../homemanager/wayland/wayland.nix
       ];
-  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
+  bbrf = {
+    services.bbrf-radio = {
+      enable = true;
+      withNginxProxy = false;
+      radioBroadcast = user.alwaysOnRadioStation;
+    };
+  };
 in
 
 {

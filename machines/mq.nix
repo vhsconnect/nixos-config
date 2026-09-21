@@ -13,7 +13,13 @@ in
   modules = [
     ../darwinConfiguration.nix
     ../modules/bbrf.nix
-    (import ../systemConfiguration/bbrf.nix { enableNginx = false; })
+    {
+      services.bbrf-radio = {
+        enable = true;
+        withNginxProxy = false;
+        radioBroadcast = user.alwaysOnRadioStation;
+      };
+    }
     inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
     inputs.home-manager.darwinModules.home-manager
     {

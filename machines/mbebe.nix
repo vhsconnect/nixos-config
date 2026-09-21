@@ -15,7 +15,13 @@ let
         #../systemConfiguration/niriDesktop.nix
       ];
   system = "x86_64-linux";
-  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
+  bbrf = {
+    services.bbrf-radio = {
+      enable = true;
+      withNginxProxy = false;
+      radioBroadcast = user.alwaysOnRadioStation;
+    };
+  };
   homemanagerDesktopImports =
     if user.usei3 then
       [

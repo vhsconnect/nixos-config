@@ -11,7 +11,13 @@ let
     else
       [ ../desktop/gnome.nix ];
   system = "x86_64-linux";
-  bbrf = import ../systemConfiguration/bbrf.nix { enableNginx = false; };
+  bbrf = {
+    services.bbrf-radio = {
+      enable = true;
+      withNginxProxy = false;
+      radioBroadcast = user.alwaysOnRadioStation;
+    };
+  };
 in
 
 {
