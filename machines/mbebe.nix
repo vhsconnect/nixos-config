@@ -45,6 +45,7 @@ in
     # ../systemConfiguration/elf.nix
     ../systemConfiguration/tailscale.nix
     ../systemConfiguration/nosleep.nix
+    ../systemConfiguration/kanata.nix
     # ../systemConfiguration/sentinelone.nix
     # ../systemConfiguration/fintech.nix
     bbrf
