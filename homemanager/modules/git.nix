@@ -38,7 +38,7 @@
         safe.directory = "*";
         core = {
           editor = "nvim";
-          excludesFiles = "~/.ignore";
+          excludesFile = "~/.ignore";
         };
         rebase.updateRefs = true;
 

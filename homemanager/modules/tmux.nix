@@ -31,6 +31,12 @@ with theme;
     #bind -n M-Down select-pane -D
     #bind -n M-Space select-pane -t :.+
 
+    # resize panes
+    bind -r h resize-pane -L 3
+    bind -r j resize-pane -D 3
+    bind -r k resize-pane -U 3
+    bind -r l resize-pane -R 3
+
     # Reload config
     bind r source-file ~/.tmux.conf
 
@@ -140,6 +146,10 @@ with theme;
     # better support for modern terminal standards
     set -g extended-keys-format csi-u
 
+    # clipboard works through ssh
+    set -g set-clipboard on
+    set -g allow-passthrough on
+
   '';
   programs.tmux.plugins = [
     { plugin = pkgs.tmuxPlugins.tmux-fzf; }
@@ -148,6 +158,8 @@ with theme;
       extraConfig = ''
         set -g @thumbs-key f
         set -g @thumbs-command 'echo -n {} | wl-copy'
+        # SSH
+        set -g @thumbs-command 'tmux set-buffer -- {}; tmux run-shell "printf \"\\033]52;c;$(tmux save-buffer -p | base64 | tr -d \\\\n)\\a\""'
 
         # set -g @thumbs-fg-color '#e5e1e9'
         # set -g @thumbs-bg-color '#434078'

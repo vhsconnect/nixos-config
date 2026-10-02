@@ -102,7 +102,7 @@ in
       plugins = [
         "colored-man-pages"
         "vi-mode"
-        "timer"
+        #"timer"
       ];
     };
     plugins = [

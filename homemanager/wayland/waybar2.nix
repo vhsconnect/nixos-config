@@ -431,6 +431,7 @@ in
                   "height": 24,
                   "spacing": 10,
                   "reload_style_on_change": true,
+                  "no-center": true,
                   "modules-center": [],
                   "modules-left": ["sway/workspaces"],
                   "modules-right": [
