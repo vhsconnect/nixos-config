@@ -43,11 +43,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1788644600,
-        "narHash": "sha256-Yz+UVAOu6bj/O7xWISquOlvQxTwOIJCf65GJF+42LEI=",
+        "lastModified": 1788643262,
+        "narHash": "sha256-naYex/cSmvu0Du1jhSBpcMqCQo2k7Mi8I6ghQkl1SJ8=",
         "owner": "vhsconnect",
         "repo": "bbrf-radio",
-        "rev": "e4a5fe62081146f5a0546508247721cfbb16856a",
+        "rev": "c2b8cd0d594f366835be4bf7f90316e47da1452b",
         "type": "github"
       },
       "original": {
