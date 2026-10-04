@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+#
+# rc-rofi — extensible rofi launcher menu
+#
+# Every executable file in ./actions/ becomes one menu entry.
+#   - label defaults to the filename without its extension
+#   - or set an explicit one with a "# label: My Label" header comment
+# Selecting an entry executes that file.
+#
+# Test from a terminal:  ROFI_BIN=/path/to/fake-rofi ./rc-rofi
+
+set -u
+
+# follow symlinks so this works from the nix store (bin/rc-rofi -> ../share/rc-rofi/rc-rofi)
+self=$(readlink -f "${BASH_SOURCE[0]}")
+here="$(cd "$(dirname "$self")" && pwd)"
+actions_dir="$here/actions"
+rofi_bin="${ROFI_BIN:-rofi}"
+
+if [[ ! -d $actions_dir ]]; then
+    echo "rc-rofi: actions dir not found: $actions_dir" >&2
+    exit 1
+fi
+
+# Collect actions: label -> script path
+labels=()
+declare -A action_for=()
+
+for f in "$actions_dir"/*; do
+    [[ -f $f && -x $f ]] || continue
+
+    label=$(sed -n 's/^# label: *//p' "$f" | head -n1)
+    [[ -n ${label:-} ]] || label=$(basename "$f"); label=${label%.*}
+
+    if [[ -n ${action_for[$label]:-} ]]; then
+        echo "rc-rofi: skipping duplicate label '$label' ($f)" >&2
+        continue
+    fi
+
+    labels+=("$label")
+    action_for[$label]=$f
+done
+
+((${#labels[@]})) || { echo "rc-rofi: no actions found in $actions_dir" >&2; exit 1; }
+
+# --- show the menu ----------------------------------------------------------
+choice=$(printf '%s\n' "${labels[@]}" \
+    | LC_ALL=C sort \
+    | "$rofi_bin" -dmenu -i -no-custom -p 'menu')
+
+# empty => user escaped / cancelled
+[[ -n ${choice:-} && -n ${action_for[$choice]:-} ]] || exit 0
+
+# --- run the selected action ------------------------------------------------
+exec "${action_for[$choice]}"

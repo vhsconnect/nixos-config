@@ -5,47 +5,8 @@
 }:
 let
   theme = import (../themes/. + "/${user.theme}.nix");
-  script1 = ''
 
-    #!/usr/bin/env bash
-    DIRECTION=$1
-    FORWARD=$2
-
-    TREE=$(swaymsg -t get_tree)
-    FOCUSED=$(echo "$TREE" | jq '.. | objects | select(.focused? == true)')
-    F_Y=$(echo "$FOCUSED" | jq '.rect.y')
-    F_H=$(echo "$FOCUSED" | jq '.rect.height')
-
-    WS=$(swaymsg -t get_workspaces | jq '.[] | select(.focused==true)')
-    WS_Y=$(echo "$WS" | jq '.rect.y')
-    WS_H=$(echo "$WS" | jq '.rect.height')
-    WS_NUM=$(echo "$WS" | jq '.num')
-    CURRENT_OUTPUT=$(echo "$WS" | jq -r '.output')
-
-    OUTPUT_WS=$(swaymsg -t get_workspaces | jq "[.[] | select(.output==\"$CURRENT_OUTPUT\") | .num] | sort[]")
-
-    case "$DIRECTION" in
-        up)   AT_EDGE=$(( F_Y <= WS_Y + 20 )) ;;
-        down) AT_EDGE=$(( F_Y + F_H >= WS_Y + WS_H - 20 )) ;;
-    esac
-
-    if [ "$AT_EDGE" = "1" ]; then
-        if [ "$FORWARD" = "1" ]; then
-            TARGET=$(echo "$OUTPUT_WS" | awk -v cur="$WS_NUM" '$1 > cur {print $1; exit}')
-        else
-            TARGET=$(echo "$OUTPUT_WS" | awk -v cur="$WS_NUM" '$1 < cur {print $1}' | tail -1)
-        fi
-
-        if [ -n "$TARGET" ]; then
-            swaymsg workspace "$TARGET"
-        fi
-    else
-        swaymsg focus "$DIRECTION"
-    fi
-
-  '';
-
-  script2 =
+  nav-script =
     # bash
     ''
 
@@ -112,7 +73,17 @@ let
 
     '';
 
-  move = pkgs.writeScriptBin "exe" script2;
+  move = pkgs.writeScriptBin "exe" nav-script;
+
+  # rc-rofi is a tree (script + actions/ + lib/) that locates its actions at runtime
+  # via readlink -f, so we package the whole dir and force the exec bit git may drop.
+  rc-rofi = pkgs.runCommand "rc-rofi" { } ''
+    install -dm755 $out/bin $out/share/rc-rofi
+    cp -r ${../scripts/rc-rofi}/. $out/share/rc-rofi/
+    chmod -R u+w,go+rX $out/share/rc-rofi
+    find $out/share/rc-rofi -type f -exec chmod a+x {} \;
+    ln -s ../share/rc-rofi/rc-rofi $out/bin/rc-rofi
+  '';
 
 in
 {
@@ -187,6 +158,7 @@ in
           set $up k
           set $right l
 
+
           # Move your focus around
           bindsym $mod+$left focus left
           bindsym $mod+$down exec "${move}/bin/exe focus down 1"
@@ -235,6 +207,9 @@ in
           client.focused_inactive ${theme.main} ${theme.main} ${theme.secondary} ${theme.secondary}
           client.unfocused        ${theme.main} ${theme.main} ${theme.secondary} ${theme.secondary}
           client.urgent           ${theme.secondary} ${theme.accent2} ${theme.accent2} ${theme.secondary}
+
+          # Special programs
+          bindsym $mod+apostrophe exec "${rc-rofi}/bin/rc-rofi"
 
 
           # startup applications
