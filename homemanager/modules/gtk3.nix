@@ -27,10 +27,4 @@ in
   qt.style.package = pkgs.adwaita-qt;
   qt.style.name = "adwaita-dark";
 
-  home.pointerCursor = {
-    package = pkgs.vanilla-dmz;
-    gtk.enable = true;
-    x11.enable = true;
-    name = "Vanilla-DMZ";
-  };
 }

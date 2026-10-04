@@ -37,7 +37,7 @@
                       x))]
               (spit log-file (str (:out p) "\n") :append true)
               (spit error-file (str (:error p) "\n") :append true)
-              (spit file "" :append true)))))
+              (spit file "" :append false)))))
 
     '';
 

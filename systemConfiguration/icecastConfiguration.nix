@@ -1,13 +1,17 @@
-{ config, ... }:
+{
+  port ? 8000,
+  ...
+}:
 {
   icecast = {
     autoStart = true;
     enable = true;
-    mediaDir = "/home/vhs/Audio/icecast";
-    port = 8000;
+    mediaDir = "/home/vhs/Audio";
+    playlistsDir = "/home/vhs/Audio/icecast";
+    inherit port;
     playlists = [
-      "umk"
-      "10-25"
+      "playlist1"
+      "playlist2"
     ];
   };
 }

@@ -21,6 +21,7 @@ let
         set JQ "${pkgs.jq}/bin/jq"
         set SOCAT "${pkgs.socat}/bin/socat"
         set SORT "${pkgs.coreutils}/bin/sort"
+        set PY "${pkgs.python3.interpreter}"
       ''
       (builtins.readFile ./radio-cli.fish)
     ]
@@ -109,6 +110,11 @@ in
         };
 
         script = ''
+          until ${pkgs.systemd}/bin/systemctl is-active --quiet bbrf.service; do
+            echo "Waiting for bbrf.service to become active..."
+            ${pkgs.coreutils}/bin/sleep 2
+          done
+
           until RADIO_URL=$(${pkgs.curl}/bin/curl -s http://localhost:${toString cfg.port}/favorites | ${pkgs.jq}/bin/jq -e -r --arg NAME "${cfg.radioBroadcast}" '.[] | select(.name == $NAME) | .url'); do
             echo "Waiting for bbrf endpoint..."
             ${pkgs.coreutils}/bin/sleep 2

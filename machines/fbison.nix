@@ -53,12 +53,12 @@ in
     ../modules/dlProcess.nix
 
     ../modules/githubNotify.nix
-    # ../modules/icecast.nix
+     ../modules/icecast.nix
     ../systemConfiguration/docker.nix
     ../systemConfiguration/ollama.nix
-    # ../systemConfiguration/icecastConfiguration.nix
+    (import ../systemConfiguration/icecastConfiguration.nix { port = 8001; })
     ../systemConfiguration/libVirt.nix
-    # ../systemConfiguration/printing.nix
+    ../systemConfiguration/printing.nix
     ../systemConfiguration/syncthing/syncthing.nix
     ../systemConfiguration/jellyfin.nix
     # ../systemConfiguration/iphone.nix

@@ -4,7 +4,11 @@
 #   radio on             un-mute
 #   radio off            mute
 #   radio toggle         flip mute
+#       (on/off/toggle also accept --waybar: emit the waybar payload
+#        after the state change instead of a human-readable line)
 #   radio status         show mute state and current station
+#   radio metadata       show current station and track title
+#   radio metadata --waybar  emit waybar custom-module JSON
 #   radio stations       list station names from bbrf favorites
 #   radio station NAME   switch to station NAME (looked up in bbrf favorites)
 #   radio pick           browse stations with rofi and switch to the choice
@@ -34,6 +38,19 @@ function query
         return 1
     end
     printf '%s\n' $resp[1] | $JQ -r '.data | if . == null then "" else tostring end'
+end
+
+# media-title, with stream-side double-encoding repaired: some streams send
+# UTF-8 that was misread as latin-1 and re-encoded ("L<U+00E2><U+0080><U+0099>Esprit"
+# instead of "L'Esprit"). Re-encode to latin-1 and decode back as UTF-8, but
+# keep the original unless that round trip is lossless (no chars above latin-1
+# dropped, and the re-encoded bytes are valid UTF-8).
+function getTitle
+    set -l title (query media-title)
+    if test -z "$title"
+        return
+    end
+    printf '%s\n' $title | $PY -c 'import sys; s = sys.stdin.buffer.readline().rstrip(b"\n").decode("utf-8", "replace"); b = s.encode("latin-1", "ignore"); print(b.decode("utf-8") if b.decode("latin-1") == s and b.decode("utf-8", "replace").encode() == b else s)'
 end
 
 function stations
@@ -67,9 +84,58 @@ function showStatus
 
     echo "radio: $label - $station"
 
-    set -l title (query media-title)
+    set -l title (getTitle)
     if test -n "$title"
         echo "  $title"
+    end
+end
+
+# waybar custom-module payload (return-type: json)
+function emitWaybar
+    if not test -S $SOCKET
+        $JQ -cn '{text:"", class:"off", tooltip:"radio not running"}'
+        return
+    end
+
+    set -l state audible
+    set -l label audible
+    set -l mute (query mute)
+    if test "$mute" = true
+        set state muted
+        set label muted
+    end
+
+    set -l station (query user-data/bbrf/name)
+    if test -z "$station"
+        set station $DEFAULT_STATION
+    end
+
+    set -l title (getTitle)
+
+    # song title in the bar itself, station name as fallback
+    set -l text $station
+    if test -n "$title"
+        set text $title
+    end
+
+    if test (string length $text) -gt 40
+        set text (string sub -l 39 $text)"…"
+    end
+
+    set -l tooltip "bbrf radio: $label"
+    if test -n "$title"
+        set tooltip "$tooltip\n$station\n$title"
+    end
+
+    $JQ -cn --arg t "$text" --arg c $state --arg T "$tooltip" '{text:$t, class:$c, tooltip:$T}'
+end
+
+# after a mute change: human-readable line, or the waybar payload with --waybar
+function reportMute
+    if contains -- --waybar $argv
+        emitWaybar
+    else
+        echo "radio: $argv[1]"
     end
 end
 
@@ -103,20 +169,20 @@ switch $argv[1]
     case on
         requireSocket
         ipc '{"command":["set_property","mute",false]}' > /dev/null
-        echo "radio: audible"
+        reportMute audible $argv
     case off
         requireSocket
         ipc '{"command":["set_property","mute",true]}' > /dev/null
-        echo "radio: muted"
+        reportMute muted $argv
     case toggle
         requireSocket
         set -l mute (query mute)
         if test "$mute" = true
             ipc '{"command":["set_property","mute",false]}' > /dev/null
-            echo "radio: audible"
+            reportMute audible $argv
         else
             ipc '{"command":["set_property","mute",true]}' > /dev/null
-            echo "radio: muted"
+            reportMute muted $argv
         end
     case station
         if test (count $argv) -lt 2
@@ -135,11 +201,19 @@ switch $argv[1]
             exit 0
         end
         switchStation $choice[1]
+    case metadata
+        # --waybar: machine-readable payload for the waybar custom module,
+        # otherwise same human-readable output as status
+        if contains -- --waybar $argv
+            emitWaybar
+        else
+            showStatus
+        end
     case stations
         stations
     case status
         showStatus
     case '*'
-        echo "usage: radio [on|off|toggle|status|stations|station NAME|pick]" >&2
+        echo "usage: radio [on|off|toggle [--waybar]|status|metadata [--waybar]|stations|station NAME|pick]" >&2
         exit 1
 end

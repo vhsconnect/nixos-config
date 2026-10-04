@@ -242,6 +242,15 @@
             source-node (some #(when (= (str (:id %)) source-id) %) options)]
         (sh "wpctl" "set-default" (str (:id source-node)))))))
 
+(defn- pick [] (let [sel (fzf-select
+                          ["pick default speaker" "pick default mic" "change device output" "status"]
+                          ">"  "What you wanna do?")]
+                 (cond
+                   (= sel "status") (display)
+                   (= sel "pick default speaker") (change-default-output-sink)
+                   (= sel "pick default mic") (change-default-input-sink)
+                   (= sel "change device output") (change))))
+
 ;; cli ;;
 
 (let [args (set *command-line-args*)]
@@ -253,7 +262,8 @@
         (println "  -do         change default output sink")
         (println "  -di         change default input source"))
 
+    (or (args "-s") (args "--status")) (display)
     (or (args "-co") (args "--change-out")) (change)
     (or (args "-do") (args "--default-out")) (change-default-output-sink)
     (or (args "-di") (args "--default-in")) (change-default-input-sink)
-    :else (display)))
+    :else (pick)))

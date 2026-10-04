@@ -51,7 +51,7 @@ in
     ../modules/githubNotify.nix
     ../modules/icecast.nix
     ../systemConfiguration/docker.nix
-    ../systemConfiguration/icecastConfiguration.nix
+    (import ../systemConfiguration/icecastConfiguration.nix { port = 8000; })
     # ../systemConfiguration/iphone.nix
     ../systemConfiguration/libVirt.nix
     ../systemConfiguration/printing.nix

@@ -103,6 +103,7 @@ in
         package-lock.json
         Cargo.lock
         .envrc
+        .lsp
         .direnv
         result
       '';

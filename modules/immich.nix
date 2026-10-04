@@ -67,6 +67,10 @@ in
           ...
         }:
         {
+          # update to immich 3.x.x in 26.11
+          nixpkgs.config.permittedInsecurePackages = [
+            "immich-2.7.5"
+          ];
           users.groups.ops = {
             gid = cfg.groupId;
           };

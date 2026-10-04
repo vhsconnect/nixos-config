@@ -17,7 +17,11 @@ in
 
     mediaDir = mkOption {
       type = types.str;
-      description = "Path for liquidsoap directory on the host";
+      description = "Root of the music library on the host, mounted read-only into the container. Everything the playlists reference must live under this path.";
+    };
+    playlistsDir = mkOption {
+      type = types.str;
+      description = "Host directory containing the .m3u files; must be inside mediaDir. Relative paths inside the playlists are resolved against this directory.";
     };
     bitrate = mkOption {
       type = types.str;
@@ -131,9 +135,17 @@ in
                 '';
             };
 
-          services.liquidsoap.streams = lib.genAttrs (cfg.playlists) (x: ''
-            output.icecast(%%mp3(bitrate=128),host=\"127.0.0.1\",port=${builtins.toString cfg.port},password=\"${cfg.password}\",mount=\"/${x}\",mksafe(playlist(reload=-1,mode=\"random\",\"/var/lib/liquidsoap/${x}.m3u\")))
-          '');
+          services.liquidsoap.streams =
+            let
+              # The whole mediaDir is mounted at /var/lib/liquidsoap, so relative
+              # entries in the playlists (e.g. "../foo/bar.mp3") resolve inside
+              # the container exactly like they do on the host.
+              playlistsRel = lib.removePrefix (cfg.mediaDir + "/") cfg.playlistsDir;
+              playlistDir = "/var/lib/liquidsoap" + lib.optionalString (playlistsRel != "") "/${playlistsRel}";
+            in
+            lib.genAttrs (cfg.playlists) (x: ''
+              output.icecast(%%mp3(bitrate=128),host=\"127.0.0.1\",port=${builtins.toString cfg.port},password=\"${cfg.password}\",mount=\"/${x}\",mksafe(playlist(reload=300,mode=\"random\",\"${playlistDir}/${x}.m3u\")))
+            '');
 
           system.stateVersion = "25.05";
         };
