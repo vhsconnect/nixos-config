@@ -2,26 +2,31 @@
 {
   services.kanata = {
     enable = true;
-    keyboards.default.config = ''
-      (defsrc
-        lmet muhenkan
-        a    s    d
-      )
+    keyboards.default = {
+      # grab mice too so their motion and the emitted mfwd come from the same
+      # "kanata" device, which sway's on_button_down scrolling requires
+      extraDefCfg = "linux-device-detect-mode any";
+      config = ''
+        (defsrc
+          lmet muhenkan del
+          a    s    d
+        )
 
-      (defalias
-        win (one-shot 1000 (layer-while-held symbols))
-        muhenkan (one-shot 1000 (layer-while-held symbols))
-      )
+        (defalias
+          scroll mfwd
+          del (tap-hold-press 200 200 del (layer-while-held symbols))
+        )
 
-      (deflayer base
-        @win @muhenkan
-        a    s    d
-      )
+        (deflayer base
+          @scroll @scroll @del
+          a    s    d
+        )
 
-      (deflayer symbols
-        _ _
-        S-lbrc S-9 lbrc
-      )
-    '';
+        (deflayer symbols
+          _ _ _
+          S-lbrc S-9 lbrc
+        )
+      '';
+    };
   };
 }

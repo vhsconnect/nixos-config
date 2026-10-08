@@ -107,6 +107,7 @@ in
           Type = "simple";
           Restart = "always";
           RestartSec = "5s";
+          MemoryMax = "400M";
         };
 
         script = ''
@@ -122,6 +123,7 @@ in
 
           exec ${pkgs.mpv}/bin/mpv \
             --no-video \
+            --ytdl=no \
             --ao=pulse \
             --mute=yes \
             --cache-secs=10 \

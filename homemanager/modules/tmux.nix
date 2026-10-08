@@ -36,6 +36,10 @@ with theme;
     bind -r j resize-pane -D 3
     bind -r k resize-pane -U 3
     bind -r l resize-pane -R 3
+    bind -r Left resize-pane -L 3
+    bind -r Down resize-pane -D 3
+    bind -r Up resize-pane -U 3
+    bind -r Right resize-pane -R 3
 
     # Reload config
     bind r source-file ~/.tmux.conf

@@ -175,6 +175,17 @@ input "type:keyboard" {
     repeat_rate 30
 }
 
+# kanata holds BTN_EXTRA (276) while the scroll key is down,
+input "1:1:kanata" {
+    xkb_layout us
+    xkb_variant altgr-intl
+    xkb_options ctrl:nocaps
+    repeat_delay 250
+    repeat_rate 30
+    scroll_method on_button_down
+    scroll_button 276
+}
+
 input "type:touchpad" {
     click_method clickfinger
     tap disabled 
