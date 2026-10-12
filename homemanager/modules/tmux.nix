@@ -101,8 +101,8 @@ with theme;
     set -g window-status-current-format " #I:#W "
 
     # Activity/bell states (high contrast warnings)
-    set -g window-status-activity-style "bg=#ff6b35,fg=${main},bold"
-    set -g window-status-bell-style "bg=#ff1744,fg=${main},bold,blink"
+    set -g window-status-activity-style "bg=${urgent},fg=${main},bold"
+    set -g window-status-bell-style "bg=${urgent},fg=${main},bold,blink"
 
     # Command line colors (when typing commands)
     set -g message-style "bg=${main},fg=${secondary},bold"
@@ -124,16 +124,16 @@ with theme;
 
     # Pane selection indicator
     set -g display-panes-colour "#ffeb3b"
-    set -g display-panes-active-colour "#ff6b35"
+    set -g display-panes-active-colour "${urgent}"
     set -g display-panes-time 2000
 
     # Search highlighting in copy mode
-    set -g copy-mode-match-style "bg=#ff6b35,fg=${main}"
-    set -g copy-mode-current-match-style "bg=#ff1744,fg=${main},bold"
+    set -g copy-mode-match-style "bg=${urgent},fg=${main}"
+    set -g copy-mode-current-match-style "bg=${urgent},fg=${main},bold"
 
     # Synchronized panes indicator (when panes are synchronized)
-    set -g window-status-format "#{?synchronize-panes,#[bg=#ff6b35]#[fg=${main}]#[bold] SYNC ,} #I:#W "
-    set -g window-status-current-format "#{?synchronize-panes,#[bg=#ff1744]#[fg=${main}]#[bold] SYNC ,}#[bg=${main}]#[fg=${secondary}]#[bold] #I:#W "
+    set -g window-status-format "#{?synchronize-panes,#[bg=${urgent}]#[fg=${main}]#[bold] SYNC ,} #I:#W "
+    set -g window-status-current-format "#{?synchronize-panes,#[bg=${urgent}]#[fg=${main}]#[bold] SYNC ,}#[bg=${main}]#[fg=${secondary}]#[bold] #I:#W "
 
     # Enable activity monitoring for visual feedback
     set -g monitor-activity on
@@ -153,6 +153,7 @@ with theme;
     # clipboard works through ssh
     set -g set-clipboard on
     set -g allow-passthrough on
+    set -as terminal-features ',*:clipboard'
 
   '';
   programs.tmux.plugins = [
@@ -161,9 +162,7 @@ with theme;
       plugin = pkgs.tmuxPlugins.tmux-thumbs;
       extraConfig = ''
         set -g @thumbs-key f
-        set -g @thumbs-command 'echo -n {} | wl-copy'
-        # SSH
-        set -g @thumbs-command 'tmux set-buffer -- {}; tmux run-shell "printf \"\\033]52;c;$(tmux save-buffer -p | base64 | tr -d \\\\n)\\a\""'
+        set -g @thumbs-command 'tmux set-buffer -w -- {}'
 
         # set -g @thumbs-fg-color '#e5e1e9'
         # set -g @thumbs-bg-color '#434078'
