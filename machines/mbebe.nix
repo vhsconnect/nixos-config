@@ -42,7 +42,7 @@ in
   };
   modules = [
     ../configuration.nix
-    ../modules/bbrf.nix
+    ../modules/radio/bbrf.nix
     ../modules/githubNotify.nix
     ../systemConfiguration/docker.nix
     #../systemConfiguration/printing.nix

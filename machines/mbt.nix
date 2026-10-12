@@ -50,7 +50,7 @@ in
     ../configuration.nix
     ../systemConfiguration/docker.nix
     ../systemConfiguration/syncthing/syncthing.nix
-    ../modules/bbrf.nix
+    ../modules/radio/bbrf.nix
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.disko

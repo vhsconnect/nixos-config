@@ -31,7 +31,7 @@ in
   modules = [
     ../configuration.nix
     ../systemConfiguration/docker.nix
-    ../modules/bbrf.nix
+    ../modules/radio/bbrf.nix
     inputs.bbrf.nixosModules.x86_64-linux.bbrf
     inputs.home-manager.nixosModules.home-manager
     bbrf

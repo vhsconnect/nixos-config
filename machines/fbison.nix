@@ -63,7 +63,7 @@ in
     ../systemConfiguration/jellyfin.nix
     # ../systemConfiguration/iphone.nix
 
-    ../modules/bbrf.nix
+    ../modules/radio/bbrf.nix
     bbrf
 
     (

@@ -45,7 +45,7 @@ in
   };
   modules = [
     ../configuration.nix
-    # ../modules/bbrf.nix
+    # ../modules/radio/bbrf.nix
     ../modules/immich.nix
     ../modules/dlProcess.nix
     ../modules/githubNotify.nix

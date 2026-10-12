@@ -12,7 +12,7 @@ in
   };
   modules = [
     ../darwinConfiguration.nix
-    ../modules/bbrf.nix
+    ../modules/radio/bbrf.nix
     {
       services.bbrf-radio = {
         enable = true;
