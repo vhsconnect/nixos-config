@@ -35,7 +35,7 @@ bindsym F6 exec pamixer -d 5
 bindsym F7 exec pamixer -i 5
 bindsym F8 exec lowpass_toggle 
 bindsym F9 exec reverb_toggle
-bindsym F10 exec xscreensaver-command -lock 
+bindsym F10 exec lock
 bindsym F11 exec shotman -C -c region
 
 

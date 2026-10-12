@@ -19,6 +19,7 @@ let
 
   themeMap = {
     "summerFruit" = tmuxCombination;
+    "silk" = tmuxCombination;
   };
 
   combination = themeMap.${user.theme} or dunstCombination;
