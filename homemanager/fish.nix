@@ -97,23 +97,23 @@ in
     shellAbbrs = {
       l = "exa -la";
       lsg = "exa -la | rg -i";
+      lt = "exa --tree --level=2 --icons";
       vl = "git status --short | fzf | cut -c 4- | xargs nvim";
       vh = "git show --name-only --pretty=format: | fzf | xargs nvim";
       si = "du -hd0";
       sic = "du -h --max-depth=1 .";
       allbound = "netstat -tulpn";
       nixr = "nix run nixpkgs#";
-      nixp = "nix-shell -p";
-      nixd = "nix develop -c zsh";
+      nixs = "nix shell nixpkgs#";
       less = "less -r";
       cl = "clear";
+      zzz = "systemctl suspend";
     };
 
     shellAliases = {
       cdconfig = "cd /home/common/SConfig/nixos-config/";
       c = "xclip -selection clipboard";
       v = "fd . --type=file --exclude '.git/*' | fzf | xargs nvim";
-      lock = "xscreensaver-command -lock";
       emoji = "rofi -show emoji -modi emoji";
       tree = "tree -C";
       deli = "tr $1 '\n'";

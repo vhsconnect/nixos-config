@@ -62,7 +62,6 @@ in
       dugl = "du -hd0";
       dush = "du -h --max-depth=1 .";
       sz = "source ~/.zstuff";
-      lock = "xscreensaver-command -lock";
       emoji = "rofi -show emoji -modi emoji";
       allbound = "netstat -tulpn";
       tree = "tree -C";
