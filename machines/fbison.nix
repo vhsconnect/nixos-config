@@ -53,7 +53,7 @@ in
     ../modules/dlProcess.nix
 
     ../modules/githubNotify.nix
-     ../modules/icecast.nix
+    ../modules/icecast.nix
     ../systemConfiguration/docker.nix
     ../systemConfiguration/ollama.nix
     (import ../systemConfiguration/icecastConfiguration.nix { port = 8001; })
@@ -136,13 +136,6 @@ in
           (
             { pkgs, ... }:
             {
-
-              home.file = {
-                ".background-image" = {
-                  enable = true;
-                  source = ../nixos.png;
-                };
-              };
 
               home.packages = (packagesDev pkgs).ps;
             }

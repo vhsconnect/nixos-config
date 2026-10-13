@@ -1,8 +1,14 @@
 -- Loaded into each always-on radio deck (see bbrf.nix), driven by
 -- radio-cli.fish over IPC:
 --
---   script-message fade TARGET SECS [stop]   ramp volume to TARGET over SECS,
---                                            then optionally stop playback
+--   script-message fade TARGET SECS [curve] [stop]
+--                                            ramp volume to TARGET over SECS,
+--                                            then optionally stop playback.
+--                                            curve: "lin" (default) or "eq"
+--                                            (equal-power: sin rising / cos
+--                                            falling, so two crossfading decks
+--                                            superimpose at constant
+--                                            loudness instead of dipping)
 --   script-message load URL                  silence the deck and load URL;
 --                                            user-data/radio/load goes
 --                                            pending -> ready once audio is
@@ -22,19 +28,32 @@ local function cancelRamp()
     end
 end
 
-local function fade(target, secs, after)
+local function fade(target, secs, curve, after)
     cancelRamp()
     target = tonumber(target) or 0
     secs = tonumber(secs) or 0
     local from = mp.get_property_number("volume", 0)
     local start = mp.get_time()
 
+    -- equal-power curves: rising side sin, falling side cos. Two decks
+    -- crossfading with these keep perceived loudness constant (uncorrelated
+    -- signals add in power, and sin^2 + cos^2 = 1), so the tracks blend
+    -- instead of dipping and sounding sequential halfway through
+    local shape = function(t) return t end
+    if curve == "eq" then
+        if target >= from then
+            shape = function(t) return math.sin(t * math.pi / 2) end
+        else
+            shape = function(t) return math.cos(t * math.pi / 2) end
+        end
+    end
+
     local function step()
         local t = 1
         if secs > 0 then
             t = math.min((mp.get_time() - start) / secs, 1)
         end
-        mp.set_property_number("volume", from + (target - from) * t)
+        mp.set_property_number("volume", from + (target - from) * shape(t))
         if t >= 1 then
             cancelRamp()
             if after == "stop" then

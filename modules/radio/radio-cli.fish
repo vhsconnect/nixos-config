@@ -79,12 +79,15 @@ function isAudible
     test "$audible" = true
 end
 
-# fadeDeck SOCKET true|false SECS: mark the deck (in)audible and ramp it there
+# fadeDeck SOCKET true|false SECS [lin|eq]: mark the deck (in)audible and ramp
+# it there; "eq" shapes the ramp equal-power for crossfading
 function fadeDeck
     set -l target 0
     test "$argv[2]" = true; and set target 100
+    set -l curve lin
+    test (count $argv) -ge 4; and set curve $argv[4]
     ipcTo $argv[1] (printf '{"command":["set_property","user-data/radio/audible",%s]}' $argv[2]) > /dev/null
-    ipcTo $argv[1] (printf '{"command":["script-message","fade","%s","%s"]}' $target $argv[3]) > /dev/null
+    ipcTo $argv[1] (printf '{"command":["script-message","fade","%s","%s","%s"]}' $target $argv[3] $curve) > /dev/null
 end
 
 function idleDeck
@@ -227,8 +230,10 @@ function switchStation
 
     set -l audible false
     isAudible; and set audible true
-    fadeDeck $idle $audible $CROSSFADE_SECS
-    ipc (printf '{"command":["script-message","fade","0","%s","stop"]}' $CROSSFADE_SECS) > /dev/null
+    # equal-power on both sides: the ramps superimpose at constant loudness
+    # instead of dipping (and sounding sequential) halfway through
+    fadeDeck $idle $audible $CROSSFADE_SECS eq
+    ipc (printf '{"command":["script-message","fade","0","%s","eq","stop"]}' $CROSSFADE_SECS) > /dev/null
 
     $LN -sfn (path basename $idle) $SOCKET.new
     $MV -Tf $SOCKET.new $SOCKET
