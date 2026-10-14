@@ -186,6 +186,68 @@ let
   changetheme = pkgs.writeScriptBin "changetheme" ''
     chterm -t
   '';
+  boomer = pkgs.writeScriptBin "boomer" ''
+    #! /usr/bin/env fish
+
+    # Tip
+    # Install as an autoload function for best results:
+
+    function pr-review --description "fzf an open PR, worktree it, review with codeboomer"
+        command -q gh
+        or begin
+            echo "pr-review: gh is not installed" >&2
+            return 1
+        end
+
+        command -q fzf
+        or begin
+            echo "pr-review: fzf is not installed" >&2
+            return 1
+        end
+
+        set -l repo_root (git rev-parse --show-toplevel 2>/dev/null)
+        if test -z "$repo_root"
+            echo "pr-review: not inside a git repository" >&2
+            return 1
+        end
+
+        set -l repo (basename $repo_root)
+
+        # number, title, branch, author — fzf gets the PR number in {1}
+        set -l sel (gh pr list \
+            --limit 100 \
+            --json number,title,headRefName,author \
+            --jq '.[] | [.number, .title, .headRefName, .author.login] | @tsv' \
+            | fzf \
+                --header='Pick a PR to review' \
+                --delimiter='\t' \
+                --preview-window='right:70%:wrap' \
+                --preview='gh pr view {1}; echo; gh pr diff {1}')
+        if test -z "$sel"
+            return 1
+        end
+
+        set -l number (string match -r '^[0-9]+' -- $sel)
+        set -l branch (gh pr view $number --json headRefName --jq .headRefName)
+
+        # one folder out from the repo root: ../<repo>-pr-<number>
+        set -l wt (dirname $repo_root)/$repo-pr-$number
+
+        if not test -d $wt
+            git fetch origin $branch
+            or return 1
+            git worktree add -b pr-$number $wt origin/$branch
+            or return 1
+        end
+
+        cd $wt
+        or return 1
+
+        nvim . -c "Codeboomer LaunchReviewer"
+    end
+
+    pr-review
+  '';
   clone = pkgs.writeScriptBin "clone" ''
     #! /usr/bin/env fish
 
@@ -429,6 +491,7 @@ in
     pskill
     vpn
     init-br
+    boomer
     cleanfilenames
     _dl-process
     bootstrap-config
