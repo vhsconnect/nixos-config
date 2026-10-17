@@ -30,6 +30,8 @@ let
       background-module,
       foreground,
       accent,
+      warning,
+      critical,
       workspaceBackground,
       workspaceForeground,
       unset,
@@ -169,6 +171,16 @@ let
               color: ${foreground};
           }
 
+          #cpu.warning {
+              background-color: ${warning};
+              color: rgba(0, 0, 0, 0.9);
+          }
+
+          #cpu.critical {
+              background-color: ${critical};
+              color: rgba(0, 0, 0, 0.9);
+          }
+
           #memory {
               background-color: ${background-module};
               color: ${foreground};
@@ -259,6 +271,8 @@ let
       background = "rgba(0, 0, 0, 0.9)";
       foreground = "white";
       accent = theme.accent;
+      warning = theme.accent2 or theme.accent;
+      critical = theme.urgent or theme.accent;
       workspaceBackground = combination.colorBase;
       workspaceForeground = combination.colorPop;
       unset = false;
@@ -271,6 +285,8 @@ let
       background = "rgba(0, 0, 0, 0.97)";
       foreground = "white";
       accent = theme.accent;
+      warning = theme.accent2 or theme.accent;
+      critical = theme.urgent or theme.accent;
       workspaceBackground = combination.colorBase;
       workspaceForeground = combination.colorPop;
       unset = true;
@@ -283,6 +299,8 @@ let
       #foreground = "rgba(0, 0, 0, 0.9)";
       foreground = "white";
       accent = theme.accent;
+      warning = theme.accent2 or theme.accent;
+      critical = theme.urgent or theme.accent;
       workspaceBackground = "white";
       workspaceForeground = combination.colorPop;
       unset = false;
@@ -436,12 +454,9 @@ in
                   "clock": {
                       "format": "{:%I:%M} ",
                       "format-alt": "{:%A, %B %d, %Y (%R)}",
+                      "format-alt-click": 1,
                       "interval": 15,
-                      "tooltip-format": "<tt>{calendar}</tt>",
-                      "actions": {
-                          "on-click-right": "shift_down",
-                          "on-click": "shift_up"
-                      }
+                      "tooltip-format": "<tt>{calendar}</tt>"
                   },
                   "pulseaudio/slider": {
                       "format": ""
@@ -475,7 +490,11 @@ in
                   "cpu": {
                       "format": "C {usage}%",
                       "interval": 5,
-                      "tooltip": true
+                      "tooltip": true,
+                      "states": {
+                          "warning": 50,
+                          "critical": 80
+                      }
                   },
                   "memory": {
                       "format": "R {percentage}%"
