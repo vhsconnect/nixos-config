@@ -1,0 +1,78 @@
+# waybar custom/netmon: interface rates from /proc/net/dev (accurate, cheap)
+# plus per-process tooltip from /run/nethogs/data.json (services.nethogs-exporter)
+# outputs waybar json: {text, tooltip, percentage} - percentage is combined
+# Mbit/s and drives the module "states" thresholds
+
+J=/run/nethogs/data.json
+S="${XDG_RUNTIME_DIR:-/tmp}/netmon.state"
+mkdir -p "$(dirname "$S")"
+
+dev=$(jq -r '.dev // empty' "$J" 2>/dev/null)
+if [ -z "$dev" ]; then
+    dev=$(awk 'NR>1 && $2=="00000000" {print $1; exit}' /proc/net/route)
+    [ -z "$dev" ] && dev=lo
+fi
+
+now=$(cut -d' ' -f1 /proc/uptime)
+rx=$(awk -v d="$dev" '$1==d":"{print $2}' /proc/net/dev)
+tx=$(awk -v d="$dev" '$1==d":"{print $10}' /proc/net/dev)
+
+last=""
+p_rx=""
+p_tx=""
+[ -r "$S" ] && read -r last p_rx p_tx <"$S"
+# atomic write: a bar spanning N outputs spawns N instances of this script,
+# never let one read a half-written state file
+printf '%s %s %s\n' "$now" "$rx" "$tx" >"$S.tmp" && mv -f "$S.tmp" "$S"
+
+text="↓ -- ↑ --"
+pct=0
+if
+    [ -n "$last" ] && [ -n "$rx" ] &&
+        awk -v a="$now" -v b="$last" 'BEGIN{exit !(a-b > 0.5)}'
+then
+    # shellcheck disable=SC2016
+    eval "$(awk -v n="$now" -v n0="$last" -v r="$rx" -v t="$tx" -v r0="$p_rx" -v t0="$p_tx" '
+        function h(b) {
+            if (b >= 1048576) return sprintf("%.1fMB/s", b/1048576)
+            if (b >= 1024) return sprintf("%dKB/s", b/1024)
+            return sprintf("%dB/s", b)
+        }
+        BEGIN {
+            dt = n - n0
+            if (dt <= 0) exit
+            rd = (r - r0) / dt
+            td = (t - t0) / dt
+            if (rd < 0) rd = 0
+            if (td < 0) td = 0
+            printf "text=\"↓ %s ↑ %s\"\n", h(rd), h(td)
+            printf "pct=%d\n", (rd + td) * 8 / 1000000
+        }')"
+fi
+
+if [ -r "$J" ]; then
+    tooltip=$(jq -r '
+        def kbs:
+            if . >= 1024 then (((. / 1024) * 10 | round) / 10 | tostring) + "MB/s"
+            else (round | tostring) + "KB/s"
+            end;
+        "<tt>" +
+        (.dev + "  totals ↓ " + (.total_down|kbs) + "  ↑ " + (.total_up|kbs)) + "\n" +
+        ([ .procs[:10][] |
+            (.name | sub(".*/"; "")) as $raw |
+            ($raw | .[0:16]) as $n |
+            ($n | @html) + (" " * (16 - ($n | length))) +
+            " ↓ \(.down|kbs)  ↑ \(.up|kbs)  \(.user)"
+         ] | join("\n")) +
+        "</tt>"' "$J" 2>/dev/null)
+else
+    tooltip="nethogs exporter not running
+systemctl status nethogs-exporter"
+fi
+
+# jq -c: waybar parses module output per line - pretty multi-line JSON fails
+jq -c -n \
+    --arg text "$text" \
+    --arg tooltip "$tooltip" \
+    --argjson pct "$pct" \
+    '{text: $text, tooltip: $tooltip, percentage: $pct}'

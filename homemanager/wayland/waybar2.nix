@@ -79,6 +79,7 @@ let
 
           #clock,
           #custom-weather,
+          #custom-netmon,
           #battery,
           #bluetooth,
           #cpu,
@@ -252,6 +253,21 @@ let
             background-color: green;
           }
 
+          #custom-netmon {
+              background-color: ${background-module};
+              color: ${foreground};
+          }
+
+          #custom-netmon.warning {
+              background-color: ${warning};
+              color: rgba(0, 0, 0, 0.9);
+          }
+
+          #custom-netmon.critical {
+              background-color: ${critical};
+              color: rgba(0, 0, 0, 0.9);
+          }
+
           #custom-radio {
               background-color: ${background-module};
               color: ${foreground};
@@ -329,6 +345,13 @@ in
               ]
             );
         weather = pkgs.writeScriptBin "exe" (builtins.readFile ./scripts/weather);
+        netmon =
+          pkgs.writeScriptBin "exe"
+            (builtins.concatStringsSep "\n" [
+              ''#! /usr/bin/env bash''
+              ''export PATH="${pkgs.jq}/bin:${pkgs.gawk}/bin:$PATH"''
+              (builtins.readFile ./scripts/netmon)
+            ]);
         github =
           pkgs.writeScriptBin "exe" # bash
             ''
@@ -423,7 +446,7 @@ in
               {
                   "layer": "top",
                   "position": "bottom",
-                  "output": "!DP-2",
+                  "output": ["!DP-2"],
                   "height": 24,
                   "spacing": 10,
                   "reload_style_on_change": true,
@@ -436,6 +459,7 @@ in
                       "custom/smartd",
                       "custom/tailscale",
                       "network",
+                      "custom/netmon",
                       "temperature",
                       "custom/disks",
                       "cpu",
@@ -457,6 +481,16 @@ in
                       "format-alt-click": 1,
                       "interval": 15,
                       "tooltip-format": "<tt>{calendar}</tt>"
+                  },
+                  "custom/netmon": {
+                      "exec": "${netmon}/bin/exe",
+                      "return-type": "json",
+                      "interval": 2,
+                      "tooltip": true,
+                      "states": {
+                          "warning": 50,
+                          "critical": 300
+                      }
                   },
                   "pulseaudio/slider": {
                       "format": ""

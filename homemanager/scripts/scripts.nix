@@ -178,6 +178,7 @@ let
   oneoff = pkgs.writeScriptBin "oneoff" (builtins.readFile ./oneoff.sh);
   nixrun = pkgs.writeScriptBin "nixrun" (builtins.readFile ./nixrun.sh);
   rave-connect = pkgs.writeScriptBin "rave-connect" (builtins.readFile ./rave-connect.sh);
+  downgrade-video = pkgs.writeScriptBin "downgrade-video" (builtins.readFile ./downgrade-video.sh);
   dorebase = pkgs.writeScriptBin "dorebase" (builtins.readFile ./dorebase.sh);
   chterm = pkgs.writeScriptBin "chterm" (builtins.readFile ./chterm.sh);
   changefont = pkgs.writeScriptBin "changefont" ''
@@ -479,6 +480,7 @@ in
     oneoff
     nixrun
     rave-connect
+    downgrade-video
     controlcaps
     xwall
     dorebase

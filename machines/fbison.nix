@@ -51,6 +51,7 @@ in
 
     ../configuration.nix
     ../modules/dlProcess.nix
+    ../modules/nethogs.nix
 
     ../modules/githubNotify.nix
     ../modules/icecast.nix
@@ -90,6 +91,10 @@ in
           logFile = " ~/dlp-logs";
           errorFile = "~/dlp-error-files";
           outputDir = "~/Sync2/audio";
+        };
+        services.nethogs-exporter = {
+          enable = true;
+          refreshSeconds = 5;
         };
         services.xscreensaver = {
           enable = false;
