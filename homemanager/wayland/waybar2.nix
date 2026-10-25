@@ -446,7 +446,7 @@ in
               {
                   "layer": "top",
                   "position": "bottom",
-                  "output": ["!DP-2"],
+                  "output": "!DP-2",
                   "height": 24,
                   "spacing": 10,
                   "reload_style_on_change": true,

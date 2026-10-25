@@ -153,13 +153,6 @@ in
             swaybar_command ${pkgs.waybar}/bin/waybar
           }
 
-          # second sway bar block -> sway spawns "waybar -b bar-1" which is
-          # array element 1 in waybar's config (full module set, non-DP-2 outputs).
-          # without this block only bar-0 (workspaces-only, DP-2) ever runs.
-          bar {
-            swaybar_command ${pkgs.waybar}/bin/waybar
-          }
-
           set $left h
           set $down j
           set $up k
