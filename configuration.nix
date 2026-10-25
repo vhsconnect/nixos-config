@@ -38,6 +38,8 @@ with pkgs;
         "vhs"
         "office"
       ];
+      max-jobs = 3;
+      cores = 4;
       auto-optimise-store = true;
       extra-trusted-substituters = [
         "https://nix-community.cachix.org"
