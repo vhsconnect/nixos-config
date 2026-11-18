@@ -2,6 +2,7 @@ inputs:
 let
   user = (import ../user.nix).mpu4;
   otherHosts = import ../user.nix;
+  packagesSmall = import ../homemanager/packages-small.nix;
   desktopEnvironments =
     if user.usei3 then
       [
@@ -12,15 +13,9 @@ let
     else
       [
         ../systemConfiguration/waylandDesktop.nix
+        #  ../systemConfiguration/niriDesktop.nix
       ];
   system = "x86_64-linux";
-  bbrf = {
-    services.bbrf-radio = {
-      enable = true;
-      withNginxProxy = true;
-      radioBroadcast = user.alwaysOnRadioStation;
-    };
-  };
 in
 {
   inherit system;
@@ -32,15 +27,15 @@ in
   };
   modules = [
     ../configuration.nix
-    ../modules/radio/bbrf.nix
     ../systemConfiguration/syncthing/syncthing.nix
     ../systemConfiguration/anki.nix
+    ../systemConfiguration/docker.nix
+    ../systemConfiguration/nosleep.nix
     ../systemConfiguration/gitDaemon.nix
     ../modules/icecast.nix
 
-    bbrf
     (
-      { ... }:
+      { config, ... }:
       {
         imports = [
 
@@ -48,11 +43,10 @@ in
         ];
 
         services.resolved.enable = true;
-        system.stateVersion = "20.09";
+        system.stateVersion = "26.05";
       }
 
     )
-    inputs.bbrf.nixosModules.${builtins.currentSystem}.bbrf
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager.useUserPackages = true;
@@ -70,13 +64,18 @@ in
           ../homemanager/modules/git.nix
           ../homemanager/scripts/scripts.nix
           ../homemanager/scripts/templates.nix
-          ../homemanager/packages-small.nix
           (
             { pkgs, ... }:
             {
-              home.packages = with pkgs; [
-                nerd-fonts.fira-code
-              ];
+              home.packages =
+                with pkgs;
+                [
+                  nerd-fonts.fira-code
+                  anki
+                  kdePackages.kdeconnect-kde
+                ]
+                ++ (packagesSmall pkgs).essential;
+
             }
           )
         ]

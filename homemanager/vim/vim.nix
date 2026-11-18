@@ -28,22 +28,18 @@ else
       viAlias = true;
       withNodeJs = true;
       withPython3 = true;
+      withRuby = true;
 
       plugins = (
         with pkgs.vimPlugins;
         [
           ale
           auto-pairs
-          colorizer
-          emmet-vim
           editorconfig-vim
           fzf-vim
           markdown-preview-nvim
-          neoterm
-          papercolor-theme
           tcomment_vim
           tmuxline-vim
-          typescript-vim
           vim-colorschemes
           lualine-nvim
           vim-devicons
@@ -52,19 +48,12 @@ else
           vim-nix
           vim-prettier
           vim-tmux-navigator
-          vim-vue
-          vimproc
           vim-gitgutter
           vim-repeat
-          yuck-vim
-
           nvim-tree-lua
           nvim-web-devicons
           nvim-surround
-
-          neodev-nvim
           leap-nvim
-          # which-key-nvim
           avante-nvim
 
           {
@@ -87,7 +76,7 @@ else
           else
             [
               # completion-nvim
-              nvim-treesitter.withAllGrammars
+              # nvim-treesitter.withAllGrammars
               nvim-lspconfig
               cmp-nvim-lsp
               cmp-buffer

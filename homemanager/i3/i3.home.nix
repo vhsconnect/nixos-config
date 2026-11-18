@@ -156,6 +156,7 @@ in
       for_window [window_type="notification"] floating enable
 
       exec --no-startup-id export QT_QPA_PLATFORMTHEME=qt5ct
+      exec --no-startup-id kdeconnect-indicator
     '';
 
   };

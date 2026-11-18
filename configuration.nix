@@ -115,6 +115,10 @@ with pkgs;
         8082
         8100
         3600
+        3333
+        3331
+        4369
+        4882
       ];
       checkReversePath = false;
     };
@@ -184,7 +188,6 @@ with pkgs;
     pulse.enable = true;
     jack.enable = false;
     wireplumber.enable = true;
-
   };
 
   services.udisks2 = {
@@ -279,6 +282,7 @@ with pkgs;
   };
 
   services.openssh.enable = user.enableSSH;
+  services.openssh.settings.X11Forwarding = true;
 
   # systemd.settings.Manager = ''
   #   DefaultTimeoutStopSec=10s

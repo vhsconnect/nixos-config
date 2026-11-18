@@ -49,6 +49,9 @@ in
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
+    extraFlags = [
+      "--allow-newer-config"
+    ];
     dataDir = "/home/vhs/Sync";
     configDir = "/home/vhs/.syncthing";
     guiAddress = "localhost:3331";
